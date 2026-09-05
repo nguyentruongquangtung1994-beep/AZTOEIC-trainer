@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AZEnglish TOEIC Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#fcfbfa; --paper-2:#f2f0ee; --ink:#1a1210; --ink-soft:#5c534f; --line:#e6e1dc;
+    --red:#e0102b; --red-ink:#8f0a1c;
+    --green:#1e7a4c; --green-bg:#e7f4ec;
+    --amber:#a5680a; --amber-bg:#faf1de;
+    --card-shadow: 0 1px 0 rgba(26,18,16,.04), 0 12px 28px -18px rgba(26,18,16,.35);
+    --focus: 0 0 0 3px rgba(224,16,43,.28);
+    --font-display:"Lora","Georgia",serif;
+    --font-body:"Be Vietnam Pro",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#161211; --paper-2:#1f1a18; --ink:#f3ece9; --ink-soft:#b8aca6; --line:#332b28;
+      --red:#ff4d5e; --red-ink:#ff8f98; --green:#5fd394; --green-bg:#173226;
+      --amber:#e3ac52; --amber-bg:#332a16;
+      --card-shadow: 0 1px 0 rgba(0,0,0,.2), 0 20px 40px -20px rgba(0,0,0,.6);
+      --focus: 0 0 0 3px rgba(255,77,94,.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#161211; --paper-2:#1f1a18; --ink:#f3ece9; --ink-soft:#b8aca6; --line:#332b28;
+    --red:#ff4d5e; --red-ink:#ff8f98; --green:#5fd394; --green-bg:#173226;
+    --amber:#e3ac52; --amber-bg:#332a16;
+    --card-shadow: 0 1px 0 rgba(0,0,0,.2), 0 20px 40px -20px rgba(0,0,0,.6);
+    --focus: 0 0 0 3px rgba(255,77,94,.35);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"]{
+    --paper:#fcfbfa; --paper-2:#f2f0ee; --ink:#1a1210; --ink-soft:#5c534f; --line:#e6e1dc;
+    --red:#e0102b; --red-ink:#8f0a1c; --green:#1e7a4c; --green-bg:#e7f4ec;
+    --amber:#a5680a; --amber-bg:#faf1de;
+    --card-shadow: 0 1px 0 rgba(26,18,16,.04), 0 12px 28px -18px rgba(26,18,16,.35);
+    --focus: 0 0 0 3px rgba(224,16,43,.28);
+    color-scheme: light;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); }
+  .wrap{ max-width:760px; margin:0 auto; padding:20px 14px 60px; }
+  .banner{ display:flex; align-items:center; gap:14px; padding-bottom:16px; border-bottom:2px solid var(--ink); margin-bottom:20px; }
+  .logo{ width:46px; height:46px; border-radius:12px; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-family:var(--font-display); font-size:18px; flex:none; }
+  .brand small{ display:block; font-size:11px; font-weight:800; letter-spacing:.08em; color:var(--red); text-transform:uppercase; }
+  .brand h1{ margin:2px 0 0; font-family:var(--font-display); font-size:19px; font-weight:700; cursor:pointer; }
+  .themeBtn{ margin-left:auto; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--paper-2); cursor:pointer; font-size:16px; }
+  .panel{ background:var(--paper); border:1px solid var(--line); border-radius:16px; box-shadow:var(--card-shadow); padding:22px; margin-bottom:16px; }
+  .panel h2{ margin:0 0 10px; font-family:var(--font-display); }
+  .desc{ color:var(--ink-soft); font-size:13.5px; line-height:1.6; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:6px; border-radius:12px; padding:12px 18px; font-weight:700; font-size:14px; border:1px solid transparent; cursor:pointer; text-decoration:none; }
+  .btn-primary{ background:var(--red); color:#fff; }
+  .btn-ghost{ background:var(--paper-2); color:var(--ink); border-color:var(--line); }
+  .btn:focus-visible{ outline:none; box-shadow:var(--focus); }
+  .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  .meta-row{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+  .meta-chip{ font-size:12px; font-weight:700; background:var(--paper-2); border:1px solid var(--line); border-radius:99px; padding:5px 12px; color:var(--ink-soft); }
+  .test-card{ border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:12px; }
+  .test-card h3{ margin:0 0 4px; font-family:var(--font-display); }
+  .test-card a{ text-decoration:none; }
+  .section-link{ display:block; padding:10px 14px; border:1px solid var(--line); border-radius:10px; margin-top:8px; color:var(--ink); text-decoration:none; font-weight:700; font-size:13.5px; }
+  .section-link:hover{ background:var(--paper-2); }
+  .toolbar{ display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .tabs{ display:flex; gap:6px; flex-wrap:wrap; }
+  .tab-btn{ border:1px solid var(--line); background:var(--paper-2); border-radius:99px; padding:7px 14px; font-weight:700; font-size:12.5px; cursor:pointer; color:var(--ink-soft); }
+  .tab-btn.active{ background:var(--red); color:#fff; border-color:var(--red); }
+  .spacer{ flex:1; }
+  .progress-mini{ font-size:12.5px; color:var(--ink-soft); font-weight:700; }
+  .q-block{ border-bottom:1px solid var(--line); padding:18px 0; }
+  .q-block:first-child{ padding-top:0; }
+  .q-block:last-child{ border-bottom:none; }
+  .q-num{ font-weight:800; color:var(--red); font-size:13px; margin-bottom:6px; }
+  .q-text{ font-size:14.5px; line-height:1.6; margin:0 0 10px; }
+  .q-photo{ max-width:100%; border-radius:10px; margin-bottom:10px; display:block; }
+  .opt-row{ display:flex; flex-direction:column; gap:8px; }
+  .opt-btn{ text-align:left; border:1.5px solid var(--line); background:var(--paper); border-radius:10px; padding:10px 14px; font-size:13.5px; cursor:pointer; display:flex; gap:10px; align-items:flex-start; }
+  .opt-btn b{ flex:none; width:20px; height:20px; border-radius:50%; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:11.5px; }
+  .opt-btn.selected{ border-color:var(--red); background:var(--amber-bg); }
+  .opt-btn.selected b{ background:var(--red); color:#fff; }
+  .opt-btn.correct{ border-color:var(--green); background:var(--green-bg); color:var(--green); }
+  .opt-btn.correct b{ background:var(--green); color:#fff; }
+  .opt-btn.wrong{ border-color:var(--red); background:rgba(224,16,43,.08); color:var(--red-ink); }
+  .opt-btn.wrong b{ background:var(--red); color:#fff; }
+  .opt-btn[disabled]{ cursor:default; }
+  audio.qaudio{ display:block; width:100%; margin-bottom:10px; }
+  .abc-only{ display:flex; gap:8px; }
+  .abc-only .opt-btn{ flex:1; text-align:center; justify-content:center; }
+  .score-tile{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .score-num{ font-family:var(--font-display); font-weight:800; font-size:40px; color:var(--red); }
+  .score-sub{ font-size:12.5px; color:var(--ink-soft); }
+  .expert-band{ display:flex; align-items:baseline; gap:10px; margin:14px 0 4px; }
+  .expert-band b{ font-family:var(--font-display); font-weight:800; font-size:32px; color:var(--red); }
+  .expert-band span{ font-size:13px; color:var(--ink-soft); }
+  .expert-note{ font-size:12px; color:var(--ink-soft); font-style:italic; margin:0 0 16px; }
+  .expert-list{ margin:0; padding:0; list-style:none; }
+  .expert-list li{ font-size:13.5px; line-height:1.6; padding:8px 12px; margin-bottom:6px; border-radius:10px; background:var(--paper-2); }
+  .expert-advice{ font-size:13.5px; line-height:1.6; background:var(--green-bg); color:var(--green); padding:12px 14px; border-radius:12px; margin:0; }
+  .pending-note{ font-size:12.5px; color:var(--ink-soft); background:var(--paper-2); border:1px dashed var(--line); border-radius:10px; padding:10px 14px; margin:10px 0; }
+
+  /* ---------- in-app confirm modal (native confirm() is unreliable in some browser contexts) ---------- */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; z-index:50; padding:16px; }
+  .modal-box{ background:var(--paper); border:1px solid var(--line); border-radius:16px; box-shadow:var(--card-shadow); padding:22px; max-width:360px; width:100%; }
+  .modal-box p{ font-size:14px; line-height:1.6; margin:0 0 16px; }
+  .modal-box .btn-row{ margin-top:0; }
+
+  /* ---------- full-test layout (study4-style) ---------- */
+  .wrap.wrap-wide{ max-width:1120px; }
+  .take-layout{ display:grid; grid-template-columns: 1fr 280px; gap:18px; align-items:start; }
+  .audio-master{ position:sticky; top:10px; z-index:6; margin-bottom:14px; }
+  .audio-row{ display:flex; align-items:center; gap:10px; }
+  .audio-play{ flex:none; width:38px; height:38px; border-radius:50%; border:none; background:var(--red); color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .audio-seek{ flex:1; accent-color:var(--red); }
+  .audio-time{ flex:none; font-size:12px; color:var(--ink-soft); font-variant-numeric:tabular-nums; min-width:88px; text-align:right; }
+  .audio-vol-range{ width:70px; accent-color:var(--red); }
+  .audio-now{ font-size:12px; color:var(--ink-soft); margin-top:8px; }
+  .sidebar{ position:sticky; top:10px; display:flex; flex-direction:column; gap:14px; }
+  .timer-box{ text-align:center; }
+  .timer-label{ font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .timer-num{ font-family:var(--font-display); font-weight:800; font-size:30px; margin-top:4px; }
+  .timer-num.low{ color:var(--red); }
+  .qnav-panel{ max-height:calc(100vh - 220px); overflow-y:auto; }
+  .qnav-part-label{ font-size:11px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin:14px 0 6px; }
+  .qnav-part-label:first-child{ margin-top:0; }
+  .qnav-grid{ display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; }
+  .qnav-btn{ border-radius:8px; border:1px solid var(--line); background:var(--paper-2); font-size:11.5px; font-weight:700; cursor:pointer; color:var(--ink-soft); padding:6px 0; }
+  .qnav-btn.answered{ background:var(--green-bg); color:var(--green); border-color:var(--green); }
+  .qnav-btn.current-part{ border-color:var(--red); color:var(--red-ink); font-weight:800; }
+  .qnav-btn.answered.current-part{ border-color:var(--green); box-shadow:0 0 0 2px var(--green); }
+  @media (max-width:860px){
+    .take-layout{ grid-template-columns:1fr; }
+    .sidebar{ position:static; order:-1; }
+    .qnav-panel{ max-height:220px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">
+    <div class="logo">AZ</div>
+    <div class="brand">
+      <small>AZEnglish · TOEIC Trainer</small>
+      <h1 id="homeLink">Luyện thi TOEIC theo đề ETS 2026</h1>
+    </div>
+    <button class="themeBtn" id="themeBtn" title="Đổi giao diện sáng/tối">◐</button>
+  </div>
+  <div id="app"></div>
+</div>
+
+<script src="ets2026-test1.js"></script>
+<script>
+(function(){
+  "use strict";
+  var STORAGE_KEY = "az_toeic_trainer_v1";
+
+  // ---------- TOEIC scaled-score conversion (approximate, non-linear S-curve) ----------
+  // ETS does not publish one fixed official formula — each test form has its own conversion
+  // table, and real curves compress at both extremes (near 0 and near 100% correct, each extra
+  // correct answer moves the scaled score less than in the middle range). A straight line
+  // overstates scores at the low end and understates how hard the last few points are near the
+  // top. These anchor points follow the general shape published across ETS official practice-test
+  // conversion tables; interpolated piecewise-linear between them, rounded to the nearest 5 like
+  // real TOEIC scaled scores, clamped to the official 5-495 range. Raw count == % correct since
+  // each section (Listening/Reading) has exactly 100 questions.
+  var SCALE_ANCHORS = [
+    [0,5],[5,60],[10,115],[15,160],[20,200],[25,240],[30,275],[35,310],[40,335],
+    [45,360],[50,380],[55,400],[60,415],[65,430],[70,445],[75,455],[80,465],
+    [85,475],[90,480],[95,490],[100,495],
+  ];
+  function scaledScore(rawPct){
+    rawPct = Math.max(0, Math.min(100, rawPct));
+    for(var i = 0; i < SCALE_ANCHORS.length - 1; i++){
+      var a = SCALE_ANCHORS[i], b = SCALE_ANCHORS[i+1];
+      if(rawPct >= a[0] && rawPct <= b[0]){
+        var t = (rawPct - a[0]) / (b[0] - a[0]);
+        var val = a[1] + t * (b[1] - a[1]);
+        return Math.max(5, Math.min(495, Math.round(val / 5) * 5));
+      }
+    }
+    return rawPct <= 0 ? 5 : 495;
+  }
+
+  var PART_INFO = {
+    1: { label: "Part 1 – Photographs", advice: "quan sát kỹ chủ thể chính và hành động trong ảnh trước khi nghe, tránh chọn theo từ nghe được mà không khớp với ảnh." },
+    2: { label: "Part 2 – Question-Response", advice: "nghe kỹ từ để hỏi đầu câu (who/what/when/where/why/how) vì đáp án thường đánh lừa bằng từ phát âm gần giống." },
+    3: { label: "Part 3 – Conversations", advice: "đọc trước câu hỏi và đáp án trong lúc chờ hội thoại bắt đầu, chú ý thông tin suy luận (không nói trực tiếp)." },
+    4: { label: "Part 4 – Talks", advice: "nắm bố cục bài nói (mở đầu nêu chủ đề, giữa là chi tiết, cuối thường có yêu cầu hành động)." },
+    5: { label: "Part 5 – Incomplete Sentences", advice: "xác định đúng từ loại cần điền (danh từ/động từ/tính từ/trạng từ) trước khi chọn nghĩa." },
+    6: { label: "Part 6 – Text Completion", advice: "đọc cả đoạn văn để hiểu mạch ý trước khi chọn, không chỉ nhìn câu chứa chỗ trống." },
+    7: { label: "Part 7 – Reading Comprehension", advice: "đọc câu hỏi trước, sau đó quét (scan) tài liệu để tìm đúng thông tin thay vì đọc toàn bộ theo thứ tự." },
+  };
+
+  function loadState(){
+    try{ var raw = localStorage.getItem(STORAGE_KEY); if(raw) return JSON.parse(raw); }catch(e){}
+    return {attempts:{}};
+  }
+  function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); }catch(e){} }
+  var STATE = loadState();
+
+  var app = document.getElementById("app");
+  var homeLink = document.getElementById("homeLink");
+  var themeBtn = document.getElementById("themeBtn");
+  homeLink.addEventListener("click", function(){ location.hash = "#/home"; });
+  themeBtn.addEventListener("click", function(){
+    var cur = document.documentElement.getAttribute("data-theme");
+    var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var curEffective = cur || (sysDark ? "dark" : "light");
+    var next = curEffective === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try{ localStorage.setItem(STORAGE_KEY + "_theme", next); }catch(e){}
+  });
+  (function initTheme(){
+    var saved = null;
+    try{ saved = localStorage.getItem(STORAGE_KEY + "_theme"); }catch(e){}
+    if(saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+
+  function el(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); }
+
+  // in-app replacement for window.confirm() — native confirm() gets silently auto-dismissed
+  // in some embedded/automated browser contexts, which made the submit button look broken.
+  function showConfirmModal(message, onConfirm){
+    var overlay = el("div", "modal-overlay");
+    var box = el("div", "modal-box");
+    box.appendChild(el("p", null, esc(message)));
+    var row = el("div", "btn-row");
+    var cancelBtn = el("button", "btn btn-ghost", "Huỷ");
+    var okBtn = el("button", "btn btn-primary", "Nộp bài");
+    row.appendChild(cancelBtn);
+    row.appendChild(okBtn);
+    box.appendChild(row);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    function close(){ overlay.remove(); }
+    cancelBtn.addEventListener("click", close);
+    overlay.addEventListener("click", function(e){ if(e.target === overlay) close(); });
+    okBtn.addEventListener("click", function(){ close(); onConfirm(); });
+  }
+  function getData(id){ return (window.AZ_TOEIC_DATA || {})[id]; }
+
+  // ---------- flatten a test's questions into an ordered list with a "section" tag ----------
+  function flattenSection(sectionData, sectionType){
+    var out = [];
+    (sectionData.parts || []).forEach(function(part){
+      if(part.items){
+        part.items.forEach(function(it){ out.push({partNum: part.num, num: it.num, item: it}); });
+      } else if(part.groups){
+        part.groups.forEach(function(g){
+          if(g.items){
+            g.items.forEach(function(it){ out.push({partNum: part.num, num: it.num, item: it, groupAudio: g.audio, groupRange: g.range}); });
+          }
+        });
+      }
+    });
+    return out;
+  }
+
+  function totalAnswerable(d){
+    return flattenSection(d.listening, "listening").length + flattenSection(d.reading, "reading").length;
+  }
+
+  function setWide(on){
+    var wrapEl = document.querySelector(".wrap");
+    if(wrapEl) wrapEl.classList.toggle("wrap-wide", !!on);
+  }
+
+  // ---------- routing ----------
+  window.addEventListener("hashchange", render);
+  window.addEventListener("DOMContentLoaded", render);
+  function parseHash(){ return location.hash.replace(/^#\//, "").split("/").filter(Boolean); }
+  function render(){
+    var parts = parseHash();
+    if(!(parts[0] === "test" && parts[2] === "take-full")){
+      if(takeCtx && takeCtx.timerInterval){ clearInterval(takeCtx.timerInterval); takeCtx.timerInterval = null; }
+      try{ masterAudio.pause(); }catch(e){}
+    }
+    if(parts.length === 0 || parts[0] === "home"){ setWide(false); return renderHome(); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "intro-full"){ setWide(false); return renderIntroFull(parts[1]); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "take-full"){ setWide(true); return renderTakeFull(parts[1]); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "result-full"){ setWide(false); return renderResultFull(parts[1]); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "intro"){ setWide(false); return renderIntro(parts[1]); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "take" && parts[3]){ setWide(false); return renderTake(parts[1], parts[3]); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "result"){ setWide(false); return renderResult(parts[1]); }
+    location.hash = "#/home";
+  }
+
+  // ---------- HOME ----------
+  function renderHome(){
+    app.innerHTML = "";
+    var lede = el("p", "desc", "Luyện đề TOEIC theo bộ ETS 2026 — làm bài, nộp để xem điểm quy đổi ước tính và nhận xét điểm mạnh/yếu theo từng Part.");
+    app.appendChild(lede);
+    Object.keys(window.AZ_TOEIC_DATA || {}).forEach(function(id){
+      var d = getData(id);
+      var card = el("div", "test-card");
+      card.innerHTML = '<h3>' + esc(d.book) + ' — ' + esc(d.test) + '</h3>' +
+        '<p class="desc">Listening 100 câu · Reading 100 câu · 200 câu tổng.</p>';
+      var fLink = el("a", "section-link", "🚀 Làm full test (200 câu · nghe tự chạy liên tục · 120 phút) — giống thi thật");
+      fLink.style.background = "var(--red)"; fLink.style.color = "#fff"; fLink.style.borderColor = "var(--red)";
+      fLink.href = "#/test/" + id + "/intro-full";
+      var lLink = el("a", "section-link", "🎧 Luyện riêng Listening (Part 1–4)");
+      lLink.href = "#/test/" + id + "/intro/listening";
+      var rLink = el("a", "section-link", "📖 Luyện riêng Reading (Part 5–7)");
+      rLink.href = "#/test/" + id + "/intro/reading";
+      card.appendChild(fLink);
+      card.appendChild(lLink);
+      card.appendChild(rLink);
+      app.appendChild(card);
+    });
+  }
+
+  // ---------- INTRO ----------
+  function renderIntro(testId){
+    var section = parseHash()[3];
+    var d = getData(testId);
+    if(!d){ location.hash = "#/home"; return; }
+    var isListening = section === "listening";
+    var flat = flattenSection(isListening ? d.listening : d.reading, section);
+    var answerableCount = flat.length;
+    app.innerHTML = "";
+    var panel = el("div", "panel");
+    panel.innerHTML =
+      '<h2>' + esc(d.test) + ' · ' + (isListening ? "Listening" : "Reading") + '</h2>' +
+      '<p class="desc">' + (isListening ?
+        'Nghe audio và chọn đáp án. Có thể tua lại, nghe nhiều lần tuỳ ý (khác với thi thật).' :
+        'Đọc câu hỏi và chọn đáp án đúng.') + ' Nộp bài để xem điểm quy đổi và đáp án ngay.</p>' +
+      '<div class="meta-row"><span class="meta-chip">' + answerableCount + ' câu đã có sẵn</span></div>' +
+      '<div class="btn-row">' +
+        '<button class="btn btn-primary" id="startBtn">Bắt đầu làm bài</button>' +
+        '<a class="btn btn-ghost" href="#/home">Về trang chủ</a>' +
+      '</div>';
+    app.appendChild(panel);
+    document.getElementById("startBtn").addEventListener("click", function(){
+      location.hash = "#/test/" + testId + "/take/" + section;
+    });
+  }
+
+  // ---------- TAKE ----------
+  var takeCtx = null;
+  function renderTake(testId, section){
+    var d = getData(testId);
+    if(!d){ location.hash = "#/home"; return; }
+    var isListening = section === "listening";
+    var sectionData = isListening ? d.listening : d.reading;
+    var saved = STATE.attempts[testId + "-" + section];
+    takeCtx = {
+      testId: testId, section: section, data: d,
+      answers: (saved && saved.inProgress) ? saved.inProgress : {},
+      activePart: (sectionData.parts[0] || {}).num,
+    };
+    app.innerHTML = "";
+    var toolbar = el("div", "toolbar");
+    var tabs = el("div", "tabs");
+    sectionData.parts.forEach(function(part){
+      var b = el("button", "tab-btn" + (part.num === takeCtx.activePart ? " active" : ""), "Part " + part.num);
+      b.addEventListener("click", function(){ takeCtx.activePart = part.num; renderTakeBody(); });
+      tabs.appendChild(b);
+    });
+    toolbar.appendChild(tabs);
+    toolbar.appendChild(el("div", "spacer"));
+    var submitBtn = el("button", "btn btn-primary", "Nộp bài");
+    submitBtn.style.padding = "8px 16px";
+    submitBtn.addEventListener("click", submitTest);
+    toolbar.appendChild(submitBtn);
+    app.appendChild(toolbar);
+    var body = el("div", "");
+    body.id = "takeBody";
+    app.appendChild(body);
+    renderTakeBody();
+  }
+
+  function saveProgress(){
+    if(takeCtx.section === "full"){ saveFullProgress(); return; }
+    STATE.attempts[takeCtx.testId + "-" + takeCtx.section] = {inProgress: takeCtx.answers};
+    saveState();
+  }
+
+  // renderOneQuestion: shared by split-practice mode (showAudio=true, per-question <audio>)
+  // and full-test mode (showAudio=false — audio plays from the master player at top instead).
+  function renderOneQuestion(container, part, it, groupAudio, showAudio){
+    var qb = el("div", "q-block");
+    qb.id = "q-" + it.num;
+    qb.appendChild(el("div", "q-num", "Câu " + it.num));
+    if(it.image){
+      var img = el("img", "q-photo");
+      img.src = it.image;
+      img.alt = "Photo for question " + it.num;
+      qb.appendChild(img);
+    }
+    var audioSrc = it.audio || groupAudio;
+    if(showAudio && audioSrc && !groupAudio){
+      var audioEl = el("audio", "qaudio");
+      audioEl.controls = true; audioEl.preload = "none";
+      audioEl.src = audioSrc;
+      qb.appendChild(audioEl);
+    }
+    if(it.text) qb.appendChild(el("p", "q-text", esc(it.text)));
+    var opts = it.options || (it.image || (audioSrc && !it.text) ? (part.num === 2 ? ["A","B","C"] : ["A","B","C","D"]) : null);
+    if(opts){
+      var isLettersOnly = !it.options;
+      var row = el("div", "opt-row" + (isLettersOnly ? " abc-only" : ""));
+      var letters = ["A","B","C","D"];
+      opts.forEach(function(optText, idx){
+        var btn = el("button", "opt-btn");
+        var displayText = isLettersOnly ? "" : esc(optText);
+        btn.innerHTML = "<b>" + letters[idx] + "</b><span>" + displayText + "</span>";
+        if(takeCtx.answers[it.num] === letters[idx]) btn.classList.add("selected");
+        btn.addEventListener("click", function(){
+          takeCtx.answers[it.num] = letters[idx];
+          saveProgress();
+          Array.prototype.slice.call(row.children).forEach(function(b){ b.classList.remove("selected"); });
+          btn.classList.add("selected");
+          refreshQnav();
+        });
+        row.appendChild(btn);
+      });
+      qb.appendChild(row);
+    }
+    container.appendChild(qb);
+  }
+
+  function renderPartInto(container, part, showAudio){
+    if(part.items === undefined && part.groups === undefined){
+      container.appendChild(el("p", "pending-note", "📝 Phần này đang được bổ sung — chưa có câu hỏi."));
+      return;
+    }
+    if(part.items && part.items.length === 0){
+      container.appendChild(el("p", "pending-note", "📝 Phần này đang được bổ sung — chưa có câu hỏi."));
+      return;
+    }
+    if(part.items){
+      part.items.forEach(function(it){ renderOneQuestion(container, part, it, null, showAudio); });
+    } else if(part.groups){
+      part.groups.forEach(function(g){
+        if(!g.items){
+          var qb = el("div", "q-block");
+          qb.appendChild(el("div", "q-num", "Câu " + g.range[0] + "–" + g.range[1]));
+          if(showAudio && g.audio){
+            var audioEl = el("audio", "qaudio");
+            audioEl.controls = true; audioEl.preload = "none";
+            audioEl.src = g.audio;
+            qb.appendChild(audioEl);
+          }
+          qb.appendChild(el("p", "pending-note", "📝 Câu hỏi cho đoạn audio này đang được bổ sung."));
+          container.appendChild(qb);
+          return;
+        }
+        if(showAudio && g.audio){
+          var audioEl2 = el("audio", "qaudio");
+          audioEl2.controls = true; audioEl2.preload = "none";
+          audioEl2.src = g.audio;
+          container.appendChild(audioEl2);
+        }
+        if(g.passage){
+          var passageBlock = el("div", "q-block");
+          if(g.passageTitle) passageBlock.appendChild(el("div", "q-num", g.passageTitle));
+          var passageHtml = esc(g.passage).replace(/\{\{(\d+)\}\}/g, function(m, num){
+            return '<b style="color:var(--red);">[' + num + ']</b>';
+          });
+          passageBlock.appendChild(el("p", "q-text", passageHtml));
+          passageBlock.querySelector(".q-text").style.whiteSpace = "pre-wrap";
+          container.appendChild(passageBlock);
+        }
+        if(g.passages){
+          var docsBlock = el("div", "q-block");
+          if(g.passageTitle) docsBlock.appendChild(el("div", "q-num", g.passageTitle));
+          g.passages.forEach(function(doc){
+            if(doc.title) docsBlock.appendChild(el("p", null, "<b>" + esc(doc.title) + "</b>"));
+            var p = el("p", "q-text", esc(doc.text));
+            p.style.whiteSpace = "pre-wrap";
+            docsBlock.appendChild(p);
+          });
+          container.appendChild(docsBlock);
+        }
+        g.items.forEach(function(it){ renderOneQuestion(container, part, it, g.audio, showAudio); });
+      });
+    }
+  }
+
+  function renderTakeBody(){
+    var d = takeCtx.data;
+    var sectionData = takeCtx.section === "listening" ? d.listening : d.reading;
+    var part = sectionData.parts.filter(function(p){ return p.num === takeCtx.activePart; })[0];
+    var body = document.getElementById("takeBody");
+    body.innerHTML = "";
+    document.querySelectorAll(".tabs .tab-btn").forEach(function(b, i){
+      b.classList.toggle("active", sectionData.parts[i].num === takeCtx.activePart);
+    });
+    var container = el("div", "panel");
+    container.appendChild(el("h2", null, "Part " + part.num + (part.title ? " — " + esc(part.title) : "")));
+    renderPartInto(container, part, true);
+    body.appendChild(container);
+  }
+
+  // ================= FULL TEST MODE (study4-style: continuous audio + one timer) =================
+  var TEST_MINUTES = 120; // real TOEIC LR: listening runs ~45 min while audio plays, reading 75 min self-paced — 120 min total budget like study4 shows
+  var masterAudio = new Audio();
+  var playlist = [];
+  var playlistIdx = -1;
+
+  function buildListeningPlaylist(d){
+    var out = [];
+    (d.listening.parts || []).forEach(function(part){
+      if(part.items){
+        part.items.forEach(function(it){
+          if(it.audio) out.push({src: it.audio, label: "Part " + part.num + " · Câu " + it.num, range: [it.num, it.num]});
+        });
+      } else if(part.groups){
+        part.groups.forEach(function(g){
+          if(g.audio) out.push({src: g.audio, label: "Part " + part.num + " · Câu " + g.range[0] + "–" + g.range[1], range: g.range});
+        });
+      }
+    });
+    return out;
+  }
+
+  function fmtTime(sec){
+    if(!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function playTrack(idx){
+    if(idx < 0 || idx >= playlist.length){
+      playlistIdx = -1;
+      updateAudioBarUI();
+      return;
+    }
+    playlistIdx = idx;
+    masterAudio.src = playlist[idx].src;
+    masterAudio.play().catch(function(){});
+    updateAudioBarUI();
+  }
+  masterAudio.addEventListener("ended", function(){ playTrack(playlistIdx + 1); });
+  masterAudio.addEventListener("play", updateAudioBarUI);
+  masterAudio.addEventListener("pause", updateAudioBarUI);
+  masterAudio.addEventListener("timeupdate", updateAudioSeekUI);
+  masterAudio.addEventListener("loadedmetadata", updateAudioSeekUI);
+
+  function updateAudioBarUI(){
+    var playBtn = document.getElementById("audioPlayBtn");
+    var nowEl = document.getElementById("audioNow");
+    if(!playBtn) return;
+    playBtn.textContent = (!masterAudio.paused && playlistIdx >= 0) ? "⏸" : "▶";
+    if(nowEl){
+      if(playlistIdx < 0){
+        nowEl.textContent = "Bấm ▶ để bắt đầu nghe — audio sẽ tự chạy liên tục qua Part 1–4 giống bài thi thật.";
+      } else {
+        var done = playlistIdx >= playlist.length - 1 && masterAudio.ended;
+        nowEl.textContent = (masterAudio.paused ? "Đã tạm dừng — " : "Đang phát: ") + playlist[playlistIdx].label +
+          (done ? " (đã phát hết Listening)" : "");
+      }
+    }
+  }
+  function updateAudioSeekUI(){
+    var seek = document.getElementById("audioSeek");
+    var timeEl = document.getElementById("audioTime");
+    if(!seek) return;
+    var dur = masterAudio.duration || 0;
+    seek.max = 1000;
+    seek.value = dur ? Math.round((masterAudio.currentTime / dur) * 1000) : 0;
+    if(timeEl) timeEl.textContent = fmtTime(masterAudio.currentTime) + " / " + fmtTime(dur);
+  }
+
+  function buildAudioBar(){
+    var bar = el("div", "panel audio-master");
+    bar.id = "audioBar";
+    bar.innerHTML =
+      '<div class="audio-row">' +
+        '<button class="audio-play" id="audioPlayBtn" type="button">▶</button>' +
+        '<input type="range" id="audioSeek" class="audio-seek" min="0" max="1000" value="0" />' +
+        '<span class="audio-time" id="audioTime">00:00 / 00:00</span>' +
+        '<span>🔊</span>' +
+        '<input type="range" id="audioVol" class="audio-vol-range" min="0" max="1" step="0.01" value="1" />' +
+      '</div>' +
+      '<div class="audio-now" id="audioNow"></div>';
+    setTimeout(function(){
+      document.getElementById("audioPlayBtn").addEventListener("click", function(){
+        if(playlistIdx < 0){ playTrack(0); return; }
+        if(masterAudio.paused) masterAudio.play().catch(function(){});
+        else masterAudio.pause();
+      });
+      document.getElementById("audioSeek").addEventListener("input", function(e){
+        var dur = masterAudio.duration || 0;
+        if(dur) masterAudio.currentTime = (e.target.value / 1000) * dur;
+      });
+      document.getElementById("audioVol").addEventListener("input", function(e){
+        masterAudio.volume = parseFloat(e.target.value);
+      });
+      updateAudioBarUI();
+      updateAudioSeekUI();
+    }, 0);
+    return bar;
+  }
+
+  function buildSidebar(d){
+    var box = el("div", "sidebar");
+    var timerBox = el("div", "panel timer-box");
+    timerBox.innerHTML = '<div class="timer-label">Thời gian còn lại</div><div class="timer-num" id="timerNum">' + fmtTime(TEST_MINUTES * 60) + '</div>';
+    var submitBtn = el("button", "btn btn-primary", "Nộp bài");
+    submitBtn.style.width = "100%"; submitBtn.style.marginTop = "12px";
+    submitBtn.addEventListener("click", function(){
+      var totalQ = flattenSection(d.listening).length + flattenSection(d.reading).length;
+      var answeredQ = Object.keys(takeCtx.answers).length;
+      var remain = totalQ - answeredQ;
+      var msg = remain > 0 ?
+        "Bạn còn " + remain + " câu chưa trả lời. Nộp bài ngay? Sau khi nộp sẽ không sửa được đáp án nữa." :
+        "Nộp bài ngay? Sau khi nộp sẽ không sửa được đáp án nữa.";
+      showConfirmModal(msg, function(){ submitFullTest(false); });
+    });
+    timerBox.appendChild(submitBtn);
+    box.appendChild(timerBox);
+
+    var navPanel = el("div", "panel qnav-panel");
+    navPanel.id = "qnavPanel";
+    box.appendChild(navPanel);
+    return box;
+  }
+
+  function renderQnav(d){
+    var navPanel = document.getElementById("qnavPanel");
+    if(!navPanel) return;
+    navPanel.innerHTML = "";
+    var allParts = (d.listening.parts || []).concat(d.reading.parts || []);
+    allParts.forEach(function(part){
+      var nums = [];
+      if(part.items) part.items.forEach(function(it){ nums.push(it.num); });
+      if(part.groups) part.groups.forEach(function(g){ if(g.items) g.items.forEach(function(it){ nums.push(it.num); }); });
+      if(!nums.length) return;
+      navPanel.appendChild(el("div", "qnav-part-label", "Part " + part.num));
+      var grid = el("div", "qnav-grid");
+      nums.forEach(function(n){
+        var b = el("button", "qnav-btn", String(n));
+        b.type = "button";
+        if(takeCtx.answers[n] !== undefined) b.classList.add("answered");
+        if(part.num === takeCtx.activePart) b.classList.add("current-part");
+        b.addEventListener("click", function(){
+          takeCtx.activePart = part.num;
+          renderTakeFullBody();
+          setTimeout(function(){
+            var target = document.getElementById("q-" + n);
+            if(target) target.scrollIntoView({behavior:"smooth", block:"center"});
+          }, 30);
+        });
+        grid.appendChild(b);
+      });
+      navPanel.appendChild(grid);
+    });
+  }
+  function refreshQnav(){ if(takeCtx && takeCtx.data) renderQnav(takeCtx.data); }
+
+  function startFullTimer(){
+    if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
+    function tick(){
+      var elapsed = Math.floor((Date.now() - takeCtx.startedAt) / 1000);
+      var remain = TEST_MINUTES * 60 - elapsed;
+      var timerEl = document.getElementById("timerNum");
+      if(remain <= 0){
+        remain = 0;
+        clearInterval(takeCtx.timerInterval);
+        if(timerEl){ timerEl.textContent = "00:00"; timerEl.classList.add("low"); }
+        submitFullTest(true);
+        return;
+      }
+      if(timerEl){
+        timerEl.textContent = fmtTime(remain);
+        timerEl.classList.toggle("low", remain <= 300);
+      }
+    }
+    tick();
+    takeCtx.timerInterval = setInterval(tick, 1000);
+  }
+
+  // ---------- INTRO (full test) ----------
+  function renderIntroFull(testId){
+    var d = getData(testId);
+    if(!d){ location.hash = "#/home"; return; }
+    app.innerHTML = "";
+    var panel = el("div", "panel");
+    panel.innerHTML =
+      '<h2>' + esc(d.test) + ' · Full test</h2>' +
+      '<p class="desc">Làm trọn bộ 200 câu (Part 1–7) trong một phiên duy nhất, giống format thi thật: audio Listening ' +
+      'tự động chạy liên tục từ Part 1 đến Part 4 (không cần bấm play từng câu), đồng hồ đếm ngược tính chung cho cả ' +
+      'Listening và Reading. Bạn vẫn có thể tua lại / nghe lại audio nếu muốn — khác với phòng thi thật ở điểm này.</p>' +
+      '<div class="meta-row"><span class="meta-chip">200 câu</span><span class="meta-chip">' + TEST_MINUTES + ' phút</span><span class="meta-chip">Part 1–7</span></div>' +
+      '<div class="btn-row">' +
+        '<button class="btn btn-primary" id="startFullBtn">Bắt đầu làm bài</button>' +
+        '<a class="btn btn-ghost" href="#/home">Về trang chủ</a>' +
+      '</div>';
+    app.appendChild(panel);
+    document.getElementById("startFullBtn").addEventListener("click", function(){
+      location.hash = "#/test/" + testId + "/take-full";
+    });
+  }
+
+  // ---------- TAKE (full test) ----------
+  function renderTakeFull(testId){
+    var d = getData(testId);
+    if(!d){ location.hash = "#/home"; return; }
+    var saved = STATE.attempts[testId + "-full-inprogress"];
+    takeCtx = {
+      testId: testId, section: "full", data: d,
+      answers: (saved && saved.answers) ? saved.answers : {},
+      startedAt: (saved && saved.startedAt) ? saved.startedAt : Date.now(),
+      activePart: 1,
+      timerInterval: null,
+    };
+    saveFullProgress();
+    playlist = buildListeningPlaylist(d);
+    playlistIdx = -1;
+
+    app.innerHTML = "";
+    var layout = el("div", "take-layout");
+    var main = el("div", "");
+    main.appendChild(buildAudioBar());
+
+    var toolbar = el("div", "toolbar");
+    var tabs = el("div", "tabs");
+    var allParts = (d.listening.parts || []).concat(d.reading.parts || []);
+    allParts.forEach(function(part){
+      var b = el("button", "tab-btn" + (part.num === takeCtx.activePart ? " active" : ""), "Part " + part.num);
+      b.addEventListener("click", function(){ takeCtx.activePart = part.num; renderTakeFullBody(); refreshQnav(); });
+      tabs.appendChild(b);
+    });
+    toolbar.appendChild(tabs);
+    main.appendChild(toolbar);
+    var body = el("div", "");
+    body.id = "takeFullBody";
+    main.appendChild(body);
+
+    layout.appendChild(main);
+    layout.appendChild(buildSidebar(d));
+    app.appendChild(layout);
+
+    renderTakeFullBody();
+    renderQnav(d);
+    startFullTimer();
+  }
+
+  function saveFullProgress(){
+    STATE.attempts[takeCtx.testId + "-full-inprogress"] = {answers: takeCtx.answers, startedAt: takeCtx.startedAt};
+    saveState();
+  }
+
+  function renderTakeFullBody(){
+    var d = takeCtx.data;
+    var allParts = (d.listening.parts || []).concat(d.reading.parts || []);
+    var part = allParts.filter(function(p){ return p.num === takeCtx.activePart; })[0];
+    var body = document.getElementById("takeFullBody");
+    if(!body || !part) return;
+    body.innerHTML = "";
+    document.querySelectorAll(".take-layout .tabs .tab-btn").forEach(function(b, i){
+      b.classList.toggle("active", allParts[i].num === takeCtx.activePart);
+    });
+    var container = el("div", "panel");
+    container.appendChild(el("h2", null, "Part " + part.num + (part.title ? " — " + esc(part.title) : "")));
+    renderPartInto(container, part, false);
+    body.appendChild(container);
+  }
+
+  function submitFullTest(isAuto){
+    if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
+    try{ masterAudio.pause(); }catch(e){}
+    var d = takeCtx.data;
+    var flatL = flattenSection(d.listening);
+    var flatR = flattenSection(d.reading);
+    var scoreL = 0, scoreR = 0;
+    flatL.forEach(function(x){ var c = d.answerKey[String(x.num)]; if(c && takeCtx.answers[x.num] === c) scoreL++; });
+    flatR.forEach(function(x){ var c = d.answerKey[String(x.num)]; if(c && takeCtx.answers[x.num] === c) scoreR++; });
+    STATE.attempts[takeCtx.testId + "-listening"] = {answers: takeCtx.answers, score: scoreL, total: flatL.length, submittedAt: Date.now()};
+    STATE.attempts[takeCtx.testId + "-reading"] = {answers: takeCtx.answers, score: scoreR, total: flatR.length, submittedAt: Date.now()};
+    STATE.attempts[takeCtx.testId + "-full"] = {
+      answers: takeCtx.answers, scoreL: scoreL, totalL: flatL.length, scoreR: scoreR, totalR: flatR.length,
+      submittedAt: Date.now(), auto: !!isAuto,
+    };
+    delete STATE.attempts[takeCtx.testId + "-full-inprogress"];
+    saveState();
+    location.hash = "#/test/" + takeCtx.testId + "/result-full";
+  }
+
+  // ---------- RESULT (full test) ----------
+  function renderResultFull(testId){
+    var d = getData(testId);
+    var attempt = STATE.attempts[testId + "-full"];
+    if(!d || !attempt){ location.hash = "#/test/" + testId + "/intro-full"; return; }
+    app.innerHTML = "";
+    var scaledL = scaledScore(Math.round(attempt.scoreL / attempt.totalL * 100));
+    var scaledR = scaledScore(Math.round(attempt.scoreR / attempt.totalR * 100));
+    var total = scaledL + scaledR;
+
+    var top = el("div", "panel");
+    top.innerHTML = '<div class="score-tile">' +
+      '<div class="score-num">' + total + '<span style="font-size:18px;color:var(--ink-soft)">/990</span></div>' +
+      '<div class="score-sub">Tổng điểm TOEIC ước tính · ' + esc(d.test) +
+        (attempt.auto ? ' · <span style="color:var(--red-ink);">tự nộp khi hết giờ</span>' : '') + '<br>' +
+        'Nghe: ' + scaledL + '/495 (' + attempt.scoreL + '/' + attempt.totalL + ' câu đúng) · ' +
+        'Đọc: ' + scaledR + '/495 (' + attempt.scoreR + '/' + attempt.totalR + ' câu đúng)</div>' +
+      '</div>' +
+      '<div class="btn-row">' +
+        '<a class="btn btn-primary" href="#/test/' + testId + '/intro-full">Làm lại</a>' +
+        '<a class="btn btn-ghost" href="#/home">Trang chủ</a>' +
+      '</div>';
+    app.appendChild(top);
+
+    var expertL = el("div", "panel");
+    expertL.innerHTML = buildExpertPanelHTML(d, d.listening, {answers: attempt.answers, score: attempt.scoreL, total: attempt.totalL}, "Listening");
+    app.appendChild(expertL);
+    var expertR = el("div", "panel");
+    expertR.innerHTML = buildExpertPanelHTML(d, d.reading, {answers: attempt.answers, score: attempt.scoreR, total: attempt.totalR}, "Reading");
+    app.appendChild(expertR);
+
+    var reviewPanel = el("div", "panel");
+    reviewPanel.appendChild(el("h2", null, "Xem lại đáp án"));
+    var flat = flattenSection(d.listening).concat(flattenSection(d.reading));
+    var byPart = {};
+    flat.forEach(function(x){ (byPart[x.partNum] = byPart[x.partNum] || []).push(x); });
+    Object.keys(byPart).sort(function(a,b){ return a - b; }).forEach(function(partNum){
+      reviewPanel.appendChild(el("h3", null, "Part " + partNum));
+      byPart[partNum].forEach(function(x){
+        var correct = d.answerKey[String(x.num)];
+        var user = attempt.answers[x.num];
+        var ok = user === correct;
+        var row = el("div", "q-block");
+        row.innerHTML = '<div class="q-num">Câu ' + x.num + '</div>' +
+          '<p style="margin:0;font-size:13.5px;">' +
+          (ok ? '<span style="color:var(--green);font-weight:700;">✓ Đúng (' + esc(correct || "") + ')</span>' :
+                '<span style="color:var(--red-ink);font-weight:700;">✗ Bạn chọn: ' + esc(user || "(bỏ trống)") + ' — Đáp án đúng: ' + esc(correct || "?") + '</span>') +
+          '</p>';
+        reviewPanel.appendChild(row);
+      });
+    });
+    app.appendChild(reviewPanel);
+  }
+  // ================= END FULL TEST MODE =================
+
+  function submitTest(){
+    var d = takeCtx.data;
+    var sectionData = takeCtx.section === "listening" ? d.listening : d.reading;
+    var flat = flattenSection(sectionData, takeCtx.section);
+    var score = 0;
+    flat.forEach(function(x){
+      var correct = d.answerKey[String(x.num)];
+      if(correct && takeCtx.answers[x.num] === correct) score++;
+    });
+    STATE.attempts[takeCtx.testId + "-" + takeCtx.section] = {
+      answers: takeCtx.answers, score: score, total: flat.length, submittedAt: Date.now(),
+    };
+    saveState();
+    location.hash = "#/test/" + takeCtx.testId + "/result/" + takeCtx.section;
+  }
+
+  // ---------- RESULT ----------
+  function analyzeByPart(d, sectionData, answers){
+    var stats = {};
+    flattenSection(sectionData).forEach(function(x){
+      var correct = d.answerKey[String(x.num)];
+      if(!correct) return;
+      if(!stats[x.partNum]) stats[x.partNum] = {correct:0, total:0};
+      stats[x.partNum].total++;
+      if(answers[x.num] === correct) stats[x.partNum].correct++;
+    });
+    return stats;
+  }
+
+  function buildExpertPanelHTML(d, sectionData, attempt, skillLabel){
+    var scaled = scaledScore(Math.round(attempt.score / attempt.total * 100));
+    var stats = analyzeByPart(d, sectionData, attempt.answers);
+    var rows = Object.keys(stats).map(function(p){
+      var s = stats[p];
+      var pct = s.total ? Math.round(s.correct/s.total*100) : 0;
+      return {part: p, pct: pct, correct: s.correct, total: s.total};
+    }).sort(function(a,b){ return a.pct - b.pct; });
+    var weaknesses = rows.filter(function(r){ return r.pct < 60; });
+    var strengths = rows.filter(function(r){ return r.pct >= 80; });
+    if(weaknesses.length === 0 && rows.length > 1 && rows[0].pct < 80) weaknesses = [rows[0]];
+    if(strengths.length === 0 && rows.length > 1) strengths = [rows[rows.length-1]];
+
+    var html = '<h2>🎓 Nhận xét từ chuyên gia TOEIC</h2>' +
+      '<div class="expert-band"><b>' + scaled + '</b><span>Điểm quy đổi ước tính (' + esc(skillLabel) + ', thang 5–495)</span></div>' +
+      '<p class="expert-note">*Điểm quy đổi là ước tính theo đường cong tham khảo phổ biến (không tuyến tính, càng gần 0 hoặc gần tuyệt đối thì mỗi câu càng "nặng/nhẹ điểm" khác vùng giữa) — ETS không công bố công thức quy đổi cố định cho từng đề, thang điểm thật có thể lệch đôi chút.</p>';
+    if(weaknesses.length){
+      html += '<h3>📍 Điểm cần cải thiện</h3><ul class="expert-list">';
+      weaknesses.forEach(function(r){
+        var info = PART_INFO[r.part] || {label: "Part " + r.part, advice: ""};
+        html += '<li><b>' + esc(info.label) + '</b> — đúng ' + r.correct + '/' + r.total + ' (' + r.pct + '%). ' + esc(info.advice) + '.</li>';
+      });
+      html += '</ul>';
+    }
+    if(strengths.length){
+      html += '<h3>✅ Điểm mạnh</h3><ul class="expert-list">';
+      strengths.forEach(function(r){
+        var info = PART_INFO[r.part] || {label: "Part " + r.part};
+        html += '<li><b>' + esc(info.label) + '</b> — đúng ' + r.correct + '/' + r.total + ' (' + r.pct + '%). Duy trì phong độ này.</li>';
+      });
+      html += '</ul>';
+    }
+    var advice = scaled >= 800 ? "Nền tảng rất tốt — luyện đề tốc độ cao, chú ý bẫy khó và kiểm soát thời gian." :
+                 scaled >= 600 ? "Ở mức khá — luyện sâu đúng Part còn yếu, mở rộng từ vựng theo chủ đề công sở hay gặp." :
+                 scaled >= 400 ? "Ở mức trung bình — ưu tiên luyện kỹ thuật từng Part bài bản trước khi tăng tốc độ." :
+                 "Cần xây nền tảng từ vựng & ngữ pháp cơ bản trước khi luyện đề tốc độ cao.";
+    html += '<h3>💡 Lộ trình gợi ý</h3><p class="expert-advice">' + esc(advice) + '</p>';
+    return html;
+  }
+
+  function renderResult(testId){
+    var section = parseHash()[3];
+    var d = getData(testId);
+    var attempt = STATE.attempts[testId + "-" + section];
+    if(!d || !attempt || attempt.score === undefined){ location.hash = "#/test/" + testId + "/intro/" + section; return; }
+    var isListening = section === "listening";
+    var sectionData = isListening ? d.listening : d.reading;
+    app.innerHTML = "";
+
+    var top = el("div", "panel");
+    top.innerHTML = '<div class="score-tile">' +
+      '<div class="score-num">' + attempt.score + '<span style="font-size:18px;color:var(--ink-soft)">/' + attempt.total + '</span></div>' +
+      '<div class="score-sub">' + (isListening ? "Listening" : "Reading") + ' · ' + esc(d.test) + '</div>' +
+      '</div>' +
+      '<div class="btn-row">' +
+        '<a class="btn btn-primary" href="#/test/' + testId + '/intro/' + section + '">Làm lại</a>' +
+        '<a class="btn btn-ghost" href="#/home">Trang chủ</a>' +
+      '</div>';
+    app.appendChild(top);
+
+    var expertPanel = el("div", "panel");
+    expertPanel.innerHTML = buildExpertPanelHTML(d, sectionData, attempt, isListening ? "Listening" : "Reading");
+    app.appendChild(expertPanel);
+
+    var reviewPanel = el("div", "panel");
+    reviewPanel.appendChild(el("h2", null, "Xem lại đáp án"));
+    var flat = flattenSection(sectionData);
+    var byPart = {};
+    flat.forEach(function(x){ (byPart[x.partNum] = byPart[x.partNum] || []).push(x); });
+    Object.keys(byPart).sort(function(a,b){ return a-b; }).forEach(function(partNum){
+      reviewPanel.appendChild(el("h3", null, "Part " + partNum));
+      byPart[partNum].forEach(function(x){
+        var correct = d.answerKey[String(x.num)];
+        var user = attempt.answers[x.num];
+        var ok = user === correct;
+        var row = el("div", "q-block");
+        row.innerHTML = '<div class="q-num">Câu ' + x.num + '</div>' +
+          '<p style="margin:0;font-size:13.5px;">' +
+          (ok ? '<span style="color:var(--green);font-weight:700;">✓ Đúng (' + esc(correct || "") + ')</span>' :
+                '<span style="color:var(--red-ink);font-weight:700;">✗ Bạn chọn: ' + esc(user || "(bỏ trống)") + ' — Đáp án đúng: ' + esc(correct || "?") + '</span>') +
+          '</p>';
+        reviewPanel.appendChild(row);
+      });
+    });
+    app.appendChild(reviewPanel);
+  }
+})();
+</script>
+</body>
+</html>
