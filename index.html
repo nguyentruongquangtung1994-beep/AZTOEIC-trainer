@@ -139,6 +139,21 @@
     .sidebar{ position:static; order:-1; }
     .qnav-panel{ max-height:220px; }
   }
+
+  /* ---------- strategy page ---------- */
+  .time-table{ width:100%; border-collapse:collapse; font-size:13.5px; margin-top:10px; }
+  .time-table th, .time-table td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
+  .time-table th{ color:var(--ink-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  .time-table td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .strategy-part{ border:1px solid var(--line); border-radius:12px; margin-bottom:10px; overflow:hidden; }
+  .strategy-part summary{ padding:12px 16px; cursor:pointer; font-weight:700; font-family:var(--font-display); font-size:15.5px; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .strategy-part summary::-webkit-details-marker{ display:none; }
+  .strategy-part summary .chev{ color:var(--ink-soft); font-size:12px; transition:transform .15s; }
+  .strategy-part[open] summary .chev{ transform:rotate(90deg); }
+  .strategy-part .strategy-body{ padding:0 16px 16px; }
+  .strategy-part .strategy-body ul{ margin:0; padding-left:20px; }
+  .strategy-part .strategy-body li{ font-size:13.5px; line-height:1.7; margin-bottom:6px; }
+  .strategy-part .strategy-time{ display:inline-block; font-size:11.5px; font-weight:700; color:var(--red-ink); background:var(--amber-bg); border-radius:99px; padding:3px 10px; margin-bottom:10px; }
 </style>
 </head>
 <body>
@@ -195,6 +210,57 @@
     5: { label: "Part 5 – Incomplete Sentences", advice: "xác định đúng từ loại cần điền (danh từ/động từ/tính từ/trạng từ) trước khi chọn nghĩa." },
     6: { label: "Part 6 – Text Completion", advice: "đọc cả đoạn văn để hiểu mạch ý trước khi chọn, không chỉ nhìn câu chứa chỗ trống." },
     7: { label: "Part 7 – Reading Comprehension", advice: "đọc câu hỏi trước, sau đó quét (scan) tài liệu để tìm đúng thông tin thay vì đọc toàn bộ theo thứ tự." },
+  };
+
+  // ---------- strategy content (chiến lược làm bài ở mức người đạt 990) ----------
+  var STRATEGY_META = [
+    "Không có điểm trừ cho câu sai — tô đáp án cho MỌI câu trước khi hết giờ, kể cả khi phải đoán. Bỏ trống là mất chắc chắn, đoán vẫn còn 25–50% cơ hội đúng.",
+    "Phân biệt rõ 2 kiểu tốc độ: Part 1–4 (Nghe) tốc độ do audio quyết định, mất là mất, không quay lại được — chỉ cần buông ngay câu vừa lỡ để giữ tập trung cho câu sau. Part 5–7 (Đọc) do chính mình quyết định tốc độ — nên làm chắc ở Part 5–6, dồn tốc độ và thời gian dư cho Part 7.",
+    "Thứ tự tấn công Part 7: làm hết các bài đơn văn bản (single passage) trước để chắc điểm nhanh, để dành các bài đa văn bản (double/triple passage) — khó và tốn thời gian nhất — làm sau cùng.",
+    "Luôn chừa lại 3–5 phút cuối giờ để rà lại những câu đã phân vân, thay vì lao đầu làm tới khi hết giờ mà không kiểm tra lại.",
+    "TOEIC là bài thi 2 tiếng liên tục không nghỉ — điểm khác biệt lớn nhất giữa 700 và 900+ thường không phải kiến thức mà là sức bền tập trung: đa số thí sinh mới hay \"hụt hơi\", làm ẩu ở Part 7 cuối bài vì mệt.",
+  ];
+  var STRATEGY_TIME = [
+    { label: "Part 1–4 — Listening", minutes: "~45 phút", note: "Cố định theo audio, không kiểm soát được — chỉ cần tập trung nghe đúng nhịp." },
+    { label: "Part 5 — Incomplete Sentences (30 câu)", minutes: "~10 phút", note: "~20 giây/câu — nhanh nhất bài, để dành thời gian cho Part 7." },
+    { label: "Part 6 — Text Completion (16 câu)", minutes: "~8 phút", note: "Đọc cả đoạn 1 lượt trước khi chọn, không vội như Part 5." },
+    { label: "Part 7 — Reading Comprehension (54 câu)", minutes: "~57 phút", note: "Đơn văn bản trước, đa văn bản để sau cùng." },
+  ];
+  var STRATEGY_TIPS = {
+    1: [
+      "Nhìn ảnh 2–3 giây trước khi nghe: xác định chủ thể chính, hành động đang diễn ra, và 1–2 chi tiết phụ dễ bị dùng làm bẫy.",
+      "Đáp án hay sai theo 2 kiểu: đúng ngữ pháp nhưng sai hành động (vd. dùng thì đang diễn ra cho một trạng thái tĩnh), hoặc nhắc đúng vật có trong ảnh nhưng mô tả sai vị trí/vai trò của nó.",
+      "Không chắc thì loại đáp án sai rõ nhất rồi chọn nhanh — đừng để mất tập trung sang câu kế tiếp.",
+    ],
+    2: [
+      "Cả câu phụ thuộc vào 3–4 từ đầu tiên (Who/What/When/Where/Why/How/Which) — nghe trượt đoạn này coi như mất câu.",
+      "Bẫy phổ biến nhất: đáp án chứa từ phát âm gần giống từ trong câu hỏi nhưng không liên quan nghĩa (word-association trap).",
+      "Với câu dạng đề nghị/gợi ý (Why don't we…, How about…), đáp án đúng thường KHÔNG trả lời thẳng Yes/No mà phản hồi gián tiếp — đây là bẫy hay gặp nhất ở Part này.",
+    ],
+    3: [
+      "Tranh thủ đọc trước 3 câu hỏi của nhóm tiếp theo (không cần đọc hết đáp án) ngay khi vừa dứt hội thoại trước — tận dụng vài giây chuyển đoạn.",
+      "Câu có bảng biểu (Look at the graphic): đọc bảng TRƯỚC để biết cột/dòng cần tìm, hội thoại thường chỉ nhắc 1 chi tiết để mình tự suy ra dòng tương ứng, không đọc thẳng đáp án ra miệng.",
+      "Câu dạng \"What does the man imply/mean by…?\" luôn cần hiểu ý ngoài lời nói trực tiếp — chú ý ngữ điệu và các từ nối như but/actually/unfortunately.",
+    ],
+    4: [
+      "Cấu trúc bài nói gần như cố định: câu 1–2 nêu ai/ở đâu/chủ đề, giữa bài là chi tiết (thời gian, địa điểm, số liệu), cuối bài thường có yêu cầu hành động hoặc thông tin liên hệ — nghe đúng vị trí là ra đúng đáp án.",
+      "Đây là 10 bài nói liên tục ngay sau Part 3, nơi dễ mất tập trung nhất do đã nghe hơn 30 phút — nếu lỡ 1 câu, buông ngay để giữ tập trung cho câu sau, đừng cố nhớ lại.",
+    ],
+    5: [
+      "Không cần đọc hết câu — chỉ cần đọc phần chứa chỗ trống cùng 3–5 từ liền trước/sau để nhận diện dạng câu (từ loại, giới từ, liên từ, đại từ quan hệ…).",
+      "Nếu cả 4 đáp án cùng từ loại, chuyển ngay sang xét nghĩa/collocation — không phân tích ngữ pháp thêm nữa, tốn thời gian.",
+      "Đây là phần cần làm nhanh nhất trong cả bài thi để dành thời gian cho Part 7.",
+    ],
+    6: [
+      "Luôn đọc toàn đoạn văn 1 lượt trước khi chọn — khác Part 5, nhiều câu ở đây phụ thuộc mạch ý câu trước/sau, chỉ đọc câu chứa chỗ trống dễ chọn sai.",
+      "Câu hỏi chọn nguyên cả câu (không phải 1 từ) là dạng khó nhất, luôn liên quan mạch ý toàn đoạn — phân vân thì đọc lại câu ngay trước và ngay sau chỗ trống.",
+    ],
+    7: [
+      "Ưu tiên làm hết các bài đơn văn bản (single passage) trước — điểm dễ và nhanh, để dồn thời gian còn lại cho đa văn bản.",
+      "Đọc câu hỏi trước khi đọc bài, gạch chân từ khoá cần tìm (tên riêng, ngày tháng, số liệu) rồi quét (scan) bài để tìm thông tin, không đọc tuần tự từ đầu đến cuối.",
+      "Với bài đa văn bản (2–3 tài liệu), câu hỏi khó nhất luôn yêu cầu đối chiếu chéo giữa 2 nguồn (vd. giá trong bảng giá + điều kiện áp dụng trong email) — đọc kỹ những câu hỏi suy luận ở cuối nhóm.",
+      "Tô đáp án cho MỌI câu trước khi hết giờ — không có điểm trừ khi đoán.",
+    ],
   };
 
   function loadState(){
@@ -288,6 +354,7 @@
       try{ masterAudio.pause(); }catch(e){}
     }
     if(parts.length === 0 || parts[0] === "home"){ setWide(false); return renderHome(); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "strategy"){ setWide(false); return renderStrategy(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "intro-full"){ setWide(false); return renderIntroFull(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "take-full"){ setWide(true); return renderTakeFull(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "result-full"){ setWide(false); return renderResultFull(parts[1]); }
@@ -307,6 +374,8 @@
       var card = el("div", "test-card");
       card.innerHTML = '<h3>' + esc(d.book) + ' — ' + esc(d.test) + '</h3>' +
         '<p class="desc">Listening 100 câu · Reading 100 câu · 200 câu tổng.</p>';
+      var sLink = el("a", "section-link", "📋 Chiến lược làm bài (đọc trước khi thi)");
+      sLink.href = "#/test/" + id + "/strategy";
       var fLink = el("a", "section-link", "🚀 Làm full test (200 câu · nghe tự chạy liên tục · 120 phút) — giống thi thật");
       fLink.style.background = "var(--red)"; fLink.style.color = "#fff"; fLink.style.borderColor = "var(--red)";
       fLink.href = "#/test/" + id + "/intro-full";
@@ -314,11 +383,63 @@
       lLink.href = "#/test/" + id + "/intro/listening";
       var rLink = el("a", "section-link", "📖 Luyện riêng Reading (Part 5–7)");
       rLink.href = "#/test/" + id + "/intro/reading";
+      card.appendChild(sLink);
       card.appendChild(fLink);
       card.appendChild(lLink);
       card.appendChild(rLink);
       app.appendChild(card);
     });
+  }
+
+  // ---------- STRATEGY (chiến lược làm bài — đọc trước khi thi) ----------
+  function renderStrategy(testId){
+    var d = getData(testId);
+    if(!d){ location.hash = "#/home"; return; }
+    app.innerHTML = "";
+
+    var metaPanel = el("div", "panel");
+    metaPanel.appendChild(el("h2", null, "📋 Chiến lược làm bài · " + esc(d.test)));
+    metaPanel.appendChild(el("p", "desc", "Đúc kết từ kinh nghiệm luyện thi TOEIC điểm cao — đọc qua trước khi vào phòng thi để biết cách phân bổ thời gian và né các bẫy thường gặp."));
+    var metaList = el("ul", "expert-list");
+    STRATEGY_META.forEach(function(m){ metaList.appendChild(el("li", null, esc(m))); });
+    metaPanel.appendChild(metaList);
+    app.appendChild(metaPanel);
+
+    var timePanel = el("div", "panel");
+    timePanel.appendChild(el("h2", null, "⏱ Phân bổ thời gian (tổng 120 phút)"));
+    var tableHtml = '<table class="time-table"><thead><tr><th>Phần</th><th>Thời gian</th><th>Ghi chú</th></tr></thead><tbody>';
+    STRATEGY_TIME.forEach(function(row){
+      tableHtml += '<tr><td>' + esc(row.label) + '</td><td class="num">' + esc(row.minutes) + '</td><td>' + esc(row.note) + '</td></tr>';
+    });
+    tableHtml += '</tbody></table>';
+    timePanel.appendChild(el("div", null, tableHtml));
+    app.appendChild(timePanel);
+
+    var tipsPanel = el("div", "panel");
+    tipsPanel.appendChild(el("h2", null, "🎯 Mẹo làm bài theo từng Part"));
+    [1,2,3,4,5,6,7].forEach(function(p){
+      var info = PART_INFO[p];
+      var tips = STRATEGY_TIPS[p] || [];
+      var details = el("details", "strategy-part");
+      var summary = el("summary", null, '<span>' + esc(info.label) + '</span><span class="chev">▶</span>');
+      details.appendChild(summary);
+      var body = el("div", "strategy-body");
+      var timeRow = STRATEGY_TIME.filter(function(t){ return t.label.indexOf("Part " + p + " ") === 0 || t.label.indexOf("Part 1–4") === 0 && p <= 4; })[0];
+      if(timeRow) body.appendChild(el("span", "strategy-time", "⏱ " + timeRow.minutes));
+      var ul = el("ul");
+      tips.forEach(function(t){ ul.appendChild(el("li", null, esc(t))); });
+      body.appendChild(ul);
+      details.appendChild(body);
+      tipsPanel.appendChild(details);
+    });
+    app.appendChild(tipsPanel);
+
+    var btnPanel = el("div", "panel");
+    btnPanel.innerHTML = '<div class="btn-row">' +
+      '<a class="btn btn-primary" href="#/test/' + testId + '/intro-full">Bắt đầu làm bài</a>' +
+      '<a class="btn btn-ghost" href="#/home">Về trang chủ</a>' +
+      '</div>';
+    app.appendChild(btnPanel);
   }
 
   // ---------- INTRO ----------
