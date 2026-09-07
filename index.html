@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
 <title>AZEnglish TOEIC Trainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -157,6 +158,37 @@
 </style>
 </head>
 <body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--paper,#fcfbfa);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:-apple-system,'Be Vietnam Pro',sans-serif;">
+    <div style="width:56px;height:56px;border-radius:14px;background:#e0102b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 16px;">AZ</div>
+    <h2 style="font-size:17px;margin:0 0 8px;">Tài liệu nội bộ AZEnglish</h2>
+    <p style="font-size:13px;color:#5c534f;margin:0 0 16px;">Nhập mật khẩu được cung cấp để vào luyện đề.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid #e6e1dc;border-radius:10px;font-size:14px;margin-bottom:10px;box-sizing:border-box;" />
+    <button type="submit" style="width:100%;padding:11px;border:none;border-radius:10px;background:#e0102b;color:#fff;font-weight:700;font-size:14px;cursor:pointer;">Vào luyện đề</button>
+    <p id="gateError" style="color:#e0102b;font-size:12.5px;margin:10px 0 0;display:none;">Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026"; // đổi mật khẩu này rồi báo lại cho học viên
+  var GATE_KEY = "az_toeic_gate_ok";
+  try{
+    if(localStorage.getItem(GATE_KEY) === "1"){
+      document.getElementById("gateScreen").style.display = "none";
+    }
+  }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var val = document.getElementById("gatePassword").value;
+    if(val === GATE_PASSWORD){
+      try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){}
+      document.getElementById("gateScreen").style.display = "none";
+    } else {
+      document.getElementById("gateError").style.display = "block";
+    }
+  });
+})();
+</script>
 <div class="wrap">
   <div class="banner">
     <div class="logo">AZ</div>
