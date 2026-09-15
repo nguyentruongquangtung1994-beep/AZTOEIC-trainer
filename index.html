@@ -10,40 +10,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#fcfbfa; --paper-2:#f2f0ee; --ink:#1a1210; --ink-soft:#5c534f; --line:#e6e1dc;
-    --red:#e0102b; --red-ink:#8f0a1c;
+    --paper:#fdfcfa; --paper-2:#f2efe9; --ink:#181310; --ink-soft:#655c54; --line:#e4ded3;
+    --red:#b3122e; --red-deep:#7a0a1f; --red-ink:#7a0a1f;
+    --gold:#96650a; --gold-bg:#f6efdd;
     --green:#1e7a4c; --green-bg:#e7f4ec;
-    --amber:#a5680a; --amber-bg:#faf1de;
-    --card-shadow: 0 1px 0 rgba(26,18,16,.04), 0 12px 28px -18px rgba(26,18,16,.35);
-    --focus: 0 0 0 3px rgba(224,16,43,.28);
+    --amber:#96650a; --amber-bg:#f6efdd;
+    --card-shadow: 0 1px 0 rgba(24,19,16,.05), 0 22px 44px -26px rgba(24,19,16,.4);
+    --focus: 0 0 0 3px rgba(179,18,46,.28);
     --font-display:"Lora","Georgia",serif;
     --font-body:"Be Vietnam Pro",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --paper:#161211; --paper-2:#1f1a18; --ink:#f3ece9; --ink-soft:#b8aca6; --line:#332b28;
-      --red:#ff4d5e; --red-ink:#ff8f98; --green:#5fd394; --green-bg:#173226;
-      --amber:#e3ac52; --amber-bg:#332a16;
-      --card-shadow: 0 1px 0 rgba(0,0,0,.2), 0 20px 40px -20px rgba(0,0,0,.6);
-      --focus: 0 0 0 3px rgba(255,77,94,.35);
+      --paper:#15120f; --paper-2:#1e1a16; --ink:#f4efe9; --ink-soft:#b9ada2; --line:#332c25;
+      --red:#e6415c; --red-deep:#ff8a94; --red-ink:#ff8a94;
+      --gold:#dba746; --gold-bg:#2e2515;
+      --green:#5fd394; --green-bg:#173226;
+      --amber:#dba746; --amber-bg:#2e2515;
+      --card-shadow: 0 1px 0 rgba(0,0,0,.25), 0 24px 48px -24px rgba(0,0,0,.65);
+      --focus: 0 0 0 3px rgba(230,65,92,.35);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"]{
-    --paper:#161211; --paper-2:#1f1a18; --ink:#f3ece9; --ink-soft:#b8aca6; --line:#332b28;
-    --red:#ff4d5e; --red-ink:#ff8f98; --green:#5fd394; --green-bg:#173226;
-    --amber:#e3ac52; --amber-bg:#332a16;
-    --card-shadow: 0 1px 0 rgba(0,0,0,.2), 0 20px 40px -20px rgba(0,0,0,.6);
-    --focus: 0 0 0 3px rgba(255,77,94,.35);
+    --paper:#15120f; --paper-2:#1e1a16; --ink:#f4efe9; --ink-soft:#b9ada2; --line:#332c25;
+    --red:#e6415c; --red-deep:#ff8a94; --red-ink:#ff8a94;
+    --gold:#dba746; --gold-bg:#2e2515;
+    --green:#5fd394; --green-bg:#173226;
+    --amber:#dba746; --amber-bg:#2e2515;
+    --card-shadow: 0 1px 0 rgba(0,0,0,.25), 0 24px 48px -24px rgba(0,0,0,.65);
+    --focus: 0 0 0 3px rgba(230,65,92,.35);
     color-scheme: dark;
   }
   :root[data-theme="light"]{
-    --paper:#fcfbfa; --paper-2:#f2f0ee; --ink:#1a1210; --ink-soft:#5c534f; --line:#e6e1dc;
-    --red:#e0102b; --red-ink:#8f0a1c; --green:#1e7a4c; --green-bg:#e7f4ec;
-    --amber:#a5680a; --amber-bg:#faf1de;
-    --card-shadow: 0 1px 0 rgba(26,18,16,.04), 0 12px 28px -18px rgba(26,18,16,.35);
-    --focus: 0 0 0 3px rgba(224,16,43,.28);
+    --paper:#fdfcfa; --paper-2:#f2efe9; --ink:#181310; --ink-soft:#655c54; --line:#e4ded3;
+    --red:#b3122e; --red-deep:#7a0a1f; --red-ink:#7a0a1f;
+    --gold:#96650a; --gold-bg:#f6efdd;
+    --green:#1e7a4c; --green-bg:#e7f4ec;
+    --amber:#96650a; --amber-bg:#f6efdd;
+    --card-shadow: 0 1px 0 rgba(24,19,16,.05), 0 22px 44px -26px rgba(24,19,16,.4);
+    --focus: 0 0 0 3px rgba(179,18,46,.28);
     color-scheme: light;
   }
   *{ box-sizing:border-box; }
@@ -69,6 +76,29 @@
   .test-card a{ text-decoration:none; }
   .section-link{ display:block; padding:10px 14px; border:1px solid var(--line); border-radius:10px; margin-top:8px; color:var(--ink); text-decoration:none; font-weight:700; font-size:13.5px; }
   .section-link:hover{ background:var(--paper-2); }
+
+  /* ---------- home: hero CTA + secondary link list (rõ phân cấp thay vì các nút cùng hàng) ---------- */
+  .hero-card{ position:relative; overflow:hidden; background:linear-gradient(165deg, var(--paper) 0%, var(--paper-2) 120%); border:1px solid var(--line); border-radius:20px; padding:28px 26px; box-shadow:var(--card-shadow); margin-bottom:18px; }
+  .hero-card::after{ content:""; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(179,18,46,.14), transparent 70%); pointer-events:none; }
+  .hero-eyebrow{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+  .hero-card h2{ font-family:var(--font-display); font-size:23px; line-height:1.32; margin:0 0 10px; max-width:30ch; }
+  .hero-card .desc{ max-width:46ch; margin-bottom:0; }
+  .btn-lg{ padding:15px 26px; font-size:15px; border-radius:14px; box-shadow:0 14px 28px -14px rgba(179,18,46,.55); }
+  .test-meta{ display:flex; gap:16px; flex-wrap:wrap; margin:16px 0 4px; font-size:12.5px; color:var(--ink-soft); font-weight:600; }
+  .secondary-links{ border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--paper); box-shadow:var(--card-shadow); margin-bottom:16px; }
+  .secondary-links a{ display:flex; align-items:center; gap:12px; padding:15px 18px; text-decoration:none; color:var(--ink); font-weight:600; font-size:13.5px; border-bottom:1px solid var(--line); transition:background .12s; }
+  .secondary-links a:last-child{ border-bottom:none; }
+  .secondary-links a:hover{ background:var(--paper-2); }
+  .secondary-links a .link-icon{ flex:none; width:30px; height:30px; border-radius:9px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .secondary-links a .link-arrow{ margin-left:auto; color:var(--ink-soft); font-size:14px; }
+
+  /* ---------- kết quả: khối "chốt" tư vấn sau khi có điểm ---------- */
+  .cta-panel{ background:linear-gradient(155deg, var(--red) 0%, var(--red-deep) 100%); color:#fff; border-radius:20px; padding:26px; margin-bottom:16px; box-shadow:var(--card-shadow); }
+  .cta-panel .cta-eyebrow{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; opacity:.85; margin-bottom:9px; }
+  .cta-panel h3{ font-family:var(--font-display); font-size:20px; line-height:1.35; margin:0 0 8px; }
+  .cta-panel p{ font-size:13.5px; line-height:1.6; color:rgba(255,255,255,.88); margin:0 0 16px; max-width:52ch; }
+  .cta-panel .btn-primary{ background:#fff; color:var(--red-deep); }
+  .cta-panel .btn-primary:hover{ background:#fff; opacity:.92; }
   .toolbar{ display:flex; align-items:center; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
   .tabs{ display:flex; gap:6px; flex-wrap:wrap; }
   .tab-btn{ border:1px solid var(--line); background:var(--paper-2); border-radius:99px; padding:7px 14px; font-weight:700; font-size:12.5px; cursor:pointer; color:var(--ink-soft); }
@@ -106,6 +136,11 @@
   .expert-advice{ font-size:13.5px; line-height:1.6; background:var(--green-bg); color:var(--green); padding:12px 14px; border-radius:12px; margin:0; }
   .pending-note{ font-size:12.5px; color:var(--ink-soft); background:var(--paper-2); border:1px dashed var(--line); border-radius:10px; padding:10px 14px; margin:10px 0; }
 
+  /* ---------- gate: form thu tên/email/SĐT thay cho mật khẩu ---------- */
+  .gate-field{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font-size:14px; margin-bottom:10px; box-sizing:border-box; background:var(--paper); color:var(--ink); font-family:var(--font-body); }
+  .gate-field:focus{ outline:none; border-color:var(--red); box-shadow:var(--focus); }
+  .gate-privacy{ font-size:11.5px; color:var(--ink-soft); margin:10px 0 0; line-height:1.5; }
+
   /* ---------- in-app confirm modal (native confirm() is unreliable in some browser contexts) ---------- */
   .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; z-index:50; padding:16px; }
   .modal-box{ background:var(--paper); border:1px solid var(--line); border-radius:16px; box-shadow:var(--card-shadow); padding:22px; max-width:360px; width:100%; }
@@ -118,10 +153,13 @@
   .audio-master{ position:sticky; top:10px; z-index:6; margin-bottom:14px; }
   .audio-row{ display:flex; align-items:center; gap:10px; }
   .audio-play{ flex:none; width:38px; height:38px; border-radius:50%; border:none; background:var(--red); color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-  .audio-seek{ flex:1; accent-color:var(--red); }
+  .audio-progress{ flex:1; height:6px; border-radius:99px; background:var(--paper-2); overflow:hidden; }
+  .audio-progress-fill{ height:100%; width:0%; background:var(--red); border-radius:99px; transition:width .2s linear; }
   .audio-time{ flex:none; font-size:12px; color:var(--ink-soft); font-variant-numeric:tabular-nums; min-width:88px; text-align:right; }
   .audio-vol-range{ width:70px; accent-color:var(--red); }
   .audio-now{ font-size:12px; color:var(--ink-soft); margin-top:8px; }
+  .audio-lock-note{ font-size:11.5px; color:var(--red-ink); font-weight:700; margin-top:8px; display:flex; align-items:center; gap:5px; }
+  .review-audio{ display:block; width:100%; margin:0 0 10px; }
   .sidebar{ position:sticky; top:10px; display:flex; flex-direction:column; gap:14px; }
   .timer-box{ text-align:center; }
   .timer-label{ font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
@@ -158,34 +196,67 @@
 </style>
 </head>
 <body>
-<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--paper,#fcfbfa);display:flex;align-items:center;justify-content:center;padding:20px;">
-  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:-apple-system,'Be Vietnam Pro',sans-serif;">
-    <div style="width:56px;height:56px;border-radius:14px;background:#e0102b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 16px;">AZ</div>
-    <h2 style="font-size:17px;margin:0 0 8px;">Tài liệu nội bộ AZEnglish</h2>
-    <p style="font-size:13px;color:#5c534f;margin:0 0 16px;">Nhập mật khẩu được cung cấp để vào luyện đề.</p>
-    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid #e6e1dc;border-radius:10px;font-size:14px;margin-bottom:10px;box-sizing:border-box;" />
-    <button type="submit" style="width:100%;padding:11px;border:none;border-radius:10px;background:#e0102b;color:#fff;font-weight:700;font-size:14px;cursor:pointer;">Vào luyện đề</button>
-    <p id="gateError" style="color:#e0102b;font-size:12.5px;margin:10px 0 0;display:none;">Sai mật khẩu, thử lại nhé.</p>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--paper,#fdfcfa);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;">
+  <form id="gateForm" style="max-width:360px;width:100%;text-align:center;font-family:-apple-system,'Be Vietnam Pro',sans-serif;">
+    <div style="width:56px;height:56px;border-radius:14px;background:#b3122e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 16px;font-family:Georgia,serif;">AZ</div>
+    <h2 style="font-size:18px;margin:0 0 8px;">Vào luyện đề TOEIC ETS 2026</h2>
+    <p style="font-size:13px;color:#655c54;margin:0 0 18px;line-height:1.55;">Để lại thông tin để đội ngũ AZEnglish gửi kết quả chi tiết và tư vấn lộ trình học phù hợp cho bạn.</p>
+    <input id="gateName" type="text" placeholder="Họ và tên" autocomplete="name" class="gate-field" required />
+    <input id="gateEmail" type="email" placeholder="Email" autocomplete="email" class="gate-field" required />
+    <input id="gatePhone" type="tel" placeholder="Số điện thoại" autocomplete="tel" class="gate-field" required />
+    <button type="submit" id="gateSubmitBtn" style="width:100%;padding:12px;border:none;border-radius:10px;background:#b3122e;color:#fff;font-weight:700;font-size:14px;cursor:pointer;">Vào luyện đề</button>
+    <p id="gateError" style="color:#b3122e;font-size:12.5px;margin:10px 0 0;display:none;">Vui lòng nhập đầy đủ họ tên, email và số điện thoại hợp lệ.</p>
+    <p class="gate-privacy">Thông tin của bạn chỉ dùng để AZEnglish liên hệ tư vấn lộ trình học, không chia sẻ cho bên thứ ba.</p>
   </form>
 </div>
 <script>
 (function(){
-  var GATE_PASSWORD = "azenglish2026"; // đổi mật khẩu này rồi báo lại cho học viên
+  var LEAD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzD1v2aekzEeyMBQ-2uD-2TRHBN9xX0__V6aAU5YZ4BFhlO4D9WEZtXr7CcwM4Gc2j1/exec";
   var GATE_KEY = "az_toeic_gate_ok";
+  var LEADS_KEY = "az_toeic_leads";
+
+  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function isValidPhone(v){ return /^[0-9+ .()-]{8,15}$/.test(v); }
+
   try{
     if(localStorage.getItem(GATE_KEY) === "1"){
       document.getElementById("gateScreen").style.display = "none";
     }
   }catch(e){}
+
+  function saveLeadLocally(lead){
+    try{
+      var leads = JSON.parse(localStorage.getItem(LEADS_KEY) || "[]");
+      leads.push(lead);
+      localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
+    }catch(e){}
+  }
+
   document.getElementById("gateForm").addEventListener("submit", function(ev){
     ev.preventDefault();
-    var val = document.getElementById("gatePassword").value;
-    if(val === GATE_PASSWORD){
-      try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){}
-      document.getElementById("gateScreen").style.display = "none";
-    } else {
+    var name = document.getElementById("gateName").value.trim();
+    var email = document.getElementById("gateEmail").value.trim();
+    var phone = document.getElementById("gatePhone").value.trim();
+    if(!name || !isValidEmail(email) || !isValidPhone(phone)){
       document.getElementById("gateError").style.display = "block";
+      return;
     }
+    document.getElementById("gateError").style.display = "none";
+    var lead = {name: name, email: email, phone: phone, submittedAt: new Date().toISOString(), source: "AZTOEIC-trainer"};
+    saveLeadLocally(lead);
+    if(LEAD_WEBHOOK_URL){
+      // no-cors: gửi "hộp đen" tới Apps Script, không đọc được response nhưng đủ để ghi vào Google Sheet.
+      try{
+        fetch(LEAD_WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {"Content-Type": "text/plain;charset=utf-8"},
+          body: JSON.stringify(lead)
+        }).catch(function(){});
+      }catch(e){}
+    }
+    try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){}
+    document.getElementById("gateScreen").style.display = "none";
   });
 })();
 </script>
@@ -206,6 +277,10 @@
 (function(){
   "use strict";
   var STORAGE_KEY = "az_toeic_trainer_v1";
+
+  // TODO: thay bằng link Zalo/Messenger/số điện thoại thật của AZEnglish để "chốt" học viên ngay sau khi có điểm.
+  var CONTACT_LINK = "https://zalo.me/0000000000";
+  var CONTACT_LABEL = "Nhận tư vấn lộ trình miễn phí →";
 
   // ---------- TOEIC scaled-score conversion (approximate, non-linear S-curve) ----------
   // ETS does not publish one fixed official formula — each test form has its own conversion
@@ -399,27 +474,30 @@
   // ---------- HOME ----------
   function renderHome(){
     app.innerHTML = "";
-    var lede = el("p", "desc", "Luyện đề TOEIC theo bộ ETS 2026 — làm bài, nộp để xem điểm quy đổi ước tính và nhận xét điểm mạnh/yếu theo từng Part.");
-    app.appendChild(lede);
     Object.keys(window.AZ_TOEIC_DATA || {}).forEach(function(id){
       var d = getData(id);
-      var card = el("div", "test-card");
-      card.innerHTML = '<h3>' + esc(d.book) + ' — ' + esc(d.test) + '</h3>' +
-        '<p class="desc">Listening 100 câu · Reading 100 câu · 200 câu tổng.</p>';
-      var sLink = el("a", "section-link", "📋 Chiến lược làm bài (đọc trước khi thi)");
-      sLink.href = "#/test/" + id + "/strategy";
-      var fLink = el("a", "section-link", "🚀 Làm full test (200 câu · nghe tự chạy liên tục · 120 phút) — giống thi thật");
-      fLink.style.background = "var(--red)"; fLink.style.color = "#fff"; fLink.style.borderColor = "var(--red)";
-      fLink.href = "#/test/" + id + "/intro-full";
-      var lLink = el("a", "section-link", "🎧 Luyện riêng Listening (Part 1–4)");
-      lLink.href = "#/test/" + id + "/intro/listening";
-      var rLink = el("a", "section-link", "📖 Luyện riêng Reading (Part 5–7)");
-      rLink.href = "#/test/" + id + "/intro/reading";
-      card.appendChild(sLink);
-      card.appendChild(fLink);
-      card.appendChild(lLink);
-      card.appendChild(rLink);
-      app.appendChild(card);
+      var hero = el("div", "hero-card");
+      hero.innerHTML =
+        '<div class="hero-eyebrow">' + esc(d.book) + ' · ' + esc(d.test) + '</div>' +
+        '<h2>Làm full test — thi thử đúng như thi thật</h2>' +
+        '<p class="desc">200 câu (Part 1–7), audio Listening tự chạy liên tục, đồng hồ đếm ngược 120 phút. ' +
+        'Nộp bài là có ngay điểm quy đổi ước tính /990 và nhận xét điểm mạnh/yếu theo từng Part.</p>' +
+        '<div class="test-meta"><span>📄 200 câu</span><span>⏱ 120 phút</span><span>🎧 Nghe 1 lần — giống phòng thi</span></div>' +
+        '<a class="btn btn-primary btn-lg" style="margin-top:16px;" href="#/test/' + id + '/intro-full">Bắt đầu làm full test →</a>';
+      app.appendChild(hero);
+
+      var secondary = el("div", "secondary-links");
+      var items = [
+        {icon: "📋", label: "Chiến lược làm bài — đọc trước khi thi", href: "#/test/" + id + "/strategy"},
+        {icon: "🎧", label: "Luyện riêng Listening (Part 1–4)", href: "#/test/" + id + "/intro/listening"},
+        {icon: "📖", label: "Luyện riêng Reading (Part 5–7)", href: "#/test/" + id + "/intro/reading"},
+      ];
+      items.forEach(function(it){
+        var a = el("a", null, '<span class="link-icon">' + it.icon + '</span><span>' + esc(it.label) + '</span><span class="link-arrow">→</span>');
+        a.href = it.href;
+        secondary.appendChild(a);
+      });
+      app.appendChild(secondary);
     });
   }
 
@@ -487,7 +565,7 @@
     panel.innerHTML =
       '<h2>' + esc(d.test) + ' · ' + (isListening ? "Listening" : "Reading") + '</h2>' +
       '<p class="desc">' + (isListening ?
-        'Nghe audio và chọn đáp án. Có thể tua lại, nghe nhiều lần tuỳ ý (khác với thi thật).' :
+        'Nghe audio và chọn đáp án. Audio tự chạy liên tục, chỉ nghe được 1 lần — giống thi thật. Nộp bài xong mới mở nghe lại được.' :
         'Đọc câu hỏi và chọn đáp án đúng.') + ' Nộp bài để xem điểm quy đổi và đáp án ngay.</p>' +
       '<div class="meta-row"><span class="meta-chip">' + answerableCount + ' câu đã có sẵn</span></div>' +
       '<div class="btn-row">' +
@@ -514,6 +592,19 @@
       activePart: (sectionData.parts[0] || {}).num,
     };
     app.innerHTML = "";
+
+    if(isListening){
+      playlist = buildListeningPlaylist(d);
+      playlistIdx = -1;
+      audioFurthestIdx = (saved && typeof saved.audioFurthestIdx === "number") ? saved.audioFurthestIdx : -1;
+      audioSaveCb = saveProgress;
+      resumeAudioTrack(playlistIdx = audioFurthestIdx, saved && saved.audioTime);
+      app.appendChild(buildAudioBar());
+    } else {
+      try{ masterAudio.pause(); }catch(e){}
+      audioSaveCb = null; playlist = []; playlistIdx = -1; audioFurthestIdx = -1;
+    }
+
     var toolbar = el("div", "toolbar");
     var tabs = el("div", "tabs");
     sectionData.parts.forEach(function(part){
@@ -536,7 +627,10 @@
 
   function saveProgress(){
     if(takeCtx.section === "full"){ saveFullProgress(); return; }
-    STATE.attempts[takeCtx.testId + "-" + takeCtx.section] = {inProgress: takeCtx.answers};
+    STATE.attempts[takeCtx.testId + "-" + takeCtx.section] = {
+      inProgress: takeCtx.answers,
+      audioFurthestIdx: audioFurthestIdx, audioTime: masterAudio.currentTime || 0,
+    };
     saveState();
   }
 
@@ -653,7 +747,8 @@
     });
     var container = el("div", "panel");
     container.appendChild(el("h2", null, "Part " + part.num + (part.title ? " — " + esc(part.title) : "")));
-    renderPartInto(container, part, true);
+    // Listening: audio phát từ thanh player chung ở trên (nghe 1 lần, không tua) — không render audio riêng từng câu.
+    renderPartInto(container, part, takeCtx.section !== "listening");
     body.appendChild(container);
   }
 
@@ -662,6 +757,12 @@
   var masterAudio = new Audio();
   var playlist = [];
   var playlistIdx = -1;
+  var audioFurthestIdx = -1;   // track xa nhất đã bắt đầu nghe trong lượt làm bài này — không cho tua lùi qua mốc này
+  var audioSaveCb = null;      // hàm lưu tiến độ nghe (khác nhau giữa full-test và luyện riêng Listening)
+
+  function saveAudioProgress(){
+    if(typeof audioSaveCb === "function") audioSaveCb();
+  }
 
   function buildListeningPlaylist(d){
     var out = [];
@@ -692,13 +793,26 @@
       return;
     }
     playlistIdx = idx;
+    audioFurthestIdx = Math.max(audioFurthestIdx, idx);
     masterAudio.src = playlist[idx].src;
     masterAudio.play().catch(function(){});
     updateAudioBarUI();
+    saveAudioProgress();
+  }
+  // Khôi phục đúng track+thời điểm đang nghe dở khi quay lại trang (không tự phát, không lùi về track trước).
+  function resumeAudioTrack(idx, resumeTime){
+    if(idx < 0 || !playlist[idx]) return;
+    masterAudio.src = playlist[idx].src;
+    if(resumeTime){
+      masterAudio.addEventListener("loadedmetadata", function onMeta(){
+        masterAudio.currentTime = resumeTime;
+        masterAudio.removeEventListener("loadedmetadata", onMeta);
+      });
+    }
   }
   masterAudio.addEventListener("ended", function(){ playTrack(playlistIdx + 1); });
   masterAudio.addEventListener("play", updateAudioBarUI);
-  masterAudio.addEventListener("pause", updateAudioBarUI);
+  masterAudio.addEventListener("pause", function(){ updateAudioBarUI(); saveAudioProgress(); });
   masterAudio.addEventListener("timeupdate", updateAudioSeekUI);
   masterAudio.addEventListener("loadedmetadata", updateAudioSeekUI);
 
@@ -718,36 +832,35 @@
     }
   }
   function updateAudioSeekUI(){
-    var seek = document.getElementById("audioSeek");
+    var fill = document.getElementById("audioProgressFill");
     var timeEl = document.getElementById("audioTime");
-    if(!seek) return;
+    if(!fill) return;
     var dur = masterAudio.duration || 0;
-    seek.max = 1000;
-    seek.value = dur ? Math.round((masterAudio.currentTime / dur) * 1000) : 0;
+    var pct = dur ? Math.min(100, (masterAudio.currentTime / dur) * 100) : 0;
+    fill.style.width = pct + "%";
     if(timeEl) timeEl.textContent = fmtTime(masterAudio.currentTime) + " / " + fmtTime(dur);
   }
 
+  // Không có thanh tua (seek) trong lúc làm bài — chỉ Play/Pause + âm lượng, đúng chủ trương
+  // "nghe 1 lần, không tua lại" giống phòng thi thật. Nghe lại tự do chỉ mở ở trang kết quả (buildReviewPanel).
   function buildAudioBar(){
     var bar = el("div", "panel audio-master");
     bar.id = "audioBar";
     bar.innerHTML =
       '<div class="audio-row">' +
         '<button class="audio-play" id="audioPlayBtn" type="button">▶</button>' +
-        '<input type="range" id="audioSeek" class="audio-seek" min="0" max="1000" value="0" />' +
+        '<div class="audio-progress"><div class="audio-progress-fill" id="audioProgressFill"></div></div>' +
         '<span class="audio-time" id="audioTime">00:00 / 00:00</span>' +
         '<span>🔊</span>' +
         '<input type="range" id="audioVol" class="audio-vol-range" min="0" max="1" step="0.01" value="1" />' +
       '</div>' +
-      '<div class="audio-now" id="audioNow"></div>';
+      '<div class="audio-now" id="audioNow"></div>' +
+      '<div class="audio-lock-note">🔒 Chỉ nghe được 1 lần, không tua lại/tua tới — giống phòng thi thật. Có thể tạm dừng.</div>';
     setTimeout(function(){
       document.getElementById("audioPlayBtn").addEventListener("click", function(){
         if(playlistIdx < 0){ playTrack(0); return; }
         if(masterAudio.paused) masterAudio.play().catch(function(){});
         else masterAudio.pause();
-      });
-      document.getElementById("audioSeek").addEventListener("input", function(e){
-        var dur = masterAudio.duration || 0;
-        if(dur) masterAudio.currentTime = (e.target.value / 1000) * dur;
       });
       document.getElementById("audioVol").addEventListener("input", function(e){
         masterAudio.volume = parseFloat(e.target.value);
@@ -845,8 +958,8 @@
     panel.innerHTML =
       '<h2>' + esc(d.test) + ' · Full test</h2>' +
       '<p class="desc">Làm trọn bộ 200 câu (Part 1–7) trong một phiên duy nhất, giống format thi thật: audio Listening ' +
-      'tự động chạy liên tục từ Part 1 đến Part 4 (không cần bấm play từng câu), đồng hồ đếm ngược tính chung cho cả ' +
-      'Listening và Reading. Bạn vẫn có thể tua lại / nghe lại audio nếu muốn — khác với phòng thi thật ở điểm này.</p>' +
+      'tự động chạy liên tục từ Part 1 đến Part 4 (không cần bấm play từng câu), chỉ nghe được 1 lần — không tua lại được, ' +
+      'đúng như phòng thi thật. Đồng hồ đếm ngược tính chung cho cả Listening và Reading. Nộp bài xong mới mở nghe lại audio để xem lại đáp án.</p>' +
       '<div class="meta-row"><span class="meta-chip">200 câu</span><span class="meta-chip">' + TEST_MINUTES + ' phút</span><span class="meta-chip">Part 1–7</span></div>' +
       '<div class="btn-row">' +
         '<button class="btn btn-primary" id="startFullBtn">Bắt đầu làm bài</button>' +
@@ -873,6 +986,9 @@
     saveFullProgress();
     playlist = buildListeningPlaylist(d);
     playlistIdx = -1;
+    audioFurthestIdx = (saved && typeof saved.audioFurthestIdx === "number") ? saved.audioFurthestIdx : -1;
+    audioSaveCb = saveFullProgress;
+    resumeAudioTrack(playlistIdx = audioFurthestIdx, saved && saved.audioTime);
 
     app.innerHTML = "";
     var layout = el("div", "take-layout");
@@ -903,7 +1019,10 @@
   }
 
   function saveFullProgress(){
-    STATE.attempts[takeCtx.testId + "-full-inprogress"] = {answers: takeCtx.answers, startedAt: takeCtx.startedAt};
+    STATE.attempts[takeCtx.testId + "-full-inprogress"] = {
+      answers: takeCtx.answers, startedAt: takeCtx.startedAt,
+      audioFurthestIdx: audioFurthestIdx, audioTime: masterAudio.currentTime || 0,
+    };
     saveState();
   }
 
@@ -926,6 +1045,7 @@
   function submitFullTest(isAuto){
     if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
     try{ masterAudio.pause(); }catch(e){}
+    audioSaveCb = null; audioFurthestIdx = -1; playlist = []; playlistIdx = -1;
     var d = takeCtx.data;
     var flatL = flattenSection(d.listening);
     var flatR = flattenSection(d.reading);
@@ -967,6 +1087,10 @@
       '</div>';
     app.appendChild(top);
 
+    var cta = el("div", "cta-panel");
+    cta.innerHTML = buildCtaHTML(Math.round((attempt.scoreL + attempt.scoreR) / (attempt.totalL + attempt.totalR) * 100));
+    app.appendChild(cta);
+
     var expertL = el("div", "panel");
     expertL.innerHTML = buildExpertPanelHTML(d, d.listening, {answers: attempt.answers, score: attempt.scoreL, total: attempt.totalL}, "Listening");
     app.appendChild(expertL);
@@ -974,31 +1098,14 @@
     expertR.innerHTML = buildExpertPanelHTML(d, d.reading, {answers: attempt.answers, score: attempt.scoreR, total: attempt.totalR}, "Reading");
     app.appendChild(expertR);
 
-    var reviewPanel = el("div", "panel");
-    reviewPanel.appendChild(el("h2", null, "Xem lại đáp án"));
     var flat = flattenSection(d.listening).concat(flattenSection(d.reading));
-    var byPart = {};
-    flat.forEach(function(x){ (byPart[x.partNum] = byPart[x.partNum] || []).push(x); });
-    Object.keys(byPart).sort(function(a,b){ return a - b; }).forEach(function(partNum){
-      reviewPanel.appendChild(el("h3", null, "Part " + partNum));
-      byPart[partNum].forEach(function(x){
-        var correct = d.answerKey[String(x.num)];
-        var user = attempt.answers[x.num];
-        var ok = user === correct;
-        var row = el("div", "q-block");
-        row.innerHTML = '<div class="q-num">Câu ' + x.num + '</div>' +
-          '<p style="margin:0;font-size:13.5px;">' +
-          (ok ? '<span style="color:var(--green);font-weight:700;">✓ Đúng (' + esc(correct || "") + ')</span>' :
-                '<span style="color:var(--red-ink);font-weight:700;">✗ Bạn chọn: ' + esc(user || "(bỏ trống)") + ' — Đáp án đúng: ' + esc(correct || "?") + '</span>') +
-          '</p>';
-        reviewPanel.appendChild(row);
-      });
-    });
-    app.appendChild(reviewPanel);
+    app.appendChild(buildReviewPanel(flat, attempt, d));
   }
   // ================= END FULL TEST MODE =================
 
   function submitTest(){
+    try{ masterAudio.pause(); }catch(e){}
+    audioSaveCb = null; audioFurthestIdx = -1; playlist = []; playlistIdx = -1;
     var d = takeCtx.data;
     var sectionData = takeCtx.section === "listening" ? d.listening : d.reading;
     var flat = flattenSection(sectionData, takeCtx.section);
@@ -1027,6 +1134,52 @@
     return stats;
   }
 
+  // ---------- CTA "chốt" học viên ngay sau khi có điểm ----------
+  function buildCtaHTML(pct){
+    var headline =
+      pct >= 80 ? "Bạn đang ở mức rất tốt — chỉ cần tinh chỉnh đúng chiến lược để cán mốc gần tuyệt đối." :
+      pct >= 60 ? "Nền tảng khá ổn — với lộ trình đúng trọng tâm, hoàn toàn có thể tăng thêm 100–150 điểm trong vài tháng." :
+      pct >= 40 ? "Đây là giai đoạn cải thiện nhanh nhất nếu luyện đúng Part còn yếu và đúng phương pháp." :
+                  "Đây là điểm khởi đầu — ai cũng bắt đầu từ đây, quan trọng nhất là chọn đúng lộ trình cho chặng tiếp theo.";
+    return '<div class="cta-eyebrow">Lộ trình dành riêng cho bạn</div>' +
+      '<h3>' + esc(headline) + '</h3>' +
+      '<p>Đội ngũ AZEnglish xem lại bài làm và bảng phân tích điểm mạnh/yếu này, tư vấn lộ trình luyện tập phù hợp với mục tiêu điểm số của bạn — miễn phí, không ràng buộc.</p>' +
+      '<a class="btn btn-primary btn-lg" href="' + esc(CONTACT_LINK) + '" target="_blank" rel="noopener">' + esc(CONTACT_LABEL) + '</a>';
+  }
+
+  // ---------- Xem lại đáp án + nghe lại audio (chỉ mở sau khi đã nộp bài) ----------
+  function buildReviewPanel(flat, attempt, d){
+    var reviewPanel = el("div", "panel");
+    reviewPanel.appendChild(el("h2", null, "Xem lại đáp án"));
+    reviewPanel.appendChild(el("p", "desc", "🔓 Đã mở khoá nghe lại toàn bộ audio Listening — trong lúc làm bài chỉ nghe được 1 lần, giống thi thật."));
+    var byPart = {};
+    flat.forEach(function(x){ (byPart[x.partNum] = byPart[x.partNum] || []).push(x); });
+    Object.keys(byPart).sort(function(a,b){ return a - b; }).forEach(function(partNum){
+      reviewPanel.appendChild(el("h3", null, "Part " + partNum));
+      var lastAudioSrc = null;
+      byPart[partNum].forEach(function(x){
+        var audioSrc = (x.item && x.item.audio) || x.groupAudio || null;
+        if(audioSrc && audioSrc !== lastAudioSrc){
+          var audioEl = el("audio", "review-audio");
+          audioEl.controls = true; audioEl.preload = "none"; audioEl.src = audioSrc;
+          reviewPanel.appendChild(audioEl);
+        }
+        lastAudioSrc = audioSrc;
+        var correct = d.answerKey[String(x.num)];
+        var user = attempt.answers[x.num];
+        var ok = user === correct;
+        var row = el("div", "q-block");
+        row.innerHTML = '<div class="q-num">Câu ' + x.num + '</div>' +
+          '<p style="margin:0;font-size:13.5px;">' +
+          (ok ? '<span style="color:var(--green);font-weight:700;">✓ Đúng (' + esc(correct || "") + ')</span>' :
+                '<span style="color:var(--red-ink);font-weight:700;">✗ Bạn chọn: ' + esc(user || "(bỏ trống)") + ' — Đáp án đúng: ' + esc(correct || "?") + '</span>') +
+          '</p>';
+        reviewPanel.appendChild(row);
+      });
+    });
+    return reviewPanel;
+  }
+
   function buildExpertPanelHTML(d, sectionData, attempt, skillLabel){
     var scaled = scaledScore(Math.round(attempt.score / attempt.total * 100));
     var stats = analyzeByPart(d, sectionData, attempt.answers);
@@ -1037,8 +1190,16 @@
     }).sort(function(a,b){ return a.pct - b.pct; });
     var weaknesses = rows.filter(function(r){ return r.pct < 60; });
     var strengths = rows.filter(function(r){ return r.pct >= 80; });
+    // Không có Part nào thực sự yếu (<60%) nhưng vẫn chưa xuất sắc (<80%) → nêu Part thấp nhất
+    // để học viên biết nên ưu tiên luyện đâu trước, dù nó chưa đến mức báo động.
     if(weaknesses.length === 0 && rows.length > 1 && rows[0].pct < 80) weaknesses = [rows[0]];
-    if(strengths.length === 0 && rows.length > 1) strengths = [rows[rows.length-1]];
+    // Không có Part nào thực sự mạnh (>=80%) → chỉ gọi Part cao điểm nhất là "điểm mạnh tương đối"
+    // khi nó thật sự khá (>=60%) và chưa bị liệt vào danh sách cần cải thiện ở trên — tránh khen nhầm
+    // một Part vẫn còn yếu (bug cũ: luôn khen Part cao điểm nhất dù chỉ 30-40%).
+    var topRow = rows[rows.length - 1];
+    if(strengths.length === 0 && rows.length > 1 && topRow.pct >= 60 && weaknesses.indexOf(topRow) === -1){
+      strengths = [topRow];
+    }
 
     var html = '<h2>🎓 Nhận xét từ chuyên gia TOEIC</h2>' +
       '<div class="expert-band"><b>' + scaled + '</b><span>Điểm quy đổi ước tính (' + esc(skillLabel) + ', thang 5–495)</span></div>' +
@@ -1087,31 +1248,16 @@
       '</div>';
     app.appendChild(top);
 
+    var cta = el("div", "cta-panel");
+    cta.innerHTML = buildCtaHTML(Math.round(attempt.score / attempt.total * 100));
+    app.appendChild(cta);
+
     var expertPanel = el("div", "panel");
     expertPanel.innerHTML = buildExpertPanelHTML(d, sectionData, attempt, isListening ? "Listening" : "Reading");
     app.appendChild(expertPanel);
 
-    var reviewPanel = el("div", "panel");
-    reviewPanel.appendChild(el("h2", null, "Xem lại đáp án"));
     var flat = flattenSection(sectionData);
-    var byPart = {};
-    flat.forEach(function(x){ (byPart[x.partNum] = byPart[x.partNum] || []).push(x); });
-    Object.keys(byPart).sort(function(a,b){ return a-b; }).forEach(function(partNum){
-      reviewPanel.appendChild(el("h3", null, "Part " + partNum));
-      byPart[partNum].forEach(function(x){
-        var correct = d.answerKey[String(x.num)];
-        var user = attempt.answers[x.num];
-        var ok = user === correct;
-        var row = el("div", "q-block");
-        row.innerHTML = '<div class="q-num">Câu ' + x.num + '</div>' +
-          '<p style="margin:0;font-size:13.5px;">' +
-          (ok ? '<span style="color:var(--green);font-weight:700;">✓ Đúng (' + esc(correct || "") + ')</span>' :
-                '<span style="color:var(--red-ink);font-weight:700;">✗ Bạn chọn: ' + esc(user || "(bỏ trống)") + ' — Đáp án đúng: ' + esc(correct || "?") + '</span>') +
-          '</p>';
-        reviewPanel.appendChild(row);
-      });
-    });
-    app.appendChild(reviewPanel);
+    app.appendChild(buildReviewPanel(flat, attempt, d));
   }
 })();
 </script>
