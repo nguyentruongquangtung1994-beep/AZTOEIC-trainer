@@ -282,31 +282,28 @@
   var CONTACT_LINK = "https://zalo.me/0000000000";
   var CONTACT_LABEL = "Nhận tư vấn lộ trình miễn phí →";
 
-  // ---------- TOEIC scaled-score conversion (approximate, non-linear S-curve) ----------
-  // ETS does not publish one fixed official formula — each test form has its own conversion
-  // table, and real curves compress at both extremes (near 0 and near 100% correct, each extra
-  // correct answer moves the scaled score less than in the middle range). A straight line
-  // overstates scores at the low end and understates how hard the last few points are near the
-  // top. These anchor points follow the general shape published across ETS official practice-test
-  // conversion tables; interpolated piecewise-linear between them, rounded to the nearest 5 like
-  // real TOEIC scaled scores, clamped to the official 5-495 range. Raw count == % correct since
-  // each section (Listening/Reading) has exactly 100 questions.
-  var SCALE_ANCHORS = [
-    [0,5],[5,60],[10,115],[15,160],[20,200],[25,240],[30,275],[35,310],[40,335],
-    [45,360],[50,380],[55,400],[60,415],[65,430],[70,445],[75,455],[80,465],
-    [85,475],[90,480],[95,490],[100,495],
+  // ---------- TOEIC scaled-score conversion (bảng quy đổi chính thức TAEC — Thang điểm Listening/Reading) ----------
+  // Tra thẳng theo SỐ CÂU ĐÚNG (0-100), không nội suy — bảng gốc có vài bước nhảy không đều (ví dụ Listening
+  // 0→5, 1→15 nhảy 10 điểm; 75→385, 76→395 cũng nhảy 10) nên nội suy tuyến tính sẽ sai lệch tại đúng các mốc đó.
+  var LISTENING_SCALE = [
+    5,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,
+    115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,
+    215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,
+    315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,395,400,405,410,415,
+    420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,495,495,495,495,
   ];
-  function scaledScore(rawPct){
-    rawPct = Math.max(0, Math.min(100, rawPct));
-    for(var i = 0; i < SCALE_ANCHORS.length - 1; i++){
-      var a = SCALE_ANCHORS[i], b = SCALE_ANCHORS[i+1];
-      if(rawPct >= a[0] && rawPct <= b[0]){
-        var t = (rawPct - a[0]) / (b[0] - a[0]);
-        var val = a[1] + t * (b[1] - a[1]);
-        return Math.max(5, Math.min(495, Math.round(val / 5) * 5));
-      }
-    }
-    return rawPct <= 0 ? 5 : 495;
+  var READING_SCALE = [
+    5,5,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,
+    100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,
+    200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,
+    300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,
+    400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,
+  ];
+  function scaledScoreListening(rawCorrect){
+    return LISTENING_SCALE[Math.max(0, Math.min(100, Math.round(rawCorrect)))];
+  }
+  function scaledScoreReading(rawCorrect){
+    return READING_SCALE[Math.max(0, Math.min(100, Math.round(rawCorrect)))];
   }
 
   var PART_INFO = {
@@ -602,6 +599,7 @@
       app.appendChild(buildAudioBar());
     } else {
       try{ masterAudio.pause(); }catch(e){}
+      unlockMediaSessionSeek();
       audioSaveCb = null; playlist = []; playlistIdx = -1; audioFurthestIdx = -1;
     }
 
@@ -841,9 +839,28 @@
     if(timeEl) timeEl.textContent = fmtTime(masterAudio.currentTime) + " / " + fmtTime(dur);
   }
 
+  // Chrome/Edge/Safari tự vẽ 1 popup media (scrubbing bar) ở thanh địa chỉ hoặc Control Center cho
+  // BẤT KỲ thẻ <audio> nào đang phát, độc lập với UI tự vẽ trên trang — nếu không chặn riêng thì học
+  // viên vẫn tua được qua popup hệ thống đó dù trang không có thanh tua. Đăng ký các action handler
+  // seek/prev bằng no-op để vô hiệu hoá đường vòng này trong lúc khoá nghe 1 lần.
+  function lockMediaSessionSeek(){
+    if(!("mediaSession" in navigator)) return;
+    var noop = function(){};
+    ["seekbackward", "seekforward", "seekto", "previoustrack", "nexttrack"].forEach(function(action){
+      try{ navigator.mediaSession.setActionHandler(action, noop); }catch(e){}
+    });
+  }
+  function unlockMediaSessionSeek(){
+    if(!("mediaSession" in navigator)) return;
+    ["seekbackward", "seekforward", "seekto", "previoustrack", "nexttrack"].forEach(function(action){
+      try{ navigator.mediaSession.setActionHandler(action, null); }catch(e){}
+    });
+  }
+
   // Không có thanh tua (seek) trong lúc làm bài — chỉ Play/Pause + âm lượng, đúng chủ trương
   // "nghe 1 lần, không tua lại" giống phòng thi thật. Nghe lại tự do chỉ mở ở trang kết quả (buildReviewPanel).
   function buildAudioBar(){
+    lockMediaSessionSeek();
     var bar = el("div", "panel audio-master");
     bar.id = "audioBar";
     bar.innerHTML =
@@ -1045,6 +1062,7 @@
   function submitFullTest(isAuto){
     if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
     try{ masterAudio.pause(); }catch(e){}
+    unlockMediaSessionSeek();
     audioSaveCb = null; audioFurthestIdx = -1; playlist = []; playlistIdx = -1;
     var d = takeCtx.data;
     var flatL = flattenSection(d.listening);
@@ -1069,8 +1087,8 @@
     var attempt = STATE.attempts[testId + "-full"];
     if(!d || !attempt){ location.hash = "#/test/" + testId + "/intro-full"; return; }
     app.innerHTML = "";
-    var scaledL = scaledScore(Math.round(attempt.scoreL / attempt.totalL * 100));
-    var scaledR = scaledScore(Math.round(attempt.scoreR / attempt.totalR * 100));
+    var scaledL = scaledScoreListening(attempt.scoreL);
+    var scaledR = scaledScoreReading(attempt.scoreR);
     var total = scaledL + scaledR;
 
     var top = el("div", "panel");
@@ -1105,6 +1123,7 @@
 
   function submitTest(){
     try{ masterAudio.pause(); }catch(e){}
+    unlockMediaSessionSeek();
     audioSaveCb = null; audioFurthestIdx = -1; playlist = []; playlistIdx = -1;
     var d = takeCtx.data;
     var sectionData = takeCtx.section === "listening" ? d.listening : d.reading;
@@ -1181,7 +1200,7 @@
   }
 
   function buildExpertPanelHTML(d, sectionData, attempt, skillLabel){
-    var scaled = scaledScore(Math.round(attempt.score / attempt.total * 100));
+    var scaled = skillLabel === "Listening" ? scaledScoreListening(attempt.score) : scaledScoreReading(attempt.score);
     var stats = analyzeByPart(d, sectionData, attempt.answers);
     var rows = Object.keys(stats).map(function(p){
       var s = stats[p];
@@ -1203,7 +1222,7 @@
 
     var html = '<h2>🎓 Nhận xét từ chuyên gia TOEIC</h2>' +
       '<div class="expert-band"><b>' + scaled + '</b><span>Điểm quy đổi ước tính (' + esc(skillLabel) + ', thang 5–495)</span></div>' +
-      '<p class="expert-note">*Điểm quy đổi là ước tính theo đường cong tham khảo phổ biến (không tuyến tính, càng gần 0 hoặc gần tuyệt đối thì mỗi câu càng "nặng/nhẹ điểm" khác vùng giữa) — ETS không công bố công thức quy đổi cố định cho từng đề, thang điểm thật có thể lệch đôi chút.</p>';
+      '<p class="expert-note">*Điểm quy đổi tra theo bảng chuyển đổi Listening/Reading chính thức của TAEC (không tuyến tính, càng gần 0 hoặc gần tuyệt đối thì mỗi câu càng "nặng/nhẹ điểm" khác vùng giữa) — thang điểm thật của từng đề ETS cụ thể có thể lệch đôi chút.</p>';
     if(weaknesses.length){
       html += '<h3>📍 Điểm cần cải thiện</h3><ul class="expert-list">';
       weaknesses.forEach(function(r){
