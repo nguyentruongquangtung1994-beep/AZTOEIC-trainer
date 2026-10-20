@@ -496,6 +496,16 @@
       });
       app.appendChild(secondary);
     });
+    // Thẻ Listening Lab ETS 2023 (web riêng trong thư mục listening-lab/)
+    var lab = el("div", "hero-card");
+    lab.style.marginTop = "18px";
+    lab.innerHTML =
+      '<div class="hero-eyebrow">Mới · ETS 2023 · Test 1–3</div>' +
+      '<h2>🎧 Listening Lab — nghe, chọn & chép chính tả</h2>' +
+      '<p class="desc">Script đủ 4 Part có ô chọn A/B/C/D và ô chép chính tả, bấm ▶ nghe lại từng câu, chấm theo đoạn, ' +
+      'giải thích từ vựng, bẫy và câu chứa đáp án.</p>' +
+      '<a class="btn btn-primary btn-lg" style="margin-top:16px;" href="listening-lab/">Vào Listening Lab →</a>';
+    app.appendChild(lab);
   }
 
   // ---------- STRATEGY (chiến lược làm bài — đọc trước khi thi) ----------
