@@ -489,7 +489,7 @@ html body a.card > .tn{display:flex;align-items:center}
   /* Listening Lab */
   --red-soft: #FDEDEF !important; --ground: #F7F5F0 !important; --muted: #4B5563 !important; --chip: #FFFFFF !important;
   --ok: #15803D !important; --ok-soft: #E8F5EC !important; --hl: #FFF1C2 !important;
-  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important;
+  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important; --mono: "Be Vietnam Pro", system-ui, sans-serif !important;
 }
 html, body { background: #F7F5F0 !important; color: #111827; }
 body { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
@@ -564,6 +564,14 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
 .azt-toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; transition: .35s ease; z-index: 2000; background: #0B1424; color: #fff; padding: 11px 18px; border-radius: 999px; font: 600 14px/1.2 "Be Vietnam Pro", system-ui, sans-serif; box-shadow: 0 12px 30px -10px rgba(0,0,0,.45); border: 1px solid rgba(227,194,122,.35); white-space: nowrap; }
 .azt-toast.on { opacity: 1; transform: translate(-50%, 0); }
 .azt-lockrow { opacity: .78; }
+.panel .tr-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.panel .tr-links .chip { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-2); font-size: 12.5px; font-weight: 700; text-decoration: none; color: var(--ink); }
+.panel .tr-links .chip:first-child { background: #FAF4E6; border-color: #EBDDB8; color: #8F6E24; }
+
+/* đồng bộ kiểu chữ với AZIELTS Academy: tiêu đề Playfair 700, chữ thân Be Vietnam Pro */
+h1, h2, .panel h2, .hero-card h2, .tr-name, .score-num, .result-panel .score-num { font-family: "Playfair Display", Georgia, serif !important; font-weight: 700 !important; letter-spacing: -.01em; font-variant-numeric: lining-nums; }
+h3, h4, .q-num, .opt-btn, .btn, button, input, select, textarea { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 </style></head>
 <body>
 
@@ -585,21 +593,21 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611072325"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611072325"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611072325"></script>
-<script src="data/topic-4-dai-tu.js?v=202611072325"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611072325"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611072325"></script>
-<script src="data/topic-7-tu-loai.js?v=202611072325"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611072325"></script>
-<script src="data/topic-9-so-sanh.js?v=202611072325"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611072325"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611072325"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611072325"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611072325"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611072325"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611072325"></script>
+<script src="data/topic-1-cac-thi.js?v=202611080028"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611080028"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611080028"></script>
+<script src="data/topic-4-dai-tu.js?v=202611080028"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611080028"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611080028"></script>
+<script src="data/topic-7-tu-loai.js?v=202611080028"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611080028"></script>
+<script src="data/topic-9-so-sanh.js?v=202611080028"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611080028"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611080028"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611080028"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611080028"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611080028"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611080028"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";

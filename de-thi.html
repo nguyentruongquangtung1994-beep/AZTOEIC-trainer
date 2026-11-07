@@ -238,7 +238,7 @@ html body a.card > .tn{display:flex;align-items:center}
   /* Listening Lab */
   --red-soft: #FDEDEF !important; --ground: #F7F5F0 !important; --muted: #4B5563 !important; --chip: #FFFFFF !important;
   --ok: #15803D !important; --ok-soft: #E8F5EC !important; --hl: #FFF1C2 !important;
-  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important;
+  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important; --mono: "Be Vietnam Pro", system-ui, sans-serif !important;
 }
 html, body { background: #F7F5F0 !important; color: #111827; }
 body { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
@@ -313,6 +313,14 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
 .azt-toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; transition: .35s ease; z-index: 2000; background: #0B1424; color: #fff; padding: 11px 18px; border-radius: 999px; font: 600 14px/1.2 "Be Vietnam Pro", system-ui, sans-serif; box-shadow: 0 12px 30px -10px rgba(0,0,0,.45); border: 1px solid rgba(227,194,122,.35); white-space: nowrap; }
 .azt-toast.on { opacity: 1; transform: translate(-50%, 0); }
 .azt-lockrow { opacity: .78; }
+.panel .tr-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.panel .tr-links .chip { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-2); font-size: 12.5px; font-weight: 700; text-decoration: none; color: var(--ink); }
+.panel .tr-links .chip:first-child { background: #FAF4E6; border-color: #EBDDB8; color: #8F6E24; }
+
+/* đồng bộ kiểu chữ với AZIELTS Academy: tiêu đề Playfair 700, chữ thân Be Vietnam Pro */
+h1, h2, .panel h2, .hero-card h2, .tr-name, .score-num, .result-panel .score-num { font-family: "Playfair Display", Georgia, serif !important; font-weight: 700 !important; letter-spacing: -.01em; font-variant-numeric: lining-nums; }
+h3, h4, .q-num, .opt-btn, .btn, button, input, select, textarea { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 </style></head>
 <body>
 
@@ -328,11 +336,11 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611072325"></script>
-<script src="ets2026-test2.js?v=202611072325"></script>
-<script src="ets2026-test3.js?v=202611072325"></script>
-<script src="ets2026-test4.js?v=202611072325"></script>
-<script src="ets2026-test5.js?v=202611072325"></script>
+<script src="ets2026-test1.js?v=202611080028"></script>
+<script src="ets2026-test2.js?v=202611080028"></script>
+<script src="ets2026-test3.js?v=202611080028"></script>
+<script src="ets2026-test4.js?v=202611080028"></script>
+<script src="ets2026-test5.js?v=202611080028"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -518,6 +526,7 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
       try{ masterAudio.pause(); }catch(e){}
     }
     if(parts.length === 0 || parts[0] === "home"){ setWide(false); return renderHome(); }
+    if(parts[0] === "test" && parts[1] && parts[2] === "part" && parts[3]){ setWide(false); return renderPartPractice(parts[1], parts[3]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "strategy"){ setWide(false); return renderStrategy(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "intro-full"){ setWide(false); return renderIntroFull(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "take-full"){ setWide(true); return renderTakeFull(parts[1]); }
@@ -555,6 +564,7 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
           '<a class="chip" href="#/test/' + id + '/strategy">📋 Chiến lược</a>' +
           '<a class="chip" href="#/test/' + id + '/intro/listening">🎧 Luyện Listening</a>' +
           '<a class="chip" href="#/test/' + id + '/intro/reading">📖 Luyện Reading</a>' +
+          [1,2,3,4,5,6,7].map(function(n){ return '<a class="chip" href="#/test/' + id + '/part/' + n + '">Part ' + n + '</a>'; }).join('') +
         '</div>';
       list.appendChild(row);
     });
@@ -577,6 +587,69 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
       'giải thích từ vựng, bẫy và câu chứa đáp án.</p>' +
       (window.AZT && AZT.isClass() ? '<a class="btn btn-primary btn-lg" style="margin-top:16px;" href="listening-lab/">Vào Listening Lab →</a>' : '<a class="btn btn-ghost btn-lg" style="margin-top:16px;" href="./#hoc-cung-giao-vien">🔒 Dành cho học viên lớp — tìm hiểu →</a>');
     app.appendChild(lab);
+  }
+
+  // ---------- LUYỆN TỪNG PART (AZTOEIC Academy) ----------
+  var PART_SIZE = {1:6, 2:25, 3:39, 4:30, 5:30, 6:16, 7:54};
+  function renderPartPractice(testId, pn){
+    var d = getData(testId); pn = +pn;
+    if(!d){ location.hash = "#/home"; return; }
+    var secData = pn <= 4 ? d.listening : d.reading;
+    var part = secData.parts.filter(function(p){ return p.num === pn; })[0];
+    if(!part){ location.hash = "#/home"; return; }
+    try{ masterAudio.pause(); }catch(e){}
+    unlockMediaSessionSeek(); audioSaveCb = null; playlist = []; playlistIdx = -1; audioFurthestIdx = -1;
+    var key = testId + "-p" + pn, saved = STATE.attempts[key];
+    var reviewing = !!(saved && saved.score !== undefined && !saved.inProgress);
+    takeCtx = {testId: testId, section: "p" + pn, data: d, answers: reviewing ? (saved.answers || {}) : ((saved && saved.inProgress) || {}), activePart: pn};
+    var flat = flattenSection({parts: [part]});
+    app.innerHTML = "";
+    var head = el("div", "panel");
+    head.innerHTML = '<h2>' + esc(d.test) + ' · Part ' + pn + (part.title ? ' — ' + esc(part.title) : '') + '</h2>' +
+      '<p class="desc">Luyện riêng ' + flat.length + ' câu Part ' + pn + (pn <= 4 ? '. Bấm ▶ ở từng đoạn để nghe, nghe lại thoải mái khi luyện (thi thật chỉ nghe 1 lần)' : '') + '. Bài tự lưu, làm dở thoát ra vẫn giữ. Nộp để chấm Part này và xem đáp án.</p>' +
+      '<div class="tr-links"><a class="chip" href="./#phuong-phap/p' + pn + '">📘 Phương pháp Part ' + pn + '</a>' +
+      [1,2,3,4,5,6,7].filter(function(n){ return n !== pn; }).map(function(n){ return '<a class="chip" href="#/test/' + testId + '/part/' + n + '">Part ' + n + '</a>'; }).join("") + '</div>';
+    app.appendChild(head);
+    if(reviewing){
+      var res = el("div", "panel");
+      var pct = Math.round(saved.score / saved.total * 100);
+      res.innerHTML = '<div class="score-tile"><div class="score-num">' + saved.score + '<span style="font-size:18px;color:var(--ink-soft)">/' + saved.total + '</span></div><div class="score-sub">Part ' + pn + ' · ' + pct + '% đúng · ' + (pct >= 80 ? "Rất tốt, chuyển Part khác hoặc làm đề tiếp theo." : pct >= 60 ? "Khá. Xem lại câu sai bên dưới rồi làm Part này ở đề khác." : "Cần ôn: đọc lại phương pháp Part " + pn + " rồi làm lại.") + '</div></div>' +
+        '<div class="btn-row"><button class="btn btn-primary" id="redoPart">Làm lại Part ' + pn + '</button><a class="btn btn-ghost" href="./#so-cau-sai">Sổ câu sai</a><a class="btn btn-ghost" href="./#hom-nay">Về Hôm nay học gì</a></div>';
+      app.appendChild(res);
+      document.getElementById("redoPart").addEventListener("click", function(){ delete STATE.attempts[key]; saveState(); renderPartPractice(testId, pn); });
+    }
+    var c = el("div", "panel");
+    renderPartInto(c, part, true);
+    app.appendChild(c);
+    if(reviewing){
+      flat.forEach(function(x){
+        var qb = document.getElementById("q-" + x.num); if(!qb) return;
+        var correct = d.answerKey[String(x.num)], user = saved.answers[x.num];
+        qb.querySelectorAll(".opt-btn").forEach(function(b){
+          var L = b.querySelector("b").textContent; b.disabled = true;
+          if(L === correct){ b.style.borderColor = "var(--green)"; b.style.background = "var(--green-bg)"; }
+          else if(L === user){ b.style.borderColor = "#D7192D"; b.style.background = "#FDEDEF"; }
+        });
+        qb.insertAdjacentHTML("beforeend", '<p style="margin:8px 0 0;font-size:13.5px;font-weight:700;color:' + (user === correct ? 'var(--green)' : '#B01322') + '">' + (user === correct ? '✓ Đúng (' + correct + ')' : '✗ ' + (user ? 'Bạn chọn ' + user : 'Bỏ trống') + ' · Đáp án đúng: ' + correct) + '</p>');
+      });
+    } else {
+      var bar = el("div", "panel");
+      bar.innerHTML = '<div class="btn-row"><button class="btn btn-primary" id="submitPart">Nộp Part ' + pn + '</button><span class="desc" id="partCount"></span></div>';
+      app.appendChild(bar);
+      var cnt = function(){ var n = flat.filter(function(x){ return takeCtx.answers[x.num]; }).length; var s = document.getElementById("partCount"); if(s) s.textContent = "Đã chọn " + n + "/" + flat.length + " câu"; };
+      cnt(); app.addEventListener("click", cnt);
+      document.getElementById("submitPart").addEventListener("click", function(){
+        var n = flat.filter(function(x){ return takeCtx.answers[x.num]; }).length;
+        var go = function(){
+          var score = 0; flat.forEach(function(x){ if(takeCtx.answers[x.num] === d.answerKey[String(x.num)]) score++; });
+          STATE.attempts[key] = {answers: takeCtx.answers, score: score, total: flat.length, submittedAt: Date.now(), part: pn};
+          saveState();
+          if(window.AZT) AZT.xp("P", key, score, flat.length);
+          renderPartPractice(testId, pn); window.scrollTo(0, 0);
+        };
+        if(n < flat.length) showConfirmModal("Bạn mới chọn " + n + "/" + flat.length + " câu. Câu bỏ trống sẽ tính là sai. Vẫn nộp?", go); else go();
+      });
+    }
   }
 
   // ---------- STRATEGY (chiến lược làm bài — đọc trước khi thi) ----------
