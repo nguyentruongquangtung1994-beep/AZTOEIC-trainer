@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TOEIC Listening Lab</title>
+<title>Listening Lab ETS 2023 · AZTOEIC Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
@@ -127,47 +127,123 @@ footer{margin-top:36px;font-size:12px;color:var(--muted);font-family:var(--mono)
 .gate-field{display:block;width:100%;margin:0 0 10px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;background:var(--paper);color:var(--ink);font-family:var(--body)}
 .gate-field:focus{outline:none;border-color:var(--red)}
 </style>
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+   Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
+   Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
+:root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
+/* nút & ô nhập */
+html body :is(.btn,.ghost,.nb-btn,.opt,#chk,#rst,.ws-steps button,#tabs button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range])):not(.mchip):not(.avatar):not(.tab):not(.azp-home){border-radius:var(--r-btn)!important}
+html body :is(.btn,.ghost,.nb-btn,#chk,#rst):not(.tab){font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+html body .ws-steps button{font-weight:700!important}
+/* khối nhỏ bên trong thẻ */
+html body :is(.nb-book,.ph,.how,.board-note,.essay-raw,details.faq-i,.faq details,.ico,.ti){border-radius:var(--r-in)!important}
+/* thẻ & bảng */
+html body :is(.panel,.wk-it,.figure,nav#tabs,.ws-steps,.jmap,.rc,.pgrid,.tch,.plan,.perk,.stats,.float,.acct,.auth,.place,.step,.nb-skill,.nb-writing,.nb-strategy,.nb-stats,.nb-panel,.bk,.card,.steps,.player,.transcript,.app){border-radius:var(--r-card)!important}
+/* khung lớn */
+html body :is(aside.side,.frame,.nb-hero,.az-hero,header.top,.hello,.hero-card){border-radius:var(--r-xl)!important}
+/* biểu tượng nét mảnh */
+html body :is(.azi,.nb-skill .ico svg,.nb-strategy .i svg,.azp-ico){stroke-width:1.8!important}
+html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
+html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
+html body a.card > .tn{display:flex;align-items:center}
+</style><style id="azt-sub">/* AZTOEIC Academy — giao diện Premium AZ (xanh đêm + vàng, đồng bộ AZIELTS Academy) phủ lên các trang con (đề ETS, ngữ pháp, Listening Lab). Luôn sáng. */
+:root, :root[data-theme], :root[data-theme="dark"], :root[data-theme="light"] {
+  color-scheme: light !important;
+  --azt-navy: #0B1424; --azt-navy-2: #13233B; --azt-teal: #B8913A; --azt-teal-d: #8F6E24; --azt-teal-soft: #FAF4E6; --azt-teal-glow: #E3C27A; --azt-red: #D7192D;
+  /* TOEIC Trainer + Grammar Trainer */
+  --paper: #FFFFFF !important; --paper-2: #F7F5F0 !important; --ink: #111827 !important; --ink-soft: #4B5563 !important; --line: #E8E4DA !important;
+  --red: #D7192D !important; --red-deep: #8F6E24 !important; --red-ink: #8F6E24 !important;
+  --gold: #8F6E24 !important; --gold-bg: #FAF4E6 !important; --amber: #8F6E24 !important; --amber-bg: #FAF4E6 !important;
+  --green: #15803D !important; --green-bg: #E8F5EC !important;
+  --card-shadow: 0 1px 2px rgba(16,24,40,.05), 0 18px 40px -24px rgba(11,20,36,.28) !important;
+  --focus: 0 0 0 3px rgba(184,145,58,.30) !important;
+  --font-display: "Playfair Display", Georgia, serif !important;
+  --font-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+  /* Listening Lab */
+  --red-soft: #FDEDEF !important; --ground: #F7F5F0 !important; --muted: #4B5563 !important; --chip: #FFFFFF !important;
+  --ok: #15803D !important; --ok-soft: #E8F5EC !important; --hl: #FFF1C2 !important;
+  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important;
+}
+html, body { background: #F7F5F0 !important; color: #111827; }
+body { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+#themeBtn, .themeBtn, [data-theme-toggle], button#theme { display: none !important; }
+/* banner cũ của TOEIC Trainer → khung xanh đêm */
+.banner { background: linear-gradient(135deg, #0B1424, #13233B) !important; color: #fff !important; border-radius: 20px !important; padding: 22px 24px !important; border: 0 !important; }
+.banner .logo { background: #D7192D !important; color: #fff !important; }
+.banner small { color: #E3C27A !important; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.banner h1 { color: #fff !important; font-family: "Playfair Display", Georgia, serif !important; }
+.hero-card { border-top: 3px solid #B8913A !important; }
+.hero-eyebrow { color: #8F6E24 !important; }
+.chip { border-radius: 999px !important; }
+.btn-primary, .btn.primary { background: #D7192D !important; border-color: #D7192D !important; color: #fff !important; }
+.btn-primary:hover, .btn.primary:hover { background: #B01322 !important; }
+.cta-panel, .result-panel, .hero-az { background: linear-gradient(150deg, #0B1424 0%, #13233B 70%, #2A1A22 100%) !important; color: #fff !important; }
+.hero-az .hero-eyebrow, .cta-panel .hero-eyebrow { color: #E3C27A !important; }
+.result-panel .btn-primary, .btn-light { background: #fff !important; color: #0B1424 !important; }
+
+/* ---------- Ngữ pháp TOEIC: đổi phong cách nét dày sang Premium ---------- */
+body:has(.nb-top) { background: #F7F5F0 !important; }
+body:has(.nb-top) h1, body:has(.nb-top) h2, body:has(.nb-top) h3 { font-family: "Playfair Display", Georgia, serif !important; letter-spacing: -.01em; }
+.nb-top { background: #fff !important; border-bottom: 1px solid #E8E4DA !important; top: 52px !important; }
+.nb-top, .nb-top a, .nb-logo { color: #111827 !important; }
+.nb-logo span { color: #8F6E24 !important; }
+.nb-logo i { border: 0 !important; background: #D7192D !important; }
+.nb-chip { border: 1px solid #EBDDB8 !important; box-shadow: none !important; background: #FAF4E6 !important; color: #8F6E24 !important; }
+.nb-hero h1 { font: 700 clamp(34px, 5.4vw, 60px)/1.08 "Playfair Display", Georgia, serif !important; color: #111827 !important; }
+.nb-hero h1 .hlw { background: linear-gradient(transparent 62%, #F3E4BF 62%, #F3E4BF 94%, transparent 94%) !important; }
+.nb-hero h1 em { background: #0B1424 !important; color: #E3C27A !important; border: 0 !important; box-shadow: none !important; transform: none !important; border-radius: 14px !important; padding: .04em .28em .1em !important; }
+.nb-hero .eyebrow { color: #8F6E24 !important; }
+.nb-hero-p { color: #4B5563 !important; }
+.nb-btn { border: 0 !important; box-shadow: none !important; border-radius: 10px !important; background: #D7192D !important; color: #fff !important; transform: none !important; }
+.nb-btn:hover { background: #B01322 !important; }
+.nb-bubble { border: 1px solid #E8E4DA !important; box-shadow: 0 12px 28px -14px rgba(11,20,36,.35) !important; }
+.nb-goal { border: 1px solid #E8E4DA !important; box-shadow: 0 1px 2px rgba(16,24,40,.05) !important; border-radius: 16px !important; color: #111827 !important; }
+.nb-meter { border: 0 !important; background: #EFEBE2 !important; }
+.nb-meter > * { background: #B8913A !important; }
+.nb-card { border: 0 !important; border-radius: 18px !important; box-shadow: 0 18px 40px -24px rgba(11,20,36,.45) !important; background: linear-gradient(160deg, #0B1424, #1C2E4C) !important; transform: none !important; }
+.nb-card:hover { box-shadow: 0 24px 48px -22px rgba(11,20,36,.55) !important; }
+.nb-card .ico { border: 0 !important; background: rgba(227,194,122,.16) !important; color: #E3C27A !important; }
+.nb-card li { border: 1px solid rgba(255,255,255,.35) !important; }
+.nb-card .tag { border: 0 !important; background: #E3C27A !important; color: #0B1424 !important; }
+.nb-book { border: 1px solid #E8E4DA !important; box-shadow: 0 1px 2px rgba(16,24,40,.05) !important; border-radius: 14px !important; transform: none !important; }
+.nb-book:hover { border-color: #B8913A !important; box-shadow: 0 12px 28px -16px rgba(11,20,36,.3) !important; }
+.nb-book .spine { border: 0 !important; background: #B8913A !important; }
+.nb-book .row i { border: 1px solid #E8E4DA !important; }
+.nb-legend i { border: 1px solid #D8D2C4 !important; }
+
+/* ---------- thanh AZTOEIC trên cùng ---------- */
+.azt-bar { position: sticky; top: 0; z-index: 900; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(11,20,36,.96); backdrop-filter: blur(8px); color: #fff; font: 600 13.5px/1.2 "Be Vietnam Pro", system-ui, sans-serif; }
+.azt-bar a { color: #fff; text-decoration: none; }
+.azt-home { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+.azt-home i { font-style: normal; width: 30px; height: 30px; border-radius: 8px; background: #D7192D; display: grid; place-items: center; font: 800 12px/1 "Be Vietnam Pro", sans-serif; letter-spacing: .02em; }
+.azt-home b { color: #E3C27A; font-weight: 700; }
+.azt-title { flex: 1; min-width: 0; color: rgba(255,255,255,.62); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.azt-me { padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(227,194,122,.4); color: #fff; white-space: nowrap; }
+.azt-me b { color: #E3C27A; }
+@media (max-width: 560px) { .azt-title { display: none; } .azt-home span { display: none; } .azt-bar { justify-content: space-between; } }
+
+/* ---------- khung chặn ---------- */
+html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important; }
+.azt-lock { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 16px; background: radial-gradient(120% 90% at 80% 0%, #13233B 0%, #0B1424 60%); font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+.azt-lock-card { width: 100%; max-width: 420px; background: #fff; border-radius: 20px; padding: 30px 26px 24px; text-align: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+.azt-lock-card i { font-style: normal; display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: #D7192D; color: #fff; font-weight: 800; margin-bottom: 14px; }
+.azt-lock-card h2 { font: 700 22px/1.25 "Playfair Display", Georgia, serif; color: #111827; margin: 0 0 10px; }
+.azt-lock-card p { color: #4B5563; font-size: 14px; line-height: 1.6; margin: 0 0 20px; }
+.azt-btn { display: block; padding: 13px 16px; border-radius: 10px; background: #D7192D; color: #fff; font-weight: 700; text-decoration: none; }
+.azt-btn:hover { background: #B01322; }
+.azt-link { display: block; margin-top: 12px; color: #8F6E24; font-weight: 600; font-size: 14px; text-decoration: none; }
+
+/* ---------- thông báo XP ---------- */
+.azt-toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; transition: .35s ease; z-index: 2000; background: #0B1424; color: #fff; padding: 11px 18px; border-radius: 999px; font: 600 14px/1.2 "Be Vietnam Pro", system-ui, sans-serif; box-shadow: 0 12px 30px -10px rgba(0,0,0,.45); border: 1px solid rgba(227,194,122,.35); white-space: nowrap; }
+.azt-toast.on { opacity: 1; transform: translate(-50%, 0); }
+.azt-lockrow { opacity: .78; }
+</style></head>
 <body>
-<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;">
-  <form id="gateForm" style="max-width:360px;width:100%;text-align:center;font-family:var(--display);">
-    <div style="width:56px;height:56px;border-radius:14px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 16px;">AZ</div>
-    <h2 style="font-size:20px;margin:0 0 8px;">TOEIC Listening Lab · ETS 2023</h2>
-    <p style="font-size:14px;color:var(--muted);margin:0 0 18px;line-height:1.55;font-family:var(--body);">Để lại thông tin để đội ngũ AZEnglish gửi kết quả chi tiết và tư vấn lộ trình học phù hợp cho bạn.</p>
-    <input id="gateName" type="text" placeholder="Họ và tên" autocomplete="name" class="gate-field" required />
-    <input id="gateEmail" type="email" placeholder="Email" autocomplete="email" class="gate-field" required />
-    <input id="gatePhone" type="tel" placeholder="Số điện thoại" autocomplete="tel" class="gate-field" required />
-    <button type="submit" class="btn primary" style="width:100%;">Vào luyện nghe</button>
-    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0;display:none;">Vui lòng nhập đầy đủ họ tên, email và số điện thoại hợp lệ.</p>
-    <p style="font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5;font-family:var(--body);">Thông tin của bạn chỉ dùng để AZEnglish liên hệ tư vấn lộ trình học, không chia sẻ cho bên thứ ba.</p>
-  </form>
-</div>
-<script>
-(function(){
-  var LEAD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzD1v2aekzEeyMBQ-2uD-2TRHBN9xX0__V6aAU5YZ4BFhlO4D9WEZtXr7CcwM4Gc2j1/exec";
-  var GATE_KEY = "az_toeic_gate_ok";
-  var LEADS_KEY = "az_toeic_leads";
-  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function isValidPhone(v){ return /^[0-9+ .()-]{8,15}$/.test(v); }
-  try{ if(localStorage.getItem(GATE_KEY) === "1") document.getElementById("gateScreen").style.display = "none"; }catch(e){}
-  document.getElementById("gateForm").addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var name = document.getElementById("gateName").value.trim();
-    var email = document.getElementById("gateEmail").value.trim();
-    var phone = document.getElementById("gatePhone").value.trim();
-    if(!name || !isValidEmail(email) || !isValidPhone(phone)){ document.getElementById("gateError").style.display = "block"; return; }
-    document.getElementById("gateError").style.display = "none";
-    var lead = {name: name, email: email, phone: phone, submittedAt: new Date().toISOString(), source: "AZTOEIC-trainer", page: "Listening Lab ETS 2023"};
-    try{ var leads = JSON.parse(localStorage.getItem(LEADS_KEY) || "[]"); leads.push(lead); localStorage.setItem(LEADS_KEY, JSON.stringify(leads)); }catch(e){}
-    try{ fetch(LEAD_WEBHOOK_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(lead)}).catch(function(){}); }catch(e){}
-    try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){}
-    document.getElementById("gateScreen").style.display = "none";
-  });
-})();
-</script>
+
 <div class="wrap">
   <header class="top">
-    <div><div class="brand"><a href="../" style="color:inherit;text-decoration:none">← AZEnglish TOEIC Trainer</a> · Listening Lab</div><h1 id="title">ETS 2023</h1></div>
+    <div><div class="brand"><a href="../" style="color:inherit;text-decoration:none">← AZTOEIC Academy</a> · Listening Lab</div><h1 id="title">ETS 2023</h1></div>
     <div class="tests" id="tests"></div>
   </header>
   <nav class="tabs" id="tabs"></nav>
@@ -176,10 +252,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted);font-family:var(--mono)
 </div>
 <audio id="clip" preload="none"></audio>
 
-<script src="data/t1.js"></script>
-<script src="data/t2.js"></script>
-<script src="data/t3.js"></script>
-<script>
+<script type="text/azt" id="aztMain">
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const L="ABCD", ACC={Am:"Mỹ",Cn:"Canada",Br:"Anh",Au:"Úc"};
@@ -383,5 +456,194 @@ try{document.documentElement.dataset.theme=localStorage.getItem("az-ets23-theme"
 const last=storeGet("az-ets23-view");
 load(last&&TESTS.includes(last.t)?last.t:TESTS[0]);
 </script>
-</body>
+<script>window.AZT_ROOT="../";</script><script>/* AZTOEIC Academy — thư viện dùng chung cho mọi trang (cổng, đề ETS, ngữ pháp, Listening Lab).
+   Phiên đăng nhập bằng SĐT · đồng bộ tiến độ lên máy chủ · XP · mở khoá nội dung lớp (AES-GCM). */
+(function () {
+  "use strict";
+  var API = window.AZT_API || "https://script.google.com/macros/s/AKfycbzYu8ZNdTEqMVCXYQU3bDPpqdsQBGEWjJlaDXVqZ7UEt30CKQG1X9f99Z6byiL7vqYQ/exec";
+  if (API.indexOf("__") >= 0) API = "";
+  var ROOT = window.AZT_ROOT || "./";          // đường dẫn tới trang cổng (index.html)
+  var SKEY = "azt_s", PKEY = "azt_prog_ts", QKEY = "azt_xpq";
+  var TRACK = /^(az_toeic_trainer_v1|az_toeicgrammar_progress|az_toeicgrammar_p7|az-ets23-t\d|azt_vocab|azt_vocab_d|azt_method|azt_trial|azt_plan)$/;
+  var _set = Storage.prototype.setItem, timer = null, pushing = false, flushing = false;
+
+  function get(k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } }
+  function put(k, v) { try { _set.call(localStorage, k, JSON.stringify(v)); } catch (e) {} }
+  function session() { var s = get(SKEY); return s && s.phone && s.tok ? s : null; }
+
+  function call(t, data) {
+    if (!API) return Promise.resolve({ ok: false, offline: true, error: "Hệ thống tài khoản đang được cài đặt — bạn quay lại sau ít phút nhé." });
+    var body = Object.assign({ t: t }, data || {});
+    return fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body), redirect: "follow" })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: false, net: true, error: "Không kết nối được máy chủ. Bạn kiểm tra mạng rồi thử lại nhé." }; });
+  }
+  function authed(t, data) {
+    var s = session(); if (!s) return Promise.resolve({ ok: false, auth: false });
+    return call(t, Object.assign({ phone: s.phone, tok: s.tok }, data || {})).then(function (r) {
+      if (r && r.auth === false) { localStorage.removeItem(SKEY); }
+      return r;
+    });
+  }
+
+  // ---------- tiến độ: gom các khoá localStorage của mọi trang thành 1 gói ----------
+  function collect(strip) {
+    var k = {}, i, key;
+    for (i = 0; i < localStorage.length; i++) {
+      key = localStorage.key(i);
+      if (TRACK.test(key)) k[key] = localStorage.getItem(key);
+    }
+    if (strip && k.az_toeic_trainer_v1) {   // gói quá lớn → bỏ bài làm chi tiết, giữ điểm
+      try {
+        var st = JSON.parse(k.az_toeic_trainer_v1);
+        Object.keys(st.attempts || {}).forEach(function (a) { delete st.attempts[a].answers; });
+        k.az_toeic_trainer_v1 = JSON.stringify(st);
+      } catch (e) {}
+    }
+    return k;
+  }
+  function pack() {
+    var ts = Date.now(), s = JSON.stringify({ ts: ts, k: collect(false) });
+    if (s.length > 44000) s = JSON.stringify({ ts: ts, k: collect(true) });
+    return { s: s.length > 44000 ? "" : s, ts: ts };
+  }
+  function restore(prog) {
+    if (!prog) return false;
+    var p; try { p = JSON.parse(prog); } catch (e) { return false; }
+    var mine = get(PKEY), s0 = session();
+    if (!p || !p.k || (mine && s0 && mine.phone === s0.phone && (Number(mine.ts) || 0) >= p.ts)) return false;
+    Object.keys(p.k).forEach(function (key) { if (TRACK.test(key)) _set.call(localStorage, key, p.k[key]); });
+    put(PKEY, { phone: s0 ? s0.phone : "", ts: p.ts });
+    return true;
+  }
+  function push(beacon) {
+    var s = session(); if (!s || !API || pushing) return;
+    var p = pack(); if (!p.s) return;
+    var body = JSON.stringify({ t: "save", phone: s.phone, tok: s.tok, prog: p.s });
+    if (beacon && navigator.sendBeacon) { try { if (navigator.sendBeacon(API, new Blob([body], { type: "text/plain" }))) put(PKEY, { phone: s.phone, ts: p.ts }); return; } catch (e) {} }
+    pushing = true;
+    fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: body, keepalive: true })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { pushing = false; if (r && r.ok) { put(PKEY, { phone: s.phone, ts: p.ts }); dirty = false; } else { dirty = true; } })
+      .catch(function () { pushing = false; dirty = true; });
+  }
+  var dirty = false;
+  function schedule() { if (!session()) return; dirty = true; clearTimeout(timer); timer = setTimeout(push, 8000); }
+  window.addEventListener("online", function () { if (dirty) push(); flushXp(); });
+  Storage.prototype.setItem = function (k, v) { _set.call(this, k, v); if (this === localStorage && TRACK.test(k)) schedule(); };
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && timer) { clearTimeout(timer); timer = null; push(true); }
+    else if (document.visibilityState === "visible" && window.AZT_PORTAL && session() && !dirty) refresh();   // máy để lâu: kéo bản mới trước khi học tiếp
+  });
+
+  // ---------- XP (xếp hàng khi mất mạng, gửi lại sau) ----------
+  function flushXp() {
+    var q = get(QKEY) || []; if (!q.length || !session() || flushing) return;
+    var item = q[0]; flushing = true;
+    authed("xp", item).then(function (r) {
+      flushing = false;
+      var keep = !r || r.busy || r.net || r.offline;
+      if (!keep) { q = get(QKEY) || []; q = q.filter(function (x) { return x.id !== item.id; }); put(QKEY, q); }
+      else if (r && (r.net || r.offline)) toast({ queued: true });
+      if (r && r.ok) { var s = session(); if (s) { s.xp = r.xp; put(SKEY, s); var bx = document.querySelector(".azt-me b, .me-chip b"); if (bx) bx.textContent = r.xp; } toast(r); }
+      if (r && r.ok && (get(QKEY) || []).length) setTimeout(flushXp, 300);
+    });
+  }
+  function xp(act, ref, score, total) {
+    if (!session()) return;
+    var q = get(QKEY) || []; q.push({ id: Date.now() + "-" + Math.random().toString(36).slice(2, 6), act: act, ref: String(ref), score: score || 0, total: total || 0 }); put(QKEY, q.slice(-60));
+    flushXp();
+  }
+  function toast(r) {
+    var t = document.createElement("div");
+    t.className = "azt-toast";
+    t.textContent = r.queued ? "Đã lưu bài, XP sẽ cộng khi có mạng" : r.gained > 0 ? "+" + r.gained + " XP · tuần này " + r.week + " XP" : r.repeat ? "Bài này đã tính XP hôm nay — làm lại để ôn nhé" : r.capped ? "Đã đủ 300 XP hôm nay — mai cộng tiếp nhé" : "";
+    if (!t.textContent) return;
+    document.body.appendChild(t);
+    setTimeout(function () { t.classList.add("on"); }, 20);
+    setTimeout(function () { t.classList.remove("on"); setTimeout(function () { t.remove(); }, 400); }, 3200);
+  }
+
+  // ---------- đăng nhập / đăng ký ----------
+  function afterAuth(r) {
+    if (r && r.ok && r.s) {
+      var restored = restore(r.s.prog);
+      delete r.s.prog; put(SKEY, r.s);
+      if (!restored) schedule();
+      r.restored = restored;
+    }
+    return r;
+  }
+  function login(phone, pass) { return call("login", { phone: phone, pass: pass }).then(afterAuth); }
+  function register(o) { var owner = get(PKEY), p = owner && owner.phone ? { s: "" } : pack(); return call("register", Object.assign({}, o, { prog: p.s })).then(afterAuth); }
+  function logout() {
+    var s = session(); if (s && dirty) push(true);
+    var ks = []; for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (TRACK.test(k) || k === PKEY || k === QKEY || k === "azt_certs") ks.push(k); }
+    ks.forEach(function (k) { localStorage.removeItem(k); });
+    localStorage.removeItem(SKEY); if (s) call("logout", { phone: s.phone, tok: s.tok });
+  }
+  function refresh() {
+    if (!session()) return Promise.resolve(null);
+    return authed("me").then(function (r) {
+      if (r && r.ok && r.s) { var old = session() || {}, rs = restore(r.s.prog); delete r.s.prog; r.s.tok = old.tok; put(SKEY, r.s); flushXp(); if (rs) try { window.dispatchEvent(new Event("azt-restored")); } catch (e) {} return Object.assign({ _restored: rs }, r.s); }
+      return r && r.auth === false ? null : session();
+    });
+  }
+  function isClass(s) { s = s || session(); return !!(s && /^lớp$/i.test(String(s.goi || "").trim())); }
+
+  // ---------- giải mã nội dung lớp (AES-GCM 256, khoá hex) ----------
+  function hex(h) { var a = new Uint8Array(h.length / 2); for (var i = 0; i < a.length; i++) a[i] = parseInt(h.substr(i * 2, 2), 16); return a; }
+  function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function decrypt(url, key) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error("tải " + url); return r.text(); }).then(function (txt) {
+      var raw = b64(txt.trim()), iv = raw.slice(0, 12), data = raw.slice(12);
+      return crypto.subtle.importKey("raw", hex(key), "AES-GCM", false, ["decrypt"]).then(function (k) {
+        return crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, k, data);
+      }).then(function (buf) { return new TextDecoder().decode(buf); });
+    });
+  }
+  function runScript(code) { var s = document.createElement("script"); s.textContent = code; document.body.appendChild(s); }
+  function loadClass(files) {
+    var s = session(); if (!s || !s.ck) return Promise.resolve(false);
+    return Promise.all(files.map(function (f) { return decrypt(f, s.ck); })).then(function (codes) { codes.forEach(runScript); return true; })
+      .catch(function () { return false; });
+  }
+
+  // ---------- thanh trên cùng cho các trang con ----------
+  function bar(title) {
+    var s = session(), b = document.createElement("div");
+    b.className = "azt-bar";
+    b.innerHTML = '<a class="azt-home" href="' + ROOT + '"><i>AZ</i><span>AZTOEIC <b>Academy</b></span></a>' +
+      '<span class="azt-title">' + (title || "") + '</span>' +
+      (s ? '<a class="azt-me" href="' + ROOT + '#tai-khoan" title="Tài khoản">' + esc(String(s.name || "").split(" ").pop()) + ' · <b>' + (s.xp || 0) + '</b> XP</a>' : '<a class="azt-me" href="' + ROOT + '#dang-nhap">Đăng nhập</a>');
+    document.body.insertBefore(b, document.body.firstChild);
+  }
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* Chặn trang: need = "account" | "class". Trả Promise<session|null>; nếu thiếu quyền thì hiện khung chặn. */
+  function guard(need, title) {
+    var go = function (s) {
+      if (s && (need !== "class" || isClass(s))) { bar(title); return s; }
+      var box = document.createElement("div");
+      box.className = "azt-lock";
+      var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
+      box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Bạn đang dùng gói Tự học — vẫn học miễn phí ngữ pháp, từ vựng và 5 đề ETS 2026.</p><a class="azt-btn" href="' + ROOT + '#hoc-cung-giao-vien">Đăng ký học cùng giáo viên</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
+      document.body.appendChild(box);
+      document.documentElement.classList.add("azt-locked");
+      return null;
+    };
+    var s = session();
+    if (!s) return Promise.resolve(go(null));
+    if (need === "class" && !isClass(s)) return refresh().then(function (fresh) { return go(fresh || null); });
+    // có phiên → cho vào ngay, làm mới gói/khoá ở nền; phiên hết hạn thì tải lại để hiện khung đăng nhập
+    refresh().then(function (fresh) { if ((!fresh && !session()) || (fresh && fresh._restored)) location.reload(); });
+    return Promise.resolve(go(s));
+  }
+
+  window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
+    xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put };
+})();
+</script><script>(function(){AZT.guard("class","Listening Lab ETS 2023").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/t1.enc", "lop/t2.enc", "lop/t3.enc"].length)AZT.loadClass(["lop/t1.enc", "lop/t2.enc", "lop/t3.enc"]).then(go);else go();});})();</script></body>
 </html>
