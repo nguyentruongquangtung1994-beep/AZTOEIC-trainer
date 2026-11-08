@@ -336,11 +336,12 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611081128"></script>
-<script src="ets2026-test2.js?v=202611081128"></script>
-<script src="ets2026-test3.js?v=202611081128"></script>
-<script src="ets2026-test4.js?v=202611081128"></script>
-<script src="ets2026-test5.js?v=202611081128"></script>
+<script src="ets2026-test1.js?v=202611081229"></script>
+<script src="ets2026-test2.js?v=202611081229"></script>
+<script src="ets2026-test3.js?v=202611081229"></script>
+<script src="ets2026-test4.js?v=202611081229"></script>
+<script src="ets2026-test5.js?v=202611081229"></script>
+<script src="mini30.js?v=202611081229"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -540,7 +541,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   // ---------- HOME ----------
   function renderHome(){
     app.innerHTML = "";
-    var ids = Object.keys(window.AZ_TOEIC_DATA || {}).sort(function(a, b){
+    var ids = Object.keys(window.AZ_TOEIC_DATA || {}).filter(function(i){ return !(window.AZ_TOEIC_DATA[i] || {}).mini; }).sort(function(a, b){
       var ya = +(a.match(/ets(\d{4})/) || [0, 0])[1], yb = +(b.match(/ets(\d{4})/) || [0, 0])[1];
       return yb - ya || parseInt(a.replace(/^.*test/, ""), 10) - parseInt(b.replace(/^.*test/, ""), 10);
     });
@@ -1046,7 +1047,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   function buildSidebar(d){
     var box = el("div", "sidebar");
     var timerBox = el("div", "panel timer-box");
-    timerBox.innerHTML = '<div class="timer-label">Thời gian còn lại</div><div class="timer-num" id="timerNum">' + fmtTime(TEST_MINUTES * 60) + '</div>';
+    timerBox.innerHTML = '<div class="timer-label">Thời gian còn lại</div><div class="timer-num" id="timerNum">' + fmtTime((d.minutes || TEST_MINUTES) * 60) + '</div>';
     var submitBtn = el("button", "btn btn-primary", "Nộp bài");
     submitBtn.style.width = "100%"; submitBtn.style.marginTop = "12px";
     submitBtn.addEventListener("click", function(){
@@ -1103,7 +1104,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
     function tick(){
       var elapsed = Math.floor((Date.now() - takeCtx.startedAt) / 1000);
-      var remain = TEST_MINUTES * 60 - elapsed;
+      var remain = ((takeCtx.data && takeCtx.data.minutes) || TEST_MINUTES) * 60 - elapsed;
       var timerEl = document.getElementById("timerNum");
       if(remain <= 0){
         remain = 0;
@@ -1125,6 +1126,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   function renderIntroFull(testId){
     var d = getData(testId);
     if(!d){ location.hash = "#/home"; return; }
+    if(d.mini) return renderIntroMini(d, testId);
     app.innerHTML = "";
     var panel = el("div", "panel");
     panel.innerHTML =
@@ -1234,8 +1236,8 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     };
     delete STATE.attempts[takeCtx.testId + "-full-inprogress"];
     saveState();
-    if(window.AZT) AZT.xp("F", takeCtx.testId, scoreL + scoreR, flatL.length + flatR.length);
-    if(window.AZT && AZT.mockSend && takeCtx.testId === "ets2026-test1"){ var mkAns = ""; for(var mi = 1; mi <= 200; mi++) mkAns += takeCtx.answers[mi] || "-"; AZT.mockSend(takeCtx.testId, mkAns, Math.floor((Date.now() - takeCtx.startedAt) / 1000)); }
+    if(window.AZT && !d.mini) AZT.xp("F", takeCtx.testId, scoreL + scoreR, flatL.length + flatR.length);
+    if(window.AZT && AZT.mockSend && (takeCtx.testId === "ets2026-test1" || d.mini)){ var mkAns = "", mkN = flatL.length + flatR.length; for(var mi = 1; mi <= mkN; mi++) mkAns += takeCtx.answers[mi] || "-"; AZT.mockSend(takeCtx.testId, mkAns, Math.floor((Date.now() - takeCtx.startedAt) / 1000)); }
     location.hash = "#/test/" + takeCtx.testId + "/result-full";
   }
 
@@ -1244,6 +1246,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     var d = getData(testId);
     var attempt = STATE.attempts[testId + "-full"];
     if(!d || !attempt){ location.hash = "#/test/" + testId + "/intro-full"; return; }
+    if(d.mini) return renderResultMini(d, attempt, testId);
     app.innerHTML = "";
     var scaledL = scaledScoreListening(attempt.scoreL);
     var scaledR = scaledScoreReading(attempt.scoreR);
@@ -1275,6 +1278,61 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     expertR.innerHTML = buildExpertPanelHTML(d, d.reading, {answers: attempt.answers, score: attempt.scoreR, total: attempt.totalR}, "Reading");
     app.appendChild(expertR);
 
+    var flat = flattenSection(d.listening).concat(flattenSection(d.reading));
+    app.appendChild(buildReviewPanel(flat, attempt, d));
+  }
+  // ---------- KIỂM TRA ĐẦU VÀO 30 PHÚT (AZTOEIC Academy) ----------
+  var MINI_STAGE = {"0-400": "Chặng 1 · 0–400", "400-600": "Chặng 2 · 400–600", "600-800": "Chặng 3 · 600–800+"};
+  function renderIntroMini(d, testId){
+    app.innerHTML = "";
+    var nL = flattenSection(d.listening).length, nR = flattenSection(d.reading).length;
+    var panel = el("div", "panel");
+    panel.innerHTML =
+      '<h2>Kiểm tra đầu vào TOEIC · 30 phút</h2>' +
+      '<p class="desc">Dành cho bạn chưa có đủ 2 tiếng làm full test. ' + (nL + nR) + ' câu đại diện cho đủ 7 Part của đề ETS (' + nL + ' câu Nghe, ' + nR + ' câu Đọc), chấm ra điểm ước tính /990, Part mạnh – yếu và chặng học phù hợp.</p>' +
+      '<div class="meta-row"><span class="meta-chip">' + (nL + nR) + ' câu</span><span class="meta-chip">' + d.minutes + ' phút</span><span class="meta-chip">Part 1–7</span><span class="meta-chip">Nghe ≈ 11 phút · Đọc ≈ 19 phút</span></div>' +
+      '<p class="desc" style="margin-top:12px"><b>Cách làm:</b> bấm ▶ ở thanh audio, audio tự chạy liên tục qua Part 1–4 và chỉ nghe 1 lần như phòng thi. Nghe xong chuyển sang Part 5–7, đồng hồ đếm ngược chung 30 phút. Đeo tai nghe, ngồi chỗ yên tĩnh.</p>' +
+      '<div class="btn-row"><button class="btn btn-primary" id="startFullBtn">Bắt đầu kiểm tra</button><a class="btn btn-ghost" href="./#thi-thu">Muốn làm full test 120 phút?</a></div>';
+    app.appendChild(panel);
+    if(window.AZT && AZT.mockIntro) app.appendChild(AZT.mockIntro("mini"));
+    document.getElementById("startFullBtn").addEventListener("click", function(){ location.hash = "#/test/" + testId + "/take-full"; });
+  }
+  function renderResultMini(d, attempt, testId){
+    app.innerHTML = "";
+    var nL = attempt.totalL, nR = attempt.totalR;
+    var sL = scaledScoreListening(Math.round(attempt.scoreL / nL * 100)), sR = scaledScoreReading(Math.round(attempt.scoreR / nR * 100)), total = sL + sR;
+    var lo = Math.max(10, total - 50), hi = Math.min(990, total + 50);
+    var rec = total < 400 ? "0-400" : total < 600 ? "400-600" : "600-800";
+    var lvl = total >= 945 ? "C1" : total >= 785 ? "B2" : total >= 550 ? "B1" : total >= 225 ? "A2" : "A1";
+    var rows = [];
+    (d.listening.parts || []).concat(d.reading.parts || []).forEach(function(p){
+      var f = flattenSection({parts: [p]}), c = 0;
+      f.forEach(function(x){ if(attempt.answers[x.num] === d.answerKey[String(x.num)]) c++; });
+      rows.push({p: p.num, c: c, t: f.length});
+    });
+    var top = el("div", "panel");
+    top.innerHTML = '<div class="score-tile"><div class="score-num">' + total + '<span style="font-size:18px;color:var(--ink-soft)">/990</span></div>' +
+      '<div class="score-sub">Điểm ước tính · khoảng <b>' + lo + '–' + hi + '</b> · trình độ tương đương <b>' + lvl + '</b>' + (attempt.auto ? ' · <span style="color:var(--red-ink);">tự nộp khi hết giờ</span>' : '') + '<br>' +
+      'Nghe ~' + sL + ' (' + attempt.scoreL + '/' + nL + ' câu) · Đọc ~' + sR + ' (' + attempt.scoreR + '/' + nR + ' câu)</div></div>' +
+      '<p class="desc">Bài ngắn ' + (nL + nR) + ' câu nên sai số khoảng ±50 điểm. Chặng phù hợp với bạn: <b>' + MINI_STAGE[rec] + '</b>.</p>' +
+      '<div class="btn-row"><button class="btn btn-primary" id="setStage">Học theo ' + MINI_STAGE[rec] + '</button><a class="btn btn-ghost" href="#/test/ets2026-test1/intro-full">Làm full test 120 phút</a><a class="btn btn-ghost" href="#/test/' + testId + '/intro-full">Làm lại</a></div><p class="desc" id="stageMsg"></p>';
+    app.appendChild(top);
+    document.getElementById("setStage").addEventListener("click", function(){
+      var b = this, m = document.getElementById("stageMsg");
+      if(!(window.AZT && AZT.session())){ location.href = "./#lo-trinh"; return; }
+      b.disabled = true; m.textContent = "Đang lưu chặng…";
+      AZT.authed("stage", {stage: rec}).then(function(r){
+        if(r && r.ok){ var s = AZT.session(); s.stage = rec; AZT.put("azt_s", s); m.innerHTML = '✓ Đã chọn ' + MINI_STAGE[rec] + '. <a href="./#hom-nay" style="color:var(--gold);font-weight:700">Xem việc học hôm nay →</a>'; }
+        else { b.disabled = false; m.textContent = (r && r.error) || "Chưa lưu được, bạn thử lại."; }
+      });
+    });
+    if(window.AZT && AZT.mockPanel) app.appendChild(AZT.mockPanel(testId));
+    var tb = el("div", "panel");
+    tb.innerHTML = '<h2 style="font-size:20px">Kết quả theo từng Part</h2>' + rows.map(function(r){
+      var pct = Math.round(r.c / r.t * 100), col = pct >= 80 ? "var(--green)" : pct >= 60 ? "var(--gold)" : "#D7192D";
+      return '<div style="display:grid;grid-template-columns:70px 1fr 48px;gap:10px;align-items:center;margin:9px 0"><b>Part ' + r.p + '</b><div style="height:8px;background:#EFEBE2;border-radius:99px;overflow:hidden"><div style="height:8px;width:' + pct + '%;background:' + col + '"></div></div><span style="text-align:right;font-weight:700">' + r.c + '/' + r.t + '</span></div>';
+    }).join("") + '<div class="tr-links">' + rows.filter(function(r){ return r.c / r.t < 0.6; }).map(function(r){ return '<a class="chip" href="./#phuong-phap/p' + r.p + '">📘 Phương pháp Part ' + r.p + '</a>'; }).join("") + '</div>';
+    app.appendChild(tb);
     var flat = flattenSection(d.listening).concat(flattenSection(d.reading));
     app.appendChild(buildReviewPanel(flat, attempt, d));
   }
@@ -1664,10 +1722,10 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     return box;
   }
   /* ô email ở màn bắt đầu thi thử (nếu tài khoản chưa có email) */
-  function mockIntro() {
+  function mockIntro(kind) {
     var s = session(), box = document.createElement("div");
     box.className = "panel"; box.style.cssText = "border-left:4px solid #B8913A";
-    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">🎁 Thi thử miễn phí · nhận xét chi tiết qua email</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, 3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
+    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">' + (kind === "mini" ? "📩 Nhận kết quả đánh giá qua email" : "🎁 Thi thử miễn phí · nhận xét chi tiết qua email") + '</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, ' + (kind === "mini" ? "chặng học phù hợp, " : "") + '3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
       (s && s.email ? '<p class="desc">Gửi tới: <b>' + esc(s.email) + '</b> · <a href="#" id="aztMailEdit" style="color:#8F6E24;font-weight:700">đổi email</a></p><div id="aztMailWrap" style="display:none">' + mailBox("aztMail", s.email) + '</div>' : '<div id="aztMailWrap">' + mailBox("aztMail") + '</div>') + '<p class="desc" id="aztMailMsg" style="margin-top:6px"></p>';
     setTimeout(function () {
       var ed = box.querySelector("#aztMailEdit"); if (ed) ed.addEventListener("click", function (e) { e.preventDefault(); box.querySelector("#aztMailWrap").style.display = ""; });

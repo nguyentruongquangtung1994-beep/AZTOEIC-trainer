@@ -190,6 +190,10 @@ body.in-view .zalo{display:none}
 .mock .eyebrow{color:#E3C27A}.mock h2{color:#fff;margin:8px 0 10px;font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.2vw,38px);line-height:1.15}.mock p{color:rgba(255,255,255,.78);margin:0 0 14px}
 .mock ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px}.mock li{color:rgba(255,255,255,.9);padding-left:26px;position:relative}
 .mock li:before{content:"✓";position:absolute;left:0;color:#E3C27A;font-weight:800}
+.mock-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mock-opt{background:rgba(255,255,255,.06);border:1px solid rgba(227,194,122,.28);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.mock-opt b{color:#fff;font-size:16px}.mock-opt span{color:rgba(255,255,255,.7);font-size:13.5px;line-height:1.5;flex:1}.mock-opt .btn{margin-top:8px;text-align:center;justify-content:center}
+@media(max-width:560px){.mock-opts{grid-template-columns:1fr}}
 .mock-card{background:#fff;color:#111827;border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 50px -24px rgba(0,0,0,.6)}
 .mock-card small{display:block;color:#8F6E24;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
 .mock-card b.sc{display:block;font-family:var(--fd);font-size:40px;line-height:1.05;margin:6px 0 2px}.mock-card b.sc span{font-size:16px;color:#6B7280}
@@ -657,11 +661,13 @@ html body a.card > .tn{display:flex;align-items:center}
   <section class="sec" id="thi-thu" style="padding-top:0"><div class="wrap">
     <div class="mock">
       <div>
-        <span class="eyebrow">Thi thử miễn phí · Full test</span>
-        <h2>Làm trọn đề ETS 2026 Test 1, nhận nhận xét chi tiết qua email</h2>
-        <p>200 câu Listening + Reading, 120 phút, audio chạy liên tục như phòng thi. Nộp bài là giáo viên AZ gửi bản nhận xét về email của bạn.</p>
-        <ul><li>Điểm ước tính /990 và trình độ tương đương</li><li>Tỉ lệ đúng từng Part 1–7, Part nào cần ưu tiên</li><li>3 dạng câu yếu nhất kèm cách làm và bẫy hay gặp</li><li>Kế hoạch 4 tuần, mỗi ngày 20 phút, theo đúng chặng của bạn</li></ul>
-        <a class="btn btn-red" id="mockGo" href="#dang-ky?next=de-thi.html%23%2Ftest%2Fets2026-test1%2Fintro-full">Tạo tài khoản và bắt đầu thi thử</a>
+        <span class="eyebrow">Thi thử miễn phí · Kiểm tra đầu vào</span>
+        <h2>Biết ngay điểm TOEIC hiện tại, nhận nhận xét chi tiết qua email</h2>
+        <p>Đề ETS 2026 thật, audio chạy liên tục như phòng thi. Nộp bài là giáo viên AZ gửi về email: điểm ước tính /990, Part mạnh – yếu, 3 dạng câu cần ưu tiên và kế hoạch 4 tuần.</p>
+        <div class="mock-opts">
+          <div class="mock-opt"><b>Kiểm tra nhanh · 30 phút</b><span>50 câu đủ 7 Part (26 Nghe, 24 Đọc) · sai số ±50 · hợp khi bận</span><a class="btn btn-red" id="miniGo" href="#dang-ky?next=de-thi.html%23%2Ftest%2Fets2026-mini30%2Fintro-full">Làm bài 30 phút</a></div>
+          <div class="mock-opt"><b>Full test · 120 phút</b><span>200 câu như thi thật · điểm sát nhất · nên làm khi có 2 tiếng</span><a class="btn btn-glass" id="mockGo" href="#dang-ky?next=de-thi.html%23%2Ftest%2Fets2026-test1%2Fintro-full">Làm full test</a></div>
+        </div>
         <p style="margin:12px 0 0;font-size:13px;color:rgba(255,255,255,.6)" id="mockNote">Miễn phí, chỉ cần số điện thoại và email.</p>
       </div>
       <div class="mock-card" aria-hidden="true">
@@ -998,10 +1004,10 @@ html body a.card > .tn{display:flex;align-items:center}
     return box;
   }
   /* ô email ở màn bắt đầu thi thử (nếu tài khoản chưa có email) */
-  function mockIntro() {
+  function mockIntro(kind) {
     var s = session(), box = document.createElement("div");
     box.className = "panel"; box.style.cssText = "border-left:4px solid #B8913A";
-    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">🎁 Thi thử miễn phí · nhận xét chi tiết qua email</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, 3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
+    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">' + (kind === "mini" ? "📩 Nhận kết quả đánh giá qua email" : "🎁 Thi thử miễn phí · nhận xét chi tiết qua email") + '</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, ' + (kind === "mini" ? "chặng học phù hợp, " : "") + '3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
       (s && s.email ? '<p class="desc">Gửi tới: <b>' + esc(s.email) + '</b> · <a href="#" id="aztMailEdit" style="color:#8F6E24;font-weight:700">đổi email</a></p><div id="aztMailWrap" style="display:none">' + mailBox("aztMail", s.email) + '</div>' : '<div id="aztMailWrap">' + mailBox("aztMail") + '</div>') + '<p class="desc" id="aztMailMsg" style="margin-top:6px"></p>';
     setTimeout(function () {
       var ed = box.querySelector("#aztMailEdit"); if (ed) ed.addEventListener("click", function (e) { e.preventDefault(); box.querySelector("#aztMailWrap").style.display = ""; });
@@ -1666,7 +1672,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611081128";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611081229";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -1792,7 +1798,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611081128"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611081229"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
@@ -1877,12 +1883,14 @@ function route(){
 document.addEventListener("click", function(e){ var h = e.target.closest("[data-home]"); if(h){ e.preventDefault(); history.pushState(null, "", location.pathname); route(); window.scrollTo(0, 0); } });
 window.addEventListener("hashchange", route);
 function renderMock(){
-  var a = document.getElementById("mockGo"), n = document.getElementById("mockNote"); if(!a) return;
-  var s = AZT.session(), m = AZT.get("azt_mock"), done = m && m.test === "ets2026-test1" && m.st === "sent";
-  if(!s){ a.href = "#dang-ky?next=de-thi.html%23%2Ftest%2Fets2026-test1%2Fintro-full"; a.textContent = "Tạo tài khoản và bắt đầu thi thử"; n.textContent = "Miễn phí, chỉ cần số điện thoại và email. Đã có tài khoản? Đăng nhập rồi bấm lại."; return; }
-  a.href = done ? "de-thi.html#/test/ets2026-test1/result-full" : "de-thi.html#/test/ets2026-test1/intro-full";
-  a.textContent = done ? "Xem lại bài thi thử" : "Bắt đầu thi thử 120 phút";
-  n.textContent = done ? "Đã gửi nhận xét tới " + (m.email || s.email || "email của bạn") + ". Làm đề tiếp theo ở mục Giải đề ETS." : (s.email ? "Nhận xét sẽ gửi tới " + s.email + "." : "Bạn nhập email ở màn bắt đầu để nhận nhận xét.");
+  var a = document.getElementById("mockGo"), b = document.getElementById("miniGo"), n = document.getElementById("mockNote"); if(!a || !b) return;
+  var s = AZT.session(), m = AZT.get("azt_mock"), sent = m && m.st === "sent";
+  var tp = AZT.get("az_toeic_trainer_v1") || {}, at = tp.attempts || {};
+  if(!s){ n.textContent = "Miễn phí, chỉ cần số điện thoại và email. Đã có tài khoản? Đăng nhập rồi chọn bài."; return; }
+  var doneMini = !!at["ets2026-mini30-full"], doneFull = !!at["ets2026-test1-full"];
+  b.href = "de-thi.html#/test/ets2026-mini30/" + (doneMini ? "result-full" : "intro-full"); b.textContent = doneMini ? "Xem kết quả 30 phút" : "Làm bài 30 phút";
+  a.href = "de-thi.html#/test/ets2026-test1/" + (doneFull ? "result-full" : "intro-full"); a.textContent = doneFull ? "Xem lại full test" : "Làm full test";
+  n.textContent = sent ? "Đã gửi nhận xét tới " + (m.email || s.email || "email của bạn") + "." : (s.email ? "Nhận xét sẽ gửi tới " + s.email + "." : "Bạn nhập email ở màn bắt đầu để nhận nhận xét.");
 }
 function renderAll(){ renderTop(); renderToday(); renderStages(); renderApps(); renderMock(); }
 if(TCH){ $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").parentNode.style.display = "none"; }

@@ -593,21 +593,21 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611081128"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611081128"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611081128"></script>
-<script src="data/topic-4-dai-tu.js?v=202611081128"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611081128"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611081128"></script>
-<script src="data/topic-7-tu-loai.js?v=202611081128"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611081128"></script>
-<script src="data/topic-9-so-sanh.js?v=202611081128"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611081128"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611081128"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611081128"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611081128"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611081128"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611081128"></script>
+<script src="data/topic-1-cac-thi.js?v=202611081229"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611081229"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611081229"></script>
+<script src="data/topic-4-dai-tu.js?v=202611081229"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611081229"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611081229"></script>
+<script src="data/topic-7-tu-loai.js?v=202611081229"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611081229"></script>
+<script src="data/topic-9-so-sanh.js?v=202611081229"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611081229"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611081229"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611081229"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611081229"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611081229"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611081229"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -1923,10 +1923,10 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     return box;
   }
   /* ô email ở màn bắt đầu thi thử (nếu tài khoản chưa có email) */
-  function mockIntro() {
+  function mockIntro(kind) {
     var s = session(), box = document.createElement("div");
     box.className = "panel"; box.style.cssText = "border-left:4px solid #B8913A";
-    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">🎁 Thi thử miễn phí · nhận xét chi tiết qua email</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, 3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
+    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">' + (kind === "mini" ? "📩 Nhận kết quả đánh giá qua email" : "🎁 Thi thử miễn phí · nhận xét chi tiết qua email") + '</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, ' + (kind === "mini" ? "chặng học phù hợp, " : "") + '3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
       (s && s.email ? '<p class="desc">Gửi tới: <b>' + esc(s.email) + '</b> · <a href="#" id="aztMailEdit" style="color:#8F6E24;font-weight:700">đổi email</a></p><div id="aztMailWrap" style="display:none">' + mailBox("aztMail", s.email) + '</div>' : '<div id="aztMailWrap">' + mailBox("aztMail") + '</div>') + '<p class="desc" id="aztMailMsg" style="margin-top:6px"></p>';
     setTimeout(function () {
       var ed = box.querySelector("#aztMailEdit"); if (ed) ed.addEventListener("click", function (e) { e.preventDefault(); box.querySelector("#aztMailWrap").style.display = ""; });
