@@ -1572,7 +1572,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611080028";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611081014";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -1673,6 +1673,11 @@ function renderAuth(mode, next){
     '<div class="switch">' + (reg ? 'Đã có tài khoản? <a href="#dang-nhap' + (next ? "?next=" + encodeURIComponent(next) : "") + '">Đăng nhập</a>' : 'Chưa có tài khoản? <a href="#dang-ky' + (next ? "?next=" + encodeURIComponent(next) : "") + '">Tạo tài khoản miễn phí</a>') + '</div>' +
     (reg ? "" : '<p class="note">Quên mật khẩu? Nhắn Zalo <a href="https://zalo.me/0971882096">0971 882 096</a> để AZEnglish cấp lại.</p>') + '</div>';
   page(reg ? "Tạo tài khoản" : "Đăng nhập", reg ? "Bắt đầu lộ trình TOEIC" : "Chào bạn quay lại", "", body);
+  // Hồ sơ dùng chung az_me (trang Đăng ký / Test trình độ cùng tên miền): điền sẵn, khách chỉ đặt mật khẩu
+  (function(){ var m = {}; try { m = JSON.parse(localStorage.getItem("az_me") || "null") || {}; } catch(e){}
+    var f = $("#authForm"); if(!f) return;
+    ["name", "phone", "email"].forEach(function(k){ if(f[k] && !f[k].value && m[k]) f[k].value = m[k]; });
+    if(reg && m.name && m.phone && f.pass) setTimeout(function(){ f.pass.focus(); }, 80); })();
   $("#authForm").addEventListener("submit", function(e){
     e.preventDefault();
     var f = e.target, m = $("#authMsg"), btn = f.querySelector("button[type=submit]");
@@ -1693,7 +1698,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611080028"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611081014"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
@@ -1767,7 +1772,7 @@ function route(){
   var h = decodeURIComponent(location.hash.replace(/^#/, "")), base = h.split("?")[0], parts = base.split("/");
   if(parts[0] === "phuong-phap") return renderMethods(parts[1]);
   if(parts[0] === "tu-vung") return renderVocab(parts[1]);
-  if(parts[0] === "dang-nhap" || parts[0] === "dang-ky"){ if(AZT.session() && !nextOf()){ location.hash = "#tai-khoan"; return; } return renderAuth(parts[0]); }
+  if(parts[0] === "dang-nhap" || parts[0] === "dang-ky"){ if(AZT.session()){ var nx = nextOf(); if(nx && /^(de-thi\.html|ngu-phap\/|listening-lab\/)/.test(nx)){ location.href = nx; return; } if(!nx){ location.hash = "#tai-khoan"; return; } } return renderAuth(parts[0]); }
   if(parts[0] === "tai-khoan") return renderAccount();
   if(parts[0] === "so-cau-sai") return renderWrong();
   if(parts[0] === "chung-nhan") return renderCert(parts.slice(1).join("/"));
