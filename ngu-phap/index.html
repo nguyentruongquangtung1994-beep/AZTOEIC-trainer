@@ -593,21 +593,21 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611081014"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611081014"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611081014"></script>
-<script src="data/topic-4-dai-tu.js?v=202611081014"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611081014"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611081014"></script>
-<script src="data/topic-7-tu-loai.js?v=202611081014"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611081014"></script>
-<script src="data/topic-9-so-sanh.js?v=202611081014"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611081014"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611081014"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611081014"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611081014"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611081014"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611081014"></script>
+<script src="data/topic-1-cac-thi.js?v=202611081128"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611081128"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611081128"></script>
+<script src="data/topic-4-dai-tu.js?v=202611081128"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611081128"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611081128"></script>
+<script src="data/topic-7-tu-loai.js?v=202611081128"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611081128"></script>
+<script src="data/topic-9-so-sanh.js?v=202611081128"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611081128"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611081128"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611081128"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611081128"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611081128"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611081128"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -1885,8 +1885,69 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     return Promise.resolve(go(s));
   }
 
+  /* ---------- Thi thử miễn phí: nộp 200 câu → máy chủ chấm + gửi nhận xét chi tiết qua email ---------- */
+  var MKEY = "azt_mock", RE_MAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  function mockSend(test, ans, sec, email) {
+    var m = { test: test, ans: ans, sec: sec || 0, st: "sending", at: Date.now(), email: email || (session() || {}).email || "" };
+    put(MKEY, m); fire();
+    return authed("mock", { test: test, ans: ans, sec: m.sec, email: m.email }).then(function (r) {
+      m.st = r && r.ok ? "sent" : (r && r.needEmail ? "need" : "err"); m.msg = (r && r.error) || ""; if (r && r.email) m.email = r.email;
+      if (r && r.ok) { var s = session(); if (s && r.email && s.email !== r.email) { s.email = r.email; put(SKEY, s); } }
+      put(MKEY, m); fire(); return r;
+    });
+  }
+  function fire() { try { document.dispatchEvent(new CustomEvent("azt-mock")); } catch (e) {} }
+  function mailBox(id, ph) { return '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="' + id + '" type="email" inputmode="email" autocomplete="email" placeholder="' + (ph || "email@cua-ban.com") + '" style="flex:1;min-width:200px;padding:11px 12px;border:1px solid #D8D2C4;border-radius:10px;font:inherit;font-size:15px"><button class="btn btn-primary" id="' + id + 'Go" type="button">Gửi nhận xét</button></div>'; }
+  /* khung trạng thái trên trang kết quả */
+  function mockPanel(test) {
+    var box = document.createElement("div"); box.className = "panel azt-mockbox";
+    box.style.cssText = "border-left:4px solid #B8913A";
+    var draw = function () {
+      var m = get(MKEY);
+      if (!m || m.test !== test) { box.style.display = "none"; return; }
+      box.style.display = "";
+      var h = '<h2 style="font-size:19px;margin:0 0 6px">📩 Nhận xét chi tiết qua email</h2>';
+      if (m.st === "sending") h += '<p class="desc">Đang chấm và gửi nhận xét về <b>' + esc(m.email) + '</b>…</p>';
+      else if (m.st === "sent") h += '<p class="desc">Đã gửi bản nhận xét chi tiết (điểm từng Part, 3 dạng câu cần ưu tiên, kế hoạch 4 tuần, các câu sai) tới <b>' + esc(m.email) + '</b>. Không thấy thì xem thư mục Quảng cáo hoặc Spam.</p>';
+      else if (m.st === "need") h += '<p class="desc">Nhập email để nhận bản nhận xét chi tiết bài thi này.</p>' + mailBox("aztMockMail");
+      else h += '<p class="desc" style="color:#B01322">' + esc(m.msg || "Chưa gửi được.") + '</p>' + mailBox("aztMockMail", m.email || "");
+      box.innerHTML = h;
+      var b = box.querySelector("#aztMockMailGo");
+      if (b) b.addEventListener("click", function () {
+        var v = (box.querySelector("#aztMockMail").value || m.email || "").trim();
+        if (!RE_MAIL.test(v)) { box.querySelector("#aztMockMail").style.borderColor = "#D7192D"; return; }
+        b.disabled = true; mockSend(m.test, m.ans, m.sec, v);
+      });
+    };
+    document.addEventListener("azt-mock", draw); draw();
+    return box;
+  }
+  /* ô email ở màn bắt đầu thi thử (nếu tài khoản chưa có email) */
+  function mockIntro() {
+    var s = session(), box = document.createElement("div");
+    box.className = "panel"; box.style.cssText = "border-left:4px solid #B8913A";
+    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">🎁 Thi thử miễn phí · nhận xét chi tiết qua email</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, 3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
+      (s && s.email ? '<p class="desc">Gửi tới: <b>' + esc(s.email) + '</b> · <a href="#" id="aztMailEdit" style="color:#8F6E24;font-weight:700">đổi email</a></p><div id="aztMailWrap" style="display:none">' + mailBox("aztMail", s.email) + '</div>' : '<div id="aztMailWrap">' + mailBox("aztMail") + '</div>') + '<p class="desc" id="aztMailMsg" style="margin-top:6px"></p>';
+    setTimeout(function () {
+      var ed = box.querySelector("#aztMailEdit"); if (ed) ed.addEventListener("click", function (e) { e.preventDefault(); box.querySelector("#aztMailWrap").style.display = ""; });
+      var go = box.querySelector("#aztMailGo"); if (!go) return;
+      go.textContent = "Lưu email";
+      go.addEventListener("click", function () {
+        var v = box.querySelector("#aztMail").value.trim(), msg = box.querySelector("#aztMailMsg");
+        if (!RE_MAIL.test(v)) { msg.textContent = "Email chưa đúng định dạng."; msg.style.color = "#B01322"; return; }
+        go.disabled = true; msg.textContent = "Đang lưu…"; msg.style.color = "";
+        authed("email", { email: v }).then(function (r) {
+          go.disabled = false;
+          if (r && r.ok) { var ss = session(); if (ss) { ss.email = v; put(SKEY, ss); } msg.textContent = "✓ Đã lưu. Nhận xét sẽ gửi tới " + v + "."; msg.style.color = "#15803D"; }
+          else { msg.textContent = (r && r.error) || "Chưa lưu được, bạn thử lại."; msg.style.color = "#B01322"; }
+        });
+      });
+    }, 0);
+    return box;
+  }
+
   window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
-    xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put };
+    xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put, mockSend: mockSend, mockPanel: mockPanel, mockIntro: mockIntro };
 })();
 </script><script>(function(){AZT.guard("account","Ng\u1eef ph\u00e1p TOEIC c\u0103n b\u1ea3n").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc"].length)AZT.loadClass(["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc"]).then(go);else go();});})();</script></body>
 </html>
