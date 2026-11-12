@@ -588,6 +588,53 @@ section.sec{padding-block:72px}
 .foot .sel{user-select:all;color:#fff}
 .foot .copy{grid-column:1/-1;border-top:1px solid #23344F;padding-top:18px;font-size:12.5px;color:#8C99AF}
 @media(max-width:860px){.foot .wrap{grid-template-columns:1fr}}
+/* lộ trình chi tiết + quyền lợi học phí (12/11/2026) */
+.rm-wrap{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-1)}
+.rm-wrap>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;font-weight:700;font-size:16px;color:var(--navy)}
+.rm-wrap>summary::-webkit-details-marker{display:none}
+.rm-wrap>summary .azi{width:22px;height:22px;transition:transform .2s}
+.rm-wrap[open]>summary .azi{transform:rotate(180deg)}
+.rm-wrap[open]>summary{border-bottom:1px solid var(--line)}
+#roadmap{padding:18px 22px 22px}
+.rm-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.rm-tabs button{font:700 14px var(--f);padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer}
+.rm-tabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.rm-head{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:12px}
+.rm-head h3{font-family:var(--serif);font-size:22px;margin:0}
+.rm-head span{font-size:14px;color:var(--ink-2)}
+.rm-goal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 16px}
+.rm-goal div{border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--ink-2)}
+.rm-goal b{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.rm-tw{overflow-x:auto}
+table.rm-t{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
+.rm-t th{background:var(--navy);color:#fff;text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:9px 12px}
+.rm-t th:first-child{border-radius:10px 0 0 0}.rm-t th:last-child{border-radius:0 10px 0 0}
+.rm-t td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.rm-t td:first-child{white-space:nowrap;color:var(--navy);font-weight:700}
+.rm-t td:first-child small{display:block;font-weight:500;color:var(--ink-2)}
+.rm-t ul{margin:0;padding-left:16px}.rm-t li{margin:2px 0}
+.rm-t .mk{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:#F6F1E4;color:var(--navy)}
+.rm-out{margin-top:14px;padding:12px 16px;border-radius:12px;background:#F6F1E4;font-size:14.5px;color:var(--navy)}
+.rm-res{margin-top:22px}
+.rm-res h4{font-size:15px;margin:0 0 10px}
+.rm-rg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rm-rg div{border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:13.5px;color:var(--ink-2)}
+.rm-rg b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:2px}
+.rm-rg .who{display:inline-block;margin-top:5px;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:#EEF1F6;color:var(--navy)}
+.rm-rg .who.cls{background:var(--navy);color:#fff}
+.fee-plus{margin-top:22px;display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+.fee-plus .card{padding:20px 22px}
+.fee-perks{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin:12px 0 0;padding:0;list-style:none}
+.fee-perks li{font-size:14px;color:var(--ink-2);padding-left:24px;position:relative}
+.fee-perks li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+.fee-perks li b{color:var(--navy)}
+.combo{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+.combo td{padding:8px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.combo td.r{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+.combo s{color:var(--ink-2);font-weight:400;margin-right:6px}
+.commit{margin-top:14px;padding:12px 14px;border-radius:12px;background:#F6F1E4;font-size:13.5px;color:var(--navy)}
+@media(max-width:860px){.rm-goal,.rm-rg{grid-template-columns:1fr 1fr}.fee-plus{grid-template-columns:1fr}.fee-perks{grid-template-columns:1fr}}
+@media(max-width:520px){.rm-goal,.rm-rg{grid-template-columns:1fr}}
 </style>
 <style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
@@ -614,7 +661,7 @@ html body a.card > .tn{display:flex;align-items:center}
 <header class="tbar"><div class="wrap">
   <a class="logo" href="#" data-home><span class="mk">AZ</span><span><b>AZTOEIC Academy</b><small>Nền tảng luyện TOEIC của AZEnglish</small></span></a>
   <nav class="nav">
-    <a href="#thanh-tich">Thành tích</a><a href="#lo-trinh">Lộ trình</a><a href="#thi-thu">Thi thử</a><a href="#chuong-trinh">Chương trình</a><a href="#xep-hang">Xếp hạng</a><a href="#hoc-phi">Học phí</a><a href="#hoc-vien">Học viên lớp</a>
+    <a href="#thanh-tich">Thành tích</a><a href="#thi-thu">Thi thử</a><a href="#chuong-trinh">Chương trình</a><a href="#xep-hang">Xếp hạng</a><a href="#lo-trinh">Lộ trình</a><a href="#hoc-phi">Học phí</a><a href="#hoc-vien">Học viên lớp</a>
   </nav>
   <span class="sp"></span>
   <div class="top-r" id="topR"></div>
@@ -636,8 +683,6 @@ html body a.card > .tn{display:flex;align-items:center}
     </div>
     <div class="visual" aria-hidden="true">
       <div class="frame"><img id="heroImg" alt=""><div class="cap"><b>Thầy Nguyễn Trương Quang Tùng</b><span>TOEIC 980 · IELTS 7.5 · Phụ trách chương trình</span></div></div>
-      <div class="float score"><span class="k">Học viên AZEnglish</span><div class="big"><b>950</b><span>TOEIC Nghe – Đọc</span></div><div class="mini"><div><b>495</b>Nghe</div><div><b>455</b>Đọc</div></div></div>
-      <div class="float count"><span class="dot">3</span><div><b>Chặng mục tiêu</b><span>từ 0 đến 800+ điểm</span></div></div>
     </div>
   </div></section>
 
@@ -660,7 +705,6 @@ html body a.card > .tn{display:flex;align-items:center}
         </div>
       </div>
     </div>
-    <div class="card ana" id="ana"></div>
   </div></section>
 
   
@@ -687,21 +731,7 @@ html body a.card > .tn{display:flex;align-items:center}
     </div>
   </div></section>
 
-  <section class="sec promise" id="lo-trinh"><div class="wrap">
-    <div class="sec-h"><span class="eyebrow">Lộ trình</span><h2>Ba chặng, mỗi chặng một mốc điểm rõ ràng</h2><p>Mỗi chặng có Part trọng tâm, việc học mỗi ngày và điều kiện lên chặng đo bằng tỉ lệ đúng từng Part. Đổi chặng bất cứ lúc nào.</p></div>
-    <div class="pgrid" id="stages"></div>
-  </div></section>
 
-<section class="sec" id="lam-thu"><div class="wrap">
-    <div class="trial">
-      <div class="trial-side">
-        <span class="eyebrow">Làm thử miễn phí</span>
-        <div class="sec-h" style="margin:0"><h2>5 câu Part 5 trong đề ETS 2026</h2><p>Không cần đăng nhập. Chọn đáp án là thấy ngay đúng sai và lời giải thích của giáo viên AZEnglish.</p></div>
-        <ul><li>Câu thật trong ETS 2026 Test 1, câu 101–105</li><li>Mỗi câu kèm dạng câu và cách nhận diện nhanh</li><li>Làm xong, tạo tài khoản để học tiếp 5 đề đầy đủ</li></ul>
-      </div>
-      <div id="trial"></div>
-    </div>
-  </div></section>
   <section class="sec" id="thi-thu" style="padding-top:0"><div class="wrap">
     <div class="mock">
       <div>
@@ -772,43 +802,23 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </div>
   </div></section>
+<section class="sec alt" id="lo-trinh"><div class="wrap">
+    <div class="sec-h"><span class="eyebrow">Lộ trình học &amp; tài liệu</span><h2>24 buổi mỗi khoá, biết trước từng tuần học gì</h2><p>3 buổi mỗi tuần, mỗi buổi 90 phút, xong một khoá trong 8 tuần. Mỗi tuần ghi rõ học gì trên lớp, về nhà luyện bài nào trên AZTOEIC Academy và mốc kiểm tra.</p></div>
+    <details class="rm-wrap"><summary><span>Xem lộ trình chi tiết 3 khoá và danh sách tài liệu</span><svg class="azi" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div id="roadmap"></div>
+    </details>
+  </div></section>
 <section class="sec" id="hoc-phi"><div class="wrap">
     <div class="sec-h"><span class="eyebrow">Học phí lớp TOEIC</span><h2>Ba khoá theo đúng ba chặng điểm</h2><p>Học tại AZEnglish, 100 Hà Thanh, Nha Trang, hoặc online. Học viên lớp được mở toàn bộ tài nguyên dành riêng trên AZTOEIC Academy.</p></div>
     <div class="fees" id="fees"></div>
-    <p class="fee-note">Học phí trọn khoá. Lịch khai giảng, số buổi và ưu đãi đăng ký sớm: nhắn Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a> hoặc để lại số ở form bên dưới.</p>
-  </div></section>
-<section class="sec alt" id="hoc-cung-giao-vien"><div class="wrap">
-    <div class="contact">
-      <div>
-        <span class="eyebrow">Học cùng giáo viên</span>
-        <h2>Cần 550 – 750 TOEIC kịp hạn tốt nghiệp, xin việc?</h2>
-        <p>Lớp TOEIC tại AZEnglish dùng chính web này để luyện, thêm giáo viên chữa đề theo đúng dạng câu bạn sai nhiều nhất và theo sát tiến độ.</p>
-        <ul class="perks">
-          <li><b>Mở toàn bộ</b> 10 đề ETS 2026, Listening Lab ETS 2023, Part 7 Daily 15</li>
-          <li><b>Chữa đề</b> theo từng dạng câu sai nhiều nhất của bạn</li>
-          <li><b>Thi thử</b> định kỳ đúng 120 phút, báo điểm quy đổi</li>
-          <li><b>Lộ trình</b> theo mốc điểm và ngày thi của bạn</li>
-        </ul>
-      </div>
-      <form class="form" id="leadForm" novalidate>
-        <b style="font-size:18px">Nhận tư vấn lộ trình</b>
-        <p style="color:var(--ink-2);font-size:14px;margin:4px 0 16px">AZEnglish gửi lộ trình theo điểm hiện tại và học phí cho bạn.</p>
-        <label class="fld"><span>Họ và tên</span><input name="name" autocomplete="name" required></label>
-        <label class="fld"><span>Số điện thoại (Zalo)</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
-        <label class="fld"><span>Mục tiêu điểm</span><select name="goal"><option value="0-400">0 – 400</option><option value="400-600" selected>400 – 600</option><option value="600-800">600 – 800+</option></select></label>
-        <label class="fld"><span>Liên hệ qua</span><select name="via"><option>Zalo</option><option>Gọi điện</option></select></label>
-        <label class="fld"><span>Ghi chú (ngày thi, lịch học mong muốn…)</span><textarea name="note" rows="2"></textarea></label>
-        <button class="btn btn-red" style="width:100%" type="submit">Nhận lộ trình và học phí</button>
-        <div class="msg" id="leadMsg" role="status"></div>
-        <div class="fee"><b>Học phí</b> từ 3.850.000 đ/khoá, <a href="#hoc-phi">xem bảng học phí</a>. Để lại số Zalo, AZEnglish gửi lộ trình và lịch khai giảng gần nhất. Học viên AZEnglish đã đạt 950 · 885 · 765 TOEIC, <a href="#thanh-tich">xem phiếu điểm</a>.</div>
-      </form>
-    </div>
+    <div id="feePlus"></div>
+    <p class="fee-note">Tuần đầu học thử, học phí thu sau tuần học đầu tiên · bảo lưu 1 lần, tối đa 3 tháng · chuyển nhượng cho người thân · có hợp đồng và hoá đơn. Lịch khai giảng: nhắn Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a> · <a href="lo-trinh-hoc-phi-toeic.pdf" target="_blank" rel="noopener">Tải bản PDF lộ trình &amp; học phí</a>.</p>
   </div></section>
 <section class="sec" id="hoi-dap"><div class="wrap">
     <div class="sec-h"><span class="eyebrow">Hỏi đáp</span><h2>Câu hỏi thường gặp</h2></div>
     <div class="faq">
       <details><summary>Học trên AZTOEIC Academy có mất phí không?</summary><p>Không. Phương pháp làm bài mở cho mọi người. Tạo tài khoản miễn phí bằng số điện thoại là học được ngữ pháp, từ vựng và giải 5 đề ETS 2026 có chấm điểm. Phần luyện chuyên sâu (5 đề còn lại, Listening Lab, Part 7 Daily 15) dành cho học viên lớp tại AZEnglish.</p></details>
-      <details><summary>Tôi nên chọn chặng nào?</summary><p>Chưa thi TOEIC hoặc làm thử đúng dưới 4/5 câu: chọn 0 – 400. Đúng 5/5 và đã từng đạt khoảng 400 điểm: chọn 400 – 600. Đã trên 600 và cần 750+ cho tốt nghiệp, xin việc: chọn 600 – 800+. 5 câu làm thử là nhóm câu dễ của Part 5, chỉ để tham khảo; bạn đổi chặng bất cứ lúc nào.</p></details>
+      <details><summary>Tôi nên chọn khoá nào?</summary><p>Làm bài kiểm tra đầu vào 30 phút miễn phí ở mục Thi thử. Dưới 400 hoặc chưa thi TOEIC: Khoá 1 Nền tảng. Khoảng 400 – dưới 600: Khoá 2 Luyện đề Căn bản. Từ 600 trở lên, cần 750+: Khoá 3 Luyện đề Nâng cao. Nhận xét chi tiết theo dạng câu gửi về email.</p></details>
       <details><summary>Điểm quy đổi /990 trên web chính xác đến đâu?</summary><p>Đó là điểm ước tính theo bảng quy đổi tham khảo phổ biến. ETS không công bố bảng quy đổi chính thức, điểm thật được cân chỉnh riêng theo từng đề, nên con số trên web dùng để theo dõi tiến bộ của bạn qua các lần làm, không thay cho điểm thi thật.</p></details>
       <details><summary>Mỗi ngày nên học bao lâu?</summary><p>Khoảng 20 phút theo phần "Hôm nay học gì": một dạng câu, một bài ngữ pháp, 10 từ vựng và một phần đề. Ở chặng 600 – 800+, mỗi tuần thêm một full test 120 phút để quen áp lực thời gian. Muốn tăng điểm nhanh, nên học 45–60 phút/ngày.</p></details>
       <details><summary>Học trên điện thoại được không?</summary><p>Được. Tiến độ lưu theo số điện thoại, nên học trên điện thoại rồi mở máy tính vẫn tiếp tục đúng bài, đúng chặng. Phần Nghe nên dùng tai nghe.</p></details>
@@ -1813,7 +1823,7 @@ function renderTop(){
   if(s && AZT.isClass()) $("#topR").insertAdjacentHTML("afterbegin", '<a class="btn btn-ghost btn-sm" href="#hoc-vien">Khu học viên</a>');
   $("#heroCta").innerHTML = s
     ? '<a class="btn btn-red" href="#hom-nay">Học tiếp hôm nay</a><a class="btn btn-glass" href="#phuong-phap">Phương pháp từng dạng</a>'
-    : '<a class="btn btn-red" href="#lam-thu">Làm thử 5 câu, biết ngay mức của mình</a><a class="btn btn-glass" href="#dang-ky">Tạo tài khoản miễn phí</a>';
+    : '<a class="btn btn-red" href="#thi-thu">Kiểm tra đầu vào 30 phút miễn phí</a><a class="btn btn-glass" href="#dang-ky">Tạo tài khoản miễn phí</a>';
   $("#heroNote").innerHTML = s ? (AZT.isClass() ? '<a href="#hoc-vien" style="color:inherit">Vào Khu học viên lớp →</a>' : "") : 'Miễn phí · Đăng nhập bằng số điện thoại · <a href="#hoc-vien" style="color:inherit;text-decoration:underline">Học viên lớp đăng nhập tại đây</a>';
 
 }
@@ -1858,7 +1868,6 @@ function renderToday(){
   $("#kStreak").textContent = sk;
   if(sk > 0 && !act) $("#tasks").insertAdjacentHTML("afterbegin", '<div class="tip" style="margin:0 0 4px">Bạn đang có chuỗi <b>' + sk + ' ngày</b> học liên tiếp. Học 1 việc bất kỳ hôm nay để giữ chuỗi.</div>');
   else if(nDone === 4) $("#tasks").insertAdjacentHTML("beforeend", '<p class="note" style="margin:2px">Ngày mai: ' + esc(gname) + ' · ' + esc((nextVocabSet(lv, vProg()) || {}).name || "") + '</p>');
-  renderAna($("#ana"));
   if(!VOC) vocab(function(){ renderToday(); }, true);
 }
 document.addEventListener("click", function(e){
@@ -1871,7 +1880,7 @@ document.addEventListener("click", function(e){
 
 /* ---------- làm thử 5 câu ---------- */
 function renderTrial(){
-  var st = AZT.get("azt_trial") || {}, box = $("#trial"), done = 0, right = 0;
+  var st = AZT.get("azt_trial") || {}, box = $("#trial"), done = 0, right = 0; if(!box) return;
   box.innerHTML = TRIAL.map(function(q, i){
     var a = st[q.num], ans = a !== undefined && a !== null;
     if(ans){ done++; if(a === q.answer) right++; }
@@ -1899,29 +1908,114 @@ document.addEventListener("click", function(e){
 
 /* ---------- lộ trình + chương trình ---------- */
 function renderStages(){
-  var cur = stage(), me = !!AZT.session();
+  var cur = stage(), me = !!AZT.session(); if(!$("#stages")) return;
   $("#stages").innerHTML = STAGES.map(function(k, i){ var r = RM[k], G = GATE[k], on = k === cur && me;
     return '<div class="pc' + (on ? " cur" : "") + '"><span class="n">0' + (i + 1) + '</span><h3>' + esc(r.name.split("·")[1].trim()) + (on ? '<span class="curtag">Chặng của bạn</span>' : '') + '</h3><span class="rg">' + esc(r.range) + ' ĐIỂM</span><p>' + esc(r.goal) + '</p><ul>' + r.focus.map(function(f){ return "<li>" + esc(f) + "</li>"; }).join("") + '</ul>' +
       '<div class="gate-l"><b>' + (G.next ? "Lên chặng khi:" : "Sẵn sàng thi 750+ khi:") + '</b> ' + Object.keys(G.need).map(function(p){ return "Part " + p + " ≥ " + G.need[p] + "%"; }).join(" · ") + '</div>' +
       '<button class="btn ' + (on ? "btn-glass" : "btn-red") + '" data-st="' + k + '">' + (on ? "Đang học chặng này" : "Chọn chặng này") + '</button></div>'; }).join("");
 }
 var LAB26 = true;
+/* Học phí + lộ trình 24 buổi — khớp ấn phẩm production/TOEIC - Lộ trình tư vấn/Bộ tư vấn TOEIC 2026-11-12 (Anh Tùng duyệt 12/11/2026) */
+var ZALO = "https://zalo.me/0971882096";
 var FEES = [
-  {k:"0-400", lv:"KHOÁ 1 · CHẶNG 0 – 400", t:"Nền tảng", rg:"Mất gốc hoặc chưa thi TOEIC · mục tiêu 400", pr:"3.850.000", sz:"15 – 20 học viên/lớp", f:["Ngữ pháp và từ vựng nền cho Part 1, 2, 5","Phương pháp từng dạng câu, luyện trên web mỗi ngày"]},
-  {k:"400-600", lv:"KHOÁ 2 · CHẶNG 400 – 600", t:"Luyện đề Căn bản", rg:"Đã có khoảng 400 · mục tiêu 600", pr:"4.350.000", sz:"12 – 20 học viên/lớp", f:["Luyện đề ETS 2026 theo Part, chữa câu sai theo dạng","Listening Lab nghe đục lỗ, Part 7 Daily 15"], hot:1},
-  {k:"600-800", lv:"KHOÁ 3 · CHẶNG 700+", t:"Luyện đề Nâng cao", rg:"Đã trên 600 · mục tiêu 700 – 800+", pr:"4.000.000", sz:"10 – 20 học viên/lớp", f:["Full test 120 phút định kỳ, báo điểm quy đổi","Bẫy Part 3, 4, 7 và quản lý thời gian"]}
+  {k:"0-400", lv:"KHOÁ 1 · 0 → 400", t:"Nền tảng", rg:"Mất gốc hoặc chưa thi TOEIC · mục tiêu 400", pr:"3.850.000", sz:"15 – 20 học viên/lớp", ph:"107.000", f:["Ngữ pháp, từ vựng nền cho Part 1, 2, 5","Phương pháp 7 Part, luyện ETS 2026 Test 1–4"]},
+  {k:"400-600", lv:"KHOÁ 2 · 400 → 600", t:"Luyện đề Căn bản", rg:"Đã có khoảng 400 · mục tiêu 600", pr:"4.350.000", sz:"12 – 20 học viên/lớp", ph:"121.000", f:["Đủ 7 Part, 31 dạng câu, chữa câu sai theo dạng","Listening Lab ETS 2026, Part 7 Daily 15"], hot:1},
+  {k:"600-800", lv:"KHOÁ 3 · 600 → 800+", t:"Luyện đề Nâng cao", rg:"Đã trên 600 · mục tiêu 750 – 800+", pr:"4.000.000", sz:"10 – 20 học viên/lớp", ph:"111.000", f:["Full test 120 phút định kỳ, ETS 2026 Test 9–10","Bẫy Part 3, 4, 7 và phân bổ thời gian"]}
+];
+var PERKS = [
+  ["Kiểm tra đầu vào miễn phí", "30 phút, nhận xét theo dạng câu qua email"],
+  ["Tài khoản Gói Lớp", "suốt khoá + thêm 3 tháng sau khoá"],
+  ["10 đề ETS 2026", "luyện Part hoặc full 120 phút, chấm /990"],
+  ["Listening Lab ETS 2023 + 2026", "13 đề nghe đục lỗ, chép chính tả"],
+  ["Part 7 Daily 15", "15 phút đọc mỗi ngày"],
+  ["3.500+ từ vựng", "20 chủ đề, game kiểm tra, ôn 1 – 3 – 7 ngày"],
+  ["2 lần thi thử full test", "buổi 12 và buổi 24, báo điểm /990"],
+  ["Giáo viên chữa theo dạng", "từ sổ câu sai của từng học viên"],
+  ["Báo cáo 2 tuần một lần", "điểm từng Part, dạng câu cần luyện"],
+  ["4 buổi bổ trợ miễn phí", "khi thi thử giữa khoá chưa đạt mốc"],
+  ["Học bù 2 buổi mỗi khoá", "khi báo nghỉ trước 24 giờ"],
+  ["Xếp hạng tuần", "top 3 mỗi chặng nhận chứng nhận số"]
 ];
 function renderFees(){
   var box = $("#fees"); if(!box) return;
-  box.innerHTML = FEES.map(function(c){ return '<div class="feec' + (c.hot ? " hot" : "") + '">' + '<span class="lv">' + esc(c.lv) + '</span><h3>' + esc(c.t) + '</h3><span class="rg">' + esc(c.rg) + '</span><div class="pr">' + c.pr + '<small>đ/khoá</small></div><ul><li><b>Sĩ số:</b> ' + esc(c.sz) + '</li>' + c.f.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '<li>Mở toàn bộ tài nguyên học viên lớp trên web</li></ul><span class="sp2"></span><a class="btn ' + (c.hot ? "btn-red" : "btn-ghost") + '" href="#hoc-cung-giao-vien" data-goal="' + c.k + '">Nhận tư vấn khoá này</a></div>'; }).join("");
+  box.innerHTML = FEES.map(function(c){ return '<div class="feec' + (c.hot ? " hot" : "") + '">' + (c.hot ? '<span class="tagh">KHOÁ TRỌNG TÂM</span>' : "") + '<span class="lv">' + esc(c.lv) + '</span><h3>' + esc(c.t) + '</h3><span class="rg">' + esc(c.rg) + '</span><div class="pr">' + c.pr + '<small>đ/khoá</small></div><ul><li><b>24 buổi · 8 tuần</b>, 3 buổi/tuần × 90 phút</li><li><b>Sĩ số:</b> ' + esc(c.sz) + '</li><li>Khoảng ' + c.ph + 'đ mỗi giờ học</li>' + c.f.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '<li>Đủ 12 quyền lợi bên dưới</li></ul><span class="sp2"></span><a class="btn ' + (c.hot ? "btn-red" : "btn-ghost") + '" href="' + ZALO + '" target="_blank" rel="noopener">Đăng ký qua Zalo</a></div>'; }).join("");
+  var plus = $("#feePlus"); if(!plus) return;
+  plus.innerHTML = '<div class="fee-plus"><div class="card"><span class="eyebrow">Đã gồm trong học phí</span><h3 style="font-size:20px;margin:6px 0 0">12 quyền lợi đi kèm mọi khoá</h3><ul class="fee-perks">' +
+    PERKS.map(function(x){ return '<li><b>' + esc(x[0]) + '</b> · ' + esc(x[1]) + '</li>'; }).join("") + '</ul></div>' +
+    '<div class="card"><span class="eyebrow">Đóng nhiều khoá một lần</span><table class="combo"><tr><td>Khoá 1 + Khoá 2 <b style="color:var(--red)">−5%</b></td><td class="r"><s>8.200.000</s>7.790.000đ</td></tr><tr><td>Khoá 2 + Khoá 3 <b style="color:var(--red)">−5%</b></td><td class="r"><s>8.350.000</s>7.930.000đ</td></tr><tr><td>Trọn 3 khoá 0 → 800+ <b style="color:var(--red)">−10%</b></td><td class="r"><s>12.200.000</s>10.980.000đ</td></tr></table>' +
+    '<p class="note" style="margin:8px 0 0">Đóng trọn 3 khoá: giữ nguyên giá nếu học phí năm sau tăng.</p>' +
+    '<div class="commit"><b>Cam kết đầu ra:</b> thi thử cuối khoá chưa đạt mục tiêu thì học lại khoá đó miễn phí 1 lần, khi học viên đi học từ 90% số buổi, làm từ 85% bài tập, tự học 20 phút mỗi ngày trên AZTOEIC Academy và làm đủ 2 bài thi thử.</div></div></div>';
 }
-document.addEventListener("click", function(e){ var b = e.target.closest("[data-goal]"); if(!b) return; var f = document.getElementById("leadForm"); if(f && f.goal){ f.goal.value = b.getAttribute("data-goal"); if(f.note && !f.note.value) f.note.value = "Quan tâm khoá " + b.closest(".feec").querySelector("h3").textContent; } });
+
+/* Lộ trình 24 buổi: [tuần, buổi, học trên lớp[], về nhà trên AZTOEIC Academy[], mốc] */
+var ROADMAP = [
+ {k:"0-400", n:1, t:"Nền tảng", band:"0 → 400", who:"Mất gốc hoặc chưa thi TOEIC",
+  goal:["Part 1 đúng 4/6, nhận ra 7 kiểu câu hỏi Part 2","Nghe được chủ đề, người nói trong hội thoại công sở ngắn","Đúng 15/30 câu Part 5: từ loại, thì, giới từ","Đọc email, thông báo ngắn, tìm đúng chi tiết"],
+  out:"Khoảng 400 điểm, đủ nền để vào luyện đề ETS (Khoá 2).",
+  w:[
+   [1,"1–3",["Kiểm tra đầu vào, làm quen 7 Part và cách tính điểm /990","Ngữ pháp: Từ loại (danh, động, tính, trạng từ)","Part 1: tranh một người"],["Bài kiểm tra đầu vào 30 phút","Ngữ pháp · Từ Loại","Từ vựng: Văn phòng, Cuộc họp","Phương pháp · Part 1"],""],
+   [2,"4–6",["Ngữ pháp: Các thì, Chia động từ","Part 2: câu hỏi Wh- (Who, When, Where, Why, How)","Part 1: tranh nhiều người"],["Ngữ pháp · Các Thì, Chia Động Từ","Từ vựng: Quản lý, Nhân sự","ETS 2026 Test 1 · Part 1"],""],
+   [3,"7–9",["Ngữ pháp: Sự hoà hợp chủ ngữ – động từ","Part 2: câu hỏi Yes/No, câu hỏi lựa chọn","Part 1: tranh đồ vật, phong cảnh"],["Ngữ pháp · Sự Hoà Hợp Chủ Ngữ – Động Từ","ETS 2026 Test 1 · Part 2","Từ vựng: Ngân hàng, Tài chính"],"Buổi 8 · Kiểm tra 1 (Part 1, 2, 5)"],
+   [4,"10–12",["Ngữ pháp: Đại từ, Giới từ & Liên từ","Part 5: 3 bước làm câu, nhận ra câu từ loại trong 10 giây","Part 3: câu hỏi chung (chủ đề, nơi chốn, nghề nghiệp)"],["Ngữ pháp · Đại Từ, Giới Từ & Liên Từ","ETS 2026 Test 2 · Part 5","Sổ câu sai: xem lại câu sai Part 1, 2"],"Buổi 12 · Thi thử giữa khoá: ETS 2026 Test 3, 120 phút"],
+   [5,"13–15",["Ngữ pháp: Câu so sánh","Part 3: câu hỏi chi tiết (thời gian, con số, vấn đề)","Part 7: email, thông báo, quảng cáo"],["Ngữ pháp · Câu So Sánh","Listening Lab ETS 2023 · Test 1, Part 1–2","Từ vựng: Đi lại, Khách sạn"],""],
+   [6,"16–18",["Ngữ pháp: Mệnh đề quan hệ","Part 4: nắm bố cục bài nói","Part 6: từ, thì theo ngữ cảnh đoạn"],["Ngữ pháp · Mệnh Đề Quan Hệ","ETS 2026 Test 2 · Part 3, Part 6","Từ vựng: Bán hàng, Dịch vụ khách hàng"],"Buổi 18 · Kiểm tra 2 (Part 3, 6, 7 cơ bản)"],
+   [7,"19–21",["Ngữ pháp: Câu điều kiện, Động từ khiếm khuyết","Part 7: câu hỏi chi tiết, câu hỏi mục đích","Part 4: câu hỏi người nghe được yêu cầu làm gì"],["Ngữ pháp · Câu Điều Kiện, Động Từ Khiếm Khuyết","ETS 2026 Test 4 · Part 1, 2, 5","Listening Lab ETS 2023 · Test 1, Part 3–4"],""],
+   [8,"22–24",["Ôn theo sổ câu sai của từng bạn","Chiến lược làm bài 0 → 400: Part nào lấy điểm trước","Tư vấn lên Khoá 2"],["ETS 2026 Test 4 · Part 7","Game từ vựng: ôn từ sai","Sổ câu sai: làm lại câu sai"],"Buổi 24 · Thi thử cuối khoá: ETS 2026 Test 5, 120 phút"]]},
+ {k:"400-600", n:2, t:"Luyện đề Căn bản", band:"400 → 600", who:"Đã có khoảng 400 điểm",
+  goal:["Part 1 đúng 5/6, Part 2 đúng 17/25","Đúng 35/69 câu Part 3–4, nhận ra câu diễn đạt lại","Đúng 20/30 Part 5, chọn đúng câu điền đoạn Part 6","Đọc đoạn đơn, đoạn đôi: đúng 30/54 câu Part 7"],
+  out:"Khoảng 600 điểm, làm trọn đề 200 câu đúng 120 phút.",
+  w:[
+   [1,"1–3",["Chẩn đoán theo dạng câu từ bài kiểm tra đầu vào","Part 2: lời đề nghị, câu trần thuật, câu trả lời gián tiếp","Part 5: Từ loại và Chia động từ ở mức đề thật"],["Listening Lab ETS 2026 · Test 1, Part 1–2","Part 7 Daily 15 · bộ 1","Từ vựng theo Part · Part 2"],""],
+   [2,"4–6",["Part 3: đọc trước câu hỏi, câu hỏi chung và chi tiết","Ngữ pháp: Cấu trúc động từ & mẫu câu đặc biệt","Part 6: từ, thì theo ngữ cảnh đoạn"],["ETS 2026 Test 6 · Part 3","Listening Lab ETS 2026 · Test 2, Part 3","Ngữ pháp · Cấu Trúc Động Từ & Mẫu Câu Đặc Biệt"],""],
+   [3,"7–9",["Part 3: câu hỏi ý ngầm, câu hỏi kèm bảng biểu","Ngữ pháp: Từ nối câu & Part 6","Part 5: Giới từ vs liên từ vs trạng từ liên kết"],["ETS 2026 Test 6 · Part 5, 6","Ngữ pháp · Từ Nối Câu & Part 6","Từ vựng theo Part · Part 3 (cặp diễn đạt lại)"],"Buổi 8 · Kiểm tra 1 (Part 2, 3, 5)"],
+   [4,"10–12",["Part 4: bố cục bài nói, câu hỏi yêu cầu","Ngữ pháp: Mệnh đề quan hệ, Đại từ","Chiến lược làm trọn đề 120 phút"],["Listening Lab ETS 2026 · Test 3, Part 4","Part 7 Daily 15 · bộ 2","Sổ câu sai: Part 3, 4"],"Buổi 12 · Thi thử giữa khoá: ETS 2026 Test 7, 120 phút"],
+   [5,"13–15",["Part 7: câu hỏi chi tiết, mục đích, NOT / TRUE","Ngữ pháp: Từ hạn định & lượng từ","Part 5: từ vựng, cụm cố định (collocation)"],["ETS 2026 Test 8 · Part 7 bài đơn","Part 7 Daily 15 · bộ 3","Ngữ pháp · Từ Hạn Định & Lượng Từ"],""],
+   [6,"16–18",["Part 7: câu hỏi suy luận, từ đồng nghĩa trong ngữ cảnh","Part 6: chọn câu phù hợp điền vào đoạn","Ngữ pháp: Cụm động từ"],["ETS 2026 Test 8 · Part 6","Ngữ pháp · Cụm Động Từ","Từ vựng theo Part · Part 5, 6"],"Buổi 18 · Kiểm tra 2 (Part 3, 4, 6, 7 bài đơn)"],
+   [7,"19–21",["Part 7: chuỗi tin nhắn, bài đôi đối chiếu chéo","Part 3–4: bẫy diễn đạt lại","Chữa câu sai theo dạng của cả lớp"],["Listening Lab ETS 2026 · Test 4–5","Part 7 Daily 15 · bộ 4","ETS 2026 Test 8 · Part 7 bài đôi"],""],
+   [8,"22–24",["Ôn theo sổ câu sai từng bạn","Phân bổ thời gian Part 5–7 trong 75 phút","Tư vấn lên Khoá 3"],["Làm lại 1 đề đã luyện, bấm giờ 120 phút","Game từ vựng: ôn từ sai"],"Buổi 24 · Thi thử cuối khoá: ETS 2026 Test 9, 120 phút"]]},
+ {k:"600-800", n:3, t:"Luyện đề Nâng cao", band:"600 → 800+", who:"Đã trên 600, mục tiêu 750 – 800+",
+  goal:["Part 1–2 sai không quá 4 câu","Đúng 55/69 câu Part 3–4, cả câu ý ngầm và câu kèm hình","Xong Part 5–6 trong 13 phút, đúng 38/46","Xong Part 7 đúng giờ, đúng 45/54, cả bài ba"],
+  out:"750 – 800+ điểm, đủ cho hồ sơ xin việc, du học, xét tốt nghiệp.",
+  w:[
+   [1,"1–3",["Full test chẩn đoán, phân tích dạng câu mất điểm","Part 3–4: câu hỏi ý ngầm, câu hỏi kèm hình","Đọc trước 3 câu hỏi trong lúc nghe chỉ dẫn"],["Listening Lab ETS 2023 · Test 2","Sổ câu sai: phân loại theo dạng","Từ vựng theo Part · Part 3, 4"],""],
+   [2,"4–6",["Part 5–6 tốc độ: 46 câu trong 13 phút","Ngữ pháp: Vị trí trạng từ & danh từ ghép, Động từ khiếm khuyết","Collocation công sở hay ra ở mức 800+"],["Ngữ pháp · Vị Trí Trạng Từ & Danh Từ Ghép","Listening Lab ETS 2026 · Test 6","Game từ vựng · Thử thách 60 giây"],""],
+   [3,"7–9",["Part 7: bài ba, chèn câu vào vị trí [1]–[4]","Part 7: chuỗi tin nhắn, câu ý ngầm","Phân bổ 55 phút cho Part 7"],["Part 7 Daily 15 · bộ 5","Listening Lab ETS 2026 · Test 7","Làm lại Part 7 của 1 đề đã luyện, bấm giờ"],"Buổi 8 · Kiểm tra 1 (Part 3, 4, 7 bài đôi, bài ba)"],
+   [4,"10–12",["Part 2: bẫy câu trả lời gián tiếp, câu trần thuật","Chữa câu sai theo dạng của cả lớp","Chiến lược 2 giờ thi: thứ tự, đánh dấu, đoán câu"],["Listening Lab ETS 2023 · Test 3","Part 7 Daily 15 · bộ 6"],"Buổi 12 · Thi thử giữa khoá: ETS 2026 Test 10, 120 phút"],
+   [5,"13–15",["Part 7: câu hỏi suy luận, từ đồng nghĩa","Part 3: câu hỏi hành động tiếp theo, lời đề nghị","Nghe đúng tốc độ thi thật, 4 giọng đọc"],["Listening Lab ETS 2026 · Test 8","Full test 1 đề đã luyện, bấm giờ","Từ vựng theo Part · Part 7"],""],
+   [6,"16–18",["Part 5: bẫy từ vựng gần nghĩa, cụm cố định","Part 6: câu điền đoạn khó","Ôn theo sổ câu sai từng bạn"],["Listening Lab ETS 2026 · Test 9","Ngữ pháp · Từ Loại (bài kiểm tra)","Sổ câu sai: Part 5, 6"],"Buổi 18 · Kiểm tra 2 (Part 5, 6 bấm giờ + Part 7)"],
+   [7,"19–21",["Full test trên lớp, chữa ngay sau giờ thi","Giữ sức tập trung 120 phút","Phần còn yếu theo báo cáo từng bạn"],["Listening Lab ETS 2026 · Test 10","Full test 1 đề đã luyện, bấm giờ"],""],
+   [8,"22–24",["Chiến lược phòng thi, ngày thi","Hướng dẫn đăng ký thi chính thức","Ôn tổng theo sổ câu sai"],["Game từ vựng: ôn từ sai","Sổ câu sai: làm lại toàn bộ"],"Buổi 24 · Thi thử cuối khoá: full test 120 phút (giáo viên chọn đề)"]]}
+];
+var RES = [
+  ["Phương pháp 7 Part", "31 dạng câu: nhận diện, 3 bước làm, bẫy hay gặp, ví dụ đề thật", "Mọi người"],
+  ["Ngữ pháp TOEIC", "15 chủ đề có bài luyện, bài kiểm tra theo dạng Part 5, 6", "Tài khoản"],
+  ["Từ vựng TOEIC", "20 chủ đề công sở + game kiểm tra từ, lịch ôn 1 – 3 – 7 ngày", "Tài khoản"],
+  ["ETS 2026 · Test 1–5", "Luyện từng Part hoặc full 120 phút, chấm ước tính /990", "Tài khoản"],
+  ["Kiểm tra đầu vào", "30 phút, 50 câu, nhận xét chi tiết qua email", "Tài khoản"],
+  ["ETS 2026 · Test 6–10", "Thi thử giữa khoá, cuối khoá trên lớp", "Học viên lớp"],
+  ["Listening Lab ETS 2026", "10 đề nghe đục lỗ, chép chính tả, nghe lại câu chứa đáp án", "Học viên lớp"],
+  ["Listening Lab ETS 2023", "3 đề nghe đục lỗ", "Học viên lớp"],
+  ["Part 7 Daily 15", "6 bộ đọc Part 7, 15 phút mỗi ngày", "Học viên lớp"]
+];
+var RM_CUR = 0;
+function renderRoadmap(){
+  var box = $("#roadmap"); if(!box) return;
+  var c = ROADMAP[RM_CUR];
+  box.innerHTML = '<div class="rm-tabs" role="group" aria-label="Chọn khoá">' + ROADMAP.map(function(x, i){ return '<button type="button" data-rm="' + i + '" aria-pressed="' + (i === RM_CUR) + '">Khoá ' + x.n + ' · ' + esc(x.band) + '</button>'; }).join("") + '</div>' +
+    '<div class="rm-head"><h3>Khoá ' + c.n + ' · ' + esc(c.t) + '</h3><span>' + esc(c.band) + ' điểm · dành cho: ' + esc(c.who) + ' · 24 buổi, 8 tuần</span></div>' +
+    '<div class="rm-goal">' + ["Nghe Part 1–2","Nghe Part 3–4","Đọc Part 5–6","Đọc Part 7"].map(function(h, j){ return '<div><b>' + h + '</b>' + esc(c.goal[j]) + '</div>'; }).join("") + '</div>' +
+    '<div class="rm-tw"><table class="rm-t"><thead><tr><th>Tuần</th><th>Học trên lớp</th><th>Về nhà trên AZTOEIC Academy</th></tr></thead><tbody>' +
+    c.w.map(function(r){ return '<tr><td>Tuần ' + r[0] + '<small>Buổi ' + r[1] + '</small></td><td><ul>' + r[2].map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '</ul>' + (r[4] ? '<span class="mk">' + esc(r[4]) + '</span>' : "") + '</td><td><ul>' + r[3].map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '</ul></td></tr>'; }).join("") +
+    '</tbody></table></div><div class="rm-out"><b>Đầu ra:</b> ' + esc(c.out) + ' Chưa đạt mục tiêu ở thi thử cuối khoá: học lại miễn phí theo cam kết.</div>' +
+    '<div class="rm-res"><h4>Tài liệu dùng trong lộ trình</h4><div class="rm-rg">' + RES.map(function(x){ return '<div><b>' + esc(x[0]) + '</b>' + esc(x[1]) + '<br><span class="who' + (x[2] === "Học viên lớp" ? " cls" : "") + '">' + esc(x[2]) + '</span></div>'; }).join("") + '</div></div>';
+}
+document.addEventListener("click", function(e){ var b = e.target.closest("[data-rm]"); if(!b) return; RM_CUR = +b.getAttribute("data-rm"); renderRoadmap(); });
 
 /* ---------- khu học viên lớp ---------- */
 function clsApps(){
   var L = [
     {cv:"ETS 2026", cs:"Test 6–10 · thi thử", hue:"#8E0D1D", t:"ETS 2026 · Test 6–10", d:"5 đề còn lại của bộ ETS 2026: luyện từng Part hoặc thi thử full 120 phút.", h:"de-thi.html"},
-    LAB26 ? {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề, học viên lớp mở cả Test 6–10.", h:"listening-lab-2026/"} : null,
+    LAB26 ? {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề: chọn từ nghe được, chép chính tả, nghe lại từng câu chứa đáp án.", h:"listening-lab-2026/"} : null,
     {cv:"Listening Lab", cs:"ETS 2023 · Test 1–3", hue:"#6D4AA8", t:"Listening Lab ETS 2023", d:"Nghe đục lỗ: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án.", h:"listening-lab/"},
     {cv:"Daily 15", cs:"Part 7 mỗi ngày", hue:"#B45309", t:"Part 7 Daily 15", d:"Mỗi ngày 15 phút đọc Part 7: chia đoạn, từ khoá khó, ôn lại theo ngày.", h:"ngu-phap/#/p7"},
     {cv:"Sổ câu sai", cs:"Ôn theo dạng", hue:"#15803D", t:"Sổ câu sai", d:"Câu sai gần nhất của từng Part, mang lên lớp để giáo viên chữa đúng dạng bạn yếu.", h:"#so-cau-sai"}
@@ -1953,7 +2047,7 @@ function renderApps(){
     {cv:"Từ vựng", cs:"20 chủ đề công sở", hue:"#0E9384", t:"Từ vựng TOEIC căn bản", d:"3.514 từ theo 20 chủ đề công sở, chia 2 cấp. Mỗi lượt 10 từ, có câu ví dụ và kiểm tra nhanh.", h:"#tu-vung", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 1–5 · chấm /990", hue:"#D7192D", t:"Giải đề ETS 2026 · Test 1–5", d:"Luyện từng Part 6–54 câu, luyện riêng Nghe/Đọc hoặc full test 200 câu đúng 120 phút. Chấm điểm ước tính /990, sổ câu sai.", h:"de-thi.html", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 6–10 · thi thử", hue:"#8E0D1D", t:"ETS 2026 · Test 6–10", d:"5 đề còn lại của bộ ETS 2026 cho thi thử định kỳ trên lớp.", h:"de-thi.html", lv:"cls"},
-    {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án. Test 1–5 mở cho tài khoản, Test 6–10 cho học viên lớp.", h:"listening-lab-2026/", lv:"acc", off:!LAB26},
+    {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án. Dành riêng cho học viên lớp.", h:"listening-lab-2026/", lv:"cls", off:!LAB26},
     {cv:"Listening Lab", cs:"ETS 2023 · Test 1–3", hue:"#6D4AA8", t:"Listening Lab ETS 2023", d:"Nghe đục lỗ Test 1–3: chọn đáp án, chép chính tả, nghe lại từng câu, tô câu chứa đáp án.", h:"listening-lab/", lv:"cls"},
     {cv:"Daily 15", cs:"Part 7 mỗi ngày", hue:"#B45309", t:"Part 7 Daily 15", d:"Mỗi ngày 15 phút đọc Part 7: chia đoạn ghi nhớ, từ khoá khó, ôn lại theo ngày.", h:"ngu-phap/#/p7", lv:"cls"},
     {cv:"Lớp học", cs:"Chữa đề cùng giáo viên", hue:"#15803D", t:"Chữa đề cùng giáo viên", d:"Học viên lớp được chữa câu sai theo dạng và theo dõi tiến độ hằng tuần.", h:"#hoc-vien", lv:"cls"}
@@ -1989,22 +2083,6 @@ function loadBoard(st){
 }
 document.addEventListener("click", function(e){ var b = e.target.closest("[data-bs]"); if(b) loadBoard(b.getAttribute("data-bs")); });
 
-/* ---------- form tư vấn ---------- */
-$("#leadForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  var f = e.target, m = $("#leadMsg"), btn = f.querySelector("button");
-  var d = {name: f.name.value.trim(), phone: f.phone.value.trim(), goal: f.goal.value, note: ("Liên hệ qua " + f.via.value + ". " + f.note.value.trim()).trim(), src: "AZTOEIC Academy · Học cùng giáo viên"};
-  var s = AZT.session(); if(s) d.email = s.email;
-  if(d.name.length < 2 || d.phone.replace(/\D/g, "").length < 9){ m.className = "msg err"; m.textContent = "Bạn nhập họ tên và số điện thoại giúp AZ nhé."; return; }
-  btn.disabled = true; m.className = "msg"; m.textContent = "Đang gửi…";
-  AZT.call("lead", d).then(function(r){
-    btn.disabled = false;
-    if(r && r.ok){ m.className = "msg ok"; m.textContent = "Đã nhận đăng ký. AZEnglish sẽ liên hệ bạn sớm nhất."; f.reset(); }
-    else { m.className = "msg err"; m.innerHTML = esc(r && r.error || "Chưa gửi được.") + ' Hoặc nhắn Zalo <a href="https://zalo.me/0971882096">0971 882 096</a>.'; }
-  });
-});
-(function(){ var s = AZT.session(); if(s){ var f = $("#leadForm"); f.name.value = s.name || ""; f.phone.value = s.phone || ""; } })();
-
 /* ================= TRANG CON ================= */
 var view = $("#view");
 function page(crumb, title, sub, body){
@@ -2020,7 +2098,7 @@ function exHtml(ex, k){
     '<div class="opts' + (ex.options.join("").length > 90 ? " one" : "") + '">' + ex.options.map(function(o, j){ return '<button class="opt" data-ex="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + esc(o) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
 }
 var EXMAP = {}, RX = null;
-function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611120832"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
+function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611121519"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
 function rxHtml(ex, k){
   var id = "rx-" + k, h = '<div class="q rq" id="' + id + '"><div class="q-h"><span class="src">Đề thật · ' + esc(ex.src) + '</span>' + (ex.group ? '<span>' + esc(ex.group) + '</span>' : "") + '</div>';
   if(ex.passages) h += ex.passages.map(function(p){ var t = esc(p.text).replace(/\{\{(\d+)\}\}/g, function(_, n){ return '<span class="bl' + (+n === ex.blank ? " me" : "") + '">(' + n + ')</span>'; }); return '<div class="pas">' + (p.title ? "<h4>" + esc(p.title) + "</h4>" : "") + t + '</div>'; }).join("");
@@ -2096,7 +2174,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611120832";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611121519";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -2262,7 +2340,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611120832"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611121519"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
@@ -2331,7 +2409,7 @@ function renderCert(code){
 }
 
 /* ================= ĐIỀU HƯỚNG ================= */
-var SECTIONS = ["hoc-phi","lien-he","hoi-dap","thanh-tich","lo-trinh","chuong-trinh","xep-hang","hoc-cung-giao-vien","lam-thu","hom-nay","giao-vien"];
+var SECTIONS = ["hoc-phi","lien-he","hoi-dap","thanh-tich","lo-trinh","chuong-trinh","xep-hang","hom-nay","giao-vien"];
 function route(){
   var h = decodeURIComponent(location.hash.replace(/^#/, "")), base = h.split("?")[0], parts = base.split("/");
   if(parts[0] === "phuong-phap") return renderMethods(parts[1]);
@@ -2357,9 +2435,9 @@ function renderMock(){
   a.href = "de-thi.html#/test/ets2026-test1/" + (doneFull ? "result-full" : "intro-full"); a.textContent = doneFull ? "Xem lại full test" : "Làm full test";
   n.textContent = sent ? "Đã gửi nhận xét tới " + (m.email || s.email || "email của bạn") + "." : (s.email ? "Nhận xét sẽ gửi tới " + s.email + "." : "Bạn nhập email ở màn bắt đầu để nhận nhận xét.");
 }
-function renderAll(){ renderFees(); renderTop(); renderToday(); renderStages(); renderApps(); renderMock(); }
+function renderAll(){ renderFees(); renderRoadmap(); renderTop(); renderToday(); renderStages(); renderApps(); renderMock(); }
 if(TCH){ $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").parentNode.style.display = "none"; }
-renderAll(); renderTrial(); route(); loadBoard();
+renderAll(); route(); loadBoard();
 AZT.refresh().then(function(){ renderAll(); if(document.body.classList.contains("in-view") && /tai-khoan/.test(location.hash)) renderAccount(); });
 if(AZT.session() && !VOC) vocab(function(){ renderToday(); }, true);
 })();
