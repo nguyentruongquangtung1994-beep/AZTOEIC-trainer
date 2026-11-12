@@ -336,19 +336,19 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611081229"></script>
-<script src="ets2026-test2.js?v=202611081229"></script>
-<script src="ets2026-test3.js?v=202611081229"></script>
-<script src="ets2026-test4.js?v=202611081229"></script>
-<script src="ets2026-test5.js?v=202611081229"></script>
-<script src="mini30.js?v=202611081229"></script>
+<script src="ets2026-test1.js?v=202611120804"></script>
+<script src="ets2026-test2.js?v=202611120804"></script>
+<script src="ets2026-test3.js?v=202611120804"></script>
+<script src="ets2026-test4.js?v=202611120804"></script>
+<script src="ets2026-test5.js?v=202611120804"></script>
+<script src="mini30.js?v=202611120804"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
   var STORAGE_KEY = "az_toeic_trainer_v1";
 
   // TODO: thay bằng link Zalo/Messenger/số điện thoại thật của AZEnglish để "chốt" học viên ngay sau khi có điểm.
-  var CONTACT_LINK = "./#hoc-cung-giao-vien";
+  var CONTACT_LINK = "./#hoc-vien";
   var CONTACT_LABEL = "Học cùng giáo viên AZEnglish →";
 
   // ---------- TOEIC scaled-score conversion (bảng quy đổi chính thức TAEC — Thang điểm Listening/Reading) ----------
@@ -575,7 +575,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       [[2026,[6,7,8,9,10]],[2023,[]]].forEach(function(b){ b[1].forEach(function(n){
         var row = el("div", "test-row azt-lockrow");
         row.innerHTML = '<div class="tr-main"><div class="tr-name">Test ' + n + '</div><div class="tr-sub">ETS ' + b[0] + ' · 200 câu · 120 phút</div></div>' +
-          '<a class="btn btn-ghost" href="./#hoc-cung-giao-vien">🔒 Học viên lớp</a>';
+          '<a class="btn btn-ghost" href="./#hoc-vien">🔒 Học viên lớp</a>';
         list.appendChild(row);
       }); });
     }
@@ -587,7 +587,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       '<h2>🎧 Listening Lab — nghe, chọn & chép chính tả</h2>' +
       '<p class="desc">Script đủ 4 Part có ô chọn A/B/C/D và ô chép chính tả, bấm ▶ nghe lại từng câu, chấm theo đoạn, ' +
       'giải thích từ vựng, bẫy và câu chứa đáp án.</p>' +
-      (window.AZT && AZT.isClass() ? '<a class="btn btn-primary btn-lg" style="margin-top:16px;" href="listening-lab/">Vào Listening Lab →</a>' : '<a class="btn btn-ghost btn-lg" style="margin-top:16px;" href="./#hoc-cung-giao-vien">🔒 Dành cho học viên lớp — tìm hiểu →</a>');
+      (window.AZT && AZT.isClass() ? '<a class="btn btn-primary btn-lg" style="margin-top:16px;" href="listening-lab/">Vào Listening Lab →</a>' : '<a class="btn btn-ghost btn-lg" style="margin-top:16px;" href="./#hoc-vien">🔒 Dành cho học viên lớp — tìm hiểu →</a>');
     app.appendChild(lab);
   }
 
@@ -1670,7 +1670,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       box.className = "azt-lock";
       var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
       box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
-        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Bạn đang dùng gói Tự học — vẫn học miễn phí ngữ pháp, từ vựng và 5 đề ETS 2026.</p><a class="azt-btn" href="' + ROOT + '#hoc-cung-giao-vien">Đăng ký học cùng giáo viên</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
         : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
       document.body.appendChild(box);
       document.documentElement.classList.add("azt-locked");

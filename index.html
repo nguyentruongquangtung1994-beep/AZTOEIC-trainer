@@ -292,6 +292,49 @@ body.in-view .zalo{display:none}
 .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(184,145,58,.18)}
 .msg{margin-top:10px;font-size:14px;min-height:20px}
 .msg.err{color:var(--red)}.msg.ok{color:var(--ok)}
+.fees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.feec{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:var(--sh-1)}
+.feec.hot{border-color:var(--gold-2);box-shadow:0 0 0 1px var(--gold-2),var(--sh-2)}
+.feec .lv{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--gold)}
+.feec h3{font-family:var(--serif);font-size:22px;margin:8px 0 2px;line-height:1.25}
+.feec .rg{font-size:14px;color:var(--ink-2)}
+.feec .pr{font-family:var(--serif);font-size:34px;font-weight:700;margin:16px 0 0;color:var(--navy);font-variant-numeric:lining-nums tabular-nums}
+.feec .pr small{font:600 15px var(--f);color:var(--ink-2);margin-left:4px}
+.feec ul{margin:14px 0 0;padding-left:18px;color:var(--ink-2);font-size:14.5px}
+.feec ul li{margin:5px 0}
+.feec .btn{margin-top:auto;align-self:stretch;text-align:center}
+.feec .sp2{flex:1;min-height:18px}
+.feec .tagh{position:absolute;top:-11px;right:18px;font:700 11px var(--f);letter-spacing:.06em;padding:4px 10px;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#1A1406}
+.fee-note{margin:16px 0 0;font-size:13.5px;color:var(--ink-2)}
+@media(max-width:860px){.fees{grid-template-columns:1fr}}
+.cls-steps{counter-reset:st;list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.cls-steps li{counter-increment:st;position:relative;padding:14px 16px 14px 54px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px}
+.cls-steps li::before{content:counter(st);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--f);background:var(--navy);color:var(--gold-2)}
+.cls-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media(max-width:860px){.cls-grid{grid-template-columns:1fr}}
+.flow{background:linear-gradient(160deg,#0B1424,#13233B);color:#E6ECF5;border-radius:18px;padding:22px 24px;margin:0 0 22px}
+.flow b.t{display:block;font-family:var(--serif);font-size:19px;color:#fff;margin-bottom:10px}
+.flow ol{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14.5px;line-height:1.6}
+.flow ol li::marker{color:var(--gold-2);font-weight:700}
+.sig{margin:14px 0 0;padding:12px 14px;border-radius:10px;background:#FBF7EE;border:1px solid #EADFC6;font-size:14px;line-height:1.6}
+.sig b{color:var(--gold)}
+.rq{border-color:#E4D6B3}
+.rq .q-h .src{color:var(--gold);letter-spacing:.06em}
+.rq img.pic{display:block;max-width:100%;max-height:420px;margin:4px auto 14px;border-radius:10px;border:1px solid var(--line)}
+.rq audio{width:100%;margin:0 0 12px}
+.rq .scr{display:none;margin:0 0 12px;padding:12px 14px;border-radius:10px;background:#F7F9FA;border:1px dashed var(--line-2);font-size:14.5px;line-height:1.7}
+.rq .scr.on{display:block}
+.rq .scr p{margin:0 0 6px}
+.rq .scr .sp{font-weight:700;color:var(--navy);margin-right:6px}
+.rq .scr mark{background:#FFF1B8;padding:1px 2px;border-radius:3px}
+.rq .para{margin-top:10px;font-size:14px;color:var(--ink-2)}
+.rq .para b{color:var(--ink)}
+.rq .pas{max-height:340px;overflow:auto;margin:0 0 14px;padding:14px 16px;border-radius:10px;background:#FAFAF7;border:1px solid var(--line);font-size:14.5px;line-height:1.65;white-space:pre-line}
+.rq .pas h4{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.rq .pas + .pas{margin-top:-4px}
+.rq .pas .bl{display:inline-block;min-width:54px;border-bottom:2px solid var(--gold);text-align:center;font-weight:700;color:var(--gold)}
+.rq .pas .bl.me{background:#FFF1B8}
+.ex-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
 .fee{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--bg-2);font-size:13.5px;color:var(--ink-2)}
 @media(max-width:800px){.contact{grid-template-columns:1fr;padding:26px}}
 
@@ -538,7 +581,7 @@ section.sec{padding-block:72px}
 .faq summary{padding:0;font-weight:700}
 .faq p{margin:10px 0 0}
 .foot{background:#0B1424;color:#C5CEDD;font-size:14px;padding-block:40px;border:0}
-.foot .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+.foot .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px}
 .foot b{color:#fff;display:block;margin-bottom:8px;font-size:15px}
 .foot p{margin:0 0 4px}
 .foot .sel{user-select:all;color:#fff}
@@ -570,7 +613,7 @@ html body a.card > .tn{display:flex;align-items:center}
 <header class="tbar"><div class="wrap">
   <a class="logo" href="#" data-home><span class="mk">AZ</span><span><b>AZTOEIC Academy</b><small>Nền tảng luyện TOEIC của AZEnglish</small></span></a>
   <nav class="nav">
-    <a href="#thanh-tich">Thành tích</a><a href="#lo-trinh">Lộ trình</a><a href="#thi-thu">Thi thử</a><a href="#chuong-trinh">Chương trình</a><a href="#xep-hang">Xếp hạng</a><a href="#hoc-cung-giao-vien">Tư vấn</a>
+    <a href="#thanh-tich">Thành tích</a><a href="#lo-trinh">Lộ trình</a><a href="#thi-thu">Thi thử</a><a href="#chuong-trinh">Chương trình</a><a href="#xep-hang">Xếp hạng</a><a href="#hoc-phi">Học phí</a><a href="#hoc-vien">Học viên lớp</a>
   </nav>
   <span class="sp"></span>
   <div class="top-r" id="topR"></div>
@@ -728,6 +771,11 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </div>
   </div></section>
+<section class="sec" id="hoc-phi"><div class="wrap">
+    <div class="sec-h"><span class="eyebrow">Học phí lớp TOEIC</span><h2>Ba khoá theo đúng ba chặng điểm</h2><p>Học tại AZEnglish, 100 Hà Thanh, Nha Trang, hoặc online. Học viên lớp được mở toàn bộ tài nguyên dành riêng trên AZTOEIC Academy.</p></div>
+    <div class="fees" id="fees"></div>
+    <p class="fee-note">Học phí trọn khoá. Lịch khai giảng, số buổi và ưu đãi đăng ký sớm: nhắn Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a> hoặc để lại số ở form bên dưới.</p>
+  </div></section>
 <section class="sec alt" id="hoc-cung-giao-vien"><div class="wrap">
     <div class="contact">
       <div>
@@ -751,7 +799,7 @@ html body a.card > .tn{display:flex;align-items:center}
         <label class="fld"><span>Ghi chú (ngày thi, lịch học mong muốn…)</span><textarea name="note" rows="2"></textarea></label>
         <button class="btn btn-red" style="width:100%" type="submit">Nhận lộ trình và học phí</button>
         <div class="msg" id="leadMsg" role="status"></div>
-        <div class="fee"><b>Học phí</b> tuỳ lộ trình và mốc điểm của bạn. Để lại số Zalo, AZEnglish gửi bảng học phí và lịch khai giảng gần nhất. Học viên AZEnglish đã đạt 950 · 885 · 765 TOEIC, <a href="#thanh-tich">xem phiếu điểm</a>.</div>
+        <div class="fee"><b>Học phí</b> từ 3.850.000 đ/khoá, <a href="#hoc-phi">xem bảng học phí</a>. Để lại số Zalo, AZEnglish gửi lộ trình và lịch khai giảng gần nhất. Học viên AZEnglish đã đạt 950 · 885 · 765 TOEIC, <a href="#thanh-tich">xem phiếu điểm</a>.</div>
       </form>
     </div>
   </div></section>
@@ -764,6 +812,7 @@ html body a.card > .tn{display:flex;align-items:center}
       <details><summary>Mỗi ngày nên học bao lâu?</summary><p>Khoảng 20 phút theo phần "Hôm nay học gì": một dạng câu, một bài ngữ pháp, 10 từ vựng và một phần đề. Ở chặng 600 – 800+, mỗi tuần thêm một full test 120 phút để quen áp lực thời gian. Muốn tăng điểm nhanh, nên học 45–60 phút/ngày.</p></details>
       <details><summary>Học trên điện thoại được không?</summary><p>Được. Tiến độ lưu theo số điện thoại, nên học trên điện thoại rồi mở máy tính vẫn tiếp tục đúng bài, đúng chặng. Phần Nghe nên dùng tai nghe.</p></details>
       <details><summary>Lớp TOEIC học ở đâu, có online không?</summary><p>Lớp học tại AZEnglish, 100 Hà Thanh, Nha Trang, có cả hình thức online cho học viên ở xa. Nhắn Zalo 0971 882 096 để biết lịch lớp gần nhất.</p></details>
+      <details><summary>Học viên lớp đăng nhập thế nào?</summary><p>Dùng đúng số điện thoại đã đăng ký học với AZEnglish: tạo tài khoản (hoặc đăng nhập nếu đã có), rồi báo AZEnglish số điện thoại đó. AZEnglish mở gói Lớp cho tài khoản, bạn vào <a href="#hoc-vien">Khu học viên lớp</a> là thấy toàn bộ tài nguyên riêng. Mỗi tài khoản dùng cho một học viên.</p></details>
       <details><summary>Quên mật khẩu thì làm sao?</summary><p>Nhắn Zalo AZEnglish 0971 882 096 kèm số điện thoại đã đăng ký, AZEnglish sẽ hỗ trợ cấp lại. Tiến độ học không bị mất.</p></details>
     </div>
   </div></section>
@@ -774,6 +823,7 @@ html body a.card > .tn{display:flex;align-items:center}
 
 <footer class="foot" id="lien-he"><div class="wrap">
   <div><b>AZEnglish Nha Trang</b><p>English for everyone. Đào tạo IELTS, TOEIC, giao tiếp và AZDebate Junior.</p></div>
+  <div><b>Học viên</b><p><a href="#hoc-vien" style="color:inherit">Khu học viên lớp</a></p><p><a href="#hoc-phi" style="color:inherit">Học phí TOEIC</a></p></div>
   <div><b>Liên hệ</b><p>100 Hà Thanh, Nha Trang</p><p>Điện thoại / Zalo: <span class="sel">0971 882 096</span></p></div>
   <div><b>Kênh AZEnglish</b><p>Facebook: AZEnglishForEveryone</p><p>TikTok: @azenglishcenter</p><p>YouTube: @AZ_English_Center</p></div>
   <p class="copy">© AZEnglish · AZTOEIC Academy · Câu hỏi ETS 2026 dùng cho mục đích luyện tập, câu ví dụ phần Phương pháp do AZEnglish biên soạn.</p>
@@ -952,7 +1002,7 @@ html body a.card > .tn{display:flex;align-items:center}
       box.className = "azt-lock";
       var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
       box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
-        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Bạn đang dùng gói Tự học — vẫn học miễn phí ngữ pháp, từ vựng và 5 đề ETS 2026.</p><a class="azt-btn" href="' + ROOT + '#hoc-cung-giao-vien">Đăng ký học cùng giáo viên</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
         : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
       document.body.appendChild(box);
       document.documentElement.classList.add("azt-locked");
@@ -1038,9 +1088,10 @@ html body a.card > .tn{display:flex;align-items:center}
 window.AZT_METHODS = [
 {
   part: 1, name: "Part 1 · Mô tả tranh", count: "6 câu · câu 1–6", time: "Theo audio (~5 giây nghỉ/câu)",
+  flow: ["Lúc đọc hướng dẫn (khoảng 1,5 phút): lướt cả 6 tranh, với mỗi tranh tự nói thầm 1 câu: AI – ĐANG LÀM GÌ – Ở ĐÂU.", "Trước mỗi câu: xác định tranh người hay tranh vật. Tranh người thì chú ý động từ; tranh vật thì chú ý giới từ vị trí và dạng bị động.", "Khi nghe 4 phương án: giữ ngón tay (trong đầu) theo A–B–C–D, đúng thì giữ, sai thì loại ngay, không chờ nghe hết mới quyết.", "Còn phân vân giữa 2 phương án: chọn câu mô tả điều NHÌN THẤY CHẮC CHẮN, bỏ câu phải đoán (ví dụ người đó định làm gì).", "Tô đáp án ngay, sang tranh sau trước khi audio đọc số câu tiếp theo."],
   why: "6 câu dễ lấy điểm nhất bài thi. Người mới bắt đầu nên đạt 5/6 trước khi luyện Part khác.",
   types: [
-    { id: "p1-mot-nguoi", name: "Tranh một người", stage: 1,
+    { id: "p1-mot-nguoi", sig: "is holding, is reaching for, is examining, is wearing (đã mặc) ≠ is putting on (đang mặc vào), is leaning over, is typing, is pouring, is adjusting", name: "Tranh một người", stage: 1,
       spot: "Trong tranh chỉ có 1 người đang làm một việc rõ ràng.",
       steps: ["Trước khi nghe: nhìn tay, mắt, tư thế của người trong tranh và gọi tên hành động (đang cầm, đang đọc, đang rót…).", "Khi nghe: chú ý ĐỘNG TỪ ở mỗi phương án — động từ quyết định đúng/sai, danh từ chỉ để gài bẫy.", "Loại ngay phương án có hành động không thấy trong tranh, kể cả khi đồ vật được nhắc có thật."],
       traps: ["Phân biệt 'is wearing' (đã mặc trên người — trạng thái) với 'is putting on' (đang làm động tác mặc vào). Tranh thường chỉ cho thấy người đã mặc sẵn → 'is putting on' hay là đáp án SAI.", "Phương án nhắc đúng đồ vật trong tranh nhưng sai hành động: 'He's repairing the printer' khi anh ấy chỉ đứng cạnh máy in."],
@@ -1049,7 +1100,7 @@ window.AZT_METHODS = [
         { q: "(Tranh: một phụ nữ đứng ở quầy, đang rót cà phê vào cốc giấy.) Chọn câu mô tả đúng.", script: "(A) She's drinking from a cup. (B) She's pouring a beverage. (C) She's washing some dishes. (D) She's putting on an apron.",
           options: ["She's drinking from a cup.", "She's pouring a beverage.", "She's washing some dishes.", "She's putting on an apron."], answer: 1,
           explain: "Hành động trong tranh là rót (pour). (A) có 'cup' nhưng sai hành động uống. (D) 'putting on' là đang mặc vào — sai, và tranh không cho thấy việc này." } ] },
-    { id: "p1-nhieu-nguoi", name: "Tranh nhiều người", stage: 1,
+    { id: "p1-nhieu-nguoi", sig: "They're…, Some people are…, One of the men/women is…, are facing each other, are seated, are gathered around, are shaking hands, are walking side by side", name: "Tranh nhiều người", stage: 1,
       spot: "Tranh có từ 2 người trở lên.",
       steps: ["Xác định hành động CHUNG của cả nhóm (đang họp, đang đi bộ) và hành động RIÊNG nổi bật của 1 người.", "Nghe chủ ngữ: 'They / The people / One of the men / Some workers' — chủ ngữ sai là phương án sai.", "Đối chiếu từng phương án với đúng người được nhắc đến."],
       traps: ["'They're all…' khi chỉ một vài người làm việc đó.", "Mô tả đúng hành động nhưng gán cho sai người."],
@@ -1058,7 +1109,7 @@ window.AZT_METHODS = [
         { q: "(Tranh: ba người ngồi quanh bàn họp, một người đàn ông đứng chỉ vào màn hình.) Chọn câu đúng.", script: "(A) They're all standing near a screen. (B) One of the men is pointing at a screen. (C) Some people are leaving a room. (D) The chairs are being stacked.",
           options: ["They're all standing near a screen.", "One of the men is pointing at a screen.", "Some people are leaving a room.", "The chairs are being stacked."], answer: 1,
           explain: "Chỉ một người đứng chỉ vào màn hình → 'One of the men is pointing'. (A) sai vì 'all standing'. (D) 'are being stacked' cần có người đang xếp ghế." } ] },
-    { id: "p1-do-vat", name: "Tranh đồ vật, phong cảnh (không người)", stage: 2,
+    { id: "p1-do-vat", sig: "has been placed / stacked / lined up / left (bị động hoàn thành: đã được đặt), is being + V3 (CẦN có người đang làm), next to, under, on top of, against, in a row, unoccupied, deserted", name: "Tranh đồ vật, phong cảnh (không người)", stage: 2,
       spot: "Tranh không có người, hoặc người rất nhỏ ở xa.",
       steps: ["Quét vị trí: cái gì ở trên/dưới/cạnh/dọc theo cái gì.", "Nghe kỹ thể bị động: 'has been / have been + V3' (trạng thái, đã xong) và 'is being + V3' (đang có người làm).", "Không có người trong tranh → gần như loại hết phương án 'is being + V3' (trừ 'is/are being displayed')."],
       traps: ["'The tables are being cleaned' khi trong tranh không có ai lau bàn — SAI.", "Ngoại lệ: 'Some items are being displayed' / 'Goods are being displayed in a window' vẫn ĐÚNG dù tranh không có người — 'display' mô tả trạng thái trưng bày.", "Giới từ vị trí sai: 'on the shelf' khi đồ vật nằm 'under the shelf'."],
@@ -1071,9 +1122,10 @@ window.AZT_METHODS = [
 },
 {
   part: 2, name: "Part 2 · Hỏi – đáp", count: "25 câu · câu 7–31", time: "Theo audio",
+  flow: ["Lúc đọc hướng dẫn: tự nhắc 3 mẫu câu hay ra: Wh-, Yes/No, trần thuật/đề nghị.", "Tập trung tối đa vào 2–3 TỪ ĐẦU câu hỏi (Where, When, Would you, Didn't…), đó là thứ quyết định kiểu câu trả lời.", "Nghe (A) (B) (C) theo kiểu loại trừ: loại câu lạc đề, câu lặp từ / âm giống câu hỏi, câu Yes/No cho câu Wh-.", "Không loại được hết: chọn câu trả lời GIÁN TIẾP (tôi chưa biết, để tôi xem, hỏi anh A đi…) vì đó là kiểu đáp án ETS rất hay dùng.", "Lỡ một câu: đoán nhanh và bỏ qua, tuyệt đối không nghĩ lại, vì câu sau đến chỉ sau 5 giây."],
   why: "Không có chữ trên đề, chỉ nghe 1 lần. Mục tiêu tham khảo cho mốc 600: khoảng 18/25 câu Part 2.",
   types: [
-    { id: "p2-wh", name: "Câu hỏi Wh- (Who, When, Where, Why, How…)", stage: 1,
+    { id: "p2-wh", sig: "Who → tên người, chức danh, phòng ban · When → mốc thời gian, Not until… · Where → nơi chốn, Over there, In the… · Why → Because, To…, lý do gián tiếp · How long / How often / How much → khoảng thời gian, tần suất, giá", name: "Câu hỏi Wh- (Who, When, Where, Why, How…)", stage: 1,
       spot: "Câu hỏi bắt đầu bằng từ để hỏi.",
       steps: ["Dồn toàn bộ chú ý vào 2–3 từ ĐẦU câu — đó là chìa khoá. Nhẩm trong đầu từ để hỏi ngay khi nghe (When? Where? Who?). Thi thật không được ghi chú lên đề, nên tập ghi nhớ bằng tai ngay từ khi luyện.", "Loại ngay phương án Yes/No (câu Wh- không trả lời bằng Yes/No).", "Chọn phương án trả lời đúng loại thông tin: When → thời gian, Where → nơi chốn, Who → người/bộ phận."],
       traps: ["Phương án lặp lại từ trong câu hỏi hoặc có âm gần giống (copy/coffee, meeting/meaning) thường là bẫy.", "When và Where dễ nghe nhầm: tập nghe /wen/ và /wer/."],
@@ -1085,7 +1137,7 @@ window.AZT_METHODS = [
         { q: "Nghe câu hỏi và chọn câu trả lời phù hợp.", script: "Who's in charge of booking the conference room? (A) Ask Daniel in reception. (B) It's on the third floor. (C) A booking fee.",
           options: ["Ask Daniel in reception.", "It's on the third floor.", "A booking fee."], answer: 0,
           explain: "Who → người. 'Ask Daniel' là đáp án gián tiếp đúng. (C) lặp 'booking' — bẫy âm." } ] },
-    { id: "p2-yesno", name: "Câu hỏi Yes/No, câu hỏi phủ định, câu hỏi đuôi", stage: 2,
+    { id: "p2-yesno", sig: "Câu hỏi đuôi (…, isn't it? / don't they?), câu phủ định (Didn't you…? Isn't…?) trả lời như câu thường. Đáp án hay: I'm not sure, I'll check, It depends, Not yet, Actually…", name: "Câu hỏi Yes/No, câu hỏi phủ định, câu hỏi đuôi", stage: 2,
       spot: "Bắt đầu bằng Do/Does/Is/Are/Have/Can/Will… hoặc 'Didn't you…?', '…, isn't it?'",
       steps: ["Nắm nội dung chính: hỏi về VIỆC GÌ (đã gửi báo cáo chưa? cuộc họp có dời không?).", "Đáp án đúng có thể có hoặc KHÔNG có Yes/No — đừng chọn chỉ vì thấy chữ Yes.", "Câu phủ định và câu hỏi đuôi: coi như câu hỏi Yes/No thường, bỏ qua phần 'not' khi suy nghĩ."],
       traps: ["'Yes' đi kèm nội dung mâu thuẫn: 'Yes, it was cancelled last week' cho câu 'Is the meeting still on?'.", "Phương án dùng lại từ của câu hỏi."],
@@ -1094,7 +1146,7 @@ window.AZT_METHODS = [
         { q: "Nghe câu hỏi và chọn câu trả lời phù hợp.", script: "Haven't you submitted your travel expenses yet? (A) I'm doing it this afternoon. (B) The flight was expensive. (C) Yes, a window seat.",
           options: ["I'm doing it this afternoon.", "The flight was expensive.", "Yes, a window seat."], answer: 0,
           explain: "Câu hỏi về việc nộp chi phí công tác. (A) trả lời gián tiếp: chưa, chiều nay nộp. (B) liên tưởng 'travel → flight', (C) có Yes nhưng lạc đề." } ] },
-    { id: "p2-lua-chon", name: "Câu hỏi lựa chọn (A or B?)", stage: 2,
+    { id: "p2-lua-chon", sig: "A or B? → chọn A, chọn B, either (cái nào cũng được), neither, both, whichever, I'd prefer…, hoặc đưa phương án thứ ba", name: "Câu hỏi lựa chọn (A or B?)", stage: 2,
       spot: "Câu hỏi có 'or' nối hai phương án.",
       steps: ["Ghi nhớ hai phương án A và B.", "Đáp án đúng thường: chọn A, chọn B, chọn cả hai ('Either is fine'), hoặc chọn cái thứ ba.", "Loại phương án trả lời Yes/No (hầu như luôn sai với câu hỏi lựa chọn)."],
       traps: ["'Yes, I'd like that' cho câu 'Would you like tea or coffee?' — sai."],
@@ -1103,7 +1155,7 @@ window.AZT_METHODS = [
         { q: "Nghe câu hỏi và chọn câu trả lời phù hợp.", script: "Should we take a taxi or walk to the client's office? (A) Yes, the office is nice. (B) It's only five minutes away. (C) A business client.",
           options: ["Yes, the office is nice.", "It's only five minutes away.", "A business client."], answer: 1,
           explain: "'Chỉ cách 5 phút' = ngầm chọn đi bộ. (A) Yes/No với câu lựa chọn. (C) lặp 'client'." } ] },
-    { id: "p2-de-nghi", name: "Lời đề nghị, yêu cầu, lời mời", stage: 2,
+    { id: "p2-de-nghi", sig: "Could/Would you…? Why don't we…? How about…? Would you like…? Let's… → Sure / Of course / I'd be happy to / Sorry, I… / Thanks, but…", name: "Lời đề nghị, yêu cầu, lời mời", stage: 2,
       spot: "Could you…? / Would you mind…? / Why don't we…? / How about…? / Let's…",
       steps: ["Nhận ra đây là lời đề nghị, không phải câu hỏi lấy thông tin.", "Đáp án đúng thường là đồng ý ('Sure', 'I'd be happy to', 'Good idea') hoặc từ chối có lý do.", "Với 'Why don't we…?' — KHÔNG chọn câu trả lời bắt đầu bằng 'Because'."],
       traps: ["Would you mind…? → đồng ý có thể là 'Not at all', 'Of course not', 'Sure', 'No problem'. Tránh 'Yes, I do' (nghĩa là có phiền).", "'Why don't…' bị hiểu nhầm là hỏi lý do."],
@@ -1112,7 +1164,7 @@ window.AZT_METHODS = [
         { q: "Nghe và chọn câu trả lời phù hợp.", script: "Why don't we order lunch for the training session? (A) Because it started late. (B) That's a great idea. (C) In the main hall.",
           options: ["Because it started late.", "That's a great idea.", "In the main hall."], answer: 1,
           explain: "'Why don't we…' là lời đề nghị → đồng ý 'That's a great idea'. (A) bẫy 'Because'." } ] },
-    { id: "p2-tran-thuat", name: "Câu trần thuật (không phải câu hỏi)", stage: 3,
+    { id: "p2-tran-thuat", sig: "Câu kể, câu phàn nàn, thông tin → đáp hay gặp: Really? / That's great / Actually… / Let me… / câu hỏi lại xin thêm chi tiết", name: "Câu trần thuật (không phải câu hỏi)", stage: 3,
       spot: "Người nói chỉ nêu một thông tin: 'The copier is out of paper.'",
       steps: ["Hiểu tình huống người nói đang gặp.", "Đáp án đúng là phản ứng tự nhiên: đưa giải pháp, hỏi lại, bày tỏ ý kiến.", "Dạng khó nhất Part 2 — phân vân thì chọn phương án nghe hợp lý nhất trong hội thoại thật."],
       traps: ["Phương án lặp từ hoặc liên tưởng từ (paper → newspaper)."],
@@ -1125,9 +1177,10 @@ window.AZT_METHODS = [
 },
 {
   part: 3, name: "Part 3 · Hội thoại", count: "39 câu · 13 hội thoại · câu 32–70", time: "Theo audio, ~8 giây/câu hỏi",
+  flow: ["Lúc đọc hướng dẫn Part 3 (khoảng 30 giây): đọc trước 3 câu hỏi của nhóm 32–34. Gạch (trong đầu) từ hỏi + từ khoá: Who/Where, suggest, will do next…", "Đọc lướt cả 4 phương án ngắn để biết cần nghe danh từ, động từ hay con số.", "Khi nghe: thứ tự đáp án đi theo thứ tự câu hỏi. Câu 1 thường ở đầu bài, câu 3 ở cuối bài. Nghe tới đâu chọn tới đó.", "Nhận diện tín hiệu: người nói nào được hỏi (man/woman), từ khoá câu hỏi được nhắc gần như nguyên văn, đáp án là diễn đạt lại (paraphrase), hiếm khi trùng từ.", "Khi audio bắt đầu đọc 3 câu hỏi: tô xong đáp án, CHUYỂN NGAY sang đọc trước nhóm câu kế tiếp. Không ngồi nghe lại câu hỏi, đó là thời gian vàng để đọc trước."],
   why: "Phần nhiều câu nhất của Nghe. Thắng Part 3 nhờ ĐỌC TRƯỚC câu hỏi, không phải nhờ nghe giỏi hơn. Đề thi thật cấm viết lên đề — mọi thao tác đánh dấu chỉ làm trong đầu.",
   types: [
-    { id: "p3-chu-de", name: "Câu hỏi chung: chủ đề, mục đích, nơi chốn, nghề nghiệp", stage: 2,
+    { id: "p3-chu-de", sig: "Who most likely are the speakers? Where does the conversation take place? What is the purpose of the call? → nghe 2–3 câu đầu, tên công ty, chức danh, nơi chốn", name: "Câu hỏi chung: chủ đề, mục đích, nơi chốn, nghề nghiệp", stage: 2,
       spot: "What are the speakers discussing? / Where most likely are the speakers? / Who most likely is the woman?",
       steps: ["Đọc trước câu hỏi, ghi nhớ từ khoá (discussing, where, who).", "Thông tin nằm ở 1–2 câu ĐẦU hội thoại — nghe kỹ đoạn mở đầu.", "Chọn đáp án theo ý tổng thể, không theo một từ lẻ."],
       traps: ["Đáp án chứa từ được nhắc trong hội thoại nhưng không phải chủ đề chính."],
@@ -1136,7 +1189,7 @@ window.AZT_METHODS = [
         { q: "Where most likely are the speakers?", script: "W: Hi, I'd like to pick up my prescription. My name is Laura Chen. M: Sure, Ms. Chen. It'll be ready in about ten minutes. You can wait over there.",
           options: ["At a pharmacy", "At a bank", "At a library", "At a post office"], answer: 0,
           explain: "'Prescription' (đơn thuốc) → hiệu thuốc. Thông tin nằm ngay câu đầu." } ] },
-    { id: "p3-chi-tiet", name: "Câu hỏi chi tiết: thời gian, con số, vấn đề", stage: 2,
+    { id: "p3-chi-tiet", sig: "What is the problem? When / How much / How many…? → từ khoá câu hỏi thường được nói lại gần nguyên văn; vấn đề hay đi sau but, unfortunately, I'm afraid", name: "Câu hỏi chi tiết: thời gian, con số, vấn đề", stage: 2,
       spot: "What problem does the man mention? / When will…? / How much…?",
       steps: ["Đọc trước câu hỏi VÀ 4 phương án (phương án ngắn thì đọc hết).", "Ba câu hỏi đi theo thứ tự hội thoại: câu 1 ở đầu, câu 2 ở giữa, câu 3 ở cuối.", "Nghe đến đâu chọn đến đó, chọn xong chuyển ngay sang câu kế."],
       traps: ["Hội thoại nói nhiều con số/thời gian, chỉ một cái đúng câu hỏi.", "Đáp án dùng từ đồng nghĩa (paraphrase) chứ không lặp nguyên văn: 'not working' → 'malfunctioning'."],
@@ -1145,7 +1198,7 @@ window.AZT_METHODS = [
         { q: "What problem does the woman mention?", script: "M: Are the brochures ready for tomorrow's trade show? W: Unfortunately, the printer shop called. Their machine broke down, so the brochures won't arrive until Friday.",
           options: ["A delivery will be late.", "A price has increased.", "A venue is unavailable.", "A design contains errors."], answer: 0,
           explain: "Sau 'Unfortunately': tờ rơi đến trễ (won't arrive until Friday) → 'A delivery will be late' (diễn đạt lại)." } ] },
-    { id: "p3-hanh-dong", name: "Câu hỏi hành động tiếp theo, lời đề nghị", stage: 2,
+    { id: "p3-hanh-dong", sig: "suggest / recommend / offer / ask … to do / will do next → I'll…, Let me…, Why don't you…, You should…, Could you…? (thường ở cuối bài)", name: "Câu hỏi hành động tiếp theo, lời đề nghị", stage: 2,
       spot: "What will the man probably do next? / What does the woman offer to do? / What does the man suggest?",
       steps: ["Dạng này gần như luôn là câu hỏi thứ 3 → nghe kỹ 1–2 câu CUỐI.", "Nghe tín hiệu: I'll…, Let me…, Why don't you…, You should…, I can…", "Chú ý AI nói — câu hỏi về người đàn ông thì đáp án nằm trong lời người đàn ông (hoặc lời người phụ nữ đề nghị anh ấy)."],
       traps: ["Nhầm lời đề nghị của người này thành hành động của người kia."],
@@ -1154,7 +1207,7 @@ window.AZT_METHODS = [
         { q: "What does the man offer to do?", script: "W: I need the sales figures for my presentation, but I can't open the shared folder. M: Let me email you the file right now.",
           options: ["Send a document", "Give a presentation", "Fix a computer", "Call a manager"], answer: 0,
           explain: "'Let me email you the file' → gửi tài liệu. 'Let me' là tín hiệu lời đề nghị." } ] },
-    { id: "p3-y-dinh", name: "Câu hỏi ý ngầm: 'Why does the woman say …?'", stage: 3,
+    { id: "p3-y-dinh", sig: "What does the man mean when he says…? Why does the woman say…? → nghe câu NGAY TRƯỚC câu trích; chú ý But, Actually, Well ở đầu câu trích", name: "Câu hỏi ý ngầm: 'Why does the woman say …?'", stage: 3,
       spot: "Câu hỏi trích nguyên một câu nói trong ngoặc kép.",
       steps: ["Đọc trước câu được trích — đoán sẵn 2 khả năng nghĩa.", "Nghe câu NGAY TRƯỚC câu được trích: nghĩa phụ thuộc ngữ cảnh đó.", "Chọn đáp án theo Ý ĐỊNH của người nói (từ chối, trấn an, ngạc nhiên…), không theo nghĩa đen."],
       traps: ["Phương án hiểu theo nghĩa đen của câu trích."],
@@ -1163,7 +1216,7 @@ window.AZT_METHODS = [
         { q: "Why does the woman say, \"It's already 4:30\"?", script: "M: Could we go over the budget once more before sending it to the client? W: It's already 4:30. M: Right, their office closes at five. Let's just send it.",
           options: ["To suggest there is not enough time", "To ask about a schedule", "To complain about a delay", "To correct a mistake"], answer: 0,
           explain: "Ngữ cảnh: muốn xem lại ngân sách nhưng khách đóng cửa lúc 5h → ý là không đủ thời gian." } ] },
-    { id: "p3-bieu-do", name: "Câu hỏi kèm bảng biểu (Look at the graphic)", stage: 3,
+    { id: "p3-bieu-do", sig: "Look at the graphic → người nói nhắc cột A (tên, vị trí, ngày), đáp án ở cột B (giá, tầng, giờ) và ngược lại; chú ý so sánh: the cheapest, the second, next to", name: "Câu hỏi kèm bảng biểu (Look at the graphic)", stage: 3,
       spot: "Câu hỏi có cụm 'Look at the graphic' và hình: bảng giá, lịch, bản đồ, biểu đồ.",
       steps: ["Đọc hình TRƯỚC: xác định thông tin nào trùng với phương án (A–D) và thông tin nào hội thoại sẽ nói (giá, giờ, vị trí, số lượng).", "Khi nghe, chờ thông tin KHÔNG nằm trong phương án.", "Dóng hàng để tìm phương án tương ứng."],
       traps: ["Hội thoại hầu như không đọc thẳng đáp án — nếu nghe đúng từ trong phương án, cẩn thận."],
@@ -1176,9 +1229,10 @@ window.AZT_METHODS = [
 },
 {
   part: 4, name: "Part 4 · Bài nói ngắn", count: "30 câu · 10 bài nói · câu 71–100", time: "Theo audio",
+  flow: ["Giống Part 3: dùng thời gian hướng dẫn và thời gian audio đọc câu hỏi để đọc trước nhóm câu tiếp theo.", "Đoán loại bài nói từ câu hỏi đầu (tin nhắn thoại, thông báo, quảng cáo, giới thiệu diễn giả, bản tin) để biết bố cục.", "Bố cục cố định: MỞ (ai, ở đâu, chủ đề) → THÂN (chi tiết, vấn đề, thay đổi) → KẾT (yêu cầu người nghe, việc tiếp theo). Câu 1–2–3 của nhóm thường rơi lần lượt vào 3 phần này.", "Bài có biểu đồ: nhìn biểu đồ trước, xác định cột nào là cột người nói sẽ nhắc và cột nào là đáp án.", "Câu ý ngầm ('Why does the speaker say…'): ghi nhớ câu trích, nghe câu ngay trước nó để hiểu ý."],
   why: "Một người nói liền mạch: thông báo, tin nhắn thoại, quảng cáo, giới thiệu diễn giả, bản tin. Bố cục gần như cố định.",
   types: [
-    { id: "p4-bo-cuc", name: "Nắm bố cục bài nói", stage: 2,
+    { id: "p4-bo-cuc", sig: "Tin nhắn thoại: Hi, this is… calling from… → lý do gọi → nhờ gọi lại. Thông báo: Attention… → thay đổi/sự cố → hướng dẫn. Giới thiệu diễn giả: Please welcome… → thành tích → mời lên", name: "Nắm bố cục bài nói", stage: 2,
       spot: "Mọi bài Part 4.",
       steps: ["Đầu bài: AI nói, nói với AI, ở ĐÂU, MỤC ĐÍCH (câu hỏi 1).", "Giữa bài: chi tiết — thời gian, thay đổi, vấn đề (câu hỏi 2).", "Cuối bài: yêu cầu người nghe làm gì, thông tin liên hệ, việc sắp xảy ra (câu hỏi 3)."],
       traps: ["Lỡ câu đầu → mất câu hỏi chủ đề. Tập trung tối đa 5 giây đầu."],
@@ -1187,7 +1241,7 @@ window.AZT_METHODS = [
         { q: "What is the purpose of the message?", script: "Hi Mr. Patel, this is Grace from Lakeside Dental. I'm calling to remind you of your appointment tomorrow at ten a.m. If you need to reschedule, please call us at 555-0142.",
           options: ["To remind a patient of an appointment", "To offer a job", "To request a payment", "To announce a new service"], answer: 0,
           explain: "Mục đích nằm ngay sau phần giới thiệu: 'I'm calling to remind you of your appointment'." } ] },
-    { id: "p4-yeu-cau", name: "Câu hỏi: người nghe được yêu cầu làm gì?", stage: 2,
+    { id: "p4-yeu-cau", sig: "Please…, I'd like you to…, Make sure you…, Don't forget to…, Be sure to…, I encourage you to…, Remember to… (thường ở 1–2 câu cuối)", name: "Câu hỏi: người nghe được yêu cầu làm gì?", stage: 2,
       spot: "What are listeners asked to do? / What does the speaker encourage listeners to do?",
       steps: ["Thông tin nằm ở cuối bài.", "Nghe tín hiệu mệnh lệnh: Please…, Make sure…, Don't forget…, Be sure to…, I'd like you to…", "Chọn phương án diễn đạt lại đúng hành động đó."],
       traps: [],
@@ -1200,9 +1254,10 @@ window.AZT_METHODS = [
 },
 {
   part: 5, name: "Part 5 · Điền từ vào câu", count: "30 câu · câu 101–130", time: "~10 phút (20 giây/câu)",
+  flow: ["Ngân sách thời gian: 30 câu trong khoảng 10 phút (20 giây/câu). Quá 30 giây một câu thì đoán và đánh dấu để quay lại.", "Đọc 4 phương án TRƯỚC, đọc câu sau. Phương án cùng gốc khác đuôi = từ loại; khác thì/dạng = động từ; đại từ = he/him/his; giới từ–liên từ = despite/although…; cùng từ loại khác nghĩa = từ vựng.", "Dạng ngữ pháp (từ loại, đại từ, động từ, giới–liên từ): chỉ nhìn 2–3 từ quanh chỗ trống, không cần dịch cả câu.", "Dạng từ vựng: dịch nhanh ý cả câu, tìm collocation (cụm hay đi với nhau).", "Làm theo thứ tự, không bỏ trắng câu nào; câu đã đoán vẫn tô để không lệch phiếu."],
   why: "Phần lấy điểm nhanh nhất của Đọc. Làm nhanh Part 5 để dành thời gian cho Part 7.",
   types: [
-    { id: "p5-tu-loai", name: "Từ loại (danh, động, tính, trạng từ)", stage: 1,
+    { id: "p5-tu-loai", sig: "the/a/my + (adj) + N · be + adj · V + adv · adv + adj · đuôi danh từ: -tion -ment -ness -ity -ance · tính từ: -ful -ive -able -ous -al · trạng từ: -ly", name: "Từ loại (danh, động, tính, trạng từ)", stage: 1,
       spot: "Bốn phương án cùng gốc từ: decide / decision / decisive / decisively.",
       steps: ["KHÔNG đọc cả câu. Nhìn 1–2 từ ngay trước và sau chỗ trống.", "Xác định vị trí cần từ loại gì: sau mạo từ/tính từ sở hữu → danh từ; trước danh từ → tính từ; bổ nghĩa động từ/tính từ → trạng từ.", "Chọn đúng đuôi từ: -tion/-ment/-ness (danh), -ive/-ful/-able (tính), -ly (trạng)."],
       traps: ["Danh từ chỉ người và vật: applicant (người) vs application (đơn) — phải xét nghĩa.", "'friendly, timely, costly' có đuôi -ly nhưng là TÍNH TỪ."],
@@ -1212,7 +1267,7 @@ window.AZT_METHODS = [
           explain: "Sau 'more' và bổ nghĩa cho động từ 'complete' → cần trạng từ 'efficiently'." },
         { q: "All ------- must submit their documents by March 15.", options: ["applies", "applicants", "application", "applicable"], answer: 1,
           explain: "Sau 'All' cần danh từ số nhiều chỉ NGƯỜI nộp hồ sơ → 'applicants'. 'application' là đơn, không 'submit their documents'." } ] },
-    { id: "p5-dong-tu", name: "Động từ: thì, chủ động – bị động, hoà hợp chủ ngữ", stage: 1,
+    { id: "p5-dong-tu", sig: "Tín hiệu thì: since/for → hiện tại hoàn thành; by the time/before + quá khứ → quá khứ hoàn thành; next/upcoming → tương lai · sau chỗ trống có tân ngữ → chủ động · đã có động từ chính → to V / V-ing / V3", name: "Động từ: thì, chủ động – bị động, hoà hợp chủ ngữ", stage: 1,
       spot: "Bốn phương án là các dạng của một động từ: has approved / was approved / approving / will approve.",
       steps: ["Tìm chủ ngữ thật → số ít hay số nhiều?", "Chủ ngữ tự làm hành động (chủ động) hay bị tác động (bị động)? Sau chỗ trống có tân ngữ → thường chủ động.", "Tìm dấu hiệu thời gian: yesterday → quá khứ; next week/soon → tương lai; since/for → hoàn thành."],
       traps: ["Chủ ngữ bị chen cụm giới từ: 'The list of new members ---' → chủ ngữ là 'list' (số ít).", "Mệnh đề thời gian (when, after, as soon as) dùng hiện tại thay cho tương lai."],
@@ -1222,7 +1277,7 @@ window.AZT_METHODS = [
           explain: "Bản đề xuất ĐƯỢC hội đồng duyệt (có 'by') → bị động; 'last Friday' → quá khứ → 'was approved'." },
         { q: "Please call the front desk as soon as the technician -------.", options: ["arrives", "will arrive", "arrived", "arriving"], answer: 0,
           explain: "Sau 'as soon as' (mệnh đề thời gian) dùng hiện tại đơn để nói tương lai → 'arrives'." } ] },
-    { id: "p5-dai-tu", name: "Đại từ (he / him / his / himself)", stage: 1,
+    { id: "p5-dai-tu", sig: "Trước danh từ → my/his/her/their · làm tân ngữ → me/him/them · đứng một mình thay danh từ → mine/hers/theirs · by + oneself / chủ ngữ = tân ngữ → himself · those who + V số nhiều", name: "Đại từ (he / him / his / himself)", stage: 1,
       spot: "Bốn phương án là các dạng của cùng một đại từ.",
       steps: ["Chỗ trống đứng trước danh từ → tính từ sở hữu (their, his).", "Sau động từ/giới từ → tân ngữ (them, him) hoặc phản thân (themselves) nếu cùng chủ ngữ.", "Đứng một mình thay cho 'của tôi/của họ + danh từ' → đại từ sở hữu (mine, theirs)."],
       traps: ["'by himself' = tự mình, một mình.", "Phản thân có 2 cách dùng: (1) làm tân ngữ khi người làm và người chịu là một (She introduced herself); (2) nhấn mạnh 'tự mình làm', đứng cuối câu đã đủ thành phần (She reviewed the contracts herself)."],
@@ -1230,7 +1285,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Ms. Alvarez prefers to review the contracts ------- before sending them to the client.", options: ["she", "her", "hers", "herself"], answer: 3,
           explain: "Câu đã đủ thành phần; nhấn mạnh 'tự cô ấy xem' → đại từ phản thân 'herself'." } ] },
-    { id: "p5-gioi-lien", name: "Giới từ vs liên từ vs trạng từ liên kết", stage: 2,
+    { id: "p5-gioi-lien", sig: "+ cụm danh từ → despite, because of, due to, during, prior to · + mệnh đề → although, because, while, so that, once · đứng đầu câu + dấu phẩy → however, therefore, moreover", name: "Giới từ vs liên từ vs trạng từ liên kết", stage: 2,
       spot: "Phương án lẫn lộn: despite / although / however / because of / because.",
       steps: ["Nhìn phần ngay SAU chỗ trống: là cụm danh từ hay mệnh đề (có chủ ngữ + động từ)?", "Cụm danh từ → giới từ (despite, because of, due to, during). Mệnh đề → liên từ (although, because, while).", "Có dấu chấm phẩy/dấu chấm trước và dấu phẩy sau → trạng từ liên kết (however, therefore)."],
       traps: ["'during' (giới từ) vs 'while' (liên từ) — cùng nghĩa 'trong khi'."],
@@ -1238,7 +1293,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "------- the heavy rain, the outdoor concert started on time.", options: ["Although", "Despite", "However", "Because"], answer: 1,
           explain: "Sau chỗ trống là cụm danh từ 'the heavy rain' → giới từ; nghĩa tương phản → 'Despite'." } ] },
-    { id: "p5-tu-vung", name: "Từ vựng, cụm cố định (collocation)", stage: 2,
+    { id: "p5-tu-vung", sig: "Cụm hay ra: meet the deadline, place an order, conduct a survey, raise funds, take effect, be eligible for, in accordance with, at no extra charge, with certainty", name: "Từ vựng, cụm cố định (collocation)", stage: 2,
       spot: "Bốn phương án cùng từ loại, khác nghĩa: reserve / remind / refer / retain.",
       steps: ["Đọc cả câu, tìm từ đi kèm chỗ trống (giới từ phía sau, danh từ tân ngữ).", "Ưu tiên cụm cố định: comply WITH, be eligible FOR, in accordance WITH, take advantage OF.", "Không chắc → loại phương án sai cấu trúc trước, rồi mới xét nghĩa. Quá 30 giây thì đoán và đi tiếp."],
       traps: ["Từ có nghĩa gần giống nhưng sai giới từ đi kèm."],
@@ -1246,7 +1301,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Employees who work more than 40 hours a week are ------- for overtime pay.", options: ["eligible", "possible", "available", "capable"], answer: 0,
           explain: "Cụm cố định 'be eligible for' = đủ điều kiện nhận. 'capable of', 'available for' (sẵn có) không hợp nghĩa." } ] },
-    { id: "p5-quan-he", name: "Đại từ quan hệ (who, which, that, whose)", stage: 2,
+    { id: "p5-quan-he", sig: "Người → who (chủ ngữ), whom (tân ngữ), whose + N (sở hữu) · Vật → which/that · sau dấu phẩy không dùng that · whoever/whatever = bất kỳ ai/cái gì, làm chủ ngữ cả mệnh đề", name: "Đại từ quan hệ (who, which, that, whose)", stage: 2,
       spot: "Phương án gồm who / which / whose / whom / what.",
       steps: ["Nhìn danh từ đứng trước chỗ trống: người → who/whom (hoặc that); vật → which (hoặc that).", "Sau chỗ trống là danh từ (không mạo từ) → whose.", "Có dấu phẩy trước chỗ trống → không dùng that."],
       traps: ["'what' không đứng sau danh từ."],
@@ -1258,9 +1313,10 @@ window.AZT_METHODS = [
 },
 {
   part: 6, name: "Part 6 · Điền vào đoạn văn", count: "16 câu · 4 đoạn · câu 131–146", time: "~8 phút",
+  flow: ["Ngân sách thời gian: 4 đoạn trong khoảng 8 phút (2 phút/đoạn).", "Đọc tiêu đề và câu đầu để biết loại văn bản (thư, e-mail, thông báo, quảng cáo) và người viết – người nhận.", "Với mỗi chỗ trống: đọc CÂU TRƯỚC và CÂU SAU, không chỉ câu chứa chỗ trống. Thì động từ, đại từ, từ nối đều phụ thuộc mạch đoạn.", "Câu chọn cả câu: để sau cùng của đoạn. Loại câu lạc chủ đề, câu sai đối tượng (khách hàng/nhân viên), câu mâu thuẫn thông tin đã nêu.", "Câu mạo từ, đại từ thay thế (it, they, this) phải chỉ đúng danh từ đã xuất hiện."],
   why: "Giống Part 5 nhưng cần đọc mạch đoạn văn. Mỗi đoạn có 1 câu chọn cả CÂU — dạng khó nhất.",
   types: [
-    { id: "p6-ngu-canh", name: "Từ, thì động từ theo ngữ cảnh đoạn", stage: 2,
+    { id: "p6-ngu-canh", sig: "Mốc thời gian của cả đoạn (ngày gửi thư, sự kiện đã/sắp diễn ra) quyết định thì; đại từ phải khớp người được nhắc ở câu trước (we/our = công ty, you = người nhận)", name: "Từ, thì động từ theo ngữ cảnh đoạn", stage: 2,
       spot: "Câu đơn lẻ có thể chọn nhiều đáp án — phải dựa vào câu trước/sau.",
       steps: ["Đọc lướt câu tiêu đề/đầu đoạn: loại văn bản gì (email, thông báo, quảng cáo), gửi cho ai.", "Thì động từ: xác định sự việc đã xảy ra hay sắp xảy ra dựa vào ngày tháng trong đoạn.", "Đại từ/từ chỉ định (this, these, it) phải khớp danh từ ở câu trước."],
       traps: ["Chọn theo câu đơn lẻ như Part 5 — nhiều phương án đúng ngữ pháp nhưng sai mạch."],
@@ -1268,7 +1324,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Email: \"Thank you for attending our product demonstration last Tuesday. We ------- many helpful comments from attendees, and our team has already started reviewing them.\"", options: ["will receive", "received", "are receiving", "would receive"], answer: 1,
           explain: "'has already started reviewing them' → góp ý đã nhận xong → quá khứ 'received'." } ] },
-    { id: "p6-tu-noi", name: "Từ nối giữa hai câu (however, therefore, in addition…)", stage: 2,
+    { id: "p6-tu-noi", sig: "Bổ sung: In addition, Also, Moreover · Đối lập: However, Nevertheless, Even so · Kết quả: Therefore, As a result, Consequently · Ví dụ: For example, For instance · Thời gian: Before long, Afterward, Meanwhile", name: "Từ nối giữa hai câu (however, therefore, in addition…)", stage: 2,
       spot: "Chỗ trống đầu câu, theo sau là dấu phẩy.",
       steps: ["Đọc câu trước và câu chứa chỗ trống.", "Xác định quan hệ: bổ sung (In addition, Moreover), tương phản (However, Nevertheless), kết quả (Therefore, As a result), ví dụ (For instance).", "Chọn từ nối đúng quan hệ."],
       traps: [],
@@ -1276,7 +1332,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "\"The museum will be closed on Monday for maintenance. -------, the gift shop will remain open from 10 A.M. to 4 P.M.\"", options: ["Therefore", "However", "For example", "Similarly"], answer: 1,
           explain: "Bảo tàng đóng cửa ↔ cửa hàng vẫn mở → tương phản → 'However'." } ] },
-    { id: "p6-dien-cau", name: "Chọn câu phù hợp điền vào đoạn", stage: 3,
+    { id: "p6-dien-cau", sig: "Câu đúng phải nối được CẢ câu trước và câu sau, đúng đối tượng, không mâu thuẫn thông tin; câu có this/these/such phải có thứ để chỉ tới", name: "Chọn câu phù hợp điền vào đoạn", stage: 3,
       spot: "Bốn phương án là bốn câu hoàn chỉnh.",
       steps: ["Đọc câu NGAY TRƯỚC và NGAY SAU chỗ trống.", "Tìm phương án nối được cả hai: có từ khoá/đại từ chỉ về câu trước, dẫn ý sang câu sau.", "Loại câu đúng chủ đề chung nhưng nhắc chi tiết chưa xuất hiện hoặc mâu thuẫn."],
       traps: ["Phương án 'nghe hay', cùng chủ đề nhưng không liên kết được với câu kế bên."],
@@ -1288,9 +1344,10 @@ window.AZT_METHODS = [
 },
 {
   part: 7, name: "Part 7 · Đọc hiểu", count: "54 câu · câu 147–200 (29 câu bài đơn, 25 câu bài đôi/bài ba)", time: "~55 phút",
+  flow: ["Ngân sách thời gian: khoảng 55 phút cho 54 câu, tức xấp xỉ 1 phút/câu. Bài đơn ngắn 2 câu tối đa 2 phút; bài ba 5 câu tối đa 6–7 phút.", "Đọc CÂU HỎI trước, xác định loại: chi tiết, mục đích, NOT, suy luận, đồng nghĩa, chèn câu, ý ngầm tin nhắn.", "Đọc lướt bài để nắm bố cục (đoạn nào nói gì), rồi quay lại tìm đúng đoạn chứa từ khoá câu hỏi.", "Đáp án là diễn đạt lại (paraphrase): đừng chọn phương án chỉ vì trùng từ với bài. Phải khớp NGHĨA với một câu cụ thể.", "Câu NOT và câu chèn câu tốn thời gian: làm sau cùng trong nhóm. Còn 5 phút mà chưa xong: tô hết các câu còn lại, không bỏ trắng."],
   why: "Phần quyết định điểm 600+. Thiếu thời gian là lý do số 1 khiến mất điểm, không phải vì bài khó. Đề thi thật cấm viết lên đề — mọi thao tác đánh dấu chỉ làm trong đầu.",
   types: [
-    { id: "p7-chi-tiet", name: "Câu hỏi chi tiết, câu hỏi mục đích", stage: 2,
+    { id: "p7-chi-tiet", sig: "purpose / why was … written → đoạn đầu · According to… / What is stated… → tìm từ khoá rồi đọc kỹ 1–2 câu quanh nó", name: "Câu hỏi chi tiết, câu hỏi mục đích", stage: 2,
       spot: "What is the purpose of the e-mail? / When will the event take place? / What is Ms. Ito asked to do?",
       steps: ["Đọc CÂU HỎI trước, ghi nhớ từ khoá dễ dò: tên riêng, ngày tháng, con số.", "Quét (scan) bài tìm từ khoá đó, đọc kỹ 2–3 câu quanh vị trí tìm thấy.", "Chọn đáp án diễn đạt lại thông tin — đáp án đúng hiếm khi lặp nguyên văn."],
       traps: ["Phương án lặp nhiều từ trong bài nhưng ghép sai thông tin."],
@@ -1298,7 +1355,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Notice: \"The Hillcrest Community Center pool will be closed from July 3 to July 10 while new lighting is installed. Swim classes scheduled during this period will be held at the Westside Center.\"  —  Why will the pool be closed?", options: ["For an equipment upgrade", "For a swimming competition", "Because of a staff shortage", "Because of bad weather"], answer: 0,
           explain: "'while new lighting is installed' (lắp đèn mới) → 'equipment upgrade' (nâng cấp thiết bị) — diễn đạt lại." } ] },
-    { id: "p7-not-true", name: "Câu hỏi NOT / TRUE (điều gì KHÔNG được nhắc)", stage: 3,
+    { id: "p7-not-true", sig: "NOT mentioned / NOT true / NOT included → đối chiếu 3 phương án có trong bài, phương án còn lại là đáp án; true / indicated → phải khớp hoàn toàn", name: "Câu hỏi NOT / TRUE (điều gì KHÔNG được nhắc)", stage: 3,
       spot: "What is NOT mentioned…? / What is indicated about…? / What is true about…?",
       steps: ["Câu NOT: dò từng phương án trong bài, tìm thấy thì loại trong đầu — phương án còn lại là đáp án.", "Câu 'indicated/true': mỗi phương án kiểm tra một chỗ khác nhau trong bài.", "Dạng tốn thời gian — làm sau các câu chi tiết trong cùng bài."],
       traps: ["Phương án đúng một nửa (đúng người, sai thời gian)."],
@@ -1306,7 +1363,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Ad: \"Brightway Fitness — open 24 hours, free parking, personal trainers available. Join before May 31 and get your first month free.\"  —  What is NOT mentioned about Brightway Fitness?", options: ["Its opening hours", "A parking service", "A swimming pool", "A special offer"], answer: 2,
           explain: "Bài có giờ mở cửa (24 hours), bãi đỗ xe (free parking), ưu đãi (first month free) — không nhắc hồ bơi." } ] },
-    { id: "p7-suy-luan", name: "Câu hỏi suy luận (most likely, suggested, implied)", stage: 3,
+    { id: "p7-suy-luan", sig: "most likely, suggested, implied, inferred, indicated about → luôn có 1 câu làm căn cứ; loại phương án đúng ngoài đời nhưng bài không nói", name: "Câu hỏi suy luận (most likely, suggested, implied)", stage: 3,
       spot: "Who most likely is Mr. Grant? / What is suggested about the company?",
       steps: ["Không có câu trả lời nguyên văn — gom 2–3 manh mối trong bài.", "Chọn đáp án được bài ỦNG HỘ rõ nhất, không suy diễn quá xa.", "Loại phương án đúng ngoài đời nhưng bài không nói."],
       traps: ["Suy luận vượt quá thông tin trong bài."],
@@ -1314,7 +1371,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Email: \"Dear Mr. Grant, attached is the revised floor plan for the clinic. Please let us know if the changes to the waiting room meet your requirements before construction resumes.\"  —  Who most likely is Mr. Grant?", options: ["A clinic owner", "A construction worker", "A patient", "A real estate agent"], answer: 0,
           explain: "Ông Grant được hỏi ý kiến về bản thiết kế phòng khám 'theo yêu cầu của ông' → nhiều khả năng là chủ phòng khám." } ] },
-    { id: "p7-dong-nghia", name: "Từ đồng nghĩa trong ngữ cảnh", stage: 2,
+    { id: "p7-dong-nghia", sig: "closest in meaning to → thay từng phương án vào câu gốc; từ hỏi thường là từ nhiều nghĩa (conduct, cover, address, figure, reflect)", name: "Từ đồng nghĩa trong ngữ cảnh", stage: 2,
       spot: "In the e-mail, the word \"cover\" in paragraph 2, line 3, is closest in meaning to…",
       steps: ["Tìm đúng dòng, đọc cả câu chứa từ.", "Thay từng phương án vào câu — phương án nào giữ nguyên nghĩa câu là đúng.", "Đừng chọn nghĩa phổ biến nhất của từ; chọn nghĩa hợp với câu."],
       traps: ["Phương án là nghĩa thông dụng của từ nhưng sai ngữ cảnh."],
@@ -1322,7 +1379,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "\"The registration fee will cover meals and materials for all three days.\"  —  The word \"cover\" is closest in meaning to…", options: ["hide", "pay for", "report", "protect"], answer: 1,
           explain: "Phí đăng ký 'cover' bữa ăn và tài liệu = chi trả cho → 'pay for'. 'hide' là nghĩa thông dụng nhưng sai ngữ cảnh." } ] },
-    { id: "p7-chen-cau", name: "Chèn câu vào vị trí [1]–[4]", stage: 3,
+    { id: "p7-chen-cau", sig: "Câu chèn có This/These/Such/Also/However/In addition → tìm câu liền trước có thứ để nối; câu có tên riêng/chi tiết mới → đặt sau câu giới thiệu chung", name: "Chèn câu vào vị trí [1]–[4]", stage: 3,
       spot: "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?",
       steps: ["Đọc câu cần chèn, xác định từ nối/đại từ (This, These, Also, However, As a result).", "Từ đó suy ra câu ĐỨNG TRƯỚC phải nói gì.", "Thử 4 vị trí, chọn vị trí mà câu trước khớp với từ nối/đại từ."],
       traps: [],
@@ -1330,7 +1387,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Câu cần chèn: \"As a result, the event has been moved indoors.\"  —  Đoạn: \"[1] The annual company picnic was planned for Saturday at Riverside Park. [2] However, heavy storms are forecast for the weekend. [3] Lunch will still be served at noon. [4]\"", options: ["[1]", "[2]", "[3]", "[4]"], answer: 2,
           explain: "'As a result' cần nguyên nhân đứng trước: 'heavy storms are forecast' → chèn ở [3], ngay sau câu bão." } ] },
-    { id: "p7-tin-nhan", name: "Chuỗi tin nhắn, chat: câu ý ngầm", stage: 3,
+    { id: "p7-tin-nhan", sig: "At 10:15, what does X mean when he writes '…'? → đọc tin NGAY TRƯỚC và NGAY SAU; câu ngắn kiểu 'Sure thing', 'I'm on it', 'That works' là trả lời cho tin trước", name: "Chuỗi tin nhắn, chat: câu ý ngầm", stage: 3,
       spot: "At 10:15 A.M., what does Ms. Lee most likely mean when she writes, \"…\"? (khoảng 2 câu mỗi đề)",
       steps: ["Tìm đúng mốc giờ trong chuỗi tin nhắn.", "Đọc 1–2 tin ngay trước và ngay sau mốc giờ đó để hiểu người viết đang trả lời điều gì.", "Chọn theo Ý ĐỊNH của người viết (đồng ý, từ chối, trấn an, nhận việc…), không theo nghĩa đen."],
       traps: ["Phương án hiểu câu trích theo nghĩa đen.", "Phương án đúng ý nhưng gán cho sai người viết."],
@@ -1338,7 +1395,7 @@ window.AZT_METHODS = [
       examples: [
         { q: "Chat — Tom Ruiz (9:02): \"The printer on the 3rd floor is jammed again and I need 40 copies for the 10 o'clock meeting.\"  Amy Lin (9:04): \"I'm on it.\"  —  At 9:04, what does Ms. Lin most likely mean when she writes, \"I'm on it\"?", options: ["She will handle the printing problem.", "She is standing near the printer.", "She will attend the meeting.", "She has already made the copies."], answer: 0,
           explain: "Tin ngay trước là nhờ xử lý máy in kẹt giấy để có bản in → \"I'm on it\" = tôi đang lo việc đó. Phương án B hiểu theo nghĩa đen của \"on\"." } ] },
-    { id: "p7-nhieu-bai", name: "Bài đôi, bài ba (đối chiếu chéo)", stage: 3,
+    { id: "p7-nhieu-bai", sig: "Câu 1–2 thường hỏi bài 1, câu 3–4 hỏi bài 2, ít nhất 1 câu phải GHÉP thông tin 2 bài (ngày, giá, tên, địa điểm ở bài này + điều kiện ở bài kia)", name: "Bài đôi, bài ba (đối chiếu chéo)", stage: 3,
       spot: "Câu 176–200: mỗi nhóm 2 hoặc 3 văn bản (email + lịch, quảng cáo + đánh giá…).",
       steps: ["Đọc câu hỏi trước, đánh dấu câu nào hỏi văn bản nào (thường câu hỏi nêu rõ 'in the e-mail', 'on the schedule').", "Mỗi nhóm có 1–2 câu cần ghép thông tin 2 văn bản — tìm thông tin ở văn bản A rồi tra sang văn bản B.", "Phân bổ khoảng 5 phút/bài đôi, 6 phút/bài ba."],
       traps: ["Trả lời câu đối chiếu chỉ bằng một văn bản."],
@@ -1459,10 +1516,11 @@ function renderTop(){
   $("#topR").innerHTML = s
     ? '<a class="me-chip" href="#tai-khoan"><span class="av">' + esc((s.name||"?").trim().split(/\s+/).pop().charAt(0)) + '</span><span class="nm">' + esc((s.name||"").trim().split(/\s+/).pop()) + ' ·</span> <b>' + (s.xp||0) + '</b> XP</a>'
     : '<a class="btn btn-ghost" href="#dang-nhap">Đăng nhập</a><a class="btn btn-red" href="#dang-ky">Tạo tài khoản</a>';
+  if(s && AZT.isClass()) $("#topR").insertAdjacentHTML("afterbegin", '<a class="btn btn-ghost btn-sm" href="#hoc-vien">Khu học viên</a>');
   $("#heroCta").innerHTML = s
     ? '<a class="btn btn-red" href="#hom-nay">Học tiếp hôm nay</a><a class="btn btn-glass" href="#phuong-phap">Phương pháp từng dạng</a>'
     : '<a class="btn btn-red" href="#lam-thu">Làm thử 5 câu, biết ngay mức của mình</a><a class="btn btn-glass" href="#dang-ky">Tạo tài khoản miễn phí</a>';
-  $("#heroNote").textContent = s ? "" : "Miễn phí · Đăng nhập bằng số điện thoại · Học trên điện thoại và máy tính";
+  $("#heroNote").innerHTML = s ? (AZT.isClass() ? '<a href="#hoc-vien" style="color:inherit">Vào Khu học viên lớp →</a>' : "") : 'Miễn phí · Đăng nhập bằng số điện thoại · <a href="#hoc-vien" style="color:inherit;text-decoration:underline">Học viên lớp đăng nhập tại đây</a>';
 
 }
 
@@ -1553,6 +1611,46 @@ function renderStages(){
       '<div class="gate-l"><b>' + (G.next ? "Lên chặng khi:" : "Sẵn sàng thi 750+ khi:") + '</b> ' + Object.keys(G.need).map(function(p){ return "Part " + p + " ≥ " + G.need[p] + "%"; }).join(" · ") + '</div>' +
       '<button class="btn ' + (on ? "btn-glass" : "btn-red") + '" data-st="' + k + '">' + (on ? "Đang học chặng này" : "Chọn chặng này") + '</button></div>'; }).join("");
 }
+var LAB26 = false;
+var FEES = [
+  {k:"0-400", lv:"KHOÁ 1 · CHẶNG 0 – 400", t:"Nền tảng", rg:"Mất gốc hoặc chưa thi TOEIC · mục tiêu 400", pr:"3.850.000", sz:"15 – 20 học viên/lớp", f:["Ngữ pháp và từ vựng nền cho Part 1, 2, 5","Phương pháp từng dạng câu, luyện trên web mỗi ngày"]},
+  {k:"400-600", lv:"KHOÁ 2 · CHẶNG 400 – 600", t:"Luyện đề Căn bản", rg:"Đã có khoảng 400 · mục tiêu 600", pr:"4.350.000", sz:"12 – 20 học viên/lớp", f:["Luyện đề ETS 2026 theo Part, chữa câu sai theo dạng","Listening Lab nghe đục lỗ, Part 7 Daily 15"], hot:1},
+  {k:"600-800", lv:"KHOÁ 3 · CHẶNG 700+", t:"Luyện đề Nâng cao", rg:"Đã trên 600 · mục tiêu 700 – 800+", pr:"4.000.000", sz:"10 – 20 học viên/lớp", f:["Full test 120 phút định kỳ, báo điểm quy đổi","Bẫy Part 3, 4, 7 và quản lý thời gian"]}
+];
+function renderFees(){
+  var box = $("#fees"); if(!box) return;
+  box.innerHTML = FEES.map(function(c){ return '<div class="feec' + (c.hot ? " hot" : "") + '">' + '<span class="lv">' + esc(c.lv) + '</span><h3>' + esc(c.t) + '</h3><span class="rg">' + esc(c.rg) + '</span><div class="pr">' + c.pr + '<small>đ/khoá</small></div><ul><li><b>Sĩ số:</b> ' + esc(c.sz) + '</li>' + c.f.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '<li>Mở toàn bộ tài nguyên học viên lớp trên web</li></ul><span class="sp2"></span><a class="btn ' + (c.hot ? "btn-red" : "btn-ghost") + '" href="#hoc-cung-giao-vien" data-goal="' + c.k + '">Nhận tư vấn khoá này</a></div>'; }).join("");
+}
+document.addEventListener("click", function(e){ var b = e.target.closest("[data-goal]"); if(!b) return; var f = document.getElementById("leadForm"); if(f && f.goal){ f.goal.value = b.getAttribute("data-goal"); if(f.note && !f.note.value) f.note.value = "Quan tâm khoá " + b.closest(".feec").querySelector("h3").textContent; } });
+
+/* ---------- khu học viên lớp ---------- */
+function clsApps(){
+  var L = [
+    {cv:"ETS 2026", cs:"Test 6–10 · thi thử", hue:"#8E0D1D", t:"ETS 2026 · Test 6–10", d:"5 đề còn lại của bộ ETS 2026: luyện từng Part hoặc thi thử full 120 phút.", h:"de-thi.html"},
+    LAB26 ? {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề, học viên lớp mở cả Test 6–10.", h:"listening-lab-2026/"} : null,
+    {cv:"Listening Lab", cs:"ETS 2023 · Test 1–3", hue:"#6D4AA8", t:"Listening Lab ETS 2023", d:"Nghe đục lỗ: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án.", h:"listening-lab/"},
+    {cv:"Daily 15", cs:"Part 7 mỗi ngày", hue:"#B45309", t:"Part 7 Daily 15", d:"Mỗi ngày 15 phút đọc Part 7: chia đoạn, từ khoá khó, ôn lại theo ngày.", h:"ngu-phap/#/p7"},
+    {cv:"Sổ câu sai", cs:"Ôn theo dạng", hue:"#15803D", t:"Sổ câu sai", d:"Câu sai gần nhất của từng Part, mang lên lớp để giáo viên chữa đúng dạng bạn yếu.", h:"#so-cau-sai"}
+  ].filter(Boolean);
+  var ARR = '<svg class="azi" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  return '<div class="apps">' + L.map(function(a, i){ return '<a class="app" href="' + a.h + '"><span class="tagx cls">Học viên lớp</span><span class="cv" style="--hue:' + a.hue + '"><span class="cv-n">0' + (i + 1) + '</span><span class="cv-t">' + esc(a.cv) + '</span><span class="cv-s">' + esc(a.cs) + '</span></span><span class="app-b"><h3>' + esc(a.t) + '</h3><p>' + esc(a.d) + '</p><span class="go">Vào học ' + ARR + '</span></span></a>'; }).join("") + '</div>';
+}
+function renderClass(){
+  var s = AZT.session(), cls = AZT.isClass(), nx = "?next=" + encodeURIComponent("#hoc-vien"), body;
+  var steps = '<ol class="cls-steps"><li><b>Đăng ký lớp</b> TOEIC tại AZEnglish (<a href="#hoc-phi">xem học phí</a>).</li><li><b>Tạo tài khoản</b> bằng đúng số điện thoại đã đăng ký học, hoặc đăng nhập nếu đã có.</li><li><b>Báo AZEnglish</b> số điện thoại đó qua Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a>. AZEnglish mở gói Lớp, bạn quay lại trang này là vào học.</li></ol>';
+  if(cls){
+    body = '<div class="card" style="margin-bottom:18px"><span class="eyebrow">Xin chào ' + esc((s.name || "").trim().split(/\s+/).pop()) + '</span><p style="margin:8px 0 0;color:var(--ink-2)">Tài khoản ' + esc(s.phone) + ' đang ở <span class="chip cls">Gói Lớp</span>. Toàn bộ tài nguyên riêng của lớp ở bên dưới; ngữ pháp, từ vựng, Test 1–5 vẫn ở <a href="#chuong-trinh">Chương trình</a>.</p></div>' + clsApps();
+    page("Khu học viên lớp", "Khu học viên lớp", "Tài nguyên dành riêng cho học viên lớp TOEIC tại AZEnglish.", body);
+    return;
+  }
+  var left = s
+    ? '<div class="card"><span class="eyebrow">Tài khoản của bạn</span><h3 style="font-size:20px;margin:8px 0">' + esc(s.name) + ' · ' + esc(s.phone) + '</h3><p style="color:var(--ink-2);margin:0 0 14px">Đang ở <span class="chip acc">Gói ' + esc(s.goi || "Tự học") + '</span>. Nếu bạn đã đăng ký lớp, nhắn Zalo AZEnglish số điện thoại này để được mở gói Lớp, rồi bấm Kiểm tra lại.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-red" id="clsRe">Kiểm tra lại</button><a class="btn btn-ghost" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Nhắn Zalo AZEnglish</a></div><div class="msg" id="clsMsg" role="status" style="margin-top:10px"></div></div>'
+    : '<div class="card"><span class="eyebrow">Đăng nhập học viên lớp</span><p style="color:var(--ink-2);margin:8px 0 16px">Học viên lớp dùng chung tài khoản AZTOEIC Academy, đăng nhập bằng số điện thoại và mật khẩu. Tiến độ lưu theo tài khoản, học trên máy nào cũng tiếp được.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-red" href="#dang-nhap' + nx + '">Đăng nhập</a><a class="btn btn-ghost" href="#dang-ky' + nx + '">Tạo tài khoản</a></div></div>';
+  body = '<div class="cls-grid"><div>' + left + '<h3 style="font-size:18px;margin:24px 0 12px">Cách vào khu học viên</h3>' + steps + '</div><div><div class="card"><span class="eyebrow">Mở khi là học viên lớp</span><ul class="perk-list" style="margin-top:12px"><li>ETS 2026 Test 6–10, luyện Part và thi thử 120 phút</li>' + (LAB26 ? '<li>Listening Lab ETS 2026 đủ Test 1–10</li>' : "") + '<li>Listening Lab ETS 2023 Test 1–3</li><li>Part 7 Daily 15 mỗi ngày</li><li>Giáo viên chữa câu sai theo dạng, theo dõi tiến độ hằng tuần</li></ul><a class="btn btn-ghost" style="margin-top:14px" href="#hoc-phi">Xem học phí</a></div></div></div>';
+  page("Khu học viên lớp", "Khu học viên lớp", "Tài nguyên dành riêng cho học viên lớp TOEIC tại AZEnglish.", body);
+  var re = $("#clsRe"); if(re) re.addEventListener("click", function(){ var m = $("#clsMsg"); re.disabled = true; m.className = "msg"; m.textContent = "Đang kiểm tra…";
+    AZT.refresh().then(function(){ re.disabled = false; if(AZT.isClass()){ renderAll(); renderClass(); } else { m.className = "msg err"; m.textContent = "Tài khoản vẫn ở gói Tự học. AZEnglish sẽ mở sau khi xác nhận học phí."; } }); });
+}
 function renderApps(){
   var s = AZT.session(), cls = AZT.isClass();
   var A = [
@@ -1561,15 +1659,16 @@ function renderApps(){
     {cv:"Từ vựng", cs:"20 chủ đề công sở", hue:"#0E9384", t:"Từ vựng TOEIC căn bản", d:"2.500 từ theo 20 chủ đề công sở, chia 2 cấp. Mỗi lượt 10 từ, có câu ví dụ và kiểm tra nhanh.", h:"#tu-vung", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 1–5 · chấm /990", hue:"#D7192D", t:"Giải đề ETS 2026 · Test 1–5", d:"Luyện từng Part 6–54 câu, luyện riêng Nghe/Đọc hoặc full test 200 câu đúng 120 phút. Chấm điểm ước tính /990, sổ câu sai.", h:"de-thi.html", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 6–10 · thi thử", hue:"#8E0D1D", t:"ETS 2026 · Test 6–10", d:"5 đề còn lại của bộ ETS 2026 cho thi thử định kỳ trên lớp.", h:"de-thi.html", lv:"cls"},
+    {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án. Test 1–5 mở cho tài khoản, Test 6–10 cho học viên lớp.", h:"listening-lab-2026/", lv:"acc", off:!LAB26},
     {cv:"Listening Lab", cs:"ETS 2023 · Test 1–3", hue:"#6D4AA8", t:"Listening Lab ETS 2023", d:"Nghe đục lỗ Test 1–3: chọn đáp án, chép chính tả, nghe lại từng câu, tô câu chứa đáp án.", h:"listening-lab/", lv:"cls"},
     {cv:"Daily 15", cs:"Part 7 mỗi ngày", hue:"#B45309", t:"Part 7 Daily 15", d:"Mỗi ngày 15 phút đọc Part 7: chia đoạn ghi nhớ, từ khoá khó, ôn lại theo ngày.", h:"ngu-phap/#/p7", lv:"cls"},
-    {cv:"Lớp học", cs:"Chữa đề cùng giáo viên", hue:"#15803D", t:"Chữa đề cùng giáo viên", d:"Học viên lớp được chữa câu sai theo dạng và theo dõi tiến độ hằng tuần.", h:"#hoc-cung-giao-vien", lv:"cls"}
-  ];
+    {cv:"Lớp học", cs:"Chữa đề cùng giáo viên", hue:"#15803D", t:"Chữa đề cùng giáo viên", d:"Học viên lớp được chữa câu sai theo dạng và theo dõi tiến độ hằng tuần.", h:"#hoc-vien", lv:"cls"}
+  ].filter(function(a){ return !a.off; });
   var LB = {open:['<span class="tagx open">Mở cho mọi người</span>', "Học ngay"], acc:['<span class="tagx acc">Tài khoản miễn phí</span>', s ? "Vào học" : "Tạo tài khoản để học"], cls:['<span class="tagx cls">Học viên lớp</span>', cls ? "Vào học" : "Tìm hiểu lớp học"]};
   var ARR = '<svg class="azi" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   $("#apps").innerHTML = A.map(function(a, i){
     var locked = (a.lv === "acc" && !s) || (a.lv === "cls" && !cls);
-    var h = a.lv === "acc" && !s ? "#dang-ky" : (a.lv === "cls" && !cls ? "#hoc-cung-giao-vien" : a.h);
+    var h = a.lv === "acc" && !s ? "#dang-ky" : (a.lv === "cls" && !cls ? "#hoc-vien" : a.h);
     return '<a class="app' + (locked ? " locked" : "") + '" href="' + h + '">' + LB[a.lv][0] + '<span class="cv" style="--hue:' + a.hue + '"><span class="cv-n">0' + (i + 1) + '</span><span class="cv-t">' + esc(a.cv) + '</span><span class="cv-s">' + esc(a.cs) + '</span></span><span class="app-b"><h3>' + esc(a.t) + '</h3><p>' + esc(a.d) + '</p><span class="go">' + (locked ? "🔒 " : "") + LB[a.lv][1] + ' ' + ARR + '</span></span></a>';
   }).join("");
 }
@@ -1626,7 +1725,24 @@ function exHtml(ex, k){
     (ex.script ? '<div class="listen"><button class="btn btn-ghost btn-sm" data-say="' + id + '">' + ICON.spk.replace("<svg", '<svg width="16" height="16"') + ' Nghe (máy đọc)</button><button class="btn btn-ghost btn-sm" data-scr="' + id + '">Hiện lời thoại</button></div><div class="script">' + esc(ex.script) + '</div>' : "") +
     '<div class="opts' + (ex.options.join("").length > 90 ? " one" : "") + '">' + ex.options.map(function(o, j){ return '<button class="opt" data-ex="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + esc(o) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
 }
-var EXMAP = {};
+var EXMAP = {}, RX = null;
+function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611120804"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
+function rxHtml(ex, k){
+  var id = "rx-" + k, h = '<div class="q rq" id="' + id + '"><div class="q-h"><span class="src">Đề thật · ' + esc(ex.src) + '</span>' + (ex.group ? '<span>' + esc(ex.group) + '</span>' : "") + '</div>';
+  if(ex.passages) h += ex.passages.map(function(p){ var t = esc(p.text).replace(/\{\{(\d+)\}\}/g, function(_, n){ return '<span class="bl' + (+n === ex.blank ? " me" : "") + '">(' + n + ')</span>'; }); return '<div class="pas">' + (p.title ? "<h4>" + esc(p.title) + "</h4>" : "") + t + '</div>'; }).join("");
+  if(ex.img) h += '<img class="pic" src="' + esc(ex.img) + '" alt="Tranh câu ' + esc(ex.src) + '" loading="lazy">';
+  if(ex.audio) h += '<audio controls preload="none" src="' + esc(ex.audio) + '"></audio>';
+  if(ex.part <= 2) h += '<p class="q-t" style="color:var(--ink-2);font-size:15px">' + (ex.part === 1 ? "Nghe 4 câu mô tả, chọn câu đúng với tranh." : "Nghe câu hỏi và 3 câu trả lời, chọn câu đáp phù hợp.") + ' Lời thoại hiện sau khi chọn.</p>';
+  else if(ex.q && ex.part !== 6) h += '<p class="q-t">' + esc(ex.q).replace(/-{4,}/g, '<span class="blank"></span>') + '</p>';
+  var scr = "";
+  if(ex.script) scr = ex.script.map(function(l){ var t = l.seg ? l.seg.map(function(x){ return x.hit ? "<mark>" + esc(x.t) + "</mark>" : esc(x.t); }).join(" ") : esc(l.t); return '<p><span class="sp">' + esc(l.sp.replace(/^S$/, "Người nói")) + ':</span>' + t + '</p>'; }).join("");
+  if(ex.part <= 2) scr = (ex.part === 2 ? '<p><span class="sp">Q:</span>' + esc(ex.q) + '</p>' : "") + ex.options.map(function(o, j){ return '<p><span class="sp">(' + "ABCD"[j] + ')</span>' + esc(o) + '</p>'; }).join("");
+  if(scr) h += '<div class="listen"><button class="btn btn-ghost btn-sm" data-rscr="' + id + '">Hiện lời thoại</button></div><div class="scr">' + scr + '</div>';
+  var opts = ex.part <= 2 ? ex.options.map(function(o, j){ return "(" + "ABCD"[j] + ")"; }) : ex.options;
+  h += '<div class="opts' + (opts.join("").length > 90 ? " one" : "") + '">' + opts.map(function(o, j){ return '<button class="opt" data-rx="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + (ex.part <= 2 ? '<span style="color:var(--ink-3)">Chọn ' + "ABCD"[j] + '</span>' : esc(o)) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
+  EXMAP[id] = {ex: ex, real: 1};
+  return h;
+}
 function renderMethods(focus){
   EXMAP = {};
   var tid = focus, part = null;
@@ -1635,21 +1751,35 @@ function renderMethods(focus){
   var P = M.filter(function(p){ return p.part === part; })[0];
   var nav = '<div class="parts-nav">' + M.map(function(p){ return '<a href="#phuong-phap/p' + p.part + '" class="' + (p.part === part ? "on" : "") + '">Part ' + p.part + '</a>'; }).join("") + '</div>';
   var mdone = AZT.get("azt_method") || {};
+  if(!RX) return loadRX(function(){ renderMethods(focus); });
   var body = nav + '<div class="part-h"><h2>' + esc(P.name) + '</h2><span>' + esc(P.count) + ' · ' + esc(P.time) + '</span></div><p class="part-why">' + esc(P.why) + '</p>' +
+    (P.flow ? '<div class="flow"><b class="t">Quy trình làm cả Part ' + P.part + '</b><ol>' + P.flow.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + '</ol></div>' : "") +
     P.types.map(function(t){
       var exs = t.examples.map(function(ex, i){ var k = t.id + "-" + i; EXMAP[ "ex-" + k ] = {ex: ex, t: t.id}; return exHtml(ex, k); }).join("");
       return '<details class="mt" id="m-' + t.id + '"' + (t.id === tid || (!tid && t === P.types[0]) ? " open" : "") + '><summary><span class="t">' + esc(t.name) + '</span>' + (mdone[t.id] ? '<span class="chip open">Đã làm</span>' : "") + '<span class="chip">Chặng ' + t.stage + '</span><span class="chev">' + ICON.chev + '</span></summary><div class="mt-b">' +
         '<div class="spot"><b>Nhận diện:</b> ' + esc(t.spot) + '</div><div class="mcols"><div><p class="box-t" style="color:var(--ink)">3 bước làm bài</p><ol class="steps">' + t.steps.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("") + '</ol></div><div>' +
         (t.traps.length ? '<div class="traps"><p class="box-t">Bẫy hay gặp</p><ul>' + t.traps.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("") + '</ul></div>' : "") +
         (t.tips.length ? '<div class="tips"><p class="box-t">Mẹo của giáo viên</p><ul>' + t.tips.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("") + '</ul></div>' : "") +
-        '</div></div><p class="ex-h">Bài ví dụ (AZEnglish soạn theo định dạng đề thật)</p>' + exs + '</div></details>';
+        '</div></div>' + (t.sig ? '<div class="sig"><b>Cụm tín hiệu cần thuộc:</b> ' + esc(t.sig) + '</div>' : "") +
+        ((RX[t.id] || []).length ? '<p class="ex-h">Ví dụ đề thật ETS 2026: làm thử, rồi xem lời giải</p>' + RX[t.id].map(function(ex, i){ return rxHtml(ex, t.id + "-" + i); }).join("") : "") +
+        '<p class="ex-h">Bài luyện thêm (AZEnglish soạn theo định dạng đề thật)</p>' + exs + '</div></details>';
     }).join("") +
     '<div class="card" style="margin-top:22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><b>Luyện dạng này trên đề thật</b><div style="color:var(--ink-2);font-size:14px">' + (AZT.session() ? "Áp dụng ngay vào ETS 2026 Test 1–5." : "Tạo tài khoản miễn phí để giải 5 đề ETS 2026 có chấm điểm.") + '</div></div>' +
     (AZT.session() ? '<a class="btn btn-red" href="de-thi.html">Vào giải đề ETS 2026</a>' : '<a class="btn btn-red" href="#dang-ky">Tạo tài khoản miễn phí</a>') + '</div>';
-  page('<a href="#phuong-phap">Phương pháp làm bài</a>', "Phương pháp làm bài theo từng dạng", "Mở miễn phí cho mọi người. Mỗi dạng câu: cách nhận diện, 3 bước làm, bẫy hay gặp và bài ví dụ có lời giải.", body);
+  page('<a href="#phuong-phap">Phương pháp làm bài</a>', "Phương pháp làm bài theo từng dạng", "Mở miễn phí cho mọi người. Mỗi Part có quy trình làm bài và thời gian; mỗi dạng câu có cách nhận diện, 3 bước làm, bẫy hay gặp, cụm tín hiệu cần thuộc, ví dụ đề thật ETS 2026 (tranh, audio, lời thoại) và lời giải chi tiết.", body);
   if(tid){ var el = document.getElementById("m-" + tid); if(el) setTimeout(function(){ window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 84, behavior: "instant"}); }, 30); }
 }
 view.addEventListener("click", function(e){
+  var r = e.target.closest("[data-rx]");
+  if(r){
+    var rid = r.getAttribute("data-rx"), ro = +r.getAttribute("data-o"), rit = EXMAP[rid], rbox = document.getElementById(rid);
+    rbox.querySelectorAll(".opt").forEach(function(x, j){ x.disabled = true; if(j === rit.ex.answer) x.classList.add("right"); else if(j === ro) x.classList.add("wrong"); });
+    rbox.querySelector(".ex-res").innerHTML = '<div class="expl"><b>' + (ro === rit.ex.answer ? "Chính xác. " : "Đáp án " + "ABCD"[rit.ex.answer] + ". ") + '</b>' + esc(rit.ex.note) + '</div>' + (rit.ex.para ? '<div class="para"><b>Câu chứa đáp án → phương án:</b> ' + esc(rit.ex.para) + '</div>' : "");
+    var rs = rbox.querySelector(".scr"); if(rs) rs.classList.add("on");
+    if(ro === rit.ex.answer) markDay("m");
+    return;
+  }
+  var rsb = e.target.closest("[data-rscr]"); if(rsb){ document.getElementById(rsb.getAttribute("data-rscr")).querySelector(".scr").classList.toggle("on"); return; }
   var b = e.target.closest("[data-ex]");
   if(b){
     var id = b.getAttribute("data-ex"), o = +b.getAttribute("data-o"), it = EXMAP[id], box = document.getElementById(id);
@@ -1672,7 +1802,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611081229";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611120804";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -1788,7 +1918,7 @@ function renderAuth(mode, next){
       if(!r || !r.ok){ m.className = "msg err"; m.textContent = (r && r.error) || "Chưa thực hiện được."; if(r && r.exists) setTimeout(function(){ location.hash = "#dang-nhap"; }, 1400); return; }
       m.className = "msg ok"; m.textContent = r.restored ? "Đã tải tiến độ học của bạn." : "Thành công!";
       AZT.put("azt_stage", r.s.stage);
-      setTimeout(function(){ if(next && /^(de-thi\.html|ngu-phap\/|listening-lab\/|index\.html)/.test(next)) location.href = next; else if(next && next.charAt(0) === "#") location.hash = next; else { location.hash = ""; renderAll(); loadBoard(r.s.stage); setTimeout(function(){ $("#hom-nay").scrollIntoView(); }, 50); } }, 500);
+      setTimeout(function(){ if(next && /^(de-thi\.html|ngu-phap\/|listening-lab(-2026)?\/|index\.html)/.test(next)) location.href = next; else if(next && next.charAt(0) === "#") location.hash = next; else { location.hash = ""; renderAll(); loadBoard(r.s.stage); setTimeout(function(){ $("#hom-nay").scrollIntoView(); }, 50); } }, 500);
     });
   });
 }
@@ -1798,7 +1928,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611081229"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611120804"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
@@ -1867,13 +1997,14 @@ function renderCert(code){
 }
 
 /* ================= ĐIỀU HƯỚNG ================= */
-var SECTIONS = ["lien-he","hoi-dap","thanh-tich","lo-trinh","chuong-trinh","xep-hang","hoc-cung-giao-vien","lam-thu","hom-nay","giao-vien"];
+var SECTIONS = ["hoc-phi","lien-he","hoi-dap","thanh-tich","lo-trinh","chuong-trinh","xep-hang","hoc-cung-giao-vien","lam-thu","hom-nay","giao-vien"];
 function route(){
   var h = decodeURIComponent(location.hash.replace(/^#/, "")), base = h.split("?")[0], parts = base.split("/");
   if(parts[0] === "phuong-phap") return renderMethods(parts[1]);
   if(parts[0] === "tu-vung") return renderVocab(parts[1]);
-  if(parts[0] === "dang-nhap" || parts[0] === "dang-ky"){ if(AZT.session()){ var nx = nextOf(); if(nx && /^(de-thi\.html|ngu-phap\/|listening-lab\/)/.test(nx)){ location.href = nx; return; } if(!nx){ location.hash = "#tai-khoan"; return; } } return renderAuth(parts[0]); }
+  if(parts[0] === "dang-nhap" || parts[0] === "dang-ky"){ if(AZT.session()){ var nx = nextOf(); if(nx && /^(de-thi\.html|ngu-phap\/|listening-lab(-2026)?\/)/.test(nx)){ location.href = nx; return; } if(!nx){ location.hash = "#tai-khoan"; return; } } return renderAuth(parts[0]); }
   if(parts[0] === "tai-khoan") return renderAccount();
+  if(parts[0] === "hoc-vien") return renderClass();
   if(parts[0] === "so-cau-sai") return renderWrong();
   if(parts[0] === "chung-nhan") return renderCert(parts.slice(1).join("/"));
   document.body.classList.remove("in-view"); view.innerHTML = "";
@@ -1892,7 +2023,7 @@ function renderMock(){
   a.href = "de-thi.html#/test/ets2026-test1/" + (doneFull ? "result-full" : "intro-full"); a.textContent = doneFull ? "Xem lại full test" : "Làm full test";
   n.textContent = sent ? "Đã gửi nhận xét tới " + (m.email || s.email || "email của bạn") + "." : (s.email ? "Nhận xét sẽ gửi tới " + s.email + "." : "Bạn nhập email ở màn bắt đầu để nhận nhận xét.");
 }
-function renderAll(){ renderTop(); renderToday(); renderStages(); renderApps(); renderMock(); }
+function renderAll(){ renderFees(); renderTop(); renderToday(); renderStages(); renderApps(); renderMock(); }
 if(TCH){ $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").parentNode.style.display = "none"; }
 renderAll(); renderTrial(); route(); loadBoard();
 AZT.refresh().then(function(){ renderAll(); if(document.body.classList.contains("in-view") && /tai-khoan/.test(location.hash)) renderAccount(); });
