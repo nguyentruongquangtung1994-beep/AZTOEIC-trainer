@@ -636,7 +636,7 @@ load(last&&TESTS.includes(last.t)?last.t:TESTS[0]);
       box.className = "azt-lock";
       var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
       box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
-        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Học viên lớp: vào Khu học viên lớp và nhập mã lớp giáo viên gửi để mở ngay.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Nhập mã lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
         : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
       document.body.appendChild(box);
       document.documentElement.classList.add("azt-locked");

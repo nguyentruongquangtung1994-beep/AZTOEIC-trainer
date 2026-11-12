@@ -593,21 +593,21 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611121519"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611121519"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611121519"></script>
-<script src="data/topic-4-dai-tu.js?v=202611121519"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611121519"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611121519"></script>
-<script src="data/topic-7-tu-loai.js?v=202611121519"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611121519"></script>
-<script src="data/topic-9-so-sanh.js?v=202611121519"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611121519"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611121519"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611121519"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611121519"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611121519"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611121519"></script>
+<script src="data/topic-1-cac-thi.js?v=202611121944"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611121944"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611121944"></script>
+<script src="data/topic-4-dai-tu.js?v=202611121944"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611121944"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611121944"></script>
+<script src="data/topic-7-tu-loai.js?v=202611121944"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611121944"></script>
+<script src="data/topic-9-so-sanh.js?v=202611121944"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611121944"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611121944"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611121944"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611121944"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611121944"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611121944"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -1871,7 +1871,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       box.className = "azt-lock";
       var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
       box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
-        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Học viên lớp: vào Khu học viên lớp và nhập mã lớp giáo viên gửi để mở ngay.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Nhập mã lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
         : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
       document.body.appendChild(box);
       document.documentElement.classList.add("azt-locked");

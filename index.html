@@ -823,7 +823,7 @@ html body a.card > .tn{display:flex;align-items:center}
       <details><summary>Mỗi ngày nên học bao lâu?</summary><p>Khoảng 20 phút theo phần "Hôm nay học gì": một dạng câu, một bài ngữ pháp, 10 từ vựng và một phần đề. Ở chặng 600 – 800+, mỗi tuần thêm một full test 120 phút để quen áp lực thời gian. Muốn tăng điểm nhanh, nên học 45–60 phút/ngày.</p></details>
       <details><summary>Học trên điện thoại được không?</summary><p>Được. Tiến độ lưu theo số điện thoại, nên học trên điện thoại rồi mở máy tính vẫn tiếp tục đúng bài, đúng chặng. Phần Nghe nên dùng tai nghe.</p></details>
       <details><summary>Lớp TOEIC học ở đâu, có online không?</summary><p>Lớp học tại AZEnglish, 100 Hà Thanh, Nha Trang, có cả hình thức online cho học viên ở xa. Nhắn Zalo 0971 882 096 để biết lịch lớp gần nhất.</p></details>
-      <details><summary>Học viên lớp đăng nhập thế nào?</summary><p>Dùng đúng số điện thoại đã đăng ký học với AZEnglish: tạo tài khoản (hoặc đăng nhập nếu đã có), rồi báo AZEnglish số điện thoại đó. AZEnglish mở gói Lớp cho tài khoản, bạn vào <a href="#hoc-vien">Khu học viên lớp</a> là thấy toàn bộ tài nguyên riêng. Mỗi tài khoản dùng cho một học viên.</p></details>
+      <details><summary>Học viên lớp đăng nhập thế nào?</summary><p>Tạo tài khoản bằng số điện thoại của bạn (hoặc đăng nhập nếu đã có), vào <a href="#hoc-vien">Khu học viên lớp</a> rồi nhập mã lớp giáo viên gửi trong nhóm lớp. Tài khoản chuyển sang gói Lớp ngay, mở toàn bộ tài nguyên riêng. Mỗi mã có giới hạn số học viên, mỗi học viên dùng tài khoản riêng.</p></details>
       <details><summary>Quên mật khẩu thì làm sao?</summary><p>Nhắn Zalo AZEnglish 0971 882 096 kèm số điện thoại đã đăng ký, AZEnglish sẽ hỗ trợ cấp lại. Tiến độ học không bị mất.</p></details>
     </div>
   </div></section>
@@ -1013,7 +1013,7 @@ html body a.card > .tn{display:flex;align-items:center}
       box.className = "azt-lock";
       var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
       box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
-        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Học viên lớp: vào Khu học viên lớp và nhập mã lớp giáo viên gửi để mở ngay.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Nhập mã lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
         : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
       document.body.appendChild(box);
       document.documentElement.classList.add("azt-locked");
@@ -2025,19 +2025,30 @@ function clsApps(){
 }
 function renderClass(){
   var s = AZT.session(), cls = AZT.isClass(), nx = "?next=" + encodeURIComponent("#hoc-vien"), body;
-  var steps = '<ol class="cls-steps"><li><b>Đăng ký lớp</b> TOEIC tại AZEnglish (<a href="#hoc-phi">xem học phí</a>).</li><li><b>Tạo tài khoản</b> bằng đúng số điện thoại đã đăng ký học, hoặc đăng nhập nếu đã có.</li><li><b>Báo AZEnglish</b> số điện thoại đó qua Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a>. AZEnglish mở gói Lớp, bạn quay lại trang này là vào học.</li></ol>';
+  var steps = '<ol class="cls-steps"><li><b>Đăng ký lớp</b> TOEIC tại AZEnglish (<a href="#hoc-phi">xem học phí</a>).</li><li><b>Tạo tài khoản</b> bằng số điện thoại của bạn, hoặc đăng nhập nếu đã có. Mỗi học viên một tài khoản riêng.</li><li><b>Nhập mã lớp</b> giáo viên gửi trong nhóm lớp vào ô "Mã lớp" ở trang này. Tài khoản chuyển sang gói Lớp ngay. Chưa có mã? Nhắn Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a>.</li></ol>';
   if(cls){
     body = '<div class="card" style="margin-bottom:18px"><span class="eyebrow">Xin chào ' + esc((s.name || "").trim().split(/\s+/).pop()) + '</span><p style="margin:8px 0 0;color:var(--ink-2)">Tài khoản ' + esc(s.phone) + ' đang ở <span class="chip cls">Gói Lớp</span>. Toàn bộ tài nguyên riêng của lớp ở bên dưới; ngữ pháp, từ vựng, Test 1–5 vẫn ở <a href="#chuong-trinh">Chương trình</a>.</p></div>' + clsApps();
     page("Khu học viên lớp", "Khu học viên lớp", "Tài nguyên dành riêng cho học viên lớp TOEIC tại AZEnglish.", body);
     return;
   }
   var left = s
-    ? '<div class="card"><span class="eyebrow">Tài khoản của bạn</span><h3 style="font-size:20px;margin:8px 0">' + esc(s.name) + ' · ' + esc(s.phone) + '</h3><p style="color:var(--ink-2);margin:0 0 14px">Đang ở <span class="chip acc">Gói ' + esc(s.goi || "Tự học") + '</span>. Nếu bạn đã đăng ký lớp, nhắn Zalo AZEnglish số điện thoại này để được mở gói Lớp, rồi bấm Kiểm tra lại.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-red" id="clsRe">Kiểm tra lại</button><a class="btn btn-ghost" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Nhắn Zalo AZEnglish</a></div><div class="msg" id="clsMsg" role="status" style="margin-top:10px"></div></div>'
+    ? '<div class="card"><span class="eyebrow">Nhập mã lớp</span><h3 style="font-size:20px;margin:8px 0">' + esc(s.name) + ' · ' + esc(s.phone) + '</h3><p style="color:var(--ink-2);margin:0 0 14px">Đang ở <span class="chip acc">Gói ' + esc(s.goi || "Tự học") + '</span>. Nhập mã lớp giáo viên gửi để mở tài nguyên học viên lớp cho tài khoản này.</p><form id="clsForm" novalidate style="display:flex;gap:10px;flex-wrap:wrap"><input name="code" placeholder="Ví dụ: TOEIC-K12" autocomplete="off" autocapitalize="characters" spellcheck="false" style="flex:1;min-width:180px;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;font:inherit;font-size:16px;letter-spacing:.04em;text-transform:uppercase"><button class="btn btn-red" type="submit">Mở gói Lớp</button></form><div class="msg" id="clsMsg" role="status" style="margin-top:10px"></div><p class="note" style="margin:12px 0 0;font-size:13.5px;color:var(--ink-3)">Không có mã nhưng đã đóng học phí? <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">Nhắn Zalo AZEnglish</a> kèm số điện thoại, AZEnglish mở giúp rồi bạn bấm <a href="#" id="clsRe">Kiểm tra lại</a>.</p></div>'
     : '<div class="card"><span class="eyebrow">Đăng nhập học viên lớp</span><p style="color:var(--ink-2);margin:8px 0 16px">Học viên lớp dùng chung tài khoản AZTOEIC Academy, đăng nhập bằng số điện thoại và mật khẩu. Tiến độ lưu theo tài khoản, học trên máy nào cũng tiếp được.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-red" href="#dang-nhap' + nx + '">Đăng nhập</a><a class="btn btn-ghost" href="#dang-ky' + nx + '">Tạo tài khoản</a></div></div>';
   body = '<div class="cls-grid"><div>' + left + '<h3 style="font-size:18px;margin:24px 0 12px">Cách vào khu học viên</h3>' + steps + '</div><div><div class="card"><span class="eyebrow">Mở khi là học viên lớp</span><ul class="perk-list" style="margin-top:12px"><li>ETS 2026 Test 6–10, luyện Part và thi thử 120 phút</li>' + (LAB26 ? '<li>Listening Lab ETS 2026 đủ Test 1–10</li>' : "") + '<li>Listening Lab ETS 2023 Test 1–3</li><li>Part 7 Daily 15 mỗi ngày</li><li>Giáo viên chữa câu sai theo dạng, theo dõi tiến độ hằng tuần</li></ul><a class="btn btn-ghost" style="margin-top:14px" href="#hoc-phi">Xem học phí</a></div></div></div>';
   page("Khu học viên lớp", "Khu học viên lớp", "Tài nguyên dành riêng cho học viên lớp TOEIC tại AZEnglish.", body);
-  var re = $("#clsRe"); if(re) re.addEventListener("click", function(){ var m = $("#clsMsg"); re.disabled = true; m.className = "msg"; m.textContent = "Đang kiểm tra…";
-    AZT.refresh().then(function(){ re.disabled = false; if(AZT.isClass()){ renderAll(); renderClass(); } else { m.className = "msg err"; m.textContent = "Tài khoản vẫn ở gói Tự học. AZEnglish sẽ mở sau khi xác nhận học phí."; } }); });
+  var re = $("#clsRe"); if(re) re.addEventListener("click", function(e){ e.preventDefault(); var m = $("#clsMsg"); m.className = "msg"; m.textContent = "Đang kiểm tra…";
+    AZT.refresh().then(function(){ if(AZT.isClass()){ renderAll(); renderClass(); } else { m.className = "msg err"; m.textContent = "Tài khoản vẫn ở gói Tự học. AZEnglish sẽ mở sau khi xác nhận học phí."; } }); });
+  var cf = $("#clsForm"); if(cf) cf.addEventListener("submit", function(e){
+    e.preventDefault(); var m = $("#clsMsg"), btn = cf.querySelector("button"), code = cf.code.value.trim();
+    if(code.length < 3){ m.className = "msg err"; m.textContent = "Bạn nhập mã lớp giáo viên gửi nhé."; return; }
+    btn.disabled = true; m.className = "msg"; m.textContent = "Đang kiểm tra mã…";
+    AZT.authed("classcode", {code: code}).then(function(r){
+      btn.disabled = false;
+      if(r && r.ok){ m.className = "msg ok"; m.textContent = "Đã vào " + (r.cls || "lớp") + ". Đang mở tài nguyên…"; AZT.refresh().then(function(){ renderAll(); renderClass(); }); return; }
+      m.className = "msg err";
+      m.textContent = r && r.auth === false ? "Phiên đăng nhập đã hết, bạn đăng nhập lại nhé." : (r && /Lệnh không hợp lệ/.test(r.error || "") ? "Máy chủ đang được cập nhật tính năng mã lớp. Bạn thử lại sau hoặc nhắn Zalo AZEnglish." : ((r && r.error) || "Chưa kiểm tra được mã, bạn thử lại nhé."));
+    });
+  });
 }
 function renderApps(){
   var s = AZT.session(), cls = AZT.isClass();
@@ -2098,7 +2109,7 @@ function exHtml(ex, k){
     '<div class="opts' + (ex.options.join("").length > 90 ? " one" : "") + '">' + ex.options.map(function(o, j){ return '<button class="opt" data-ex="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + esc(o) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
 }
 var EXMAP = {}, RX = null;
-function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611121519"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
+function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611121944"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
 function rxHtml(ex, k){
   var id = "rx-" + k, h = '<div class="q rq" id="' + id + '"><div class="q-h"><span class="src">Đề thật · ' + esc(ex.src) + '</span>' + (ex.group ? '<span>' + esc(ex.group) + '</span>' : "") + '</div>';
   if(ex.passages) h += ex.passages.map(function(p){ var t = esc(p.text).replace(/\{\{(\d+)\}\}/g, function(_, n){ return '<span class="bl' + (+n === ex.blank ? " me" : "") + '">(' + n + ')</span>'; }); return '<div class="pas">' + (p.title ? "<h4>" + esc(p.title) + "</h4>" : "") + t + '</div>'; }).join("");
@@ -2174,7 +2185,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611121519";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611121944";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -2330,7 +2341,7 @@ function renderAuth(mode, next){
       if(!r || !r.ok){ m.className = "msg err"; m.textContent = (r && r.error) || "Chưa thực hiện được."; if(r && r.exists) setTimeout(function(){ location.hash = "#dang-nhap"; }, 1400); return; }
       m.className = "msg ok"; m.textContent = r.restored ? "Đã tải tiến độ học của bạn." : "Thành công!";
       AZT.put("azt_stage", r.s.stage);
-      setTimeout(function(){ if(next && /^(de-thi\.html|ngu-phap\/|listening-lab(-2026)?\/|index\.html)/.test(next)) location.href = next; else if(next && next.charAt(0) === "#") location.hash = next; else { location.hash = ""; renderAll(); loadBoard(r.s.stage); setTimeout(function(){ $("#hom-nay").scrollIntoView(); }, 50); } }, 500);
+      setTimeout(function(){ if(next && /^(de-thi\.html|ngu-phap\/|listening-lab(-2026)?\/|index\.html)/.test(next)) location.href = next; else if(next && next.charAt(0) === "#"){ renderAll(); location.hash = next; } else { location.hash = ""; renderAll(); loadBoard(r.s.stage); setTimeout(function(){ $("#hom-nay").scrollIntoView(); }, 50); } }, 500);
     });
   });
 }
@@ -2340,7 +2351,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611121519"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611121944"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
