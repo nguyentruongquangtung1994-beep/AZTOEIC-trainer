@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Listening Lab ETS 2026 · AZTOEIC Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --hl:#FFF1A8; --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --hl:#3D3512; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:900px;margin:0 auto}
+header.top{padding-block:24px 8px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end;justify-content:space-between}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,38px);line-height:1.08;margin:.2em 0 0;letter-spacing:-.01em}
+.tests{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--display);font-weight:700;font-size:13px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip.on{background:var(--red);border-color:var(--red);color:#fff}
+.chip:hover{border-color:var(--ink)}
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:5px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.modes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.mode{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px dashed var(--line);background:transparent;color:var(--muted);padding:6px 14px;border-radius:10px;cursor:pointer}
+.mode[aria-selected="true"]{border-style:solid;border-color:var(--red);color:var(--red);background:var(--red-soft)}
+.panel-head{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:end;justify-content:space-between;margin-bottom:12px}
+.panel-head h2{font-family:var(--display);font-size:23px;line-height:1.15;margin:0}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{position:sticky;top:62px;z-index:4;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px clamp(14px,4vw,28px);margin-bottom:14px}
+.uhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.uhead .no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ground);background:var(--ink);border-radius:6px;padding:1px 8px}
+.uimg{display:block;max-width:100%;max-height:340px;border-radius:10px;border:1px solid var(--line);margin:6px 0 12px;background:#fff}
+.uimg.small{max-height:220px}
+.transcript p{margin:0 0 .7em}
+.spk{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.08em;color:var(--red);margin-right:4px}
+.acc{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.lab{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--muted);margin-right:4px}
+.rp{font-size:10px;border:1px solid var(--line);background:var(--ground);color:var(--muted);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer;vertical-align:2px;margin-right:3px}
+.rp:hover{border-color:var(--ink);color:var(--ink)}
+.rp.on{background:var(--red);color:#fff;border-color:var(--red)}
+.sent.ans.show{background:var(--hl);border-radius:4px}
+.qn{display:none;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px;margin-right:4px}
+.sent.ans.show .qn{display:inline}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid;cursor:help}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.gap.done .opt{cursor:help}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc,.wgap .hint1{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft);cursor:help}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft);cursor:help}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+:root[data-theme="dark"] .opt.sel{background:var(--red);border-color:var(--red);color:#fff}
+:root[data-theme="dark"] .opt.is-ans,:root[data-theme="dark"] .opt.is-ans .l{color:#0B2416}
+.note{border-left:4px solid var(--red);background:var(--ground);border-radius:0 12px 12px 0;padding:8px 12px;font-size:15px;line-height:1.6;margin-top:10px}
+.note b.w{font-family:var(--display);font-size:17px}
+.ipa{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;border-radius:999px;padding:0 8px;background:var(--paper);border:1px solid var(--line);margin-right:4px}
+.keys{margin-top:12px;display:grid;gap:6px}
+.key{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14.5px;line-height:1.55;background:var(--ground)}
+.para{display:inline-block;background:var(--red-soft);color:var(--ink);border-radius:8px;padding:0 8px;font-size:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:9px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.sm{font-size:13px;padding:5px 12px}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+/* phiếu trả lời */
+.sheet{display:grid;gap:10px}
+.qrow{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.qrow .qno{font-family:var(--mono);font-weight:700;min-width:2.4em;color:var(--red);padding-top:4px}
+.qbody{flex:1;min-width:220px}
+.qtext{font-family:var(--display);font-weight:700;line-height:1.4;margin-bottom:4px}
+.bubbles{display:flex;gap:6px;flex-wrap:wrap}
+.bub{font-family:var(--body);font-size:15px;border:1.5px solid var(--line);background:var(--chip);color:var(--ink);border-radius:10px;padding:3px 10px;cursor:pointer;text-align:left;line-height:1.45}
+.bub b{font-family:var(--mono);font-size:12px;margin-right:4px}
+.bub.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.bub.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.bub.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.bubbles.col{flex-direction:column;align-items:stretch}
+.p1grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.p1card{border:1px solid var(--line);border-radius:14px;padding:10px;background:var(--paper)}
+.p1card .uimg{margin:4px 0 8px;max-height:230px;width:100%;object-fit:contain}
+.p2grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.p2grid .qrow{border:1px solid var(--line);border-radius:12px;padding:6px 10px;background:var(--paper);align-items:center}
+table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+td,th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+th{font-family:var(--display);font-size:13px;color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+.hide{display:none!important}
+footer{margin-top:36px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media(max-width:700px){.player{position:static}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+   Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
+   Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
+:root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
+/* nút & ô nhập */
+html body :is(.btn,.ghost,.nb-btn,.opt,#chk,#rst,.ws-steps button,#tabs button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range])):not(.mchip):not(.avatar):not(.tab):not(.azp-home){border-radius:var(--r-btn)!important}
+html body :is(.btn,.ghost,.nb-btn,#chk,#rst):not(.tab){font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+html body .ws-steps button{font-weight:700!important}
+/* khối nhỏ bên trong thẻ */
+html body :is(.nb-book,.ph,.how,.board-note,.essay-raw,details.faq-i,.faq details,.ico,.ti){border-radius:var(--r-in)!important}
+/* thẻ & bảng */
+html body :is(.panel,.wk-it,.figure,nav#tabs,.ws-steps,.jmap,.rc,.pgrid,.tch,.plan,.perk,.stats,.float,.acct,.auth,.place,.step,.nb-skill,.nb-writing,.nb-strategy,.nb-stats,.nb-panel,.bk,.card,.steps,.player,.transcript,.app){border-radius:var(--r-card)!important}
+/* khung lớn */
+html body :is(aside.side,.frame,.nb-hero,.az-hero,header.top,.hello,.hero-card){border-radius:var(--r-xl)!important}
+/* biểu tượng nét mảnh */
+html body :is(.azi,.nb-skill .ico svg,.nb-strategy .i svg,.azp-ico){stroke-width:1.8!important}
+html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
+html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
+html body a.card > .tn{display:flex;align-items:center}
+</style><style id="azt-sub">/* AZTOEIC Academy — giao diện Premium AZ (xanh đêm + vàng, đồng bộ AZIELTS Academy) phủ lên các trang con (đề ETS, ngữ pháp, Listening Lab). Luôn sáng. */
+:root, :root[data-theme], :root[data-theme="dark"], :root[data-theme="light"] {
+  color-scheme: light !important;
+  --azt-navy: #0B1424; --azt-navy-2: #13233B; --azt-teal: #B8913A; --azt-teal-d: #8F6E24; --azt-teal-soft: #FAF4E6; --azt-teal-glow: #E3C27A; --azt-red: #D7192D;
+  /* TOEIC Trainer + Grammar Trainer */
+  --paper: #FFFFFF !important; --paper-2: #F7F5F0 !important; --ink: #111827 !important; --ink-soft: #4B5563 !important; --line: #E8E4DA !important;
+  --red: #D7192D !important; --red-deep: #8F6E24 !important; --red-ink: #8F6E24 !important;
+  --gold: #8F6E24 !important; --gold-bg: #FAF4E6 !important; --amber: #8F6E24 !important; --amber-bg: #FAF4E6 !important;
+  --green: #15803D !important; --green-bg: #E8F5EC !important;
+  --card-shadow: 0 1px 2px rgba(16,24,40,.05), 0 18px 40px -24px rgba(11,20,36,.28) !important;
+  --focus: 0 0 0 3px rgba(184,145,58,.30) !important;
+  --font-display: "Playfair Display", Georgia, serif !important;
+  --font-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+  /* Listening Lab */
+  --red-soft: #FDEDEF !important; --ground: #F7F5F0 !important; --muted: #4B5563 !important; --chip: #FFFFFF !important;
+  --ok: #15803D !important; --ok-soft: #E8F5EC !important; --hl: #FFF1C2 !important;
+  --display: "Playfair Display", Georgia, serif !important; --body: "Be Vietnam Pro", system-ui, sans-serif !important; --mono: "Be Vietnam Pro", system-ui, sans-serif !important;
+}
+html, body { background: #F7F5F0 !important; color: #111827; }
+body { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+#themeBtn, .themeBtn, [data-theme-toggle], button#theme { display: none !important; }
+/* banner cũ của TOEIC Trainer → khung xanh đêm */
+.banner { background: linear-gradient(135deg, #0B1424, #13233B) !important; color: #fff !important; border-radius: 20px !important; padding: 22px 24px !important; border: 0 !important; }
+.banner .logo { background: #D7192D !important; color: #fff !important; }
+.banner small { color: #E3C27A !important; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.banner h1 { color: #fff !important; font-family: "Playfair Display", Georgia, serif !important; }
+.hero-card { border-top: 3px solid #B8913A !important; }
+.hero-eyebrow { color: #8F6E24 !important; }
+.chip { border-radius: 999px !important; }
+.btn-primary, .btn.primary { background: #D7192D !important; border-color: #D7192D !important; color: #fff !important; }
+.btn-primary:hover, .btn.primary:hover { background: #B01322 !important; }
+.cta-panel, .result-panel, .hero-az { background: linear-gradient(150deg, #0B1424 0%, #13233B 70%, #2A1A22 100%) !important; color: #fff !important; }
+.hero-az .hero-eyebrow, .cta-panel .hero-eyebrow { color: #E3C27A !important; }
+.result-panel .btn-primary, .btn-light { background: #fff !important; color: #0B1424 !important; }
+
+/* ---------- Ngữ pháp TOEIC: đổi phong cách nét dày sang Premium ---------- */
+body:has(.nb-top) { background: #F7F5F0 !important; }
+body:has(.nb-top) h1, body:has(.nb-top) h2, body:has(.nb-top) h3 { font-family: "Playfair Display", Georgia, serif !important; letter-spacing: -.01em; }
+.nb-top { background: #fff !important; border-bottom: 1px solid #E8E4DA !important; top: 52px !important; }
+.nb-top, .nb-top a, .nb-logo { color: #111827 !important; }
+.nb-logo span { color: #8F6E24 !important; }
+.nb-logo i { border: 0 !important; background: #D7192D !important; }
+.nb-chip { border: 1px solid #EBDDB8 !important; box-shadow: none !important; background: #FAF4E6 !important; color: #8F6E24 !important; }
+.nb-hero h1 { font: 700 clamp(34px, 5.4vw, 60px)/1.08 "Playfair Display", Georgia, serif !important; color: #111827 !important; }
+.nb-hero h1 .hlw { background: linear-gradient(transparent 62%, #F3E4BF 62%, #F3E4BF 94%, transparent 94%) !important; }
+.nb-hero h1 em { background: #0B1424 !important; color: #E3C27A !important; border: 0 !important; box-shadow: none !important; transform: none !important; border-radius: 14px !important; padding: .04em .28em .1em !important; }
+.nb-hero .eyebrow { color: #8F6E24 !important; }
+.nb-hero-p { color: #4B5563 !important; }
+.nb-btn { border: 0 !important; box-shadow: none !important; border-radius: 10px !important; background: #D7192D !important; color: #fff !important; transform: none !important; }
+.nb-btn:hover { background: #B01322 !important; }
+.nb-bubble { border: 1px solid #E8E4DA !important; box-shadow: 0 12px 28px -14px rgba(11,20,36,.35) !important; }
+.nb-goal { border: 1px solid #E8E4DA !important; box-shadow: 0 1px 2px rgba(16,24,40,.05) !important; border-radius: 16px !important; color: #111827 !important; }
+.nb-meter { border: 0 !important; background: #EFEBE2 !important; }
+.nb-meter > * { background: #B8913A !important; }
+.nb-card { border: 0 !important; border-radius: 18px !important; box-shadow: 0 18px 40px -24px rgba(11,20,36,.45) !important; background: linear-gradient(160deg, #0B1424, #1C2E4C) !important; transform: none !important; }
+.nb-card:hover { box-shadow: 0 24px 48px -22px rgba(11,20,36,.55) !important; }
+.nb-card .ico { border: 0 !important; background: rgba(227,194,122,.16) !important; color: #E3C27A !important; }
+.nb-card li { border: 1px solid rgba(255,255,255,.35) !important; }
+.nb-card .tag { border: 0 !important; background: #E3C27A !important; color: #0B1424 !important; }
+.nb-book { border: 1px solid #E8E4DA !important; box-shadow: 0 1px 2px rgba(16,24,40,.05) !important; border-radius: 14px !important; transform: none !important; }
+.nb-book:hover { border-color: #B8913A !important; box-shadow: 0 12px 28px -16px rgba(11,20,36,.3) !important; }
+.nb-book .spine { border: 0 !important; background: #B8913A !important; }
+.nb-book .row i { border: 1px solid #E8E4DA !important; }
+.nb-legend i { border: 1px solid #D8D2C4 !important; }
+
+/* ---------- thanh AZTOEIC trên cùng ---------- */
+.azt-bar { position: sticky; top: 0; z-index: 900; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(11,20,36,.96); backdrop-filter: blur(8px); color: #fff; font: 600 13.5px/1.2 "Be Vietnam Pro", system-ui, sans-serif; }
+.azt-bar a { color: #fff; text-decoration: none; }
+.azt-home { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+.azt-home i { font-style: normal; width: 30px; height: 30px; border-radius: 8px; background: #D7192D; display: grid; place-items: center; font: 800 12px/1 "Be Vietnam Pro", sans-serif; letter-spacing: .02em; }
+.azt-home b { color: #E3C27A; font-weight: 700; }
+.azt-title { flex: 1; min-width: 0; color: rgba(255,255,255,.62); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.azt-me { padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(227,194,122,.4); color: #fff; white-space: nowrap; }
+.azt-me b { color: #E3C27A; }
+@media (max-width: 560px) { .azt-title { display: none; } .azt-home span { display: none; } .azt-bar { justify-content: space-between; } }
+
+/* ---------- khung chặn ---------- */
+html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important; }
+.azt-lock { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 16px; background: radial-gradient(120% 90% at 80% 0%, #13233B 0%, #0B1424 60%); font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+.azt-lock-card { width: 100%; max-width: 420px; background: #fff; border-radius: 20px; padding: 30px 26px 24px; text-align: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+.azt-lock-card i { font-style: normal; display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: #D7192D; color: #fff; font-weight: 800; margin-bottom: 14px; }
+.azt-lock-card h2 { font: 700 22px/1.25 "Playfair Display", Georgia, serif; color: #111827; margin: 0 0 10px; }
+.azt-lock-card p { color: #4B5563; font-size: 14px; line-height: 1.6; margin: 0 0 20px; }
+.azt-btn { display: block; padding: 13px 16px; border-radius: 10px; background: #D7192D; color: #fff; font-weight: 700; text-decoration: none; }
+.azt-btn:hover { background: #B01322; }
+.azt-link { display: block; margin-top: 12px; color: #8F6E24; font-weight: 600; font-size: 14px; text-decoration: none; }
+
+/* ---------- thông báo XP ---------- */
+.azt-toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; transition: .35s ease; z-index: 2000; background: #0B1424; color: #fff; padding: 11px 18px; border-radius: 999px; font: 600 14px/1.2 "Be Vietnam Pro", system-ui, sans-serif; box-shadow: 0 12px 30px -10px rgba(0,0,0,.45); border: 1px solid rgba(227,194,122,.35); white-space: nowrap; }
+.azt-toast.on { opacity: 1; transform: translate(-50%, 0); }
+.azt-lockrow { opacity: .78; }
+.panel .tr-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.panel .tr-links .chip { display: inline-flex; align-items: center; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-2); font-size: 12.5px; font-weight: 700; text-decoration: none; color: var(--ink); }
+.panel .tr-links .chip:first-child { background: #FAF4E6; border-color: #EBDDB8; color: #8F6E24; }
+
+/* đồng bộ kiểu chữ với AZIELTS Academy: tiêu đề Playfair 700, chữ thân Be Vietnam Pro */
+h1, h2, .panel h2, .hero-card h2, .tr-name, .score-num, .result-panel .score-num { font-family: "Playfair Display", Georgia, serif !important; font-weight: 700 !important; letter-spacing: -.01em; font-variant-numeric: lining-nums; }
+h3, h4, .q-num, .opt-btn, .btn, button, input, select, textarea { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+</style></head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div><div class="brand"><a href="../" style="color:inherit;text-decoration:none">← AZTOEIC Academy</a> · Listening Lab</div><h1 id="title">ETS 2026</h1></div>
+    <div class="tests" id="tests"></div>
+  </header>
+  <nav class="tabs" id="tabs"></nav>
+  <main id="main"></main>
+  <footer>Nguồn: ETS TOEIC 2026 — audio gốc; lời thoại do AZEnglish soát từ audio. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+<audio id="clip" preload="none"></audio>
+
+<script src="data/t1.js?v=202611120832"></script>
+<script src="data/t2.js?v=202611120832"></script>
+<script src="data/t3.js?v=202611120832"></script>
+<script src="data/t4.js?v=202611120832"></script>
+<script src="data/t5.js?v=202611120832"></script>
+<script>window.LAB_MEDIA="../";window.LAB_ALL=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];window.LAB_LOCK_URL="../#hoc-vien";</script>
+<script type="text/azt" id="aztMain">
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L="ABCD", ACC={Am:"Mỹ",Cn:"Canada",Br:"Anh",Au:"Úc"};
+const TESTS=Object.keys(window.LAB_DATA||{}).map(Number).sort((a,b)=>a-b);
+const MEDIA=window.LAB_MEDIA||"media/";
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+let T, D, S;      // số test, dữ liệu, trạng thái
+let view={part:1,mode:"sheet"}, rate=1;
+function load(t){
+  T=t; D=LAB_DATA[t];
+  S=storeGet("az-ets26-t"+t)||{};
+  S.ans=S.ans||{}; S.mc=S.mc||{}; S.wr=S.wr||{}; S.sheetDone=S.sheetDone||{}; S.checked=S.checked||{};
+  const v=storeGet("az-ets26-view"); if(v&&v.t===t){view.part=v.part;view.mode=v.mode}
+  render();
+}
+const save=()=>storeSet("az-ets26-t"+T,S);
+const saveView=()=>storeSet("az-ets26-view",{t:T,part:view.part,mode:view.mode});
+
+/* ---------- khung ---------- */
+function render(){
+  $("#title").textContent=`ETS 2026 · Test ${T}`;
+  const LOCKED=(window.LAB_ALL||[]).filter(n=>!TESTS.includes(n));
+  $("#tests").innerHTML=TESTS.map(t=>`<button class="chip ${t===T?"on":""}" data-t="${t}">Test ${t}</button>`).join("")+
+    (LOCKED.length?`<a class="chip" href="${window.LAB_LOCK_URL||"#"}" title="Dành cho học viên lớp AZEnglish">🔒 Test ${LOCKED[0]}–${LOCKED[LOCKED.length-1]}</a>`:"")+
+    `<button class="chip" id="theme"></button>`;
+  $$("#tests [data-t]").forEach(b=>b.onclick=()=>{stopClip();load(+b.dataset.t)});
+  paintTheme(); $("#theme").onclick=()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+  $("#tabs").innerHTML=D.parts.map(p=>`<button class="tab" data-p="${p.num}" aria-selected="${view.part===p.num}">Part ${p.num}<span class="cnt">${p.mcN+p.wrN} ô</span></button>`).join("")+
+    `<button class="tab" data-p="0" aria-selected="${view.part===0}">Sổ từ vựng</button>`;
+  $$("#tabs .tab").forEach(b=>b.onclick=()=>{view.part=+b.dataset.p;saveView();stopClip();render();window.scrollTo(0,0)});
+  if(view.part===0) return renderVocab();
+  const P=D.parts.find(p=>p.num===view.part)||D.parts[0]; view.part=P.num;
+  const first=P.units[0].id.split("-")[0], last=P.units[P.units.length-1].id.split("-").pop();
+  $("#main").innerHTML=`
+    <div class="modes"><button class="mode" data-m="sheet" aria-selected="${view.mode==="sheet"}">① Nghe & trả lời</button>
+      <button class="mode" data-m="gap" aria-selected="${view.mode==="gap"}">② Nghe, chọn & viết</button></div>
+    <div class="player"><audio id="aud" controls preload="metadata" src="${MEDIA+P.units[0].audio}"></audio><span class="progress" id="nowp">Câu ${P.units[0].id} · 1/${P.units.length}</span>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===rate?"on":""}">${r}×</button>`).join("")}</div></div>
+    <div id="body"></div>`;
+  $$(".mode").forEach(b=>b.onclick=()=>{view.mode=b.dataset.m;saveView();stopClip();render()});
+  const aud=$("#aud"); aud.playbackRate=rate; aud.addEventListener("play",stopClip);
+  // phát nối tiếp cả Part: hết đoạn này tự sang đoạn sau
+  let pi=0; const setUnit=(i,play)=>{pi=i;aud.src=MEDIA+P.units[i].audio;aud.playbackRate=rate;$("#nowp").textContent=`Câu ${P.units[i].id} · ${i+1}/${P.units.length}`;if(play)aud.play()};
+  aud.addEventListener("ended",()=>{if(pi+1<P.units.length)setUnit(pi+1,true)});
+  aud.addEventListener("loadedmetadata",()=>{aud.playbackRate=rate});
+  window.playUnit=i=>{stopClip();setUnit(i,true);aud.scrollIntoView({block:"nearest"})};
+  $("#spd").onclick=e=>{const b=e.target.closest("button");if(!b)return;rate=+b.dataset.r;aud.playbackRate=rate;$$("#spd button").forEach(x=>x.classList.toggle("on",x===b))};
+  if(view.mode==="sheet") renderSheet(P,first,last); else renderGap(P,first,last);
+}
+
+/* ---------- ① phiếu trả lời (như thi thật) ---------- */
+function renderSheet(P,first,last){
+  const done=!!S.sheetDone[P.num], nOpt=P.num===2?3:4;
+  const qs=P.units.flatMap(u=>u.qs.map(q=>({...q,u})));
+  const bubbles=(q,col)=>`<div class="bubbles ${col?"col":""}">${Array.from({length:nOpt},(_,j)=>{
+      const sel=S.ans[q.n]===j, cls=done?(j===S.ans[q.n]?(j===q.a?"ok":"bad"):""):(sel?"sel":"");
+      return `<button class="bub ${cls}" data-q="${q.n}" data-j="${j}"><b>${L[j]}</b>${q.o?esc(q.o[j]):""}</button>`}).join("")}</div>`;
+  let html=`<div class="panel-head"><div><div class="kicker">Part ${P.num} · Câu ${first}–${last} · Như thi thật</div><h2>Nghe 1 lượt, chọn đáp án</h2></div><span class="progress" id="prog"></span></div>
+    <p class="how">Bấm ▶ trên thanh audio và nghe liền một mạch như phòng thi, không dừng. Chọn đáp án rồi bấm <b>Nộp bài</b>. Đáp án đúng và câu chứa đáp án sẽ hiện khi bạn làm xong chế độ ② và bấm Chấm bài.</p>`;
+  if(P.num===1) html+=`<div class="p1grid">${P.units.map(u=>`<div class="p1card"><div class="uhead"><span class="no">${u.id}</span></div>${img(u)}${bubbles(u.qs[0])}</div>`).join("")}</div>`;
+  else if(P.num===2) html+=`<div class="box"><div class="p2grid">${qs.map(q=>`<div class="qrow"><span class="qno">${q.n}</span>${bubbles(q)}</div>`).join("")}</div></div>`;
+  else html+=P.units.map(u=>`<div class="box"><div class="uhead"><span class="no">Câu ${u.id}</span></div>${img(u,true)}<div class="sheet">${u.qs.map(q=>`<div class="qrow"><span class="qno">${q.n}</span><div class="qbody"><div class="qtext">${esc(q.q||"")}</div>${bubbles(q,true)}</div></div>`).join("")}</div></div>`).join("");
+  html+=`<div class="actions"><button class="btn primary" id="sub">${done?"Làm lại phiếu":"Nộp bài"}</button><span class="score" id="sc" ${done?"":"hidden"}></span>
+    ${done?`<button class="btn" id="go2">Sang ② Nghe, chọn & viết →</button>`:""}</div>`;
+  $("#body").innerHTML=html;
+  const count=()=>{const a=qs.filter(q=>S.ans[q.n]!==undefined).length,r=qs.filter(q=>S.ans[q.n]===q.a).length;
+    $("#prog").textContent=`Đã chọn ${a}/${qs.length}`; if(done) $("#sc").textContent=`Đúng ${r}/${qs.length}`};
+  count();
+  $("#body").onclick=e=>{const b=e.target.closest(".bub");if(!b||done)return;S.ans[b.dataset.q]=+b.dataset.j;save();
+    $$(`.bub[data-q="${b.dataset.q}"]`).forEach(x=>x.classList.toggle("sel",x===b));count()};
+  $("#sub").onclick=()=>{if(done){qs.forEach(q=>delete S.ans[q.n]);S.sheetDone[P.num]=false}else S.sheetDone[P.num]=true;save();render()};
+  if(done) $("#go2").onclick=()=>{view.mode="gap";saveView();render();window.scrollTo(0,0)};
+}
+function img(u,small){return u.img?`<img class="uimg ${small?"small":""}" src="${MEDIA+u.img}" alt="Hình cho câu ${u.id}" loading="lazy" onerror="this.remove()">`:""}
+
+/* ---------- ② script đục lỗ ---------- */
+function shuffle(a,seed){a=a.slice();for(let i=a.length-1;i>0;i--){seed=(seed*9301+49297)%233280;const j=Math.floor(seed/233280*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const k=(p,n)=>p+"-"+n;
+const uKey=(P,ui)=>P.num+"-u"+ui;
+const isChecked=(P,ui)=>!!(S.checked[uKey(P,ui)]||S.checked[P.num]);
+let SENTS=[];
+function renderGap(P,first,last){
+  SENTS=[];
+  let html=`<div class="panel-head"><div><div class="kicker">Part ${P.num} · ${P.mcN} ô chọn · ${P.wrN} ô chép chính tả</div><h2>Nghe lại, chọn & viết</h2></div><span class="progress" id="prog"></span></div>
+    <p class="how">Nghe cả Part hoặc bấm <b>▶ nhỏ</b> đầu câu để nghe riêng câu đó. <b>Ô số đen</b>: chọn từ <b>đúng bạn nghe thấy</b> (phương án nhiễu gồm từ gần âm và từ đồng nghĩa). <b>Ô D đỏ</b>: gõ đúng chính tả, số nhỏ = số từ. Làm xong một đoạn thì bấm <b>Chấm đoạn này</b>, rồi bấm vào từng ô để xem giải thích.</p>`;
+  html+=P.units.map((u,ui)=>{
+    let prevSpk=null; const para=[];
+    u.sents.forEach(s=>{
+      s.au=u.audio; const id=SENTS.push(s)-1, ans=s.ans&&s.ans.length;
+      const segs=s.segs.map(g=>{
+        if(typeof g==="string") return esc(g);
+        if(g.k==="m"){g.sh=g.sh||shuffle(g.o,P.num*1000+g.n*7+3); g.ui=ui;
+          return `<span class="gap" data-m="${g.n}"><span class="num">${g.n+1}</span>${g.sh.map((o,j)=>`<button class="opt" data-j="${j}"><span class="l">${L[j]}</span>${esc(o)}</button>`).join("")}</span>`}
+        g.ui=ui; const n=g.a.split(/\s+/).length, hint=g.a.split(/\s+/).map(w=>w[0]+"…").join(" ");
+        return `<span class="wgap" data-w="${g.n}"><span class="num">D${g.n+1}</span><span class="hint1">${esc(hint)}</span><input data-w="${g.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5,g.a.length*0.62+1)}em" aria-label="Ô D${g.n+1}, ${n} từ"><span class="wc">${n}</span><span class="fix" hidden></span></span>`}).join("");
+      const sent=`<span class="sent${ans?" ans":""}"><button class="rp" data-s="${id}" title="Nghe lại câu này">▶</button><span class="qn">${ans?s.ans.join(", "):""}</span>${s.lab?`<span class="lab">${s.lab==="Q"?"Hỏi":"("+s.lab+")"}</span>`:""}${segs}</span> `;
+      if(P.num<=2) para.push(`<p>${sent}</p>`);
+      else{
+        if(s.spk!==prevSpk){ if(prevSpk!==null) para.push("</p>"); const g=s.spk||"";
+          para.push(`<p><span class="spk">${g[0]==="W"?"WOMAN":g[0]==="M"?"MAN":""}${g[1]?" "+g[1]:""}</span>`); prevSpk=s.spk }
+        para.push(sent);
+      }
+    });
+    if(P.num>2) para.push("</p>");
+    const spk2=P.num===2?`<span class="acc">${u.sents.map(s=>s.spk).filter((v,i,a)=>v&&a.indexOf(v)===i).map(x=>ACC[x.split("-")[1]]||"").filter(Boolean).join(" → ")}</span>`:"";
+    return `<div class="box transcript" data-u="${ui}"><div class="uhead"><span class="no">Câu ${u.id}</span>${spk2}<button class="btn sm" data-pu="${ui}" title="Nghe cả đoạn">▶ Cả đoạn</button><span class="progress uprog"></span></div>${img(u,P.num>1)}${para.join("")}
+      <div class="actions" style="margin:8px 0 0"><button class="btn sm" data-chku="${ui}">Chấm đoạn này</button><span class="score uscore" hidden></span></div>
+      <div class="notebox"></div><div class="keys"></div></div>`;
+  }).join("");
+  html+=`<div class="actions"><button class="btn primary" id="chk">Chấm cả Part</button><button class="btn" id="rst">Làm lại cả Part</button><span class="score" id="sc" hidden></span></div>
+    <p class="legend">Nhãn: 🔑 nằm trong câu chứa đáp án · 🔁 paraphrase sang đáp án · 🔗 nối âm · ⚠️ bẫy · 📚 từ vựng TOEIC</p>`;
+  $("#body").innerHTML=html;
+  $$("#body input[data-w]").forEach(i=>i.value=S.wr[k(P.num,i.dataset.w)]||"");
+  $("#body").onclick=e=>{
+    const rp=e.target.closest(".rp"); if(rp){playClip(SENTS[+rp.dataset.s].au,SENTS[+rp.dataset.s].t,rp);return}
+    const pu=e.target.closest("[data-pu]"); if(pu){window.playUnit(+pu.dataset.pu);return}
+    const cu=e.target.closest("[data-chku]"); if(cu){const ui=+cu.dataset.chku;S.checked[uKey(P,ui)]=true;logWrong(P,ui);save();paint(P);return}
+    const box=e.target.closest(".box[data-u]"); if(!box) return; const ui=+box.dataset.u;
+    if(!isChecked(P,ui)){const o=e.target.closest(".opt");if(o){const n=o.closest(".gap").dataset.m;S.mc[k(P.num,n)]=+o.dataset.j;save();paint(P)}return}
+    const g=e.target.closest(".gap,.wgap"); if(g) showNote(P,g);
+  };
+  $("#body").oninput=e=>{if(e.target.dataset.w!==undefined){S.wr[k(P.num,e.target.dataset.w)]=e.target.value;save();paint(P)}};
+  $("#chk").onclick=()=>{P.units.forEach((u,ui)=>{S.checked[uKey(P,ui)]=true});logWrong(P);save();paint(P);$("#sc").scrollIntoView({block:"nearest"})};
+  $("#rst").onclick=()=>{for(const key of Object.keys(S.mc))if(key.startsWith(P.num+"-"))delete S.mc[key];
+    for(const key of Object.keys(S.wr))if(key.startsWith(P.num+"-"))delete S.wr[key];
+    for(const key of Object.keys(S.checked))if(key===String(P.num)||key.startsWith(P.num+"-u"))delete S.checked[key];
+    save();render()};
+  paint(P);
+}
+const allGaps=P=>P.units.flatMap((u,ui)=>u.sents.flatMap(s=>s.segs.filter(g=>typeof g!=="string").map(g=>(g.ui=ui,g))));
+const norm=s=>(s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[-–—]/g," ").replace(/[^a-z0-9' $.:%]/g," ").replace(/\.(?!\d)/g," ").replace(/\s+/g," ").trim();
+const mcOk=(P,g)=>{const c=S.mc[k(P.num,g.n)];return c!==undefined&&g.sh[c]===g.a};
+const wrOk=(P,g)=>{const v=norm(S.wr[k(P.num,g.n)]);return !!v&&[g.a,...(g.alt||[])].some(a=>norm(a)===v)};
+function paint(P){
+  let md=0,wd=0,cn=0,cr=0; const per={};
+  allGaps(P).forEach(g=>{
+    const C=isChecked(P,g.ui); per[g.ui]=per[g.ui]||{n:0,r:0,d:0};
+    if(g.k==="m"){const el=$(`.gap[data-m="${g.n}"]`),ch=S.mc[k(P.num,g.n)],ok=mcOk(P,g);if(ch!==undefined){md++;per[g.ui].d++}
+      el.classList.toggle("done",C);el.classList.toggle("right",C&&ok);el.classList.toggle("wrong",C&&!ok);
+      $$(".opt",el).forEach((b,j)=>{b.classList.toggle("sel",!C&&ch===j);b.classList.toggle("is-ans",C&&g.sh[j]===g.a);b.classList.toggle("is-wrong",C&&ch===j&&g.sh[j]!==g.a)});
+      per[g.ui].n++; if(ok)per[g.ui].r++; if(C){cn++;if(ok)cr++}
+    }else{const el=$(`.wgap[data-w="${g.n}"]`),inp=$("input",el),fix=$(".fix",el),ok=wrOk(P,g);
+      if((S.wr[k(P.num,g.n)]||"").trim()){wd++;per[g.ui].d++}
+      el.classList.toggle("right",C&&ok);el.classList.toggle("wrong",C&&!ok);inp.readOnly=C;fix.hidden=!(C&&!ok);fix.textContent=g.a;$(".hint1",el).hidden=C;
+      per[g.ui].n++; if(ok)per[g.ui].r++; if(C){cn++;if(ok)cr++}}
+  });
+  $("#prog").textContent=`Đã làm ${md}/${P.mcN} chọn · ${wd}/${P.wrN} viết`;
+  $("#sc").hidden=!cn; if(cn) $("#sc").textContent=`Đã chấm ${cn}/${P.mcN+P.wrN} ô · đúng ${cr} (${Math.round(cr/cn*100)}%)`;
+  $$(".box[data-u]").forEach(box=>{const ui=+box.dataset.u,u=P.units[ui],C=isChecked(P,ui),st=per[ui]||{n:0,r:0,d:0};
+    $$(".sent.ans",box).forEach(s=>s.classList.toggle("show",C));
+    $(".uprog",box).textContent=C?"":`${st.d}/${st.n} ô`;
+    const us=$(".uscore",box); us.hidden=!C; if(C) us.textContent=`Đúng ${st.r}/${st.n}`;
+    $("[data-chku]",box).hidden=C;
+    $(".keys",box).innerHTML=C?u.qs.map(q=>{const you=S.ans[q.n];const opt=q.o?" "+esc(q.o[q.a]):"";
+      return `<div class="key"><b>${q.n}${q.q?". "+esc(q.q):""}</b> → <b style="color:var(--ok)">(${L[q.a]})${opt}</b>${you!==undefined?` · phiếu của bạn (${L[you]}) ${you===q.a?"✓":"✗"}`:""}${u.para[q.n]?`<br><span class="para">🔁 ${esc(u.para[q.n])}</span>`:""}</div>`}).join(""):"";
+    if(!C) $(".notebox",box).innerHTML="";
+  });
+}
+function showNote(P,el){
+  const isM=el.classList.contains("gap"), n=+(isM?el.dataset.m:el.dataset.w);
+  const g=allGaps(P).find(x=>x.k===(isM?"m":"w")&&x.n===n), G=D.gloss[g.a.toLowerCase()]||{};
+  if(isM) g.sh=g.sh||shuffle(g.o,P.num*1000+g.n*7+3);
+  const yours=isM?(S.mc[k(P.num,n)]!==undefined?g.sh[S.mc[k(P.num,n)]]:""):(S.wr[k(P.num,n)]||"");
+  const ok=isM?mcOk(P,g):wrOk(P,g);
+  $$(".notebox").forEach(b=>b.innerHTML="");
+  el.closest(".box").querySelector(".notebox").innerHTML=`<div class="note">${[...(G.tags||"")].filter(c=>c.trim()&&c!=="️").map(t=>`<span class="tag">${t}</span>`).join("")}<b class="w">${esc(g.a)}</b> <span class="ipa">${esc(G.ipa||"")}</span> — ${esc(G.vi||"")}
+    ${!ok&&yours?`<br>Bạn ${isM?"chọn":"viết"}: <s>${esc(yours)}</s>`:""}${G.why?`<br>${esc(G.why)}`:""}</div>`;
+}
+function logWrong(P,onlyUi){
+  const s=storeGet("az-ets26-words")||{}, d=new Date().toISOString().slice(0,10);
+  allGaps(P).forEach(g=>{if(onlyUi!==undefined&&g.ui!==onlyUi)return;const ok=g.k==="m"?mcOk(P,g):wrOk(P,g);const G=D.gloss[g.a.toLowerCase()]||{};
+    if(!ok) s[g.a]={ipa:G.ipa,vi:G.vi,src:`T${T}P${P.num}`,date:d}});
+  storeSet("az-ets26-words",s);
+}
+
+/* ---------- audio từng câu ---------- */
+const clip=$("#clip"); let stopAt=null, clipBtn=null;
+clip.addEventListener("timeupdate",()=>{if(stopAt!==null&&clip.currentTime>=stopAt){clip.pause();stopAt=null}});
+clip.addEventListener("pause",()=>{if(clipBtn)clipBtn.classList.remove("on");clipBtn=null});
+function stopClip(){clip.pause()}
+function playClip(au,t,btn){
+  const aud=$("#aud"); if(aud) aud.pause();
+  const src=MEDIA+au;
+  const go=()=>{clip.playbackRate=rate;clip.currentTime=t[0];stopAt=t[1];if(clipBtn)clipBtn.classList.remove("on");clipBtn=btn;btn.classList.add("on");clip.play()};
+  if(!clip.src.endsWith(encodeURI(src).replace(/^\.\.\//,""))){clip.src=src;clip.addEventListener("loadedmetadata",go,{once:true});clip.load()} else go();
+}
+
+/* ---------- sổ từ vựng ---------- */
+function renderVocab(){
+  const rows=[];
+  D.parts.forEach(P=>allGaps(P).forEach(g=>{if(g.k==="m")g.sh=g.sh||shuffle(g.o,P.num*1000+g.n*7+3)}));
+  D.parts.forEach(P=>{allGaps(P).forEach(g=>{const G=D.gloss[g.a.toLowerCase()]||{};const C=isChecked(P,g.ui);
+    const ok=g.k==="m"?mcOk(P,g):wrOk(P,g);rows.push({P:P.num,g,G,res:!C?"—":ok?"✓":"✗"})})});
+  const saved=storeGet("az-ets26-words")||{};
+  const wrong=rows.filter(r=>r.res==="✗");
+  $("#main").innerHTML=`<div class="panel-head"><div><div class="kicker">Test ${T} · ${rows.length} từ/cụm</div><h2>Sổ từ vựng</h2></div>
+      <span class="progress">Sai trong test này: ${wrong.length} · Đang lưu để ôn: ${Object.keys(saved).length}</span></div>
+    <p class="how">Danh sách mọi từ được đục lỗ trong Test ${T}. Cột "Kết quả" cập nhật sau khi bạn bấm Chấm bài ở từng Part. Ưu tiên ôn các dòng ✗.</p>
+    <div class="box"><table><tr><th>Part</th><th>Từ</th><th>Nghĩa</th><th>Dạng</th><th>Kết quả</th></tr>
+    ${[...wrong,...rows.filter(r=>r.res!=="✗")].map(r=>`<tr><td>${r.P}</td><td><b>${esc(r.g.a)}</b><br><span class="ipa">${esc(r.G.ipa||"")}</span></td><td>${esc(r.G.vi||"")}</td><td>${r.g.k==="m"?"Chọn":"Viết"}</td><td>${r.res}</td></tr>`).join("")}</table></div>`;
+}
+
+/* ---------- sáng / tối ---------- */
+function paintTheme(){const m=document.documentElement.dataset.theme;const b=$("#theme");if(b)b.textContent=m==="dark"?"☀️ Sáng":"🌙 Tối"}
+function setTheme(m){document.documentElement.dataset.theme=m;try{localStorage.setItem("az-ets26-theme",m)}catch(e){}paintTheme()}
+try{document.documentElement.dataset.theme=localStorage.getItem("az-ets26-theme")||"light"}catch(e){}
+
+const last=storeGet("az-ets26-view");
+load(last&&TESTS.includes(last.t)?last.t:TESTS[0]);
+</script>
+<script>window.AZT_ROOT="../";</script><script>/* AZTOEIC Academy — thư viện dùng chung cho mọi trang (cổng, đề ETS, ngữ pháp, Listening Lab).
+   Phiên đăng nhập bằng SĐT · đồng bộ tiến độ lên máy chủ · XP · mở khoá nội dung lớp (AES-GCM). */
+(function () {
+  "use strict";
+  var API = window.AZT_API || "https://script.google.com/macros/s/AKfycbzYu8ZNdTEqMVCXYQU3bDPpqdsQBGEWjJlaDXVqZ7UEt30CKQG1X9f99Z6byiL7vqYQ/exec";
+  if (API.indexOf("__") >= 0) API = "";
+  var ROOT = window.AZT_ROOT || "./";          // đường dẫn tới trang cổng (index.html)
+  var SKEY = "azt_s", PKEY = "azt_prog_ts", QKEY = "azt_xpq";
+  var TRACK = /^(az_toeic_trainer_v1|az_toeicgrammar_progress|az_toeicgrammar_p7|az-ets23-t\d|azt_vocab|azt_vocab_d|azt_method|azt_trial|azt_plan)$/;
+  var _set = Storage.prototype.setItem, timer = null, pushing = false, flushing = false;
+
+  function get(k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } }
+  function put(k, v) { try { _set.call(localStorage, k, JSON.stringify(v)); } catch (e) {} }
+  function session() { var s = get(SKEY); return s && s.phone && s.tok ? s : null; }
+
+  function call(t, data) {
+    if (!API) return Promise.resolve({ ok: false, offline: true, error: "Hệ thống tài khoản đang được cài đặt — bạn quay lại sau ít phút nhé." });
+    var body = Object.assign({ t: t }, data || {});
+    return fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body), redirect: "follow" })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: false, net: true, error: "Không kết nối được máy chủ. Bạn kiểm tra mạng rồi thử lại nhé." }; });
+  }
+  function authed(t, data) {
+    var s = session(); if (!s) return Promise.resolve({ ok: false, auth: false });
+    return call(t, Object.assign({ phone: s.phone, tok: s.tok }, data || {})).then(function (r) {
+      if (r && r.auth === false) { localStorage.removeItem(SKEY); }
+      return r;
+    });
+  }
+
+  // ---------- tiến độ: gom các khoá localStorage của mọi trang thành 1 gói ----------
+  function collect(strip) {
+    var k = {}, i, key;
+    for (i = 0; i < localStorage.length; i++) {
+      key = localStorage.key(i);
+      if (TRACK.test(key)) k[key] = localStorage.getItem(key);
+    }
+    if (strip && k.az_toeic_trainer_v1) {   // gói quá lớn → bỏ bài làm chi tiết, giữ điểm
+      try {
+        var st = JSON.parse(k.az_toeic_trainer_v1);
+        Object.keys(st.attempts || {}).forEach(function (a) { delete st.attempts[a].answers; });
+        k.az_toeic_trainer_v1 = JSON.stringify(st);
+      } catch (e) {}
+    }
+    return k;
+  }
+  function pack() {
+    var ts = Date.now(), s = JSON.stringify({ ts: ts, k: collect(false) });
+    if (s.length > 44000) s = JSON.stringify({ ts: ts, k: collect(true) });
+    return { s: s.length > 44000 ? "" : s, ts: ts };
+  }
+  function restore(prog) {
+    if (!prog) return false;
+    var p; try { p = JSON.parse(prog); } catch (e) { return false; }
+    var mine = get(PKEY), s0 = session();
+    if (!p || !p.k || (mine && s0 && mine.phone === s0.phone && (Number(mine.ts) || 0) >= p.ts)) return false;
+    Object.keys(p.k).forEach(function (key) { if (TRACK.test(key)) _set.call(localStorage, key, p.k[key]); });
+    put(PKEY, { phone: s0 ? s0.phone : "", ts: p.ts });
+    return true;
+  }
+  function push(beacon) {
+    var s = session(); if (!s || !API || pushing) return;
+    var p = pack(); if (!p.s) return;
+    var body = JSON.stringify({ t: "save", phone: s.phone, tok: s.tok, prog: p.s });
+    if (beacon && navigator.sendBeacon) { try { if (navigator.sendBeacon(API, new Blob([body], { type: "text/plain" }))) put(PKEY, { phone: s.phone, ts: p.ts }); return; } catch (e) {} }
+    pushing = true;
+    fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: body, keepalive: true })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { pushing = false; if (r && r.ok) { put(PKEY, { phone: s.phone, ts: p.ts }); dirty = false; } else { dirty = true; } })
+      .catch(function () { pushing = false; dirty = true; });
+  }
+  var dirty = false;
+  function schedule() { if (!session()) return; dirty = true; clearTimeout(timer); timer = setTimeout(push, 8000); }
+  window.addEventListener("online", function () { if (dirty) push(); flushXp(); });
+  Storage.prototype.setItem = function (k, v) { _set.call(this, k, v); if (this === localStorage && TRACK.test(k)) schedule(); };
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && timer) { clearTimeout(timer); timer = null; push(true); }
+    else if (document.visibilityState === "visible" && window.AZT_PORTAL && session() && !dirty) refresh();   // máy để lâu: kéo bản mới trước khi học tiếp
+  });
+
+  // ---------- XP (xếp hàng khi mất mạng, gửi lại sau) ----------
+  function flushXp() {
+    var q = get(QKEY) || []; if (!q.length || !session() || flushing) return;
+    var item = q[0]; flushing = true;
+    authed("xp", item).then(function (r) {
+      flushing = false;
+      var keep = !r || r.busy || r.net || r.offline;
+      if (!keep) { q = get(QKEY) || []; q = q.filter(function (x) { return x.id !== item.id; }); put(QKEY, q); }
+      else if (r && (r.net || r.offline)) toast({ queued: true });
+      if (r && r.ok) { var s = session(); if (s) { s.xp = r.xp; put(SKEY, s); var bx = document.querySelector(".azt-me b, .me-chip b"); if (bx) bx.textContent = r.xp; } toast(r); }
+      if (r && r.ok && (get(QKEY) || []).length) setTimeout(flushXp, 300);
+    });
+  }
+  function xp(act, ref, score, total) {
+    if (!session()) return;
+    var q = get(QKEY) || []; q.push({ id: Date.now() + "-" + Math.random().toString(36).slice(2, 6), act: act, ref: String(ref), score: score || 0, total: total || 0 }); put(QKEY, q.slice(-60));
+    flushXp();
+  }
+  function toast(r) {
+    var t = document.createElement("div");
+    t.className = "azt-toast";
+    t.textContent = r.queued ? "Đã lưu bài, XP sẽ cộng khi có mạng" : r.gained > 0 ? "+" + r.gained + " XP · tuần này " + r.week + " XP" : r.repeat ? "Bài này đã tính XP hôm nay — làm lại để ôn nhé" : r.capped ? "Đã đủ 300 XP hôm nay — mai cộng tiếp nhé" : "";
+    if (!t.textContent) return;
+    document.body.appendChild(t);
+    setTimeout(function () { t.classList.add("on"); }, 20);
+    setTimeout(function () { t.classList.remove("on"); setTimeout(function () { t.remove(); }, 400); }, 3200);
+  }
+
+  // ---------- đăng nhập / đăng ký ----------
+  function afterAuth(r) {
+    if (r && r.ok && r.s) {
+      var restored = restore(r.s.prog);
+      delete r.s.prog; put(SKEY, r.s);
+      if (!restored) schedule();
+      r.restored = restored;
+    }
+    return r;
+  }
+  function login(phone, pass) { return call("login", { phone: phone, pass: pass }).then(afterAuth); }
+  function register(o) { var owner = get(PKEY), p = owner && owner.phone ? { s: "" } : pack(); return call("register", Object.assign({}, o, { prog: p.s })).then(afterAuth); }
+  function logout() {
+    var s = session(); if (s && dirty) push(true);
+    var ks = []; for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (TRACK.test(k) || k === PKEY || k === QKEY || k === "azt_certs") ks.push(k); }
+    ks.forEach(function (k) { localStorage.removeItem(k); });
+    localStorage.removeItem(SKEY); if (s) call("logout", { phone: s.phone, tok: s.tok });
+  }
+  function refresh() {
+    if (!session()) return Promise.resolve(null);
+    return authed("me").then(function (r) {
+      if (r && r.ok && r.s) { var old = session() || {}, rs = restore(r.s.prog); delete r.s.prog; r.s.tok = old.tok; put(SKEY, r.s); flushXp(); if (rs) try { window.dispatchEvent(new Event("azt-restored")); } catch (e) {} return Object.assign({ _restored: rs }, r.s); }
+      return r && r.auth === false ? null : session();
+    });
+  }
+  function isClass(s) { s = s || session(); return !!(s && /^lớp$/i.test(String(s.goi || "").trim())); }
+
+  // ---------- giải mã nội dung lớp (AES-GCM 256, khoá hex) ----------
+  function hex(h) { var a = new Uint8Array(h.length / 2); for (var i = 0; i < a.length; i++) a[i] = parseInt(h.substr(i * 2, 2), 16); return a; }
+  function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function decrypt(url, key) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error("tải " + url); return r.text(); }).then(function (txt) {
+      var raw = b64(txt.trim()), iv = raw.slice(0, 12), data = raw.slice(12);
+      return crypto.subtle.importKey("raw", hex(key), "AES-GCM", false, ["decrypt"]).then(function (k) {
+        return crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, k, data);
+      }).then(function (buf) { return new TextDecoder().decode(buf); });
+    });
+  }
+  function runScript(code) { var s = document.createElement("script"); s.textContent = code; document.body.appendChild(s); }
+  function loadClass(files) {
+    var s = session(); if (!s || !s.ck) return Promise.resolve(false);
+    return Promise.all(files.map(function (f) { return decrypt(f, s.ck); })).then(function (codes) { codes.forEach(runScript); return true; })
+      .catch(function () { return false; });
+  }
+
+  // ---------- thanh trên cùng cho các trang con ----------
+  function bar(title) {
+    var s = session(), b = document.createElement("div");
+    b.className = "azt-bar";
+    b.innerHTML = '<a class="azt-home" href="' + ROOT + '"><i>AZ</i><span>AZTOEIC <b>Academy</b></span></a>' +
+      '<span class="azt-title">' + (title || "") + '</span>' +
+      (s ? '<a class="azt-me" href="' + ROOT + '#tai-khoan" title="Tài khoản">' + esc(String(s.name || "").split(" ").pop()) + ' · <b>' + (s.xp || 0) + '</b> XP</a>' : '<a class="azt-me" href="' + ROOT + '#dang-nhap">Đăng nhập</a>');
+    document.body.insertBefore(b, document.body.firstChild);
+  }
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* Chặn trang: need = "account" | "class". Trả Promise<session|null>; nếu thiếu quyền thì hiện khung chặn. */
+  function guard(need, title) {
+    var go = function (s) {
+      if (s && (need !== "class" || isClass(s))) { bar(title); return s; }
+      var box = document.createElement("div");
+      box.className = "azt-lock";
+      var back = encodeURIComponent(location.pathname.split("/").pop() + location.hash);
+      box.innerHTML = '<div class="azt-lock-card"><i>AZ</i>' + (need === "class" && s
+        ? '<h2>Dành cho học viên lớp AZEnglish</h2><p>Phần này mở cho học viên đang học lớp TOEIC tại AZEnglish. Tài khoản ' + esc(s.phone || "") + ' đang ở gói Tự học. Nếu bạn đã đóng học phí, nhắn Zalo 0971 882 096 kèm số điện thoại này để AZEnglish mở gói Lớp.</p><a class="azt-btn" href="' + ROOT + '#hoc-vien">Khu học viên lớp</a><a class="azt-link" href="' + ROOT + '">Về AZTOEIC Academy</a>'
+        : '<h2>Đăng nhập để học tiếp</h2><p>Tạo tài khoản miễn phí bằng số điện thoại để học ngữ pháp, từ vựng và giải 5 đề ETS 2026. Tiến độ được lưu, đăng nhập máy nào cũng học tiếp được.</p><a class="azt-btn" href="' + ROOT + '#dang-ky?next=' + back + '">Tạo tài khoản miễn phí</a><a class="azt-link" href="' + ROOT + '#dang-nhap?next=' + back + '">Tôi đã có tài khoản</a>') + '</div>';
+      document.body.appendChild(box);
+      document.documentElement.classList.add("azt-locked");
+      return null;
+    };
+    var s = session();
+    if (!s) return Promise.resolve(go(null));
+    if (need === "class" && !isClass(s)) return refresh().then(function (fresh) { return go(fresh || null); });
+    // có phiên → cho vào ngay, làm mới gói/khoá ở nền; phiên hết hạn thì tải lại để hiện khung đăng nhập
+    refresh().then(function (fresh) { if ((!fresh && !session()) || (fresh && fresh._restored)) location.reload(); });
+    return Promise.resolve(go(s));
+  }
+
+  /* ---------- Thi thử miễn phí: nộp 200 câu → máy chủ chấm + gửi nhận xét chi tiết qua email ---------- */
+  var MKEY = "azt_mock", RE_MAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  function mockSend(test, ans, sec, email) {
+    var m = { test: test, ans: ans, sec: sec || 0, st: "sending", at: Date.now(), email: email || (session() || {}).email || "" };
+    put(MKEY, m); fire();
+    return authed("mock", { test: test, ans: ans, sec: m.sec, email: m.email }).then(function (r) {
+      m.st = r && r.ok ? "sent" : (r && r.needEmail ? "need" : "err"); m.msg = (r && r.error) || ""; if (r && r.email) m.email = r.email;
+      if (r && r.ok) { var s = session(); if (s && r.email && s.email !== r.email) { s.email = r.email; put(SKEY, s); } }
+      put(MKEY, m); fire(); return r;
+    });
+  }
+  function fire() { try { document.dispatchEvent(new CustomEvent("azt-mock")); } catch (e) {} }
+  function mailBox(id, ph) { return '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="' + id + '" type="email" inputmode="email" autocomplete="email" placeholder="' + (ph || "email@cua-ban.com") + '" style="flex:1;min-width:200px;padding:11px 12px;border:1px solid #D8D2C4;border-radius:10px;font:inherit;font-size:15px"><button class="btn btn-primary" id="' + id + 'Go" type="button">Gửi nhận xét</button></div>'; }
+  /* khung trạng thái trên trang kết quả */
+  function mockPanel(test) {
+    var box = document.createElement("div"); box.className = "panel azt-mockbox";
+    box.style.cssText = "border-left:4px solid #B8913A";
+    var draw = function () {
+      var m = get(MKEY);
+      if (!m || m.test !== test) { box.style.display = "none"; return; }
+      box.style.display = "";
+      var h = '<h2 style="font-size:19px;margin:0 0 6px">📩 Nhận xét chi tiết qua email</h2>';
+      if (m.st === "sending") h += '<p class="desc">Đang chấm và gửi nhận xét về <b>' + esc(m.email) + '</b>…</p>';
+      else if (m.st === "sent") h += '<p class="desc">Đã gửi bản nhận xét chi tiết (điểm từng Part, 3 dạng câu cần ưu tiên, kế hoạch 4 tuần, các câu sai) tới <b>' + esc(m.email) + '</b>. Không thấy thì xem thư mục Quảng cáo hoặc Spam.</p>';
+      else if (m.st === "need") h += '<p class="desc">Nhập email để nhận bản nhận xét chi tiết bài thi này.</p>' + mailBox("aztMockMail");
+      else h += '<p class="desc" style="color:#B01322">' + esc(m.msg || "Chưa gửi được.") + '</p>' + mailBox("aztMockMail", m.email || "");
+      box.innerHTML = h;
+      var b = box.querySelector("#aztMockMailGo");
+      if (b) b.addEventListener("click", function () {
+        var v = (box.querySelector("#aztMockMail").value || m.email || "").trim();
+        if (!RE_MAIL.test(v)) { box.querySelector("#aztMockMail").style.borderColor = "#D7192D"; return; }
+        b.disabled = true; mockSend(m.test, m.ans, m.sec, v);
+      });
+    };
+    document.addEventListener("azt-mock", draw); draw();
+    return box;
+  }
+  /* ô email ở màn bắt đầu thi thử (nếu tài khoản chưa có email) */
+  function mockIntro(kind) {
+    var s = session(), box = document.createElement("div");
+    box.className = "panel"; box.style.cssText = "border-left:4px solid #B8913A";
+    box.innerHTML = '<h2 style="font-size:19px;margin:0 0 6px">' + (kind === "mini" ? "📩 Nhận kết quả đánh giá qua email" : "🎁 Thi thử miễn phí · nhận xét chi tiết qua email") + '</h2><p class="desc">Nộp bài xong, giáo viên AZ gửi về email của bạn: điểm ước tính /990, tỉ lệ đúng từng Part, ' + (kind === "mini" ? "chặng học phù hợp, " : "") + '3 dạng câu cần ưu tiên kèm cách làm, kế hoạch 4 tuần và danh sách câu sai.</p>' +
+      (s && s.email ? '<p class="desc">Gửi tới: <b>' + esc(s.email) + '</b> · <a href="#" id="aztMailEdit" style="color:#8F6E24;font-weight:700">đổi email</a></p><div id="aztMailWrap" style="display:none">' + mailBox("aztMail", s.email) + '</div>' : '<div id="aztMailWrap">' + mailBox("aztMail") + '</div>') + '<p class="desc" id="aztMailMsg" style="margin-top:6px"></p>';
+    setTimeout(function () {
+      var ed = box.querySelector("#aztMailEdit"); if (ed) ed.addEventListener("click", function (e) { e.preventDefault(); box.querySelector("#aztMailWrap").style.display = ""; });
+      var go = box.querySelector("#aztMailGo"); if (!go) return;
+      go.textContent = "Lưu email";
+      go.addEventListener("click", function () {
+        var v = box.querySelector("#aztMail").value.trim(), msg = box.querySelector("#aztMailMsg");
+        if (!RE_MAIL.test(v)) { msg.textContent = "Email chưa đúng định dạng."; msg.style.color = "#B01322"; return; }
+        go.disabled = true; msg.textContent = "Đang lưu…"; msg.style.color = "";
+        authed("email", { email: v }).then(function (r) {
+          go.disabled = false;
+          if (r && r.ok) { var ss = session(); if (ss) { ss.email = v; put(SKEY, ss); } msg.textContent = "✓ Đã lưu. Nhận xét sẽ gửi tới " + v + "."; msg.style.color = "#15803D"; }
+          else { msg.textContent = (r && r.error) || "Chưa lưu được, bạn thử lại."; msg.style.color = "#B01322"; }
+        });
+      });
+    }, 0);
+    return box;
+  }
+
+  window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
+    xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put, mockSend: mockSend, mockPanel: mockPanel, mockIntro: mockIntro };
+})();
+</script><script>(function(){AZT.guard("account","Listening Lab ETS 2026").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/t6.enc", "lop/t7.enc", "lop/t8.enc", "lop/t9.enc", "lop/t10.enc"].length)AZT.loadClass(["lop/t6.enc", "lop/t7.enc", "lop/t8.enc", "lop/t9.enc", "lop/t10.enc"]).then(go);else go();});})();</script></body>
+</html>

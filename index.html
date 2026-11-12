@@ -396,6 +396,7 @@ body.in-view #view{display:block}
 .wc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .wc .w{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .wc .w b{font-size:19px}
+.wc .wsrc{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--teal-d);background:var(--teal-soft);border-radius:999px;padding:2px 9px;white-space:nowrap}
 .wc .w i{font-style:normal;color:var(--ink-3);font-size:13px}
 .wc .m{color:var(--teal-d);font-weight:700;margin:4px 0 8px}
 .wcards.hide-m .m,.wcards.hide-m .s span{filter:blur(6px);transition:filter .2s}
@@ -640,7 +641,7 @@ html body a.card > .tn{display:flex;align-items:center}
     </div>
   </div></section>
 
-  <div class="wrap"><div class="stats"><div><b>5</b><span>đề ETS 2026 giải miễn phí, chấm điểm /990</span></div><div><b>15</b><span>chủ đề ngữ pháp TOEIC có bài luyện</span></div><div><b>2.500</b><span>từ vựng TOEIC theo 20 chủ đề công sở</span></div><div><b>31</b><span>dạng câu có phương pháp và bài ví dụ</span></div></div></div>
+  <div class="wrap"><div class="stats"><div><b>5</b><span>đề ETS 2026 giải miễn phí, chấm điểm /990</span></div><div><b>15</b><span>chủ đề ngữ pháp TOEIC có bài luyện</span></div><div><b>3.514</b><span>từ vựng TOEIC theo 20 chủ đề công sở</span></div><div><b>31</b><span>dạng câu có phương pháp và bài ví dụ</span></div></div></div>
 
   <section class="sec alt" id="hom-nay" hidden><div class="wrap">
     <div class="today">
@@ -1423,6 +1424,299 @@ window.AZT_ROADMAP = {
     daily: "Mỗi tuần 1 full test ETS 2026 + chữa câu sai · ngày còn lại luyện Part 7 và từ vựng." }
 };
 </script>
+<script>/* AZTOEIC Academy — Game kiểm tra từ vựng (cách chơi như AZ Vocabulary của AZIELTS Academy):
+   lướt thẻ tự chuyển 5/8/12 giây · tiếng đúng/sai · tự đọc từ · chữa bài cuối lượt · ôn từ sai · lịch ôn 1/3/7 ngày
+   · Thử thách 60 giây (như Writing Studio). Dùng kho window.AZT_VOCAB do academy.html nạp (VOC: words/sets/byLv/topics).
+   Gọi: AZTVG.open(VOC, arg) với arg = "game" | "game:60s" | "game:sai" | "game:han" | "game:<id bài>".
+   Lưu trên máy: azt_vg_prefs, azt_vg_srs (lịch ôn từng từ), azt_vg_wrong (từ sai), azt_vg_best (kỷ lục 60 giây).
+   XP: AZT.xp("V", xpRef(), điểm/10, 10) — xem xpRef(); máy chủ chỉ cộng 1 lần/mã/ngày. */
+(function () {
+  "use strict";
+  var TIMERS = [5, 8, 12], COUNTS = [10, 20, 30], GAPS = [1, 3, 7];
+  var V = null, IDX = null, ALL = [], R = null, T = { q: null, adv: null, tick: null, all: null }, actx = null;
+  var DIRS = [{ v: "mix", t: "Trộn 3 kiểu" }, { v: "en", t: "Anh → Việt" }, { v: "vi", t: "Việt → Anh" }, { v: "cloze", t: "Điền vào câu" }];
+
+  /* ---------- tiện ích ---------- */
+  function A() { return window.AZT; }
+  function esc(s) { return A().esc(String(s == null ? "" : s)); }
+  function $(s, r) { return (r || document).querySelector(s); }
+  var CTX = {};   // page(), markDay() của academy.html truyền vào qua AZTVG.use()
+  function ymd(d) { d = d || new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function today() { return ymd(); }
+  function addDays(d, n) { var p = d.split("-").map(Number), x = new Date(p[0], p[1] - 1, p[2] + n); return ymd(x); }
+  function get(k, def) { var v = A().get(k); return v == null ? def : v; }
+  function put(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function prefs() { var p = get("azt_vg_prefs", {}); return { dir: p.dir || "mix", n: COUNTS.indexOf(p.n) >= 0 ? p.n : 10, t: TIMERS.indexOf(p.t) >= 0 ? p.t : 8, say: p.say !== false, snd: p.snd !== false, lv: p.lv === "b" ? "b" : "a", tp: p.tp || "" }; }
+  function savePrefs(p) { put("azt_vg_prefs", p); }
+  function stopAll() { ["q", "adv", "all"].forEach(function (k) { if (T[k]) { clearTimeout(T[k]); T[k] = null; } }); if (T.tick) { cancelAnimationFrame(T.tick); T.tick = null; } try { speechSynthesis.cancel(); } catch (e) {} }
+  window.addEventListener("hashchange", function () { if (!/^#tu-vung\/game/.test(location.hash)) { stopAll(); R = null; } });
+
+  /* ---------- âm thanh & giọng đọc ---------- */
+  function tone(ok) {
+    if (!prefs().snd) return;
+    try {
+      if (!actx) { var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; actx = new AC(); }
+      if (actx.state === "suspended") actx.resume();
+      var now = actx.currentTime, notes = ok ? [660, 880] : [220, 175];
+      notes.forEach(function (f, i) {
+        var o = actx.createOscillator(), g = actx.createGain(); o.type = ok ? "sine" : "triangle"; o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, now + i * 0.09); g.gain.exponentialRampToValueAtTime(0.18, now + i * 0.09 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.09 + 0.22);
+        o.connect(g); g.connect(actx.destination); o.start(now + i * 0.09); o.stop(now + i * 0.09 + 0.25);
+      });
+    } catch (e) {}
+  }
+  var VOICE = null;
+  function pickVoice() { try { var vs = speechSynthesis.getVoices().filter(function (v) { return /^en[-_]US/i.test(v.lang); }); VOICE = vs.filter(function (v) { return /Samantha|Google US|Aria|Jenny/i.test(v.name); })[0] || vs[0] || null; } catch (e) {} }
+  if ("speechSynthesis" in window) { pickVoice(); try { speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {} }
+  function say(w, force) {
+    if (!force && !prefs().say) return;
+    try { speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(w); u.lang = "en-US"; u.rate = 0.9; if (VOICE) u.voice = VOICE; speechSynthesis.speak(u); } catch (e) {}
+  }
+
+  /* ---------- lịch ôn 1/3/7 ngày + sổ từ sai ---------- */
+  function srs() { return get("azt_vg_srs", {}); }
+  function wrongs() { return get("azt_vg_wrong", []); }
+  function kid(w) { return /^p\d$/.test(w[4]) ? w[4] + ":" + w[0] : w[0]; }
+  function SET(id) { return (V.sets && V.sets[id]) || (V.psets && V.psets[id]) || null; }
+  function kind(w) { return w[1] === "hỏi – đáp" ? "qa" : w[1] === "diễn đạt lại" ? "para" : "word"; }
+  function dueList() { var s = srs(), d = today(); return Object.keys(s).filter(function (k) { return IDX[k] && s[k].d && s[k].d <= d && s[k].s < 4; }); }
+  function mark(w, ok, mode) {
+    var s = srs(), x = s[w] || { s: 0, d: "", n: 0 }, wl = wrongs();
+    x.n = (x.n || 0) + 1;
+    if (ok) { x.s = Math.min((x.s || 0) + 1, 4); x.d = x.s >= 4 ? "" : addDays(today(), GAPS[x.s - 1]); if (mode === "sai") wl = wl.filter(function (k) { return k !== w; }); }
+    else { x.s = 0; x.d = addDays(today(), 1); x.w = (x.w || 0) + 1; if (wl.indexOf(w) < 0) wl.unshift(w); }
+    s[w] = x; put("azt_vg_srs", s); put("azt_vg_wrong", wl.slice(0, 400));
+  }
+
+  /* ---------- dựng câu hỏi ---------- */
+  function poolFor(w) {
+    var k = kind(w), same = ALL.filter(function (x) { return x[4] === w[4] && x[0] !== w[0] && kind(x) === k; });
+    return same.length >= 6 ? same : ALL.filter(function (x) { return x[0] !== w[0] && kind(x) === k; });
+  }
+  function others(w, key) {
+    var pool = poolFor(w), pos = shuffle(pool.filter(function (x) { return x[1] === w[1]; })), rest = shuffle(pool), seen = {}, out = [];
+    seen[w[key]] = 1;
+    pos.concat(rest).forEach(function (x) { if (out.length < 3 && !seen[x[key]]) { seen[x[key]] = 1; out.push(x); } });
+    return out;
+  }
+  function makeQ(w, dir) {
+    var d = dir === "mix" ? ["en", "vi", "cloze"][Math.floor(Math.random() * 3)] : dir;
+    if (d === "cloze" && (!w[6] || w[6].indexOf("___") < 0)) d = "en";
+    var key = d === "en" ? 2 : 0, opts = shuffle([w].concat(others(w, key)));
+    return { w: w, d: d, o: opts.map(function (x) { return { t: x[key], ok: x === w }; }) };
+  }
+  function pick(list, n) { return shuffle(list).slice(0, n); }
+  function sourceWords(mode, arg, p) {
+    if (mode === "set") return SET(arg) ? SET(arg).words.slice() : [];
+    if (mode === "sai") return wrongs().map(function (k) { return IDX[k]; }).filter(Boolean);
+    if (mode === "han") return dueList().map(function (k) { return IDX[k]; });
+    var lvOk = function (x) { return p.lv === "a" ? /A/.test(x[3]) : /B/.test(x[3]); };
+    return V.words.filter(function (x) { return lvOk(x) && (!p.tp || x[4] === p.tp); });
+  }
+
+  /* ---------- giao diện ---------- */
+  var CSS = '.vg-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center;background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 70%,#2A1A22 100%);color:#fff;border-radius:20px;padding:24px 26px;margin-bottom:18px}' +
+    '.vg-hero h3{font-family:var(--fd);font-size:24px;margin:6px 0 6px;color:#fff}.vg-hero p{margin:0;color:rgba(255,255,255,.76);font-size:14.5px}.vg-hero .eb{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-glow)}' +
+    '.vg-hero .act{display:flex;flex-direction:column;gap:8px}.vg-hero .act .btn{justify-content:center}.vg-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.vg-hero .chips a{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid rgba(227,194,122,.45);color:var(--teal-glow);text-decoration:none}' +
+    '.vg-set{display:grid;gap:16px}.vg-row{display:grid;gap:8px}.vg-row>b{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}' +
+    '.vg-seg{display:flex;flex-wrap:wrap;gap:8px}.vg-seg button{border:1px solid var(--line-2);background:#fff;padding:9px 14px;border-radius:10px;font-weight:700;font-size:14px;color:var(--ink-2);cursor:pointer;font-family:inherit}.vg-seg button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3)}' +
+    '.vg-seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}.vg-seg button.on small{color:var(--teal-glow)}.vg-seg button:disabled{opacity:.45;cursor:default}' +
+    '.vg-sel{width:100%;max-width:420px;padding:10px 12px;border-radius:10px;border:1px solid var(--line-2);font:inherit;background:#fff}' +
+    '.vg-sw{display:flex;gap:16px;flex-wrap:wrap;font-size:14.5px}.vg-sw label{display:flex;gap:8px;align-items:center;cursor:pointer}' +
+    '.vg-go{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.vg-go .n{color:var(--ink-2);font-size:14px}' +
+    '.vg-play{max-width:720px;margin:0 auto}.vg-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}' +
+    '.vg-top .r{display:flex;gap:8px;align-items:center}.vg-top button{border:1px solid var(--line-2);background:#fff;border-radius:8px;padding:5px 10px;font:700 12.5px var(--f);color:var(--ink-2);cursor:pointer;text-transform:none;letter-spacing:0}' +
+    '.vg-card{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:20px;padding:26px 24px 22px;text-align:center;position:relative;overflow:hidden;min-height:170px;display:flex;flex-direction:column;justify-content:center}' +
+    '.vg-card .k{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-glow)}' +
+    '.vg-card .big{font-family:var(--fd);font-size:clamp(30px,6vw,44px);line-height:1.15;margin:8px 0 4px;word-break:break-word}.vg-card .big.sm{font-family:var(--f);font-size:clamp(18px,3.6vw,22px);font-weight:600;line-height:1.5}' +
+    '.vg-card .big .bl{display:inline-block;min-width:90px;border-bottom:2px solid var(--teal-glow);margin:0 3px}.vg-card .sub{color:rgba(255,255,255,.66);font-size:14px}' +
+    '.vg-card .spk{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;cursor:pointer}.vg-card .spk svg{width:18px;height:18px}' +
+    '.vg-bar{height:6px;border-radius:999px;background:var(--bg-3);margin:14px 0 14px;overflow:hidden}.vg-bar i{display:block;height:100%;width:100%;background:var(--teal);border-radius:999px;transform-origin:left}' +
+    '.vg-bar.low i{background:var(--red)}.vg-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}.vg-opts .opt{min-height:56px;cursor:pointer;font-family:inherit}' +
+    '.vg-fb{min-height:24px;margin-top:12px;font-size:14.5px;text-align:center;color:var(--ink-2)}.vg-fb b{color:var(--ok)}.vg-fb s{color:var(--red);text-decoration:none;font-weight:700}' +
+    '.vg-res{background:var(--navy);color:#fff;border-radius:20px;padding:26px;text-align:center;margin-bottom:16px}.vg-res .big{font-family:var(--fd);font-size:56px;line-height:1}.vg-res p{color:rgba(255,255,255,.76);margin:10px auto 16px;max-width:500px}' +
+    '.vg-res .st{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin:12px 0 16px}.vg-res .st div b{display:block;font-family:var(--fd);font-size:24px;color:var(--teal-glow)}.vg-res .st div span{font-size:12.5px;color:rgba(255,255,255,.66)}' +
+    '.vg-res .act{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}' +
+    '.vg-list{display:grid;gap:10px}.vg-it{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;border-left:4px solid var(--red)}.vg-it.ok{border-left-color:var(--ok)}' +
+    '.vg-it .h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.vg-it .h b{font-size:17px}.vg-it .h i{color:var(--ink-3);font-size:13px}.vg-it .h .src{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--teal-d);background:var(--teal-soft);border-radius:999px;padding:2px 9px}' +
+    '.vg-it .m{margin:4px 0;color:var(--ink)}.vg-it .s{font-size:14px;color:var(--ink-2)}.vg-it .s em{font-style:normal;font-weight:700;color:var(--navy)}.vg-it .y{font-size:13px;color:var(--red-d);margin-top:4px}' +
+    '@media(max-width:640px){.vg-hero{grid-template-columns:1fr;padding:20px}.vg-opts{grid-template-columns:1fr}.vg-card{padding:22px 16px 18px;min-height:150px}.vg-res .big{font-size:46px}}';
+  function css() { if (!document.getElementById("vgCss")) { var s = document.createElement("style"); s.id = "vgCss"; s.textContent = CSS; document.head.appendChild(s); } }
+  function spkIcon() { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>'; }
+
+  function init(v) { V = v; css(); if (!IDX) { IDX = {}; ALL = V.words.concat(V.pwords || []); ALL.forEach(function (w) { IDX[kid(w)] = w; }); } }
+
+  /* Khối giới thiệu đặt đầu trang Từ vựng */
+  function banner(v) {
+    init(v);
+    var nw = wrongs().filter(function (k) { return IDX[k]; }).length, nd = dueList().length, best = get("azt_vg_best", 0);
+    return '<div class="vg-hero"><div><span class="eb">Game kiểm tra từ vựng</span><h3>Lướt thẻ, chọn nhanh, nhớ lâu</h3><p>Mỗi từ 5–8–12 giây, máy đọc to từ, sai thì được chữa ngay cuối lượt. Từ làm sai tự vào sổ ôn và nhắc lại sau 1, 3, 7 ngày.</p>' +
+      '<div class="chips">' + (nd ? '<a href="#tu-vung/game:han">' + nd + ' từ đến hạn ôn</a>' : "") + (nw ? '<a href="#tu-vung/game:sai">' + nw + ' từ sai cần ôn</a>' : "") + (best ? '<a href="#tu-vung/game:60s">Kỷ lục 60 giây: ' + best + ' câu</a>' : "") + '</div></div>' +
+      '<div class="act"><a class="btn btn-red" href="#tu-vung/game">Chơi game từ vựng</a><a class="btn btn-glass" href="#tu-vung/game:60s">Thử thách 60 giây</a></div></div>';
+  }
+
+  /* ---------- màn chọn lượt chơi ---------- */
+  function setup(arg) {
+    var p = prefs(), mode = "topic", setId = "";
+    if (arg === "game:sai") mode = "sai"; else if (arg === "game:han") mode = "han"; else if (arg === "game:60s") mode = "60s";
+    else if (/^game:/.test(arg) && SET(arg.slice(5))) { mode = "set"; setId = arg.slice(5); }
+    var nw = sourceWords("sai").length, nd = sourceWords("han").length;
+    function seg(name, items, cur) { return '<div class="vg-seg" data-seg="' + name + '">' + items.map(function (x) { return '<button type="button" data-v="' + x.v + '"' + (String(x.v) === String(cur) ? ' class="on"' : "") + (x.dis ? " disabled" : "") + '>' + x.t + (x.s ? '<small>' + x.s + '</small>' : "") + '</button>'; }).join("") + '</div>'; }
+    var modes = [{ v: "topic", t: "Theo chủ đề", s: "chọn cấp + chủ đề" }, { v: "han", t: "Đến hạn ôn", s: nd + " từ hôm nay", dis: !nd }, { v: "sai", t: "Ôn từ sai", s: nw + " từ", dis: !nw }, { v: "60s", t: "Thử thách 60 giây", s: "càng nhiều càng tốt" }];
+    if (mode === "set") modes.unshift({ v: "set", t: SET(setId).name, s: SET(setId).words.length + " mục của bài" });
+    var tps = Object.keys(V.topics).map(function (k) { return '<option value="' + k + '"' + (p.tp === k ? " selected" : "") + '>' + esc(V.topics[k]) + '</option>'; }).join("");
+    var body = '<div class="card vg-set" id="vgSet">' +
+      '<div class="vg-row"><b>Chế độ</b>' + seg("mode", modes, mode) + '</div>' +
+      '<div class="vg-row" data-for="topic"><b>Cấp và chủ đề</b>' + seg("lv", [{ v: "a", t: "Căn bản · A1–A2" }, { v: "b", t: "Trung cấp · B1–B2" }], p.lv) + '<select class="vg-sel" id="vgTp"><option value="">Trộn cả 20 chủ đề</option>' + tps + '</select></div>' +
+      '<div class="vg-row" data-for="dir"><b>Kiểu câu</b>' + seg("dir", DIRS.map(function (d) { return { v: d.v, t: d.t }; }), p.dir) + '</div>' +
+      '<div class="vg-row" data-for="n"><b>Số câu mỗi lượt</b>' + seg("n", COUNTS.map(function (n) { return { v: n, t: n + " câu" }; }), p.n) + '</div>' +
+      '<div class="vg-row" data-for="t"><b>Thời gian mỗi từ</b>' + seg("t", TIMERS.map(function (t) { return { v: t, t: t + " giây", s: t === 5 ? "gấp" : t === 8 ? "mặc định" : "thoải mái" }; }), p.t) + '</div>' +
+      '<div class="vg-row"><b>Âm thanh</b><div class="vg-sw"><label><input type="checkbox" id="vgSay"' + (p.say ? " checked" : "") + '> Tự đọc từ</label><label><input type="checkbox" id="vgSnd"' + (p.snd ? " checked" : "") + '> Tiếng đúng / sai</label></div></div>' +
+      '<div class="vg-go"><button class="btn btn-red" id="vgStart">Bắt đầu</button><span class="n" id="vgN"></span></div></div>';
+    CTX.page('<a href="#tu-vung">Từ vựng</a> / Game', "Game kiểm tra từ vựng TOEIC", "Chọn nhanh trước khi hết giờ. Phím 1–4 để chọn, Enter để qua câu. Kết thúc lượt sẽ chữa từng từ sai kèm câu ví dụ TOEIC.", body);
+    var st = { mode: mode };
+    function refresh() {
+      var m = st.mode;
+      document.querySelectorAll("#vgSet [data-for]").forEach(function (el) { var f = el.getAttribute("data-for"); el.hidden = (f === "topic" && m !== "topic" && m !== "60s") || ((f === "n" || f === "t") && m === "60s"); });
+      var n = m === "60s" ? sourceWords("topic", "", prefs()).length : sourceWords(m, setId, prefs()).length;
+      $("#vgN").textContent = m === "60s" ? "60 giây · lấy từ " + n.toLocaleString("vi-VN") + " từ đã chọn" : n ? Math.min(n, m === "set" ? 10 : prefs().n) + " câu · kho " + n.toLocaleString("vi-VN") + " từ" : "Chưa có từ cho lựa chọn này";
+      $("#vgStart").disabled = !n;
+    }
+    document.querySelectorAll("#vgSet .vg-seg").forEach(function (g) {
+      g.addEventListener("click", function (e) {
+        var b = e.target.closest("button"); if (!b || b.disabled) return;
+        g.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+        var k = g.getAttribute("data-seg"), v = b.getAttribute("data-v"), q = prefs();
+        if (k === "mode") st.mode = v; else { q[k] = (k === "n" || k === "t") ? +v : v; savePrefs(q); }
+        refresh();
+      });
+    });
+    $("#vgTp").onchange = function () { var q = prefs(); q.tp = this.value; savePrefs(q); refresh(); };
+    $("#vgSay").onchange = function () { var q = prefs(); q.say = this.checked; savePrefs(q); };
+    $("#vgSnd").onchange = function () { var q = prefs(); q.snd = this.checked; savePrefs(q); };
+    $("#vgStart").onclick = function () { tone(true); start(st.mode, setId); };
+    refresh();
+  }
+
+  /* ---------- lượt chơi ---------- */
+  function start(mode, setId, list) {
+    stopAll();
+    var p = prefs(), ws;
+    if (list) ws = list.slice();
+    else if (mode === "60s") ws = shuffle(sourceWords("topic", "", p));
+    else ws = pick(sourceWords(mode, setId, p), mode === "set" ? 10 : p.n);
+    if (!ws.length) return setup("game");
+    R = { mode: mode, setId: setId, ws: ws, qs: [], i: 0, ok: 0, log: [], t0: Date.now(), sec: p.t, end: mode === "60s" ? Date.now() + 60000 : 0, dir: mode === "60s" ? "mix" : p.dir, done: false };
+    R.qs = ws.map(function (w) { return makeQ(w, R.dir); });
+    var title = mode === "60s" ? "Thử thách 60 giây" : mode === "sai" ? "Ôn từ sai" : mode === "han" ? "Ôn đến hạn" : mode === "set" ? esc(SET(setId).name) : "Lượt kiểm tra";
+    CTX.page('<a href="#tu-vung">Từ vựng</a> / <a href="#tu-vung/game">Game</a>', title, "", '<div class="vg-play" id="vgPlay"></div>');
+    if (mode === "60s") T.all = setTimeout(finish, 60000);
+    show();
+  }
+  function show() {
+    if (!R || R.done) return;
+    if (R.i >= R.qs.length) { if (R.mode === "60s") { R.qs = R.qs.concat(shuffle(R.ws).map(function (w) { return makeQ(w, "mix"); })); } else return finish(); }
+    var q = R.qs[R.i], w = q.w, box = $("#vgPlay"); if (!box) return;
+    var head = R.mode === "60s" ? '<span>Câu ' + (R.i + 1) + ' · <b style="color:var(--ok)">' + R.ok + ' đúng</b></span>' : '<span>Câu ' + (R.i + 1) + '/' + R.qs.length + ' · ' + R.ok + ' đúng</span>';
+    var K = kind(w), big = K === "qa" ? (q.d === "en" ? '<div class="k">Chọn câu đáp phù hợp nhất</div><div class="big sm">' + esc(w[0]) + '</div><div class="sub">Part 2 · bấm loa để nghe lại</div>' : '<div class="k">Câu này đáp lại câu hỏi nào?</div><div class="big sm">' + esc(w[2]) + '</div>')
+      : K === "para" ? (q.d === "en" ? '<div class="k">Đáp án nào diễn đạt lại cụm nghe được?</div><div class="big sm">' + esc(w[0]) + '</div><div class="sub">' + esc(w[8] || "") + '</div>' : '<div class="k">Cụm nào trong bài nghe khớp với đáp án này?</div><div class="big sm">' + esc(w[2]) + '</div>')
+      : q.d === "en" ? '<div class="k">Nghĩa của từ này là gì?</div><div class="big">' + esc(w[0]) + '</div><div class="sub">' + esc(w[1]) + (w[5] ? " · /" + esc(w[5]) + "/" : "") + '</div>'
+      : q.d === "vi" ? '<div class="k">Từ tiếng Anh nào mang nghĩa này?</div><div class="big sm">' + esc(w[2]) + '</div><div class="sub">' + esc(w[1]) + '</div>'
+      : '<div class="k">Chọn từ điền vào chỗ trống</div><div class="big sm">' + esc(w[6]).replace("___", '<span class="bl"></span>') + '</div><div class="sub">' + esc(w[7]) + '</div>';
+    box.innerHTML = '<div class="vg-top">' + head + '<span class="r"><span id="vgClock"></span><button type="button" id="vgQuit">Dừng</button></span></div>' +
+      '<div class="vg-card">' + (q.d === "en" && K !== "para" ? '<button class="spk" id="vgSpk" aria-label="Nghe từ">' + spkIcon() + '</button>' : "") + big + '</div>' +
+      '<div class="vg-bar" id="vgBar"><i></i></div>' +
+      '<div class="vg-opts">' + q.o.map(function (o, j) { return '<button class="opt" data-j="' + j + '"><span class="l">' + (j + 1) + '</span>' + esc(o.t) + '</button>'; }).join("") + '</div><div class="vg-fb" id="vgFb"></div>';
+    box.querySelectorAll(".opt").forEach(function (b) { b.onclick = function () { choose(+b.getAttribute("data-j")); }; });
+    $("#vgQuit").onclick = function () { finish(true); };
+    if ($("#vgSpk")) $("#vgSpk").onclick = function () { say(w[0], true); };
+    if (q.d === "en" && K !== "para") say(w[0]);
+    q.t0 = performance.now();
+    var dur = R.mode === "60s" ? 0 : (R.sec + (K === "word" ? 0 : 4)) * 1000;
+    if (dur) T.q = setTimeout(function () { choose(-1); }, dur);
+    var bar = $("#vgBar i"), barBox = $("#vgBar"), clock = $("#vgClock");
+    (function loop() {
+      if (!R || R.done || R.qs[R.i] !== q || q.ans != null) return;
+      if (R.mode === "60s") { var left = Math.max(0, R.end - Date.now()); bar.style.transform = "scaleX(" + left / 60000 + ")"; barBox.classList.toggle("low", left < 10000); clock.textContent = Math.ceil(left / 1000) + "s"; }
+      else { var l2 = Math.max(0, dur - (performance.now() - q.t0)); bar.style.transform = "scaleX(" + l2 / dur + ")"; barBox.classList.toggle("low", l2 < 2000); clock.textContent = Math.ceil(l2 / 1000) + "s"; }
+      T.tick = requestAnimationFrame(loop);
+    })();
+  }
+  function choose(j) {
+    if (!R || R.done) return;
+    var q = R.qs[R.i]; if (!q || q.ans != null) return;
+    q.ans = j; if (T.q) { clearTimeout(T.q); T.q = null; }
+    var ok = j >= 0 && q.o[j].ok, box = $("#vgPlay");
+    box.querySelectorAll(".opt").forEach(function (b, k) { b.disabled = true; if (q.o[k].ok) b.classList.add("right"); else if (k === j) b.classList.add("wrong"); });
+    if (ok) R.ok++;
+    tone(ok); mark(kid(q.w), ok, R.mode);
+    R.log.push({ w: q.w, ok: ok, d: q.d, pick: j >= 0 ? q.o[j].t : null });
+    var fb = $("#vgFb");
+    if (fb) fb.innerHTML = ok ? '<b>Chính xác!</b> ' + esc(q.w[0]) + (kind(q.w) === "word" ? ' = ' : ' → ') + esc(q.w[2]) : (j < 0 ? "<s>Hết giờ.</s> " : "<s>Chưa đúng.</s> ") + 'Đáp án: <b>' + esc(q.d === "en" ? q.w[2] : q.w[0]) + '</b>';
+    if (q.d !== "en" && R.mode !== "60s" && kind(q.w) !== "para") say(q.w[0]);
+    var wait = R.mode === "60s" ? (ok ? 350 : 1100) : (ok ? 750 : 1700);
+    T.adv = setTimeout(function () { T.adv = null; if (!R || R.done) return; R.i++; show(); }, wait);
+  }
+  document.addEventListener("keydown", function (e) {
+    if (!R || R.done || !$("#vgPlay")) return;
+    if (/^[1-4]$/.test(e.key)) { choose(+e.key - 1); e.preventDefault(); }
+    else if (e.key === "Enter" && T.adv) { clearTimeout(T.adv); T.adv = null; R.i++; show(); e.preventDefault(); }
+  });
+
+  /* XP: máy chủ (Code.gs, REF_OK.V) chỉ nhận mã "[ab]-<chữ>-<số>" và tối đa 10 câu → quy điểm về /10.
+     Bài chủ đề dùng đúng id bài (a-office-1); bài theo Part p3-12 → "b-partthree-12"; chế độ khác → "a-game<chế độ>-<ngày trong năm>".
+     Máy chủ chỉ cộng 1 lần/mã/ngày. */
+  var NUMW = { p1: "one", p2: "two", p3: "three", p4: "four", p5: "five", p6: "six", p7: "seven" };
+  function xpRef() {
+    if (R.mode === "set") {
+      if (/^[ab]-[a-z]{2,20}-\d{1,3}$/.test(R.setId)) return R.setId;
+      var m = R.setId.match(/^(p[1-7])-(\d{1,3})$/); return m ? "b-part" + NUMW[m[1]] + "-" + m[2] : null;
+    }
+    var d = new Date(), doy = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+    return "a-game" + ({ "60s": "sixty", sai: "sai", han: "onhan", topic: "chude" }[R.mode] || "chude") + "-" + doy;
+  }
+
+  /* ---------- kết quả + chữa bài ---------- */
+  function finish(quit) {
+    if (!R || R.done) return;
+    stopAll(); R.done = true;
+    var n = R.log.length, ok = R.ok, secs = Math.round((Date.now() - R.t0) / 1000), box = $("#vgPlay"), is60 = R.mode === "60s";
+    if (!box) return;
+    if (!n) { setup(is60 ? "game:60s" : "game"); return; }
+    var best = get("azt_vg_best", 0), rec = false;
+    if (is60 && ok > best) { put("azt_vg_best", ok); rec = true; }
+    if (R.mode === "set" && !quit) { var bs = get("azt_vg_sets", {}); bs[R.setId] = Math.max(bs[R.setId] || 0, ok); put("azt_vg_sets", bs); }
+    if (!quit || n >= 5) { var xr = xpRef(); if (xr) A().xp("V", xr, Math.round(ok / n * 10), 10); if (CTX.markDay) CTX.markDay("v"); }
+    var pct = Math.round(ok / n * 100), bad = R.log.filter(function (x) { return !x.ok; });
+    var msg = is60 ? (rec ? "Kỷ lục mới của bạn! " : "Kỷ lục hiện tại: " + Math.max(best, ok) + " câu. ") + "Chơi lại để phá kỷ lục nhé."
+      : pct >= 90 ? "Rất tốt. Những từ này sẽ được nhắc ôn lại sau 1, 3 và 7 ngày để nhớ lâu." : pct >= 70 ? "Khá ổn. Xem lại các từ sai bên dưới rồi ôn lại ngay một lượt." : "Từ sai đã vào sổ ôn. Đọc phần chữa bên dưới, rồi bấm Ôn lại từ sai.";
+    var badWs = bad.map(function (x) { return x.w; }).filter(function (w, k, a) { return a.indexOf(w) === k; });
+    var list = R.log.slice().sort(function (a, b) { return a.ok - b.ok; }).filter(function (x, k, a) { return a.findIndex(function (y) { return y.w === x.w; }) === k; });
+    box.innerHTML = '<div class="vg-res"><div class="big">' + ok + (is60 ? "" : "/" + n) + '</div><p>' + msg + '</p>' +
+      '<div class="st"><div><b>' + pct + '%</b><span>chính xác</span></div><div><b>' + secs + 's</b><span>thời gian</span></div><div><b>' + bad.length + '</b><span>câu sai</span></div>' + (is60 ? '<div><b>' + Math.max(best, ok) + '</b><span>kỷ lục</span></div>' : "") + '</div>' +
+      '<div class="act">' + (badWs.length ? '<button class="btn btn-red" id="vgRetry">Ôn lại ' + badWs.length + ' từ sai</button>' : "") + '<button class="btn btn-glass" id="vgAgain">' + (is60 ? "Chơi lại 60 giây" : "Lượt mới") + '</button><a class="btn btn-glass" href="#tu-vung">Về Từ vựng</a></div></div>' +
+      '<div class="sec-h" style="margin:6px 0 10px"><b>Chữa bài</b> <span style="color:var(--ink-3);font-size:14px">· từ sai xếp trước</span></div>' +
+      '<div class="vg-list">' + list.map(function (x) {
+        var w = x.w;
+        return '<div class="vg-it' + (x.ok ? " ok" : "") + '"><div class="h"><b>' + esc(w[0]) + '</b><i>' + esc(w[1]) + (w[5] ? " · /" + esc(w[5]) + "/" : "") + '</i><button class="spk" data-say="' + esc(w[0]) + '" aria-label="Nghe" style="border:0;background:none;color:var(--ink-3);cursor:pointer;padding:0;width:20px;height:20px">' + spkIcon() + '</button>' + (w[8] && w[8] !== "Vocab Arena" ? '<span class="src">' + esc(w[8]) + '</span>' : "") + '</div>' +
+          '<div class="m">' + esc(w[2]) + '</div><div class="s">' + esc(w[6]).replace("___", "<em>" + esc(w[0]) + "</em>") + '<br>' + esc(w[7]) + '</div>' +
+          (!x.ok ? '<div class="y">' + (x.pick == null ? "Hết giờ" : "Bạn chọn: " + esc(x.pick)) + '</div>' : "") + '</div>';
+      }).join("") + '</div>';
+    box.querySelectorAll("[data-say]").forEach(function (b) { b.onclick = function () { say(b.getAttribute("data-say"), true); }; });
+    if ($("#vgRetry")) $("#vgRetry").onclick = function () { start("sai", "", shuffle(badWs)); };
+    $("#vgAgain").onclick = function () { start(R.mode, R.setId); };
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  window.AZTVG = {
+    use: function (c) { CTX = c || {}; },
+    banner: banner,
+    open: function (v, arg) { init(v); stopAll(); R = null; setup(arg || "game"); },
+    due: function (v) { init(v); return dueList().length; }
+  };
+})();
+</script>
 <script>
 (function(){
 "use strict";
@@ -1611,7 +1905,7 @@ function renderStages(){
       '<div class="gate-l"><b>' + (G.next ? "Lên chặng khi:" : "Sẵn sàng thi 750+ khi:") + '</b> ' + Object.keys(G.need).map(function(p){ return "Part " + p + " ≥ " + G.need[p] + "%"; }).join(" · ") + '</div>' +
       '<button class="btn ' + (on ? "btn-glass" : "btn-red") + '" data-st="' + k + '">' + (on ? "Đang học chặng này" : "Chọn chặng này") + '</button></div>'; }).join("");
 }
-var LAB26 = false;
+var LAB26 = true;
 var FEES = [
   {k:"0-400", lv:"KHOÁ 1 · CHẶNG 0 – 400", t:"Nền tảng", rg:"Mất gốc hoặc chưa thi TOEIC · mục tiêu 400", pr:"3.850.000", sz:"15 – 20 học viên/lớp", f:["Ngữ pháp và từ vựng nền cho Part 1, 2, 5","Phương pháp từng dạng câu, luyện trên web mỗi ngày"]},
   {k:"400-600", lv:"KHOÁ 2 · CHẶNG 400 – 600", t:"Luyện đề Căn bản", rg:"Đã có khoảng 400 · mục tiêu 600", pr:"4.350.000", sz:"12 – 20 học viên/lớp", f:["Luyện đề ETS 2026 theo Part, chữa câu sai theo dạng","Listening Lab nghe đục lỗ, Part 7 Daily 15"], hot:1},
@@ -1656,7 +1950,7 @@ function renderApps(){
   var A = [
     {cv:"Phương pháp", cs:"7 Part · 31 dạng câu", hue:"#B8913A", t:"Phương pháp làm bài", d:"7 Part, " + M.reduce(function(n,p){ return n + p.types.length; }, 0) + " dạng câu: cách nhận diện, 3 bước làm, bẫy hay gặp và bài ví dụ có lời giải.", h:"#phuong-phap", lv:"open"},
     {cv:"Ngữ pháp", cs:"Part 5 · Part 6", hue:"#3A60AA", t:"Ngữ pháp TOEIC căn bản", d:GRAMMAR.length + " chủ đề: lý thuyết rút gọn, bài luyện và bài kiểm tra theo đúng dạng Part 5, Part 6.", h:"ngu-phap/", lv:"acc"},
-    {cv:"Từ vựng", cs:"20 chủ đề công sở", hue:"#0E9384", t:"Từ vựng TOEIC căn bản", d:"2.500 từ theo 20 chủ đề công sở, chia 2 cấp. Mỗi lượt 10 từ, có câu ví dụ và kiểm tra nhanh.", h:"#tu-vung", lv:"acc"},
+    {cv:"Từ vựng", cs:"20 chủ đề công sở", hue:"#0E9384", t:"Từ vựng TOEIC căn bản", d:"3.514 từ theo 20 chủ đề công sở, chia 2 cấp. Mỗi lượt 10 từ, có câu ví dụ và kiểm tra nhanh.", h:"#tu-vung", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 1–5 · chấm /990", hue:"#D7192D", t:"Giải đề ETS 2026 · Test 1–5", d:"Luyện từng Part 6–54 câu, luyện riêng Nghe/Đọc hoặc full test 200 câu đúng 120 phút. Chấm điểm ước tính /990, sổ câu sai.", h:"de-thi.html", lv:"acc"},
     {cv:"ETS 2026", cs:"Test 6–10 · thi thử", hue:"#8E0D1D", t:"ETS 2026 · Test 6–10", d:"5 đề còn lại của bộ ETS 2026 cho thi thử định kỳ trên lớp.", h:"de-thi.html", lv:"cls"},
     {cv:"Listening Lab", cs:"ETS 2026 · Test 1–10", hue:"#4F46E5", t:"Listening Lab ETS 2026", d:"Nghe đục lỗ đủ 10 đề: chọn từ nghe được, chép chính tả, nghe lại từng câu, tô câu chứa đáp án. Test 1–5 mở cho tài khoản, Test 6–10 cho học viên lớp.", h:"listening-lab-2026/", lv:"acc", off:!LAB26},
@@ -1726,7 +2020,7 @@ function exHtml(ex, k){
     '<div class="opts' + (ex.options.join("").length > 90 ? " one" : "") + '">' + ex.options.map(function(o, j){ return '<button class="opt" data-ex="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + esc(o) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
 }
 var EXMAP = {}, RX = null;
-function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611120804"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
+function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611120832"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
 function rxHtml(ex, k){
   var id = "rx-" + k, h = '<div class="q rq" id="' + id + '"><div class="q-h"><span class="src">Đề thật · ' + esc(ex.src) + '</span>' + (ex.group ? '<span>' + esc(ex.group) + '</span>' : "") + '</div>';
   if(ex.passages) h += ex.passages.map(function(p){ var t = esc(p.text).replace(/\{\{(\d+)\}\}/g, function(_, n){ return '<span class="bl' + (+n === ex.blank ? " me" : "") + '">(' + n + ')</span>'; }); return '<div class="pas">' + (p.title ? "<h4>" + esc(p.title) + "</h4>" : "") + t + '</div>'; }).join("");
@@ -1802,7 +2096,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611120804";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611120832";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -1815,6 +2109,13 @@ function vocab(cb, silent){
         for(var i = 0; i < ws.length; i += 10){ var id = lv + "-" + tp + "-" + (i / 10 + 1); var set = {id:id, lv:lv, tp:tp, n:i / 10 + 1, words:ws.slice(i, i + 10), name: VOC.topics[tp] + " · Bài " + (i / 10 + 1)}; VOC.sets[id] = set; list.push(set); }
         if(list.length) VOC.byLv[lv].push({tp:tp, sets:list, count:ws.length});
       });
+    });
+    // Từ vựng theo Part 1–7 (trích từ đề ETS): mỗi bài 10 mục, id dạng p3-2
+    VOC.psets = {}; VOC.byPart = [];
+    Object.keys(VOC.parts || {}).forEach(function(p){
+      var ws = (VOC.pwords || []).filter(function(w){ return w[4] === p; }), list = [];
+      for(var i = 0; i < ws.length; i += 10){ var id = p + "-" + (i / 10 + 1); var set = {id:id, part:p, n:i / 10 + 1, words:ws.slice(i, i + 10), name: VOC.parts[p].name + " · Bài " + (i / 10 + 1)}; VOC.psets[id] = set; list.push(set); }
+      if(list.length) VOC.byPart.push({p:p, sets:list, count:ws.length});
     });
   }
 }
@@ -1836,10 +2137,15 @@ function renderVocab(arg){
   if(!AZT.session()) return renderAuth("dang-ky", "#tu-vung" + (arg ? "/" + arg : ""));
   vocab(function(V){
     var vp = vProg();
+    if(window.AZTVG) AZTVG.use({page:page, markDay:markDay});
+    if(arg && /^game/.test(arg) && window.AZTVG) return AZTVG.open(V, arg);
     if(arg && V.sets[arg]) return renderSet(V.sets[arg], vp);
-    var lv = arg === "b" ? "b" : "a";
-    var tabs = '<div class="tabs"><a class="btn btn-sm ' + (lv === "a" ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/a">Căn bản · A1–A2</a><a class="btn btn-sm ' + (lv === "b" ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/b">Trung cấp · B1–B2</a></div>';
-    var body = tabs + '<div class="vgrid">' + V.byLv[lv].map(function(g){
+    if(arg && V.psets && V.psets[arg]) return renderPartSet(V.psets[arg]);
+    var lv = arg === "b" ? "b" : arg === "part" ? "part" : "a";
+    var tabs = '<div class="tabs"><a class="btn btn-sm ' + (lv === "a" ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/a">Căn bản · A1–A2</a><a class="btn btn-sm ' + (lv === "b" ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/b">Trung cấp · B1–B2</a>' + (V.byPart && V.byPart.length ? '<a class="btn btn-sm ' + (lv === "part" ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/part">Theo Part 1–7</a>' : "") + '</div>';
+    var top = window.AZTVG ? AZTVG.banner(V) : "";
+    if(lv === "part") return renderParts(V, top + tabs);
+    var body = top + tabs + '<div class="vgrid">' + V.byLv[lv].map(function(g){
       var d = g.sets.filter(function(s){ return vp[s.id]; }).length;
       return '<a class="vt" href="#tu-vung/' + g.sets.filter(function(s){ return !vp[s.id]; }).concat(g.sets)[0].id + '"><b>' + esc(V.topics[g.tp]) + '</b><span>' + g.count + ' từ · ' + d + '/' + g.sets.length + ' bài đã xong</span><div class="bar"><i style="width:' + Math.round(d / g.sets.length * 100) + '%"></i></div></a>';
     }).join("") + '</div>';
@@ -1848,11 +2154,39 @@ function renderVocab(arg){
 }
 function renderSet(set, vp){
   var V = VOC, g = V.byLv[set.lv].filter(function(x){ return x.tp === set.tp; })[0];
-  var body = '<div class="toolbar"><a class="btn btn-ghost btn-sm" href="#tu-vung/' + set.lv + '">← Các chủ đề</a>' + g.sets.map(function(s){ return '<a class="btn btn-sm ' + (s.id === set.id ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/' + s.id + '">Bài ' + s.n + (vp[s.id] ? " ✓" : "") + '</a>'; }).join("") + '<button class="btn btn-sm btn-ghost" id="vHide" style="margin-left:auto">Che nghĩa để tự nhớ</button></div>' +
-    '<div class="wcards">' + set.words.map(function(w){ return '<div class="wc"><div class="w"><b>' + esc(w[0]) + '</b><i>' + esc(w[1]) + (w[5] ? " · /" + esc(w[5]) + "/" : "") + '</i><button class="spk" data-w="' + esc(w[0]) + '" aria-label="Nghe từ ' + esc(w[0]) + '">' + ICON.spk + '</button></div><div class="m">' + esc(w[2]) + '</div><div class="s">' + esc(w[6]).replace("___", "<em>" + esc(w[0]) + "</em>") + '<br><span style="color:var(--ink-3)">' + esc(w[7]) + '</span></div></div>'; }).join("") + '</div>' +
+  var body = '<div class="toolbar"><a class="btn btn-ghost btn-sm" href="#tu-vung/' + set.lv + '">← Các chủ đề</a>' + g.sets.map(function(s){ return '<a class="btn btn-sm ' + (s.id === set.id ? "btn-teal" : "btn-ghost") + '" href="#tu-vung/' + s.id + '">Bài ' + s.n + (vp[s.id] ? " ✓" : "") + '</a>'; }).join("") + '<a class="btn btn-sm btn-ghost" href="#tu-vung/game:' + set.id + '" style="margin-left:auto">Chơi game bài này</a><button class="btn btn-sm btn-ghost" id="vHide">Che nghĩa để tự nhớ</button></div>' +
+    '<div class="wcards">' + set.words.map(function(w){ return '<div class="wc"><div class="w"><b>' + esc(w[0]) + '</b><i>' + esc(w[1]) + (w[5] ? " · /" + esc(w[5]) + "/" : "") + '</i><button class="spk" data-w="' + esc(w[0]) + '" aria-label="Nghe từ ' + esc(w[0]) + '">' + ICON.spk + '</button>' + (w[8] && w[8] !== "Vocab Arena" ? '<span class="wsrc">' + esc(w[8]) + '</span>' : "") + '</div><div class="m">' + esc(w[2]) + '</div><div class="s">' + esc(w[6]).replace("___", "<em>" + esc(w[0]) + "</em>") + '<br><span style="color:var(--ink-3)">' + esc(w[7]) + '</span></div></div>'; }).join("") + '</div>' +
     '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><div><b>Kiểm tra nhanh 10 câu</b><div style="color:var(--ink-2);font-size:14px">5 câu chọn nghĩa · 5 câu điền từ vào câu TOEIC. Đạt từ 7/10 là hoàn thành bài.' + (vp[set.id] ? " Điểm cao nhất: " + vp[set.id] + "/10." : "") + '</div></div><button class="btn btn-red" id="vStart">Bắt đầu kiểm tra</button></div><div id="vQuiz" style="margin-top:14px"></div></div>';
   page('<a href="#tu-vung">Từ vựng</a> / ' + esc(V.topics[set.tp]), esc(set.name), "Đọc to từng từ, bấm Che nghĩa để tự kiểm tra trí nhớ, rồi làm bài kiểm tra 10 câu.", body);
   $("#vStart").onclick = function(){ document.querySelector(".wcards").hidden = true; $("#vHide").hidden = true; vQuiz(set); this.remove(); };
+  $("#vHide").onclick = function(){ var on = document.querySelector(".wcards").classList.toggle("hide-m"); this.textContent = on ? "Hiện nghĩa" : "Che nghĩa để tự nhớ"; };
+}
+/* ----- từ vựng theo Part 1–7 (trích từ đề ETS, học bằng game) ----- */
+function vgSets(){ return AZT.get("azt_vg_sets") || {}; }
+function renderParts(V, head){
+  var vs = vgSets();
+  var body = head + '<div class="vgrid">' + V.byPart.map(function(g){
+    var m = V.parts[g.p], d = g.sets.filter(function(s){ return vs[s.id]; }).length, nx = g.sets.filter(function(s){ return !vs[s.id]; }).concat(g.sets)[0];
+    return '<a class="vt" href="#tu-vung/' + nx.id + '"><b>' + esc(m.name) + '</b><span style="display:block;color:var(--ink-2);margin:2px 0 6px">' + esc(m.desc) + '</span><span>' + g.count.toLocaleString("vi-VN") + ' mục · ' + d + '/' + g.sets.length + ' bài đã luyện</span><div class="bar"><i style="width:' + Math.round(d / g.sets.length * 100) + '%"></i></div></a>';
+  }).join("") + '</div>';
+  page('<a href="#tu-vung">Từ vựng</a> / Theo Part', "Từ vựng theo Part 1–7", "Từ và cụm hay ra trong từng Part, trích thẳng từ đề ETS 2026 và ETS 2023, mỗi mục ghi rõ Test và Câu nguồn. Đọc thẻ rồi luyện bằng game để tính XP.", body);
+}
+function renderPartSet(set){
+  var V = VOC, g = V.byPart.filter(function(x){ return x.p === set.part; })[0], vs = vgSets(), m = V.parts[set.part];
+  var card = function(w){
+    var src = '<span class="wsrc">' + esc(w[8]) + '</span>';
+    if(w[1] === "hỏi – đáp") return '<div class="wc"><div class="w"><b style="font-size:16px">' + esc(w[0]) + '</b><button class="spk" data-w="' + esc(w[0]) + '" aria-label="Nghe câu hỏi">' + ICON.spk + '</button>' + src + '</div><div class="m">→ ' + esc(w[2]) + ' <button class="spk" data-w="' + esc(w[2]) + '" aria-label="Nghe câu đáp">' + ICON.spk + '</button></div><div class="s">' + esc(w[7]) + '</div></div>';
+    if(w[1] === "diễn đạt lại") return '<div class="wc"><div class="w"><b style="font-size:16px">' + esc(w[0]) + '</b><button class="spk" data-w="' + esc(w[0]) + '" aria-label="Nghe cụm">' + ICON.spk + '</button>' + src + '</div><div class="m">≈ ' + esc(w[2]) + '</div><div class="s">Nghe được trong bài → đáp án viết lại bằng từ khác.</div></div>';
+    return '<div class="wc"><div class="w"><b>' + esc(w[0]) + '</b><i>' + esc(w[1]) + (w[5] ? " · /" + esc(w[5]) + "/" : "") + '</i><button class="spk" data-w="' + esc(w[0]) + '" aria-label="Nghe từ ' + esc(w[0]) + '">' + ICON.spk + '</button>' + src + '</div><div class="m">' + esc(w[2]) + '</div><div class="s">' + esc(w[6]).replace("___", "<em>" + esc(w[0]) + "</em>") + (w[7] ? '<br><span style="color:var(--ink-3)">' + esc(w[7]) + '</span>' : "") + '</div></div>';
+  };
+  var k = g.sets.indexOf(set), prev = g.sets[k - 1], next = g.sets[k + 1];
+  var body = '<div class="toolbar"><a class="btn btn-ghost btn-sm" href="#tu-vung/part">← Các Part</a>' + (prev ? '<a class="btn btn-ghost btn-sm" href="#tu-vung/' + prev.id + '">‹ Bài ' + prev.n + '</a>' : "") +
+    '<select id="vPick" class="btn btn-sm btn-ghost" aria-label="Chọn bài">' + g.sets.map(function(s){ return '<option value="' + s.id + '"' + (s.id === set.id ? " selected" : "") + '>Bài ' + s.n + ' / ' + g.sets.length + (vs[s.id] ? " ✓ " + vs[s.id] + "/10" : "") + '</option>'; }).join("") + '</select>' +
+    (next ? '<a class="btn btn-ghost btn-sm" href="#tu-vung/' + next.id + '">Bài ' + next.n + ' ›</a>' : "") + '<button class="btn btn-sm btn-ghost" id="vHide" style="margin-left:auto">Che nghĩa để tự nhớ</button></div>' +
+    '<div class="wcards">' + set.words.map(card).join("") + '</div>' +
+    '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><div><b>Luyện bằng game</b><div style="color:var(--ink-2);font-size:14px">10 câu tự chuyển theo giờ, sai được chữa cuối lượt và vào sổ ôn 1–3–7 ngày.' + (vs[set.id] ? " Điểm cao nhất: " + vs[set.id] + "/10." : "") + '</div></div><a class="btn btn-red" href="#tu-vung/game:' + set.id + '">Chơi game bài này</a></div></div>';
+  page('<a href="#tu-vung">Từ vựng</a> / <a href="#tu-vung/part">Theo Part</a>', esc(set.name), esc(m.desc), body);
+  $("#vPick").onchange = function(){ location.hash = "#tu-vung/" + this.value; };
   $("#vHide").onclick = function(){ var on = document.querySelector(".wcards").classList.toggle("hide-m"); this.textContent = on ? "Hiện nghĩa" : "Che nghĩa để tự nhớ"; };
 }
 function shuffle(a){ a = a.slice(); for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -1928,7 +2262,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611120804"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611120832"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");
