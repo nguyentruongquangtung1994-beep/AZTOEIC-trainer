@@ -321,6 +321,21 @@ html.azt-locked body > *:not(.azt-lock):not(.azt-bar) { display: none !important
 h1, h2, .panel h2, .hero-card h2, .tr-name, .score-num, .result-panel .score-num { font-family: "Playfair Display", Georgia, serif !important; font-weight: 700 !important; letter-spacing: -.01em; font-variant-numeric: lining-nums; }
 h3, h4, .q-num, .opt-btn, .btn, button, input, select, textarea { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
 body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+</style><style id="azt-etsbooks">
+.ets-books{display:grid;gap:14px}
+details.ets-book{border:1px solid rgba(184,145,58,.35);border-radius:16px;background:#fff;box-shadow:0 10px 30px -22px rgba(11,20,36,.45);overflow:hidden}
+details.ets-book>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 20px;background:linear-gradient(150deg,#0B1424 0%,#13233B 100%);color:#fff}
+details.ets-book>summary::-webkit-details-marker{display:none}
+.ets-book .eb-main{flex:1;min-width:0}
+.ets-book .eb-name{font:700 24px/1.15 "Playfair Display",Georgia,serif;color:#fff}
+.ets-book .eb-sub{font:500 13px/1.4 "Be Vietnam Pro",system-ui,sans-serif;color:rgba(255,255,255,.75);margin-top:4px}
+.ets-book .eb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.ets-book .eb-tag{font:700 12px/1 "Be Vietnam Pro",sans-serif;padding:7px 10px;border-radius:999px;background:rgba(227,194,122,.16);color:#E3C27A;border:1px solid rgba(227,194,122,.4);white-space:nowrap}
+.ets-book .eb-tag.lock{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.25)}
+.ets-book .eb-chev{font-size:18px;color:#E3C27A;transition:transform .2s}
+details.ets-book[open] .eb-chev{transform:rotate(180deg)}
+.ets-book .eb-list{display:grid;gap:12px;padding:14px}
+@media (max-width:560px){details.ets-book>summary{flex-wrap:wrap}.ets-book .eb-tags{justify-content:flex-start}}
 </style></head>
 <body>
 
@@ -336,22 +351,22 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611141718"></script>
-<script src="ets2026-test2.js?v=202611141718"></script>
-<script src="ets2026-test3.js?v=202611141718"></script>
-<script src="ets2026-test4.js?v=202611141718"></script>
-<script src="ets2026-test5.js?v=202611141718"></script>
-<script src="ets2023-test1.js?v=202611141718"></script>
-<script src="ets2023-test2.js?v=202611141718"></script>
-<script src="ets2023-test3.js?v=202611141718"></script>
-<script src="ets2023-test4.js?v=202611141718"></script>
-<script src="ets2023-test5.js?v=202611141718"></script>
-<script src="ets2024-test1.js?v=202611141718"></script>
-<script src="ets2024-test2.js?v=202611141718"></script>
-<script src="ets2024-test3.js?v=202611141718"></script>
-<script src="ets2024-test4.js?v=202611141718"></script>
-<script src="ets2024-test5.js?v=202611141718"></script>
-<script src="mini30.js?v=202611141718"></script>
+<script src="ets2026-test1.js?v=202611142039"></script>
+<script src="ets2026-test2.js?v=202611142039"></script>
+<script src="ets2026-test3.js?v=202611142039"></script>
+<script src="ets2026-test4.js?v=202611142039"></script>
+<script src="ets2026-test5.js?v=202611142039"></script>
+<script src="ets2023-test1.js?v=202611142039"></script>
+<script src="ets2023-test2.js?v=202611142039"></script>
+<script src="ets2023-test3.js?v=202611142039"></script>
+<script src="ets2023-test4.js?v=202611142039"></script>
+<script src="ets2023-test5.js?v=202611142039"></script>
+<script src="ets2024-test1.js?v=202611142039"></script>
+<script src="ets2024-test2.js?v=202611142039"></script>
+<script src="ets2024-test3.js?v=202611142039"></script>
+<script src="ets2024-test4.js?v=202611142039"></script>
+<script src="ets2024-test5.js?v=202611142039"></script>
+<script src="mini30.js?v=202611142039"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -589,6 +604,35 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
         list.appendChild(row);
       }); });
     }
+    (function(){
+      var rows = [].slice.call(list.children), groups = {}, KEY = "azt_ets_open", opened = [];
+      try{ opened = JSON.parse(sessionStorage.getItem(KEY) || "[]"); }catch(e){}
+      rows.forEach(function(r){
+        var y = (((r.querySelector(".tr-sub") || {}).textContent || "").match(/ETS (\d{4})/) || [])[1] || "Khác";
+        (groups[y] = groups[y] || []).push(r);
+      });
+      list.innerHTML = ""; list.classList.add("ets-books");
+      var done = function(id){ return Object.keys((STATE && STATE.attempts) || {}).some(function(k){ return k.indexOf(id + "-") === 0 && !/inprogress/.test(k); }); };
+      Object.keys(groups).sort().reverse().forEach(function(y){
+        var rs = groups[y], locked = rs.filter(function(r){ return r.classList.contains("azt-lockrow"); }).length;
+        var ids = ids_of(rs), nd = ids.filter(done).length;
+        var det = document.createElement("details"); det.className = "ets-book";
+        if(opened.indexOf(y) >= 0) det.open = true;
+        det.innerHTML = '<summary><div class="eb-main"><div class="eb-name">ETS ' + y + '</div>' +
+          '<div class="eb-sub">' + rs.length + ' đề · 200 câu / đề · 120 phút' + (nd ? ' · đã làm ' + nd + '/' + ids.length : '') + '</div></div>' +
+          '<div class="eb-tags">' + (rs.length - locked ? '<span class="eb-tag">' + (rs.length - locked) + ' đề mở</span>' : '') +
+          (locked ? '<span class="eb-tag lock">🔒 ' + locked + ' đề lớp</span>' : '') + '<span class="eb-chev">▾</span></div></summary>';
+        var box = document.createElement("div"); box.className = "eb-list";
+        rs.forEach(function(r){ box.appendChild(r); });
+        det.appendChild(box);
+        det.addEventListener("toggle", function(){
+          var o = []; [].slice.call(list.querySelectorAll("details.ets-book")).forEach(function(d){ if(d.open) o.push(d.querySelector(".eb-name").textContent.replace("ETS ", "")); });
+          try{ sessionStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+        });
+        list.appendChild(det);
+      });
+      function ids_of(rs){ return rs.map(function(r){ var a = r.querySelector('a[href*="/test/"]'); return a ? a.getAttribute("href").split("/")[2] : null; }).filter(Boolean); }
+    })();
     // Thẻ Listening Lab ETS 2023 (web riêng trong thư mục listening-lab/)
     var lab = el("div", "hero-card");
     lab.style.marginTop = "18px";
