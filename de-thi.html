@@ -336,17 +336,22 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611141217"></script>
-<script src="ets2026-test2.js?v=202611141217"></script>
-<script src="ets2026-test3.js?v=202611141217"></script>
-<script src="ets2026-test4.js?v=202611141217"></script>
-<script src="ets2026-test5.js?v=202611141217"></script>
-<script src="ets2023-test1.js?v=202611141217"></script>
-<script src="ets2023-test2.js?v=202611141217"></script>
-<script src="ets2023-test3.js?v=202611141217"></script>
-<script src="ets2023-test4.js?v=202611141217"></script>
-<script src="ets2023-test5.js?v=202611141217"></script>
-<script src="mini30.js?v=202611141217"></script>
+<script src="ets2026-test1.js?v=202611141718"></script>
+<script src="ets2026-test2.js?v=202611141718"></script>
+<script src="ets2026-test3.js?v=202611141718"></script>
+<script src="ets2026-test4.js?v=202611141718"></script>
+<script src="ets2026-test5.js?v=202611141718"></script>
+<script src="ets2023-test1.js?v=202611141718"></script>
+<script src="ets2023-test2.js?v=202611141718"></script>
+<script src="ets2023-test3.js?v=202611141718"></script>
+<script src="ets2023-test4.js?v=202611141718"></script>
+<script src="ets2023-test5.js?v=202611141718"></script>
+<script src="ets2024-test1.js?v=202611141718"></script>
+<script src="ets2024-test2.js?v=202611141718"></script>
+<script src="ets2024-test3.js?v=202611141718"></script>
+<script src="ets2024-test4.js?v=202611141718"></script>
+<script src="ets2024-test5.js?v=202611141718"></script>
+<script src="mini30.js?v=202611141718"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -552,7 +557,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     });
     var hero = el("div", "hero-card");
     hero.innerHTML =
-      '<div class="hero-eyebrow">' + (ids.some(function(i){ return /ets2023/.test(i); }) ? 'ETS 2026 + ETS 2023' : 'ETS 2026') + ' · ' + ids.length + ' đề thi thử</div>' +
+      '<div class="hero-eyebrow">' + ['2026', '2024', '2023'].filter(function(y){ return ids.some(function(i){ return i.indexOf('ets' + y) === 0; }); }).map(function(y){ return 'ETS ' + y; }).join(' + ') + ' · ' + ids.length + ' đề thi thử</div>' +
       '<h2>Làm full test — thi thử đúng như thi thật</h2>' +
       '<p class="desc">Mỗi đề 200 câu (Part 1–7), audio Listening tự chạy liên tục, đồng hồ đếm ngược 120 phút. ' +
       'Nộp bài là có ngay điểm quy đổi ước tính /990 và nhận xét điểm mạnh/yếu theo từng Part.</p>' +
@@ -577,7 +582,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     });
     app.appendChild(list);
     if(!(window.AZT && AZT.isClass())){
-      [[2026,[6,7,8,9,10]],[2023,[6, 7, 8, 9, 10]]].forEach(function(b){ b[1].forEach(function(n){
+      [[2026,[6,7,8,9,10]],[2024,[6, 7, 8, 9]],[2023,[6, 7, 8, 9, 10]]].forEach(function(b){ b[1].forEach(function(n){
         var row = el("div", "test-row azt-lockrow");
         row.innerHTML = '<div class="tr-main"><div class="tr-name">Test ' + n + '</div><div class="tr-sub">ETS ' + b[0] + ' · 200 câu · 120 phút</div></div>' +
           '<a class="btn btn-ghost" href="./#hoc-vien">🔒 Học viên lớp</a>';
@@ -1753,5 +1758,5 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
     xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put, mockSend: mockSend, mockPanel: mockPanel, mockIntro: mockIntro };
 })();
-</script><script>(function(){AZT.guard("account","Gi\u1ea3i \u0111\u1ec1 ETS 2026").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"].length)AZT.loadClass(["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"]).then(go);else go();});})();</script></body>
+</script><script>(function(){AZT.guard("account","Gi\u1ea3i \u0111\u1ec1 ETS 2026").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2024-test6.enc", "lop/ets2024-test7.enc", "lop/ets2024-test8.enc", "lop/ets2024-test9.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"].length)AZT.loadClass(["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2024-test6.enc", "lop/ets2024-test7.enc", "lop/ets2024-test8.enc", "lop/ets2024-test9.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"]).then(go);else go();});})();</script></body>
 </html>
