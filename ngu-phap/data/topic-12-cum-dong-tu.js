@@ -80,6 +80,23 @@ window.AZ_GRAMMAR_DATA['cum-dong-tu'] = {
         {q:'The tour group ------ for the airport at dawn.', choices:['turn off','set off','put off','set up'], correct:1, explain:'Dịch: Đoàn du lịch khởi hành đến sân bay lúc rạng sáng. — Giải thích: khởi hành = "set off". Mẹo thêm: "put off" (hoãn) và "turn off" (tắt) không hợp nghĩa.'},
         {q:'The board decided to ------ the launch until next quarter.', choices:['put off','put on','put in','put out'], correct:0, explain:'Dịch: Hội đồng quản trị quyết định hoãn buổi ra mắt sang quý sau. — Giải thích: hoãn lại = "put off" (đồng nghĩa "postpone"). Mẹo thêm: hoãn = put off; hủy = call off; dời sớm = bring forward.'}
       ]
+    },
+    {
+      id: 'cdt2-3', title: "3. Luyện thêm: cụm động từ hay gặp trong email & thông báo",
+      items: [
+        {"q": "Please ------- the registration form and return it to the front desk.", "choices": ["fill out", "fill up", "fill off", "fill by"], "correct": 0, "explain": "Dịch: Vui lòng điền phiếu đăng ký và nộp lại cho quầy lễ tân. — \"fill out/in a form\" = điền đơn."},
+        {"q": "The board decided to ------- the vote until all members are present.", "choices": ["put off", "put on", "put up", "put in"], "correct": 0, "explain": "Dịch: HĐQT quyết định hoãn biểu quyết cho tới khi đủ thành viên. — \"put off\" = postpone (hoãn lại)."},
+        {"q": "Ms. Rhee will ------- the project while Mr. Grant is on leave.", "choices": ["take over", "take off", "take after", "take apart"], "correct": 0, "explain": "Dịch: Bà Rhee sẽ tiếp quản dự án trong lúc ông Grant nghỉ phép. — \"take over\" = tiếp quản, nhận lại trách nhiệm."},
+        {"q": "Our supplier has ------- out of the blue paper, so we ordered white instead.", "choices": ["run", "gone", "made", "cut"], "correct": 0, "explain": "Dịch: Nhà cung cấp đã hết giấy xanh nên chúng tôi đặt giấy trắng. — \"run out of\" = hết, cạn."},
+        {"q": "Could you ------- the figures in the report before it is sent to the client?", "choices": ["go over", "go off", "go by", "go along"], "correct": 0, "explain": "Dịch: Anh có thể rà lại số liệu trong báo cáo trước khi gửi khách không? — \"go over\" = xem xét, rà soát kỹ."},
+        {"q": "The company plans to ------- 50 new staff members for the holiday season.", "choices": ["take on", "take in", "take up", "take down"], "correct": 0, "explain": "Dịch: Công ty dự định tuyển thêm 50 nhân viên cho mùa lễ. — \"take on\" = hire (tuyển, nhận thêm người)."},
+        {"q": "Due to low ticket sales, the outdoor concert was ------- off.", "choices": ["called", "turned", "set", "brought"], "correct": 0, "explain": "Dịch: Do bán vé ít, buổi hoà nhạc ngoài trời đã bị huỷ. — \"call off\" = cancel (huỷ)."},
+        {"q": "Mr. Patel ------- up the idea of a four-day workweek at the staff meeting.", "choices": ["brought", "came", "picked", "turned"], "correct": 0, "explain": "Dịch: Ông Patel nêu ý tưởng tuần làm bốn ngày trong buổi họp. — \"bring up\" = nêu ra (một vấn đề)."},
+        {"q": "Please ------- for the next available agent; your call is important to us.", "choices": ["hold on", "hold off", "hold out", "hold back"], "correct": 0, "explain": "Dịch: Vui lòng giữ máy chờ nhân viên kế tiếp. — \"hold on\" = giữ máy, chờ một chút."},
+        {"q": "The new manager quickly ------- along with everyone in the department.", "choices": ["got", "came", "went", "made"], "correct": 0, "explain": "Dịch: Quản lý mới nhanh chóng hoà hợp với mọi người trong phòng. — \"get along with\" = hoà hợp với."},
+        {"q": "Before you leave, remember to ------- off all the computers.", "choices": ["turn", "take", "put", "break"], "correct": 0, "explain": "Dịch: Trước khi về, nhớ tắt hết máy tính. — \"turn off\" = tắt (thiết bị)."},
+        {"q": "Applicants who ------- the requirements will be contacted for an interview.", "choices": ["meet", "meet up", "meet with", "meet out"], "correct": 0, "explain": "Dịch: Ứng viên đáp ứng yêu cầu sẽ được liên hệ phỏng vấn. — Cụm cố định \"meet the requirements\" (đáp ứng yêu cầu), không cần tiểu từ. \"meet with\" = gặp gỡ ai."}
+      ]
     }
   ],
 

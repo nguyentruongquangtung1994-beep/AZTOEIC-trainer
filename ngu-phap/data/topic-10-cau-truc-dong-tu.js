@@ -62,6 +62,23 @@ window.AZ_GRAMMAR_DATA['cau-truc-dong-tu'] = {
         {q:'The board is about ------ a final decision on the merger.', choices:['to make','making','make','made'], correct:0, explain:'Dịch: Hội đồng quản trị sắp đưa ra quyết định cuối cùng về việc sáp nhập. — "be about to + V" = sắp sửa làm gì (tương lai rất gần). Mẹo thêm: không nhầm với "be about + V-ing" — "about" ở đây là một phần cố định của cụm "be about to V", không phải giới từ đứng một mình.'},
         {q:'Employees should not ------ submitting their expense reports until the last minute.', choices:['delay','to delay','delaying','delayed'], correct:0, explain:'Dịch: Nhân viên không nên trì hoãn việc nộp báo cáo chi phí đến phút chót. — "delay + V-ing" = trì hoãn việc gì. Mẹo thêm: "delay" cùng nhóm với "postpone" — cả hai đều chỉ đi với V-ing, không dùng "to V".'}
       ]
+    },
+    {
+      id: 'ct-3', title: "3. Luyện thêm: V-ing / to V / V0 trong câu TOEIC",
+      items: [
+        {"q": "The company is considering ------- a second warehouse in the region.", "choices": ["opening", "to open", "open", "opened"], "correct": 0, "explain": "Dịch: Công ty đang cân nhắc mở kho thứ hai trong vùng. — \"consider + V-ing\"."},
+        {"q": "Ms. Ruiz agreed ------- the training session on Monday.", "choices": ["to lead", "leading", "lead", "led"], "correct": 0, "explain": "Dịch: Bà Ruiz đồng ý dẫn buổi đào tạo thứ Hai. — \"agree + to V\"."},
+        {"q": "We look forward to ------- you at the annual banquet.", "choices": ["seeing", "see", "be seen", "saw"], "correct": 0, "explain": "Dịch: Chúng tôi mong được gặp bạn tại tiệc thường niên. — \"look forward to + V-ing\" (\"to\" là giới từ)."},
+        {"q": "The manager made the team ------- the report again.", "choices": ["revise", "to revise", "revising", "revised"], "correct": 0, "explain": "Dịch: Quản lý bắt nhóm sửa lại báo cáo. — \"make + O + V0\" (khiến/bắt ai làm gì)."},
+        {"q": "Mr. Holt is responsible for ------- that all orders are shipped on time.", "choices": ["ensuring", "ensure", "to ensure", "ensured"], "correct": 0, "explain": "Dịch: Ông Holt chịu trách nhiệm bảo đảm mọi đơn được giao đúng hạn. — Sau giới từ \"for\" dùng V-ing."},
+        {"q": "Visitors are not permitted ------- photographs inside the gallery.", "choices": ["to take", "taking", "take", "taken"], "correct": 0, "explain": "Dịch: Khách không được phép chụp ảnh trong phòng trưng bày. — \"be permitted + to V\" (bị động của permit + O + to V)."},
+        {"q": "The new system enables staff ------- schedules from their phones.", "choices": ["to update", "updating", "update", "updated"], "correct": 0, "explain": "Dịch: Hệ thống mới cho phép nhân viên cập nhật lịch từ điện thoại. — \"enable + O + to V\"."},
+        {"q": "Customers who wish ------- their subscription should call our service line.", "choices": ["to cancel", "canceling", "cancel", "canceled"], "correct": 0, "explain": "Dịch: Khách muốn huỷ gói đăng ký nên gọi tổng đài. — \"wish + to V\"."},
+        {"q": "We apologize for ------- you to wait so long.", "choices": ["causing", "cause", "to cause", "caused"], "correct": 0, "explain": "Dịch: Chúng tôi xin lỗi vì đã để bạn chờ lâu. — \"apologize for + V-ing\"."},
+        {"q": "Please avoid ------- personal calls during business hours.", "choices": ["making", "to make", "make", "made"], "correct": 0, "explain": "Dịch: Vui lòng tránh gọi điện việc riêng trong giờ làm. — \"avoid + V-ing\"."},
+        {"q": "The director had her assistant ------- the meeting room.", "choices": ["book", "to book", "booking", "booked"], "correct": 0, "explain": "Dịch: Giám đốc nhờ trợ lý đặt phòng họp. — \"have + người + V0\" (nhờ ai làm gì)."},
+        {"q": "It is worth ------- the extended warranty for expensive appliances.", "choices": ["buying", "to buy", "buy", "bought"], "correct": 0, "explain": "Dịch: Mua thêm bảo hành mở rộng cho đồ gia dụng đắt tiền là đáng. — \"be worth + V-ing\" (đáng làm gì)."}
+      ]
     }
   ],
 

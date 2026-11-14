@@ -74,6 +74,23 @@ window.AZ_GRAMMAR_DATA['tu-han-dinh'] = {
         {q:'The manager gave ------ employee a copy of the schedule.', choices:['both','each','each of','all'], correct:1, explain:'Dịch: Quản lý đưa cho mỗi nhân viên một bản lịch trình. — Giải thích: "each + N số ít" (employee). Mẹo thêm: nếu dùng "each of" thì phải kèm "the + N số nhiều" (each of the employees).'},
         {q:'We have ------ information about the new product yet.', choices:['few','a few','many','little'], correct:3, explain:'Dịch: Chúng tôi vẫn chưa có nhiều thông tin về sản phẩm mới. — Giải thích: "information" không đếm được → "little". Mẹo thêm: đừng nhầm "informations" — danh từ này không có dạng số nhiều.'}
       ]
+    },
+    {
+      id: 'hd-3', title: "3. Luyện thêm: lượng từ & từ hạn định",
+      items: [
+        {"q": "------- employee is required to complete the safety course by June 30.", "choices": ["Every", "All", "Most", "Several"], "correct": 0, "explain": "Dịch: Mọi nhân viên đều phải hoàn thành khoá an toàn trước 30/6. — Danh từ số ít \"employee\" + động từ \"is\" → \"Every\". All/Most/Several đi với danh từ số nhiều."},
+        {"q": "Very ------- customers have complained about the new packaging.", "choices": ["few", "little", "much", "less"], "correct": 0, "explain": "Dịch: Rất ít khách hàng phàn nàn về bao bì mới. — \"customers\" đếm được số nhiều → \"few\" (rất ít, hầu như không)."},
+        {"q": "There is still ------- time left to register for the conference.", "choices": ["a little", "a few", "many", "several"], "correct": 0, "explain": "Dịch: Vẫn còn một chút thời gian để đăng ký hội nghị. — \"time\" không đếm được → \"a little\"."},
+        {"q": "------- of the two candidates has experience in international sales.", "choices": ["Neither", "None", "Both", "All"], "correct": 0, "explain": "Dịch: Không ai trong hai ứng viên có kinh nghiệm bán hàng quốc tế. — Nói về hai người + động từ số ít \"has\" → \"Neither of\". \"Both\" cần động từ số nhiều."},
+        {"q": "The manager reviewed ------- application carefully before making a decision.", "choices": ["each", "all", "both", "many"], "correct": 0, "explain": "Dịch: Quản lý xem kỹ từng hồ sơ trước khi quyết định. — Danh từ số ít \"application\" → \"each\"."},
+        {"q": "------- of the information in the brochure is outdated.", "choices": ["Much", "Many", "A few", "Several"], "correct": 0, "explain": "Dịch: Phần lớn thông tin trong tờ gấp đã lỗi thời. — \"information\" không đếm được + động từ số ít \"is\" → \"Much of\"."},
+        {"q": "We received ------- inquiries about the job opening that we extended the deadline.", "choices": ["so many", "so much", "such", "too much"], "correct": 0, "explain": "Dịch: Chúng tôi nhận quá nhiều câu hỏi về vị trí tuyển dụng đến mức phải gia hạn. — \"so many + danh từ đếm được số nhiều + that\". \"such\" cần \"such a lot of/such many\" không đúng."},
+        {"q": "Please give the forms to ------- staff member at the reception desk.", "choices": ["any", "some", "few", "all"], "correct": 0, "explain": "Dịch: Vui lòng đưa giấy tờ cho bất kỳ nhân viên nào ở quầy lễ tân. — \"any + danh từ số ít\" = bất kỳ (ai cũng được)."},
+        {"q": "One of the printers is broken, but the ------- ones are working fine.", "choices": ["other", "another", "others", "each"], "correct": 0, "explain": "Dịch: Một máy in bị hỏng nhưng những máy còn lại vẫn chạy tốt. — \"the other + danh từ số nhiều\" = những cái còn lại. \"others\" không đi kèm danh từ."},
+        {"q": "The meeting room can hold ------- people as the main hall.", "choices": ["as many", "as much", "so few", "a lot"], "correct": 0, "explain": "Dịch: Phòng họp chứa được nhiều người như hội trường chính. — So sánh bằng với danh từ đếm được: \"as many + N + as\"."},
+        {"q": "------- the staff members agreed to the new schedule.", "choices": ["All of", "Every", "Each", "Much of"], "correct": 0, "explain": "Dịch: Tất cả nhân viên đều đồng ý lịch mới. — \"All of + the + danh từ số nhiều\". Every/Each không đi trực tiếp với \"the\"."},
+        {"q": "There were ------- seats left, so we had to stand at the back.", "choices": ["no", "none", "any", "nothing"], "correct": 0, "explain": "Dịch: Không còn ghế nào nên chúng tôi phải đứng ở cuối. — \"no + danh từ\" = không có. \"none\" đứng một mình hoặc \"none of\"."}
+      ]
     }
   ],
 

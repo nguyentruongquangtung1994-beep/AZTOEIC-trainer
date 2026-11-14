@@ -7,7 +7,7 @@
 <title>Ngữ pháp TOEIC · AZTOEIC Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Baloo+2:wght@700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
 <style>
   :root{
     --paper:#fdfcfa; --paper-2:#f2efe9; --ink:#181310; --ink-soft:#655c54; --line:#e4ded3;
@@ -452,8 +452,40 @@
   }
   .azl{ transition:bottom .25s; }
   @media (prefers-reduced-motion:reduce){ .azl-bub{ animation:none; } }
+
+  /* ---- BÀI TẬP: font chuyên nghiệp (14/11/2026) — câu tiếng Anh dùng Source Serif 4 như đề in, tiếng Việt Be Vietnam Pro ---- */
+  body .q-block{ padding:22px 0; }
+  body .q-block .q-num{ display:flex; align-items:center; gap:8px; font:700 11.5px/1 "Be Vietnam Pro",system-ui,sans-serif; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; font-variant-numeric:tabular-nums; }
+  body .q-block .q-num .qn{ display:inline-grid; place-items:center; min-width:30px; height:24px; padding:0 8px; border-radius:6px; background:var(--red); color:#fff; letter-spacing:0; font-size:12.5px; }
+  body .q-block .q-num .qsrc{ margin-left:auto; text-transform:none; letter-spacing:0; font-weight:600; font-size:11.5px; color:#8F6E24; background:rgba(184,145,58,.12); border:1px solid rgba(184,145,58,.35); padding:4px 8px; border-radius:999px; }
+  body .q-block .q-text{ font-family:"Source Serif 4","Charter","Georgia",serif; font-size:18px; line-height:1.6; font-weight:500; letter-spacing:.003em; color:var(--ink); margin:0 0 14px; font-optical-sizing:auto; }
+  body .q-block .q-text.vi{ font-family:"Be Vietnam Pro",system-ui,sans-serif; font-size:14.5px; font-weight:600; color:var(--ink-soft); }
+  body .q-block .opt-row{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  @media (max-width:620px){ body .q-block .opt-row{ grid-template-columns:1fr; } }
+  body .q-block .opt-btn{ font-family:"Source Serif 4","Charter","Georgia",serif; font-size:16.5px; line-height:1.45; padding:12px 14px; align-items:center; }
+  body .q-block .opt-btn b{ font:700 12px/1 "Be Vietnam Pro",system-ui,sans-serif; width:24px; height:24px; border-radius:6px; }
+  body .q-block .explain-box{ font-family:"Be Vietnam Pro",system-ui,sans-serif; font-size:14px; line-height:1.7; color:var(--ink); background:var(--paper-2); border-left:3px solid #B8913A; border-radius:8px; padding:12px 14px; }
+  body .q-block .explain-box .ans{ display:block; font-weight:700; color:var(--green); margin-bottom:4px; }
+  body .q-block .ets-pass{ font-family:"Source Serif 4","Charter","Georgia",serif; font-size:15.5px; line-height:1.7; background:var(--paper-2); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:0 0 12px; white-space:pre-line; max-height:300px; overflow:auto; }
+  body .q-block .ets-pass .pt{ display:block; font:700 11px/1.2 "Be Vietnam Pro",system-ui,sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  body .q-block .ets-pass mark{ background:rgba(215,25,45,.12); color:var(--red); font-weight:700; padding:1px 4px; border-radius:4px; }
+  /* ---- mục Luyện đề thật ETS ---- */
+  .ets-head{ background:linear-gradient(150deg,#0B1424 0%,#13233B 100%); color:#fff; border-radius:16px; padding:24px; margin-bottom:18px; }
+  .ets-head .eb{ font:700 11.5px/1.2 "Be Vietnam Pro",sans-serif; letter-spacing:.1em; text-transform:uppercase; color:#E3C27A; }
+  .ets-head h2{ color:#fff; font-size:26px; margin:8px 0 8px; }
+  .ets-head p{ color:rgba(255,255,255,.8); font-size:14px; line-height:1.6; margin:0; max-width:60ch; }
+  .ets-head .nums{ display:flex; flex-wrap:wrap; gap:18px; margin-top:14px; font-size:13px; color:rgba(255,255,255,.75); }
+  .ets-head .nums b{ font:700 20px/1 "Playfair Display",Georgia,serif; color:#E3C27A; margin-right:4px; }
+  .ets-topic{ border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:12px; background:var(--paper); }
+  .ets-topic h3{ margin:0 0 4px; font-size:16px; display:flex; align-items:center; gap:8px; }
+  .ets-topic h3 small{ font:600 12px/1 "Be Vietnam Pro",sans-serif; color:var(--ink-soft); margin-left:auto; }
+  .ets-topic .meta{ font-size:12.5px; color:var(--ink-soft); margin:0 0 6px; }
+  .ets-topic .lock{ font-size:12.5px; color:#8F6E24; margin-top:8px; }
+  .ets-topic .lock a{ color:#8F6E24; font-weight:700; }
+  .ets-link{ display:flex; align-items:center; gap:10px; margin-top:12px; padding:12px 14px; border-radius:10px; border:1px dashed #B8913A; background:rgba(184,145,58,.08); color:var(--ink); text-decoration:none; font-size:13.5px; }
+  .ets-link b{ color:#8F6E24; }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+<script src="data/ets-de-that.js?v=202611140909"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
    Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
 :root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
@@ -593,21 +625,21 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611121944"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611121944"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611121944"></script>
-<script src="data/topic-4-dai-tu.js?v=202611121944"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611121944"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611121944"></script>
-<script src="data/topic-7-tu-loai.js?v=202611121944"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611121944"></script>
-<script src="data/topic-9-so-sanh.js?v=202611121944"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611121944"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611121944"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611121944"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611121944"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611121944"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611121944"></script>
+<script src="data/topic-1-cac-thi.js?v=202611140909"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611140909"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611140909"></script>
+<script src="data/topic-4-dai-tu.js?v=202611140909"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611140909"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611140909"></script>
+<script src="data/topic-7-tu-loai.js?v=202611140909"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611140909"></script>
+<script src="data/topic-9-so-sanh.js?v=202611140909"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611140909"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611140909"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611140909"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611140909"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611140909"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611140909"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -698,11 +730,12 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     var parts = hash.replace('#/','').split('/').filter(Boolean);
     window.scrollTo(0,0);
     nbUpdateTop();
-    document.body.classList.toggle('nb-inner', parts[0] === 'topic' || parts[0] === 'quiz' || parts[0] === 'p7');
+    document.body.classList.toggle('nb-inner', parts[0] === 'topic' || parts[0] === 'quiz' || parts[0] === 'p7' || parts[0] === 'ets');
     if(parts[0] !== 'quiz') AZLumina.hide();
-    document.getElementById('appWrap').classList.toggle('nb-wide', !(parts[0] === 'topic' || parts[0] === 'quiz' || parts[0] === 'p7'));
+    document.getElementById('appWrap').classList.toggle('nb-wide', !(parts[0] === 'topic' || parts[0] === 'quiz' || parts[0] === 'p7' || parts[0] === 'ets'));
     if(parts.length === 0){ renderDashboard(); }
     else if(parts[0] === 'grammar'){ renderGrammarList(); }
+    else if(parts[0] === 'ets' || (parts[0] === 'topic' && parts[1] === 'ets')){ renderEts(parts[0] === 'ets' ? parts[1] : null); }
     else if(parts[0] === 'topic' && parts[1]){ renderTopic(parts[1]); }
     else if(parts[0] === 'quiz' && parts[1] && parts[2]){ renderQuizIntro(parts[1], parts[2]); }
     else if(parts[0] === 'p7' && !window.AZ_P7_LESSONS){ location.href = '../#hoc-vien'; return; }
@@ -786,6 +819,8 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     TOPIC_GROUPS.forEach(function(g){ g.ids.forEach(function(id){ var s = topicStats(id); gDone += s.doneQuizzes; gTotal += s.totalQuizzes; }); });
     var html = '<a class="backlink" onclick="location.hash=\'#/\'">‹ Trang chủ</a>';
     html += '<div class="nb-sec" style="margin-top:6px"><div><h2>' + n + ' chủ điểm ngữ pháp</h2><p>Chọn chủ điểm bạn cần luyện. Đã làm ' + gDone + '/' + gTotal + ' bài. Màu viền theo nhóm: đỏ = Nền tảng câu, đen = Từ loại &amp; bổ nghĩa, đỏ đậm = Mệnh đề &amp; liên kết.</p></div></div>';
+    var etsN = etsItems().length + etsLockedCount();
+    if(etsN) html += '<a class="ets-link" href="#/ets" style="margin:0 0 16px">🎯 <span><b>Luyện đề thật ETS</b> — ' + etsN + ' câu ngữ pháp Part 5/6 ETS 2026, xếp theo chủ điểm, có lời giải</span><span style="margin-left:auto">→</span></a>';
     html += '<div class="nb-legend">';
     NB_GROUP_NAMES.forEach(function(name, i){ html += '<span><i style="background:' + NB_GROUP_COLORS[i] + '"></i>' + esc(name) + '</span>'; });
     html += '</div>';
@@ -805,6 +840,33 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     });
     html += '</div>';
     root.innerHTML = html;
+  }
+
+  function renderEts(focus){
+    var groups = etsSets(), total = 0, prog = getProgress().ets || {}, done = 0, sets = 0;
+    groups.forEach(function(g){ total += g.count; g.sets.forEach(function(x){ sets++; if(prog[x.id]) done++; }); });
+    var locked = etsLockedCount();
+    var html = '<a class="backlink" onclick="location.hash=\'#/grammar\'">‹ Danh sách chủ điểm</a>';
+    html += '<div class="ets-head"><div class="eb">Ngữ pháp · Luyện đề thật</div><h2>Câu ngữ pháp trong đề ETS thật</h2>';
+    html += '<p>Câu Part 5 và Part 6 của ETS 2026 được AZ xếp theo đúng chủ điểm ngữ pháp bạn vừa học. Làm như thi thật: giữ nguyên phương án A–D, mỗi câu ghi rõ Test · Câu và có lời giải tiếng Việt.</p>';
+    html += '<div class="nums"><span><b>' + total + '</b>câu đề thật</span><span><b>' + groups.length + '</b>chủ điểm</span><span><b>' + done + '/' + sets + '</b>bộ đã làm</span></div></div>';
+    if(!groups.length) html += '<div class="panel"><p class="desc">Chưa tải được dữ liệu đề thật. Đăng nhập tài khoản AZTOEIC Academy để mở mục này.</p></div>';
+    groups.forEach(function(g){
+      html += '<div class="ets-topic" id="ets-' + g.topic + '"><h3>' + esc(g.title) + '<small>' + g.count + ' câu</small></h3>';
+      html += '<p class="meta"><a href="#/topic/' + g.topic + '" style="color:inherit">Xem lại lý thuyết chủ điểm này →</a></p>';
+      g.sets.forEach(function(x){
+        var rec = prog[x.id], pct = rec ? Math.round(rec.bestScore / rec.total * 100) : null;
+        var badge = pct === null ? '' : (pct >= 80 ? 'good' : (pct >= 50 ? 'mid' : ''));
+        var tests = x.items.map(function(it){ return it.t; }).filter(function(v, i, a){ return a.indexOf(v) === i; });
+        html += '<div class="quiz-row"><div><div class="quiz-row-title">' + esc(x.title) + '</div><div class="quiz-row-meta">' + x.items.length + ' câu · ETS 2026 Test ' + tests.join(', ') + (rec ? ' · đã làm ' + rec.attempts + ' lần' : '') + '</div></div>';
+        html += '<div class="score-badge ' + badge + '">' + (pct === null ? 'Chưa làm' : pct + '%') + '</div>';
+        html += '<div class="quiz-row-cta"><button class="btn btn-ghost btn-sm" onclick="location.hash=\'#/quiz/ets/' + x.id + '\'">' + (rec ? 'Làm lại' : 'Bắt đầu') + '</button></div></div>';
+      });
+      html += '</div>';
+    });
+    if(locked) html += '<div class="ets-topic"><p class="lock">🔒 Thêm <b>' + locked + ' câu</b> từ ETS 2026 Test 6–10 dành cho học viên lớp AZTOEIC. <a href="../#hoc-vien">Nhập mã lớp →</a></p></div>';
+    root.innerHTML = html;
+    if(focus){ var el = document.getElementById('ets-' + focus); if(el) el.scrollIntoView({block:'start'}); }
   }
 
   function renderDashboard(){
@@ -851,6 +913,15 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     html += '    <span class="tag">' + gDone + '/' + gTotal + ' BÀI · ' + n + ' CHỦ ĐIỂM →</span>';
     html += '    ' + nbMascot('grammar', '#e0102b', true);
     html += '  </a>';
+    var etsTotal = etsItems().length + etsLockedCount();
+    if(etsTotal){
+      html += '  <a class="nb-card" href="#/ets" style="--c:#0B1424">';
+      html += '    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>';
+      html += '    <h3>Đề thật ETS</h3><p>' + etsTotal + ' câu ngữ pháp Part 5/6 trong đề ETS 2026, xếp theo từng chủ điểm, có lời giải tiếng Việt.</p>';
+      html += '    <ul><li>Từ loại</li><li>Giới từ &amp; liên từ</li><li>Thì</li><li>Đại từ</li></ul>';
+      html += '    <span class="tag">LUYỆN NHƯ THI THẬT →</span>';
+      html += '  </a>';
+    }
     if(lessons.length){
       html += '  <a class="nb-card" href="#/p7" style="--c:#9e0b21">';
       html += '    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg></span>';
@@ -914,6 +985,8 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       html += '<div class="quiz-row-cta"><button class="btn btn-ghost btn-sm" onclick="location.hash=\'#/quiz/' + topicId + '/' + q.id + '\'">' + (rec ? 'Làm lại' : 'Bắt đầu') + '</button></div>';
       html += '</div>';
     });
+    var eg = etsSets().filter(function(g){ return g.topic === topicId; })[0];
+    if(eg) html += '<a class="ets-link" href="#/ets/' + topicId + '">🎯 <span><b>Luyện đề thật ETS cùng dạng</b> — ' + eg.count + ' câu Part 5/6 ETS 2026 có lời giải</span><span style="margin-left:auto">→</span></a>';
     html += '</div>';
 
     root.innerHTML = html;
@@ -925,7 +998,35 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   }
 
   // ---------- QUIZ: MODE SELECT ----------
+  // ---------- LUYỆN ĐỀ THẬT ETS (câu Part 5/6 ETS 2026 theo chủ điểm; Test 1–5 tài khoản, 6–10 học viên lớp) ----------
+  var ETS_SET = 15;
+  function etsItems(){
+    var a = (window.AZ_GRAMMAR_ETS || []).concat(window.AZ_GRAMMAR_ETS_LOP || []);
+    return a.slice().sort(function(x, y){ return topicOrder.indexOf(x.topic) - topicOrder.indexOf(y.topic) || x.t - y.t || x.n - y.n; });
+  }
+  function etsSets(){
+    var by = {}, out = [];
+    etsItems().forEach(function(it){ (by[it.topic] = by[it.topic] || []).push(it); });
+    topicOrder.forEach(function(id){
+      var list = by[id]; if(!list) return;
+      var n = Math.ceil(list.length / ETS_SET), size = Math.ceil(list.length / n);
+      var sets = [];
+      for(var k = 0; k < n; k++){
+        var part = list.slice(k * size, (k + 1) * size);
+        sets.push({id: id + '-' + (k + 1), title: DATA[id].title + (n > 1 ? ' · Bộ ' + (k + 1) : ''), items: part, ets: true});
+      }
+      out.push({topic: id, title: DATA[id].title, sets: sets, count: list.length});
+    });
+    return out;
+  }
+  function etsLockedCount(){ return window.AZ_GRAMMAR_ETS_LOP ? 0 : (window.AZ_GRAMMAR_ETS_META || {}).lop || 0; }
+  var ETS_TOPIC = {id: 'ets', title: 'Luyện đề thật ETS'};
   function findQuiz(topicId, quizId){
+    if(topicId === 'ets'){
+      var hit = null;
+      etsSets().forEach(function(g){ g.sets.forEach(function(x){ if(x.id === quizId) hit = x; }); });
+      return hit ? {topic: ETS_TOPIC, quiz: hit} : null;
+    }
     var t = DATA[topicId]; if(!t) return null;
     var q = t.quizzes.filter(function(x){ return x.id === quizId; })[0];
     return q ? {topic:t, quiz:q} : null;
@@ -934,8 +1035,9 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   function renderQuizIntro(topicId, quizId){
     var found = findQuiz(topicId, quizId);
     if(!found){ location.hash = '#/topic/' + topicId; return; }
-    var html = '<a class="backlink" onclick="location.hash=\'#/topic/' + topicId + '\'">‹ ' + esc(found.topic.title) + '</a>';
+    var html = '<a class="backlink" onclick="location.hash=\'' + (topicId === 'ets' ? '#/ets' : '#/topic/' + topicId) + '\'">‹ ' + esc(found.topic.title) + '</a>';
     html += '<div class="panel"><h2>' + esc(found.quiz.title) + '</h2>';
+    if(found.quiz.ets) html += '<div class="quiz-note">Câu Part 5/6 trích nguyên văn đề ETS 2026, giữ đúng thứ tự phương án như đề in. Mỗi câu có nguồn (Test · Câu) và lời giải AZ.</div>';
     html += '<p class="desc">' + found.quiz.items.length + ' câu trắc nghiệm. Chọn chế độ làm bài:</p>';
     if(found.quiz.note) html += '<div class="quiz-note">ℹ️ ' + esc(found.quiz.note) + '</div>';
     html += '<div class="mode-select">';
@@ -1089,16 +1191,26 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   // ---------- QUIZ: TAKING ----------
   var quizState = null; // {topicId, quizId, mode, answers:[], submitted:false}
 
+  function shuffledItems(quiz){
+    if(quiz.ets) return quiz.items;
+    return quiz.items.map(function(it){
+      var idx = it.choices.map(function(_, i){ return i; });
+      for(var i = idx.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = idx[i]; idx[i] = idx[j]; idx[j] = t; }
+      return Object.assign({}, it, {choices: idx.map(function(i){ return it.choices[i]; }), correct: idx.indexOf(it.correct)});
+    });
+  }
   window.AZ_startQuiz = function(topicId, quizId, mode){
-    quizState = {topicId:topicId, quizId:quizId, mode:mode, answers:new Array(findQuiz(topicId,quizId).quiz.items.length).fill(null), submitted:false};
+    var fq = findQuiz(topicId, quizId); if(!fq) return;
+    quizState = {topicId:topicId, quizId:quizId, mode:mode, items:shuffledItems(fq.quiz), answers:new Array(fq.quiz.items.length).fill(null), submitted:false};
     AZLumina.resetCombo();
     renderQuizTaking();
   };
 
   function renderQuizTaking(){
     var found = findQuiz(quizState.topicId, quizState.quizId);
-    var quiz = found.quiz;
-    var html = '<a class="backlink" onclick="location.hash=\'#/topic/' + quizState.topicId + '\'">‹ ' + esc(found.topic.title) + '</a>';
+    var quiz = {title: found.quiz.title, items: quizState.items, ets: found.quiz.ets};
+    var backTo = quizState.topicId === 'ets' ? '#/ets' : '#/topic/' + quizState.topicId;
+    var html = '<a class="backlink" onclick="location.hash=\'' + backTo + '\'">‹ ' + esc(found.topic.title) + '</a>';
 
     if(quizState.submitted){
       var correctCount = quiz.items.filter(function(it,i){ return quizState.answers[i] === it.correct; }).length;
@@ -1107,7 +1219,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       html += '<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;">Kết quả</div>';
       html += '<div class="score-num">' + correctCount + '/' + quiz.items.length + '</div>';
       html += '<div class="score-msg">' + (pct >= 80 ? 'Xuất sắc! Bạn đã nắm rất vững chủ điểm này.' : pct >= 50 ? 'Khá ổn — xem lại phần giải thích để chắc hơn nhé.' : 'Cần ôn lại lý thuyết chủ điểm này trước khi làm lại.') + '</div>';
-      html += '<div class="btn-row" style="justify-content:center;"><button class="btn btn-primary" onclick="AZ_startQuiz(\'' + quizState.topicId + '\',\'' + quizState.quizId + '\',\'' + quizState.mode + '\')">Làm lại</button> <button class="btn btn-ghost" style="background:transparent;border-color:rgba(255,255,255,.5);color:#fff;" onclick="location.hash=\'#/topic/' + quizState.topicId + '\'">Về chủ điểm</button></div>';
+      html += '<div class="btn-row" style="justify-content:center;"><button class="btn btn-primary" onclick="AZ_startQuiz(\'' + quizState.topicId + '\',\'' + quizState.quizId + '\',\'' + quizState.mode + '\')">Làm lại</button> <button class="btn btn-ghost" style="background:transparent;border-color:rgba(255,255,255,.5);color:#fff;" onclick="location.hash=\'' + backTo + '\'">' + (quizState.topicId === 'ets' ? 'Về Luyện đề thật' : 'Về chủ điểm') + '</button></div>';
       html += '</div>';
     }
 
@@ -1118,8 +1230,13 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       var picked = quizState.answers[i];
       var showResult = quizState.mode === 'practice' ? (picked !== null) : quizState.submitted;
       html += '<div class="q-block">';
-      html += '<div class="q-num">Câu ' + (i+1) + '/' + quiz.items.length + '</div>';
-      html += '<p class="q-text">' + esc(item.q) + '</p>';
+      html += '<div class="q-num"><span class="qn">' + (i+1) + '</span>/ ' + quiz.items.length + (item.src ? '<span class="qsrc">' + esc(item.src) + '</span>' : '') + '</div>';
+      if(item.passage){
+        html += '<div class="ets-pass">' + (item.title ? '<span class="pt">' + esc(item.title) + '</span>' : '') + esc(item.passage).replace('{{Q}}', '<mark>(' + item.n + ') -------</mark>') + '</div>';
+        html += '<p class="q-text vi">' + esc(item.q) + '</p>';
+      } else {
+        html += '<p class="q-text">' + esc(item.q) + '</p>';
+      }
       html += '<div class="opt-row">';
       item.choices.forEach(function(choice, ci){
         var cls = 'opt-btn';
@@ -1134,7 +1251,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
       });
       html += '</div>';
       if(showResult){
-        html += '<div class="explain-box">' + esc(item.explain) + '</div>';
+        html += '<div class="explain-box"><span class="ans">Đáp án ' + String.fromCharCode(65 + item.correct) + ' · ' + esc(item.choices[item.correct]) + '</span>' + esc(item.explain) + '</div>';
       }
       html += '</div>';
     });
@@ -1162,13 +1279,13 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   };
 
   window.AZ_submitQuiz = function(){
-    var found = findQuiz(quizState.topicId, quizState.quizId);
-    var correctCount = found.quiz.items.filter(function(it,i){ return quizState.answers[i] === it.correct; }).length;
+    var items = quizState.items;
+    var correctCount = items.filter(function(it,i){ return quizState.answers[i] === it.correct; }).length;
     quizState.submitted = true;
-    recordQuizResult(quizState.topicId, quizState.quizId, correctCount, found.quiz.items.length, quizState.mode);
+    recordQuizResult(quizState.topicId, quizState.quizId, correctCount, items.length, quizState.mode);
     renderQuizTaking();
     window.scrollTo(0,0);
-    AZLumina.finish(Math.round(correctCount / found.quiz.items.length * 100));
+    AZLumina.finish(Math.round(correctCount / items.length * 100));
   };
 
   // also record result immediately when finishing in practice mode (all answered)
@@ -1177,17 +1294,17 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     var before = quizState ? quizState.answers[qIndex] : null;
     origPick(qIndex, choiceIndex);
     if(quizState && quizState.mode === 'practice' && !quizState.submitted){
-      var found = findQuiz(quizState.topicId, quizState.quizId);
+      var items = quizState.items;
       var allAnswered = quizState.answers.every(function(a){ return a !== null; });
       var justAnswered = before === null && quizState.answers[qIndex] === choiceIndex;
       if(allAnswered){
-        var correctCount = found.quiz.items.filter(function(it,i){ return quizState.answers[i] === it.correct; }).length;
+        var correctCount = items.filter(function(it,i){ return quizState.answers[i] === it.correct; }).length;
         quizState.submitted = true;
-        recordQuizResult(quizState.topicId, quizState.quizId, correctCount, found.quiz.items.length, quizState.mode);
+        recordQuizResult(quizState.topicId, quizState.quizId, correctCount, items.length, quizState.mode);
         renderQuizTaking();
-        AZLumina.finish(Math.round(correctCount / found.quiz.items.length * 100));
+        AZLumina.finish(Math.round(correctCount / items.length * 100));
       } else if(justAnswered){
-        AZLumina.answer(choiceIndex === found.quiz.items[qIndex].correct);
+        AZLumina.answer(choiceIndex === items[qIndex].correct);
       }
     }
   };
@@ -1949,5 +2066,5 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
     xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put, mockSend: mockSend, mockPanel: mockPanel, mockIntro: mockIntro };
 })();
-</script><script>(function(){AZT.guard("account","Ng\u1eef ph\u00e1p TOEIC c\u0103n b\u1ea3n").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc"].length)AZT.loadClass(["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc"]).then(go);else go();});})();</script></body>
+</script><script>(function(){AZT.guard("account","Ng\u1eef ph\u00e1p TOEIC c\u0103n b\u1ea3n").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc", "lop/ets-de-that-lop.enc"].length)AZT.loadClass(["lop/part7-daily15-test1.enc", "lop/part7-daily15-test2.enc", "lop/part7-daily15-test3.enc", "lop/part7-daily15-test4.enc", "lop/part7-daily15-test5.enc", "lop/part7-keywords.enc", "lop/ets-de-that-lop.enc"]).then(go);else go();});})();</script></body>
 </html>

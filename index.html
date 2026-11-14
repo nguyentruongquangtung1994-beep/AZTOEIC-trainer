@@ -2109,7 +2109,7 @@ function exHtml(ex, k){
     '<div class="opts' + (ex.options.join("").length > 90 ? " one" : "") + '">' + ex.options.map(function(o, j){ return '<button class="opt" data-ex="' + id + '" data-o="' + j + '"><span class="l">' + "ABCD"[j] + '</span>' + esc(o) + '</button>'; }).join("") + '</div><div class="ex-res"></div></div>';
 }
 var EXMAP = {}, RX = null;
-function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611121944"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
+function loadRX(cb){ if(RX) return cb(); var sc = document.createElement("script"); sc.src = "vi-du-de-that.js?v=202611140909"; sc.onload = function(){ RX = window.AZT_EX || {}; cb(); }; sc.onerror = function(){ RX = {}; cb(); }; document.body.appendChild(sc); }
 function rxHtml(ex, k){
   var id = "rx-" + k, h = '<div class="q rq" id="' + id + '"><div class="q-h"><span class="src">Đề thật · ' + esc(ex.src) + '</span>' + (ex.group ? '<span>' + esc(ex.group) + '</span>' : "") + '</div>';
   if(ex.passages) h += ex.passages.map(function(p){ var t = esc(p.text).replace(/\{\{(\d+)\}\}/g, function(_, n){ return '<span class="bl' + (+n === ex.blank ? " me" : "") + '">(' + n + ')</span>'; }); return '<div class="pas">' + (p.title ? "<h4>" + esc(p.title) + "</h4>" : "") + t + '</div>'; }).join("");
@@ -2185,7 +2185,7 @@ function vocab(cb, silent){
   if(!silent){ view.innerHTML = '<div class="vh"><div class="wrap"><h1>Từ vựng TOEIC căn bản</h1><p>Đang tải kho từ…</p></div></div>'; document.body.classList.add("in-view"); }
   if(VWAIT){ VWAIT.push(cb); return; }
   VWAIT = [cb];
-  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611121944";
+  var sc = document.createElement("script"); sc.src = "tu-vung.js?v=202611140909";
   sc.onload = function(){ VOC = window.AZT_VOCAB; build(); var w = VWAIT; VWAIT = null; w.forEach(function(f){ f(VOC); }); };
   sc.onerror = function(){ VWAIT = null; var p = view.querySelector(".vh p"); if(p) p.textContent = "Chưa tải được kho từ. Bạn tải lại trang nhé."; };
   document.body.appendChild(sc);
@@ -2351,7 +2351,7 @@ var TDATA = {};
 function loadTests(ids, cb){
   var need = ids.filter(function(id){ return !(window.AZ_TOEIC_DATA || {})[id]; }), left = need.length;
   if(!left) return cb();
-  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611121944"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
+  need.forEach(function(id){ var sc = document.createElement("script"); sc.src = id + ".js?v=202611140909"; sc.onload = sc.onerror = function(){ if(--left === 0) cb(); }; document.body.appendChild(sc); });
 }
 function renderWrong(){
   if(!AZT.session()) return renderAuth("dang-nhap", "#so-cau-sai");

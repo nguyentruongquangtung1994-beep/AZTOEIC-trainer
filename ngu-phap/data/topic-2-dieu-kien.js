@@ -94,6 +94,23 @@ window.AZ_GRAMMAR_DATA['dieu-kien'] = {
         {q:'If you pass your examination we ------ a celebration.', choices:['have','will have','would have had','would have'], correct:1, explain:'Dịch: Nếu bạn thi đậu, chúng tôi sẽ tổ chức ăn mừng. — Giải thích: if-clause "pass" (hiện tại đơn) → loại 1 → mệnh đề chính "will have". Mẹo thêm: "have a celebration" = "celebrate" (tổ chức ăn mừng) — "have" ở đây không mang nghĩa sở hữu mà đi cùng danh từ chỉ hoạt động, giống "have a party/have a meeting".'},
         {q:'The meeting ------ more productive if the agenda had been prepared beforehand.', choices:['is','was','would be','would have been'], correct:3, explain:'Dịch: Cuộc họp đã có thể hiệu quả hơn nếu chương trình nghị sự được chuẩn bị trước. — Giải thích: if-clause "had been prepared" → loại 3 → mệnh đề chính "would have been". Mẹo thêm: "the agenda" (chương trình nghị sự) là chủ ngữ BỊ chuẩn bị (bị động: had been prepared) — phân biệt với "prepare the agenda" (chủ động, ai đó chuẩn bị nó).'}
       ]
+    },
+    {
+      id: 'dk-3', title: "3. Luyện thêm: câu điều kiện kiểu TOEIC",
+      items: [
+        {"q": "If you ------- any questions about your bill, please contact our billing office.", "choices": ["have", "had", "will have", "would have"], "correct": 0, "explain": "Dịch: Nếu bạn có thắc mắc về hoá đơn, hãy liên hệ phòng thanh toán. — Điều kiện loại 1 (mệnh lệnh ở vế chính): mệnh đề \"if\" dùng hiện tại đơn."},
+        {"q": "If the shipment arrives late, we ------- the customer immediately.", "choices": ["will notify", "notified", "would have notified", "notifying"], "correct": 0, "explain": "Dịch: Nếu hàng đến muộn, chúng tôi sẽ báo khách ngay. — Loại 1: If + hiện tại đơn, S + will + V0."},
+        {"q": "If we had more staff, we ------- open on Sundays.", "choices": ["could", "can", "will", "could have"], "correct": 0, "explain": "Dịch: Nếu có thêm nhân viên, chúng tôi có thể mở cửa Chủ nhật. — Loại 2 (không có thật ở hiện tại): If + quá khứ, S + could/would + V0."},
+        {"q": "If Ms. Tran had known about the delay, she ------- a later flight.", "choices": ["would have booked", "would book", "will book", "had booked"], "correct": 0, "explain": "Dịch: Nếu bà Tran biết trước việc trễ, bà đã đặt chuyến bay muộn hơn. — Loại 3: If + had V3, S + would have + V3."},
+        {"q": "------- you need further assistance, please do not hesitate to call us.", "choices": ["Should", "Would", "Had", "Were"], "correct": 0, "explain": "Dịch: Nếu bạn cần hỗ trợ thêm, đừng ngại gọi cho chúng tôi. — Đảo ngữ loại 1: \"Should + S + V0\" = If S should/need…"},
+        {"q": "------- the weather been better, the outdoor event would have been a success.", "choices": ["Had", "Should", "Were", "If"], "correct": 0, "explain": "Dịch: Nếu thời tiết tốt hơn, sự kiện ngoài trời đã thành công. — Đảo ngữ loại 3: \"Had + S + V3\"."},
+        {"q": "The order will be shipped tomorrow ------- payment is received today.", "choices": ["provided that", "unless", "even if", "whether"], "correct": 0, "explain": "Dịch: Đơn sẽ được giao ngày mai với điều kiện hôm nay nhận được thanh toán. — \"provided that\" = miễn là, với điều kiện."},
+        {"q": "The meeting will go ahead as planned ------- the CEO cancels it.", "choices": ["unless", "if", "provided", "as long as"], "correct": 0, "explain": "Dịch: Cuộc họp vẫn diễn ra như kế hoạch trừ khi CEO huỷ. — \"unless\" = if … not (trừ khi)."},
+        {"q": "If I ------- you, I would ask for a refund.", "choices": ["were", "am", "will be", "had"], "correct": 0, "explain": "Dịch: Nếu tôi là bạn, tôi sẽ yêu cầu hoàn tiền. — Loại 2 lời khuyên: \"If I were you\" (dùng \"were\" cho mọi ngôi)."},
+        {"q": "You can borrow the projector ------- you return it by Friday.", "choices": ["as long as", "unless", "otherwise", "in case of"], "correct": 0, "explain": "Dịch: Bạn có thể mượn máy chiếu miễn là trả trước thứ Sáu. — \"as long as\" = miễn là. \"in case of\" cần danh từ."},
+        {"q": "If the printer runs out of ink, the screen ------- a warning message.", "choices": ["displays", "displayed", "would display", "had displayed"], "correct": 0, "explain": "Dịch: Khi máy in hết mực, màn hình hiển thị thông báo. — Loại 0 (sự thật, quy luật): If + hiện tại đơn, hiện tại đơn."},
+        {"q": "Please bring an umbrella ------- it rains during the tour.", "choices": ["in case", "unless", "so that", "even though"], "correct": 0, "explain": "Dịch: Hãy mang ô phòng khi trời mưa trong chuyến tham quan. — \"in case + mệnh đề\" = phòng khi."}
+      ]
     }
   ],
 

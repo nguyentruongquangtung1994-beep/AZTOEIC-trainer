@@ -115,6 +115,23 @@ window.AZ_GRAMMAR_DATA['hoa-hop-chu-vi'] = {
         {q:'The elderly ------ more medical care than younger people.', choices:['needs','need','is needing','has needed'], correct:1, explain:'Dịch: Người cao tuổi cần được chăm sóc y tế nhiều hơn người trẻ. — Giải thích: "the + tính từ" (the elderly) chỉ một nhóm người → V số nhiều "need" (không thêm -s). Mẹo thêm: các cụm tương tự: the rich, the poor, the young, the unemployed.'},
         {q:'Spaghetti and meatballs ------ the most popular dish at our cafeteria.', choices:['are','is','were','have been'], correct:1, explain:'Dịch: Mì Ý sốt viên là món phổ biến nhất ở căng tin của chúng tôi. — Giải thích: "spaghetti and meatballs" chỉ MỘT món ăn duy nhất → coi là số ít → "is". Mẹo thêm: các cặp như "bread and butter", "rock and roll", "fish and chips" cũng thường được xem là một thực thể → số ít.'}
       ]
+    },
+    {
+      id: 'hh-4', title: "4. Luyện thêm: hoà hợp chủ ngữ – động từ",
+      items: [
+        {"q": "The list of approved vendors ------- updated every quarter.", "choices": ["is", "are", "were", "have been"], "correct": 0, "explain": "Dịch: Danh sách nhà cung cấp được duyệt cập nhật mỗi quý. — Chủ ngữ chính là \"The list\" (số ít), \"of approved vendors\" chỉ bổ nghĩa → \"is\"."},
+        {"q": "Each of the new employees ------- a laptop on the first day.", "choices": ["receives", "receive", "are receiving", "have received"], "correct": 0, "explain": "Dịch: Mỗi nhân viên mới nhận một máy tính xách tay vào ngày đầu. — \"Each of + N số nhiều\" + động từ số ít."},
+        {"q": "Neither the manager nor the assistants ------- available on Friday.", "choices": ["are", "is", "was", "has been"], "correct": 0, "explain": "Dịch: Cả quản lý lẫn các trợ lý đều không rảnh thứ Sáu. — \"Neither A nor B\": động từ chia theo B (the assistants, số nhiều) → \"are\"."},
+        {"q": "The number of applicants ------- increased this year.", "choices": ["has", "have", "are", "were"], "correct": 0, "explain": "Dịch: Số lượng ứng viên năm nay đã tăng. — \"The number of + N\" + động từ số ít. (Khác: \"A number of + N\" + số nhiều.)"},
+        {"q": "A number of staff members ------- requested flexible hours.", "choices": ["have", "has", "is", "was"], "correct": 0, "explain": "Dịch: Một số nhân viên đã đề nghị giờ làm linh hoạt. — \"A number of + N số nhiều\" + động từ số nhiều."},
+        {"q": "The equipment in the laboratories ------- inspected twice a year.", "choices": ["is", "are", "were", "have been"], "correct": 0, "explain": "Dịch: Thiết bị trong các phòng thí nghiệm được kiểm tra hai lần/năm. — \"equipment\" không đếm được → động từ số ít."},
+        {"q": "Mr. Diaz, along with his two assistants, ------- the trade fair next week.", "choices": ["is attending", "are attending", "attend", "have attended"], "correct": 0, "explain": "Dịch: Ông Diaz cùng hai trợ lý sẽ dự hội chợ tuần tới. — \"along with/as well as\" không làm chủ ngữ số nhiều; động từ theo \"Mr. Diaz\" (số ít)."},
+        {"q": "Twenty dollars ------- the fee for late registration.", "choices": ["is", "are", "were", "have been"], "correct": 0, "explain": "Dịch: Hai mươi đô là phí đăng ký muộn. — Số tiền/khoảng thời gian/khoảng cách xem như một khối → số ít."},
+        {"q": "Both the director and the producer ------- to attend the premiere.", "choices": ["plan", "plans", "is planning", "has planned"], "correct": 0, "explain": "Dịch: Cả đạo diễn lẫn nhà sản xuất đều dự định dự buổi công chiếu. — \"Both A and B\" + động từ số nhiều."},
+        {"q": "Everyone in the sales department ------- invited to the celebration.", "choices": ["was", "were", "are", "have been"], "correct": 0, "explain": "Dịch: Mọi người trong phòng kinh doanh đều được mời dự tiệc. — Đại từ bất định \"Everyone\" + động từ số ít."},
+        {"q": "The results of the customer survey ------- surprising.", "choices": ["were", "was", "is", "has been"], "correct": 0, "explain": "Dịch: Kết quả khảo sát khách hàng thật bất ngờ. — Chủ ngữ chính \"The results\" (số nhiều) → \"were\"."},
+        {"q": "Either the invoice or the receipts ------- to be attached to the claim.", "choices": ["need", "needs", "is needing", "has needed"], "correct": 0, "explain": "Dịch: Hoặc hoá đơn hoặc các biên lai cần được đính kèm hồ sơ. — \"Either A or B\": động từ chia theo B (the receipts, số nhiều) → \"need\"."}
+      ]
     }
   ],
 

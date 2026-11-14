@@ -86,6 +86,23 @@ window.AZ_GRAMMAR_DATA['khiem-khuyet'] = {
         {q:'The printer is broken, so we ------ print the invoices today.', choices:['could have','can','can’t','must'], correct:2, explain:'Dịch: Máy in bị hỏng nên hôm nay chúng tôi không thể in hóa đơn. — Giải thích: kết quả phủ định của việc máy hỏng → "can’t + V0". Mẹo thêm: "must print" nghĩa là bắt buộc in, mâu thuẫn với "broken".'},
         {q:'We regret that we ------ accept returns after 30 days.', choices:['must','can','might','cannot'], correct:3, explain:'Dịch: Chúng tôi rất tiếc không thể nhận đổi trả sau 30 ngày. — Giải thích: "regret that" (rất tiếc rằng) đi với nội dung phủ định → "cannot". Mẹo thêm: "cannot" viết liền một từ (không viết "can not").'}
       ]
+    },
+    {
+      id: 'kk-3', title: "3. Luyện thêm: động từ khiếm khuyết trong ngữ cảnh công việc",
+      items: [
+        {"q": "All visitors ------- wear a badge at all times while inside the laboratory.", "choices": ["must", "may not", "need", "would have"], "correct": 0, "explain": "Dịch: Mọi khách tham quan phải đeo thẻ suốt thời gian ở trong phòng thí nghiệm. — Quy định bắt buộc → \"must + V0\"."},
+        {"q": "Employees ------- not submit receipts for purchases under $10.", "choices": ["need", "must", "ought", "have"], "correct": 0, "explain": "Dịch: Nhân viên không cần nộp hoá đơn cho khoản mua dưới 10 đô. — \"need not + V0\" = không cần. \"must not\" là cấm, sai nghĩa; \"ought\" phải là \"ought not to\"."},
+        {"q": "The shipment ------- have arrived already, since the tracking page shows it was delivered at noon.", "choices": ["must", "can't", "should not", "need not"], "correct": 0, "explain": "Dịch: Lô hàng hẳn đã đến rồi vì trang theo dõi báo đã giao lúc trưa. — Suy đoán chắc chắn về quá khứ → \"must have + V3\"."},
+        {"q": "You ------- have called the help desk; the password reset link was in your inbox.", "choices": ["needn't", "mustn't", "couldn't", "shouldn't be"], "correct": 0, "explain": "Dịch: Bạn lẽ ra không cần gọi bộ phận hỗ trợ; đường dẫn đặt lại mật khẩu có trong hộp thư rồi. — \"needn't have + V3\" = đã làm một việc không cần thiết."},
+        {"q": "Applicants ------- to submit two letters of reference with their forms.", "choices": ["are required", "must", "should be", "can"], "correct": 0, "explain": "Dịch: Ứng viên được yêu cầu nộp hai thư giới thiệu kèm đơn. — Sau chỗ trống là \"to + V\" → \"are required to V\". \"must/can\" đi với V0, không có \"to\"."},
+        {"q": "The marketing team ------- finish the report yesterday because the data arrived late.", "choices": ["couldn't", "mustn't", "needn't", "shouldn't"], "correct": 0, "explain": "Dịch: Hôm qua nhóm marketing không thể hoàn thành báo cáo vì dữ liệu đến muộn. — Không có khả năng làm trong quá khứ → \"couldn't + V0\"."},
+        {"q": "------- I speak with the manager about my account, please?", "choices": ["May", "Must", "Should", "Need"], "correct": 0, "explain": "Dịch: Tôi có thể nói chuyện với quản lý về tài khoản của mình không? — Xin phép lịch sự → \"May I …?\"."},
+        {"q": "Mr. Cole ------- be in the office today; his car isn't in the parking lot.", "choices": ["might not", "must", "has to", "ought to"], "correct": 0, "explain": "Dịch: Có lẽ ông Cole hôm nay không ở văn phòng; xe ông không có ở bãi. — Phỏng đoán không chắc chắn, phủ định → \"might not\"."},
+        {"q": "We ------- better confirm the reservation before the end of the day.", "choices": ["had", "would", "should", "could"], "correct": 0, "explain": "Dịch: Chúng ta nên xác nhận đặt chỗ trước cuối ngày. — Cấu trúc cố định \"had better + V0\" (nên làm gì)."},
+        {"q": "The finance team ------- to approve every purchase over $500.", "choices": ["has", "must", "should", "can"], "correct": 0, "explain": "Dịch: Nhóm tài chính phải duyệt mọi khoản mua trên 500 đô. — Sau chỗ trống là \"to approve\" → \"has to + V0\" (chủ ngữ \"team\" số ít)."},
+        {"q": "If the order is placed today, it ------- arrive by Friday.", "choices": ["should", "must have", "could have", "ought"], "correct": 0, "explain": "Dịch: Nếu đặt hôm nay, hàng sẽ (dự kiến) đến trước thứ Sáu. — \"should + V0\" diễn tả dự đoán hợp lý. \"ought\" thiếu \"to\"."},
+        {"q": "Customers ------- return unused items within 30 days for a full refund.", "choices": ["may", "must have", "would have", "need to have"], "correct": 0, "explain": "Dịch: Khách hàng có thể trả lại hàng chưa dùng trong 30 ngày để được hoàn tiền đầy đủ. — Quyền được phép → \"may + V0\"."}
+      ]
     }
   ],
 

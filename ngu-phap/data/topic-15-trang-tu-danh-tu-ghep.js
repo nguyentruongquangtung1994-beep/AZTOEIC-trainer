@@ -73,6 +73,23 @@ window.AZ_GRAMMAR_DATA['trang-tu-danh-tu-ghep'] = {
         {q:'Chọn câu đúng:', choices:['The manager has already approved the plan.','The manager has approved already the plan.','The manager has the plan already approved.','The manager already has approved plan the.'], correct:0, explain:'Dịch: Quản lý đã phê duyệt kế hoạch rồi. — Giải thích: "already" đứng giữa trợ động từ "has" và V-pp "approved". Mẹo thêm: các câu còn lại sai trật tự từ.'},
         {q:'Employees are ------ encouraged to submit their ideas.', choices:['strengthen','strong','strength','strongly'], correct:3, explain:'Dịch: Nhân viên được khuyến khích mạnh mẽ nộp ý tưởng của mình. — Giải thích: trạng từ đứng giữa "are" và V-pp "encouraged" → "strongly". Mẹo thêm: "strongly encouraged/recommended" là cụm rất phổ biến trong thông báo.'}
       ]
+    },
+    {
+      id: 'tt-3', title: "3. Luyện thêm: vị trí trạng từ & danh từ ghép",
+      items: [
+        {"q": "The new policy has ------- reduced the time needed to approve expenses.", "choices": ["greatly", "great", "greater", "greatness"], "correct": 0, "explain": "Dịch: Chính sách mới đã giảm đáng kể thời gian duyệt chi phí. — Giữa \"has\" và V3 \"reduced\" cần trạng từ → \"greatly\"."},
+        {"q": "Please read the ------- agreement before installing the software.", "choices": ["license", "licensed", "licensing", "licenses"], "correct": 0, "explain": "Dịch: Vui lòng đọc thoả thuận cấp phép trước khi cài phần mềm. — Danh từ ghép \"license agreement\"; danh từ đứng trước làm định ngữ thường ở dạng số ít."},
+        {"q": "The hotel is ------- located near the train station and the business district.", "choices": ["conveniently", "convenient", "convenience", "conveniences"], "correct": 0, "explain": "Dịch: Khách sạn nằm ở vị trí thuận tiện gần ga tàu và khu thương mại. — \"be + trạng từ + V3\" → \"conveniently located\" (cụm rất hay gặp)."},
+        {"q": "All ------- requests must be approved by a department head.", "choices": ["vacation", "vacations", "vacationing", "vacationed"], "correct": 0, "explain": "Dịch: Mọi đơn xin nghỉ phép phải được trưởng phòng duyệt. — Danh từ ghép \"vacation requests\": danh từ thứ nhất làm định ngữ giữ dạng số ít."},
+        {"q": "Ms. Lin ------- checks her e-mail before the morning meeting.", "choices": ["always", "always is", "is always", "ever"], "correct": 0, "explain": "Dịch: Bà Lin luôn kiểm tra email trước buổi họp sáng. — Trạng từ tần suất đứng trước động từ thường: \"always checks\"."},
+        {"q": "The project was completed ------- ahead of schedule.", "choices": ["well", "good", "better", "best"], "correct": 0, "explain": "Dịch: Dự án hoàn thành sớm hơn kế hoạch khá nhiều. — \"well ahead of schedule\" = sớm hơn hẳn; trạng từ \"well\" nhấn mạnh cụm giới từ."},
+        {"q": "Our ------- department will contact you to arrange the interview.", "choices": ["personnel", "personal", "personally", "personality"], "correct": 0, "explain": "Dịch: Phòng nhân sự sẽ liên hệ bạn để sắp xếp phỏng vấn. — Danh từ ghép \"personnel department\" (phòng nhân sự). \"personal\" (cá nhân) sai nghĩa."},
+        {"q": "The software update was ------- installed on all company computers.", "choices": ["successfully", "successful", "success", "succeed"], "correct": 0, "explain": "Dịch: Bản cập nhật đã được cài thành công trên mọi máy công ty. — Giữa \"was\" và V3 \"installed\" → trạng từ \"successfully\"."},
+        {"q": "Customers can track their orders through the ------- confirmation e-mail.", "choices": ["shipping", "shipped", "ship", "shipper"], "correct": 0, "explain": "Dịch: Khách có thể theo dõi đơn qua email xác nhận giao hàng. — Danh từ ghép \"shipping confirmation\" (V-ing làm định ngữ chỉ chức năng)."},
+        {"q": "The results were ------- better than the team had predicted.", "choices": ["much", "very", "too", "so"], "correct": 0, "explain": "Dịch: Kết quả tốt hơn nhiều so với dự đoán của nhóm. — Trước so sánh hơn \"better\" dùng \"much/far\", không dùng \"very\"."},
+        {"q": "Mr. Okoro has ------- returned from the trade show in Berlin.", "choices": ["just", "yet", "still", "already not"], "correct": 0, "explain": "Dịch: Ông Okoro vừa trở về từ hội chợ ở Berlin. — \"has just + V3\" = vừa mới. \"yet\" dùng ở câu phủ định/nghi vấn, đứng cuối câu."},
+        {"q": "Please keep your ------- receipt as proof of purchase.", "choices": ["sales", "sale", "sold", "selling"], "correct": 0, "explain": "Dịch: Vui lòng giữ hoá đơn bán hàng làm bằng chứng mua. — Danh từ ghép cố định \"sales receipt\" (giống sales department, sales figures)."}
+      ]
     }
   ],
 
