@@ -336,12 +336,17 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="app"></div>
 </div>
 
-<script src="ets2026-test1.js?v=202611140938"></script>
-<script src="ets2026-test2.js?v=202611140938"></script>
-<script src="ets2026-test3.js?v=202611140938"></script>
-<script src="ets2026-test4.js?v=202611140938"></script>
-<script src="ets2026-test5.js?v=202611140938"></script>
-<script src="mini30.js?v=202611140938"></script>
+<script src="ets2026-test1.js?v=202611141217"></script>
+<script src="ets2026-test2.js?v=202611141217"></script>
+<script src="ets2026-test3.js?v=202611141217"></script>
+<script src="ets2026-test4.js?v=202611141217"></script>
+<script src="ets2026-test5.js?v=202611141217"></script>
+<script src="ets2023-test1.js?v=202611141217"></script>
+<script src="ets2023-test2.js?v=202611141217"></script>
+<script src="ets2023-test3.js?v=202611141217"></script>
+<script src="ets2023-test4.js?v=202611141217"></script>
+<script src="ets2023-test5.js?v=202611141217"></script>
+<script src="mini30.js?v=202611141217"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -572,7 +577,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     });
     app.appendChild(list);
     if(!(window.AZT && AZT.isClass())){
-      [[2026,[6,7,8,9,10]],[2023,[]]].forEach(function(b){ b[1].forEach(function(n){
+      [[2026,[6,7,8,9,10]],[2023,[6, 7, 8, 9, 10]]].forEach(function(b){ b[1].forEach(function(n){
         var row = el("div", "test-row azt-lockrow");
         row.innerHTML = '<div class="tr-main"><div class="tr-name">Test ' + n + '</div><div class="tr-sub">ETS ' + b[0] + ' · 200 câu · 120 phút</div></div>' +
           '<a class="btn btn-ghost" href="./#hoc-vien">🔒 Học viên lớp</a>';
@@ -1748,5 +1753,5 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   window.AZT = { API: API, session: session, call: call, authed: authed, login: login, register: register, logout: logout, refresh: refresh,
     xp: xp, push: push, isClass: isClass, loadClass: loadClass, guard: guard, runScript: runScript, esc: esc, get: get, put: put, mockSend: mockSend, mockPanel: mockPanel, mockIntro: mockIntro };
 })();
-</script><script>(function(){AZT.guard("account","Gi\u1ea3i \u0111\u1ec1 ETS 2026").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc"].length)AZT.loadClass(["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc"]).then(go);else go();});})();</script></body>
+</script><script>(function(){AZT.guard("account","Gi\u1ea3i \u0111\u1ec1 ETS 2026").then(function(s){if(!s)return;var go=function(){AZT.runScript(document.getElementById("aztMain").textContent);};if(AZT.isClass(s)&&["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"].length)AZT.loadClass(["lop/ets2026-test6.enc", "lop/ets2026-test7.enc", "lop/ets2026-test8.enc", "lop/ets2026-test9.enc", "lop/ets2026-test10.enc", "lop/ets2023-test6.enc", "lop/ets2023-test7.enc", "lop/ets2023-test8.enc", "lop/ets2023-test9.enc", "lop/ets2023-test10.enc"]).then(go);else go();});})();</script></body>
 </html>
