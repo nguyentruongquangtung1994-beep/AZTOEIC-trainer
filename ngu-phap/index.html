@@ -485,7 +485,7 @@
   .ets-link{ display:flex; align-items:center; gap:10px; margin-top:12px; padding:12px 14px; border-radius:10px; border:1px dashed #B8913A; background:rgba(184,145,58,.08); color:var(--ink); text-decoration:none; font-size:13.5px; }
   .ets-link b{ color:#8F6E24; }
 </style>
-<script src="data/ets-de-that.js?v=202611142336"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+<script src="data/ets-de-that.js?v=202611200914"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"><style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
    Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
 :root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
@@ -625,21 +625,25 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   <div id="viewRoot"></div>
 </div>
 
-<script src="data/topic-1-cac-thi.js?v=202611142336"></script>
-<script src="data/topic-2-dieu-kien.js?v=202611142336"></script>
-<script src="data/topic-3-menh-de-quan-he.js?v=202611142336"></script>
-<script src="data/topic-4-dai-tu.js?v=202611142336"></script>
-<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611142336"></script>
-<script src="data/topic-6-chia-dong-tu.js?v=202611142336"></script>
-<script src="data/topic-7-tu-loai.js?v=202611142336"></script>
-<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611142336"></script>
-<script src="data/topic-9-so-sanh.js?v=202611142336"></script>
-<script src="data/topic-10-cau-truc-dong-tu.js?v=202611142336"></script>
-<script src="data/topic-11-khiem-khuyet.js?v=202611142336"></script>
-<script src="data/topic-12-cum-dong-tu.js?v=202611142336"></script>
-<script src="data/topic-13-lien-tu-part6.js?v=202611142336"></script>
-<script src="data/topic-14-tu-han-dinh.js?v=202611142336"></script>
-<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611142336"></script>
+<script src="data/topic-1-cac-thi.js?v=202611200914"></script>
+<script src="data/topic-2-dieu-kien.js?v=202611200914"></script>
+<script src="data/topic-3-menh-de-quan-he.js?v=202611200914"></script>
+<script src="data/topic-4-dai-tu.js?v=202611200914"></script>
+<script src="data/topic-5-gioi-tu-lien-tu.js?v=202611200914"></script>
+<script src="data/topic-6-chia-dong-tu.js?v=202611200914"></script>
+<script src="data/topic-7-tu-loai.js?v=202611200914"></script>
+<script src="data/topic-8-hoa-hop-chu-vi.js?v=202611200914"></script>
+<script src="data/topic-9-so-sanh.js?v=202611200914"></script>
+<script src="data/topic-10-cau-truc-dong-tu.js?v=202611200914"></script>
+<script src="data/topic-11-khiem-khuyet.js?v=202611200914"></script>
+<script src="data/topic-12-cum-dong-tu.js?v=202611200914"></script>
+<script src="data/topic-13-lien-tu-part6.js?v=202611200914"></script>
+<script src="data/topic-14-tu-han-dinh.js?v=202611200914"></script>
+<script src="data/topic-15-trang-tu-danh-tu-ghep.js?v=202611200914"></script>
+<script src="data/topic-16-mao-tu.js?v=202611200914"></script>
+<script src="data/topic-17-menh-de-danh-tu.js?v=202611200914"></script>
+<script src="data/topic-18-menh-de-trang-ngu.js?v=202611200914"></script>
+<script src="data/topic-19-dao-ngu.js?v=202611200914"></script>
 <script type="text/azt" id="aztMain">
 (function(){
   "use strict";
@@ -751,8 +755,8 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
   // ---------- DASHBOARD ----------
   var TOPIC_GROUPS = [
     {name:'Nền tảng câu', ids:['cac-thi','chia-dong-tu','hoa-hop-chu-vi','khiem-khuyet','cau-truc-dong-tu']},
-    {name:'Từ loại & bổ nghĩa', ids:['tu-loai','trang-tu-danh-tu-ghep','tu-han-dinh','dai-tu','so-sanh']},
-    {name:'Mệnh đề, liên kết & cụm từ', ids:['dieu-kien','menh-de-quan-he','gioi-tu-lien-tu','lien-tu-part6','cum-dong-tu']}
+    {name:'Từ loại & bổ nghĩa', ids:['tu-loai','trang-tu-danh-tu-ghep','tu-han-dinh','mao-tu','dai-tu','so-sanh']},
+    {name:'Mệnh đề, liên kết & cụm từ', ids:['dieu-kien','menh-de-quan-he','menh-de-danh-tu','menh-de-trang-ngu','gioi-tu-lien-tu','lien-tu-part6','dao-ngu','cum-dong-tu']}
   ];
   var AZ_RESULTS = [
     {img:'assets/toeic-950.jpg', score:'950', sub:'Listening 495 · Reading 455'},
@@ -952,7 +956,7 @@ body, .q-text, p, li { font-family: "Be Vietnam Pro", system-ui, -apple-system, 
     var p = getProgress()[topicId] || {};
 
     var html = '<a class="backlink" onclick="location.hash=\'#/grammar\'">‹ Danh sách chủ điểm</a>';
-    html += '<div class="panel"><h2>' + esc(t.title) + '</h2><p class="desc">' + esc(t.subtitle) + ' — lý thuyết trích từ AZGrammar, bài tập chuyển thể trắc nghiệm từ sách luyện đề TOEIC.</p>';
+    html += '<div class="panel"><h2>' + esc(t.title) + '</h2><p class="desc">' + esc(t.subtitle) + ' — ' + esc(t.desc || 'lý thuyết trích từ AZGrammar, bài tập chuyển thể trắc nghiệm từ sách luyện đề TOEIC.') + '</p>';
 
     html += '<div class="accordion" style="margin-top:16px;">';
     html += '<button class="accordion-toggle" id="theoryToggle"><h3 style="font-family:var(--font-display);font-size:15px;margin:0;">📘 Xem lý thuyết</h3><span class="chev">▾</span></button>';
